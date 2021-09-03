@@ -1,0 +1,60 @@
+{
+  "name": "Shop-Sasta",
+  "description": "Shop Sasta",
+  "version": "11.0.0",
+  "main": "release.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/totaljs/eshop"
+  },
+  "dependencies": {
+    "@sentry/node": "^5.20.1",
+    "async": "^3.2.0",
+    "awesome-phonenumber": "^2.35.0",
+    "aws-sdk": "^2.713.0",
+    "axios": "^0.19.2",
+    "btoa": "^1.2.1",
+    "couponjs": "^0.8.13",
+    "crypto-js": "^4.0.0",
+    "crypto-random-string": "^3.3.0",
+    "elastic-apm-node": "^3.6.1",
+    "fb": "^2.0.0",
+    "fcm-node": "^1.5.2",
+    "fcm-notification": "^2.0.0",
+    "image-resize": "^1.1.5",
+    "indian-cities-database": "^1.0.5",
+    "jimp": "^0.16.1",
+    "json2csv": "^4.5.4",
+    "jsonexport": "^2.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "jssha": "^2.3.1",
+    "logger": "0.0.1",
+    "md5": "^2.2.1",
+    "minimist": "^1.2.5",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
+    "mongodb": "^3.5.9",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.4.11",
+    "otplib": "^12.0.1",
+    "paypal-express-checkout": "latest",
+    "razorpay": "^2.0.5",
+    "sha-256-js": "^1.0.3",
+    "sharp": "^0.26.2",
+    "showdown": "^1.9.1",
+    "slug": "^3.3.5",
+    "sqlagent": "^12.1.1",
+    "svg-captcha": "^1.4.0",
+    "total.js": "^3.4.6",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eshop",
+    "ecommerce"
+  ],
+  "author": "Peter Širka",
+  "license": "MIT"
+}

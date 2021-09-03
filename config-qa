@@ -1,0 +1,34 @@
+name                      : shopsasta - Community Group Buying
+version                   : 11.0.1
+author                    : shanmukha
+
+// Hidden super admin in the form username:password
+admin-superadmin          : admin:#@PPy||Mob
+admin-cookie              : __admin
+
+// Enables real-time visitor tracking
+admin-tracking            : true
+
+// database
+mongo                     : mongodb+srv://admin:VsKl9x8yEWIqllxh@cluster1.m73oz.mongodb.net/shop-sasta-new?retryWrites=true&w=majority
+db-name                   : shop-sasta-new
+mongo-url                 : mongodb://admin:VsKl9x8yEWIqllxh@cluster1-shard-00-00.m73oz.mongodb.net:27017,cluster1-shard-00-01.m73oz.mongodb.net:27017,cluster1-shard-00-02.m73oz.mongodb.net:27017/shop-sasta-new?ssl=true&replicaSet=atlas-a3b8l5-shard-0&authSource=admin&retryWrites=true&w=majority
+
+// Image convertor for resizing of pictures
+// Default image converter: im = ImageMagick, gm = GraphicsMagick
+default-image-converter   : gm
+
+// Default theme
+default-theme             : default
+
+S3_ACCESS_KEY_ID          : AKIASTAEMZYQTLP6FLB4
+PAYTM_MID                 : kegRrv60547753089820
+PAYTM_WEBSITE             : WEBSTAGING
+PAYTM_INDUSTRY_TYPE_ID    : Retail
+PAYTM_CHANNEL_ID          : WEB
+PAYTM_CALLBACK_URL        : https://qa.shopsasta.com/order/paytm-return
+PAYTM_CALLBACK_LINK_URL   : http://3.6.90.124:9000/order/paytm-return-link
+PAYTM_CHECK_SUM_KEY       : Xd%ntxccKaCIzkN8
+PAYTM_ORDER_SUBMIT_URL    : https://securegw-stage.paytm.in/order/process
+PAYTM_CALLBACK_COD_URL    : http://3.6.90.124:9000/order/paytm-return-cod
+RAZORPAY_KEY              : cnpwX3Rlc3RfVzBWZDJlUkpFd0llcVY6VTRTN0loam44eEExQ2IxV2p1NzVIR1By

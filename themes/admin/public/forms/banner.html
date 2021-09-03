@@ -1,0 +1,400 @@
+<style>
+    /*auto*/
+    //check
+    .ui-productsprices {
+        display: table;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .ui-productsprices-item {
+        display: table-row;
+    }
+    .ui-productsprices-item>div {
+        display: table-cell;
+        padding: 2px 5px;
+    }
+    .ui-productsprices-item>div:first-child {
+        padding-left: 0;
+    }
+    .ui-productsprices-item>div:last-child {
+        padding-right: 0;
+    }
+    .ui-productsprices-item input {
+        width: 100%;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px dotted black;
+        font-weight: normal;
+        outline: 0;
+        text-align: right;
+        padding: 1px 5px;
+        margin: 0;
+        font-size: 14px;
+    }
+    .ui-productsprices-reference {
+        width: 100px;
+    }
+    .ui-productsprices-reference input {
+        text-align: left;
+    }
+    .ui-productsprices-name input {
+        text-align: left;
+    }
+    .ui-productsprices-stock {
+        width: 110px;
+    }
+    .ui-productsprices-stock div {
+        margin-right: 20px;
+    }
+    .ui-productsprices-stock .fa {
+        float: right;
+        color: red;
+        width: 18px;
+        cursor: pointer;
+        margin: 5px 0 0;
+        text-align: right;
+    }
+    .ui-productsprices-price {
+        width: 120px;
+        background-color: #F0F0F0;
+        padding-right: 10px !important;
+    }
+    .ui-productsprices-sum {
+        width: 120px;
+        text-align: right;
+        background-color: #FFFFF5;
+        font-size: 14px;
+    }
+    .ui-productsprices-sum>div {
+        padding: 1px 5px;
+        border-bottom: 1px solid black;
+    }
+    .ui-productsprices-header {
+        margin-bottom: 10px;
+    }
+    .ui-productsprices-header .ui-productsprices-price {
+        background-color: transparent;
+    }
+    .ui-productsprices-header>div {
+        padding: 5px 5px;
+        font-weight: bold;
+        text-align: right;
+    }
+    .ui-productsprices-header .ui-productsprices-name {
+        text-align: left;
+    }
+    .ui-productsprices-header .ui-productsprices-stock {
+        padding-right: 20px !important;
+    }
+    .ui-productsprices-header .fa {
+        margin: 0 5px 0 0;
+        cursor: default;
+        color: black;
+    }
+    .ui-markdown-editor-label {
+        margin-bottom: 5px;
+        font-size: 12px;
+        text-align: left;
+    }
+    .ui-markdown-editor-label .fa {
+        margin-right: 5px;
+    }
+    .ui-markdown-editor-label-required {
+        font-weight: bold;
+    }
+    .ui-markdown-editor-label-required:before {
+        color: red;
+        content: '***';
+        margin-right: 5px;
+    }
+    .ui-markdown-editor-invalid {
+        border-color: #E7B8B8 !important;
+        background-color: #FFF3F3 !important;
+    }
+    @media(max-width: 768px) {
+        .ui-productsprices-item>div {
+            display: block;
+            height: 30px;
+        }
+        .ui-productsprices-item {
+            display: block;
+            height: 80px;
+        }
+        .ui-productsprices {
+            display: block;
+        }
+        .ui-productsprices-reference {
+            width: 33%;
+            float: left;
+        }
+        .ui-productsprices-name {
+            margin-left: 33%;
+        }
+        .ui-productsprices-price {
+            width: 33%;
+            float: left;
+        }
+        .ui-productsprices-stock {
+            width: 33%;
+            float: left;
+        }
+        .ui-productsprices-sum {
+            width: 33%;
+            float: right;
+        }
+    }
+    /*
+        Autocomplete Start 
+        */
+    .ui-autocomplete-container {
+        position: absolute;
+        z-index: 60;
+    }
+    .ui-autocomplete {
+        background-color: white;
+        width: 100%;
+        margin: -5px 0 0 0;
+        padding: 2px 0;
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border: 1px solid #E0E0E0;
+        line-height: 14px;
+        overflow: hidden;
+    }
+    .ui-autocomplete ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .ui-autocomplete li {
+        margin: 0;
+        padding: 5px 12px 0;
+        border-bottom: 1px solid #F0F0F0;
+        cursor: pointer;
+        font-size: 12px;
+        color: #505050;
+        height: 24px;
+    }
+    .ui-autocomplete li:last-child {
+        border-bottom: 0;
+    }
+    .ui-autocomplete .selected {
+        background-color: #F0F0F0;
+    }
+    .ui-autocomplete li span {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .ui-autocomplete li span:first-child {
+        float: left;
+        width: 65%;
+    }
+    .ui-autocomplete li span:last-child {
+        float: right;
+        width: 30%;
+        font-size: 11px;
+        color: #A0A0A0;
+    }
+    .ui-dark .ui-autocomplete {
+        background-color: #303030;
+        border-color: #404040;
+    }
+    .ui-dark .ui-autocomplete li {
+        color: gray;
+        border-bottom-color: #404040;
+    }
+    .ui-dark .ui-autocomplete .selected {
+        background-color: #454545;
+        color: white;
+    }
+    /*
+        Autocomplete End 
+        */
+</style>
+<div data-jc="form" data-jc-path="common.form" class="hidden"
+    data-jc-config="icon:dropbox;if:products-form;width:1300;reload:Products/formShow;submit:Products/formSubmit;autofocus:true"
+    data-jc-controller="Products">
+    <div class="row" style="padding: 15px">
+        <div class="col-md-12 m">
+            <div class="form-group">
+                <label for="exampleInputtitle">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="title">
+            </div>
+        </div>
+        <div class="col-md-12 m">
+            <div class="form-group">
+                <label for="exampleInputlink">Link</label>
+                <input type="text" class="form-control" id="link" placeholder="link">
+            </div>
+        </div>
+        <div class="col-md-6 m">
+            <div class="form-group">
+                <label for="cars">Select Device Type:</label>
+                <select id="devicetype" name="cars">
+                    <option value="desktop">desktop</option>
+                    <option value="mobile">Mobile</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 m">
+            <div class="form-group">
+                <label for="exampleInputtarget">Target</label>
+                <select id="target" name="cars">
+                    <option value="none">None</option>
+                    <option value="new-tab">New Tab</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 m">
+            <div class="form-group">
+                <label for="exampleInputpictures">Pictures</label>
+                <input type="text" class="form-control" id="pictures" placeholder="image Url ">
+            </div>
+        </div>
+        
+        <!--        <div class="col-md-6 m">-->
+        <!--    <div class="form-group">-->
+        <!--        <label for="exampleInputpictures">Weight</label>-->
+        <!--        <input type="text" class="form-control" id="weight" placeholder=" weight  ">-->
+        <!--    </div>-->
+        <!--</div>-->
+        
+        <div class="col-md-6 m">
+            <div class="form-group">
+                <label for="exampleInputactive">Active</label>
+                <!-- <input type="text" class="form-control" id="active" placeholder="active"> -->
+                <input type="checkbox" id="active" name="active" >
+            </div>
+        </div>
+        <button onclick="submitorder()" class="btn btn-primary submit-btn"
+            style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px;">UPLOAD</button>
+        <div class="col-md-6 m">
+            <div class="form-group">
+            
+
+    </div>
+    <hr class="nmt" />
+    <div class="padding">
+        <b>please upload the 1000px X 500px and .JPG</b>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 m mt10">
+                <button class="button button-small b" data-jc="fileupload" data-jc-path="mypicture"
+                    data-jc-config="url:[url]api/upload/?type=homepagebanner;multiple:false;accept:image/jpeg;property:id;array:true"><i
+                        class="fa fa-camera"></i>@(Upload photos)</button>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div data-jc="pictures" data-jc-path="mypicture"></div>
+        </div>
+    </div>
+</div>
+</divs>
+<script>
+    var opt = {};
+    opt.element = $('#searchtext');
+    opt.offsetY = 17;
+    opt.offsetWidth = 21;
+    opt.callback = function (value, input) {
+        alert('autocomplete selected --> ' + JSON.stringify(value));
+        input.val('');
+    };
+    function submitorder() {
+        var settings = {
+            "url": "/api/banner/",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "title": $('#title').val(),
+                "link": $('#link').val(),
+                "target": $("#target option:selected").val(),
+                "pictures": $('#pictures').val(),
+                "active": $("#active").is(":checked") ,
+                "devicetype": $("#devicetype option:selected").val()
+            }),
+        };
+        //console.log(settings);
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    }
+    opt.search = function (q, render) {
+        console.log('---> autocomplete search query:', q);
+        // e.g. we have to call e.g. AJAX or another datasource
+        render([{ name: 'Item 1', type: 'pages' }, { name: 'Item 2', type: 'widgets' }, { name: 'Item 3' }, { name: 'Item 4' }, { name: 'Item 5' }, { name: 'Item 6' }, { name: 'Item 7' }, { name: 'Item 8' }, { name: 'Item 9' }, { name: 'Item 10' }]);
+    };
+    SETTER(true, 'autocomplete', 'show', opt);
+</script>
+<script>
+    var devicetype = [{ name: 'desktop', id: 'desktop' }, { name: 'mobile', id: 'mobile' }];
+    var target = [{ name: 'new tab', id: 'new-tab' }, { name: 'none', id: 'none' }];
+    //var camdata = [{ name: 'Below-5', id: 'pc00' },{ name: '5-7.9', id: 'pc01' }, { name: '8-9.9', id: 'pc02' }, { name: '10-above', id: 'pc03' }, { name: 'No-Cam', id: 'pc04' }];
+    var mypicture = '';
+    setInterval(function () {
+        console.log('mypicture', mypicture);
+        if (mypicture[0] !== undefined) {
+            $('#pictures').val(`/images/small/${mypicture[0]}.jpg`);
+        }
+    }, 2000);
+    SCOPE('Product', function (ctrl) {
+        ctrl.refreshDependencies = function () {
+            AJAX('GET [url]api/{0}/dependencies/'.format(ctrl.scope), ctrl.scope
+                + '.dependencies');
+        };
+        ctrl.formShow = function (com) {
+            var model = products.form;
+            com.reconfigure({ title: model.id ? '@(Edit product)' : '@(New product)' });
+            WAIT('cmseditor.instance', function () {
+                cmseditor.instance.setWidgetOptions(model.widgets);
+            });
+            SETTER('loading', 'hide', 500);
+            loadProductChange();
+            model.id && AJAX('GET [url]api/{0}/{1}/stats/'.format(ctrl.scope, model.id), ctrl.scope + '.form.stats');
+        };
+        ctrl.formSubmit = function (com) {
+            console.log('formSubmit');
+            SETTER('loading', 'show');
+            var model = CLONE(products.form);
+            AJAX('POST [url]api/{0}/'.format('banner'), model, function (response) {
+                SETTER('loading', 'hide', 1000);
+                if (response.success) {
+                    SETTER('snackbar', 'success', '@(Product has been saved successfully.)');
+                    com.hide();
+                    ctrl.refresh();
+                }
+            });
+        };
+        ctrl.backups = function (el) {
+            SETTER('loading', 'show');
+            AJAX('GET [url]api/{0}/{1}/backups/'.format(ctrl.scope, ctrl.get('form.id')), function (response) {
+                SETTER('loading', 'hide', 1000);
+                for (var i = 0, length = response.length; i < length; i++) {
+                    var item = response[i];
+                    item.name = '{0} <b class="badge badge-blue"><i class="fa fa-user mr5"></i>{1}</b>'.format(item.date.format('@(yyyy-MM-dd HH:mm)'), item.user);
+                }
+                response.quicksort('date', false);
+                SETTER('suggestion', 'show', 'left', el, response, function (value) {
+                    SETTER('loading', 'show');
+                    setTimeout(function () {
+                        cmseditor.instance.replace(value.data.body);
+                        SETTER('loading', 'hide', 1000);
+                    }, 100);
+                });
+            });
+        };
+        ctrl.watch('form.template', function (path, value, type) {
+            if (type === 2) {
+                cmseditor.instance.reconfigure('template:' + value);
+                cmseditor.instance.set('');
+            }
+        }, true);
+        ctrl.formAddItem = function () {
+            PUSH('products.form.prices', { price: 1, stock: 1, name: '' });
+        };
+        ctrl.refreshDependencies();
+    });
+</script>

@@ -1,0 +1,420 @@
+<style>
+    .search-form {
+        position: relative;
+    }
+
+    .search-list-text {
+        background-color: white;
+        position: absolute;
+        z-index: 999;
+        width: 100%;
+        border: 2px solid #029b97;
+    }
+
+    .search-list-text #search-result {
+        display: grid;
+    }
+
+    .search-list-text #search-result a {
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px;
+        cursor: pointer;
+    }
+
+    .search-list-text #search-result a:hover {
+        background-color: #dedee0;
+    }
+
+
+
+    .search-list-text {
+        display: none;
+    }
+</style>
+
+<div class="modal fade login-modal-main" id="bd-example-modal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-modal">
+                    <div class="row">
+                        <div class="col-lg-6 pad-right-0 d-flex align-items-center justify-content-center" >
+                            <img style="height:41px"
+                            src="/img/SHOPSASTA.png"
+                            alt="logo"> 
+                           
+                            <!-- <div class="login-modal-left">
+                            </div> -->
+                        </div>
+                        <div class="col-lg-6 pad-left-0">
+                            <button type="button" class="close close-top-right" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                                <span class="sr-only">Close</span>
+                            </button>
+
+                            <div class="login-modal-right">
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="login" role="tabpanel">
+                                        <div class="otp-form" id="sendOtpForm">
+                                            <form onsubmit="return false;">
+                                                <h5 class="heading-design-h5">Login to your account</h5>
+                                                <fieldset class="form-group">
+                                                    <label>Mobile number</label>
+                                                    <input type="text" class="form-control" id="phoneNo">
+                                                </fieldset>
+                                                <div class="alert alert-danger sendotp-error"
+                                                    style="font-size: 14px; padding:3px 15px">
+
+                                                </div>
+                                                <fieldset class="form-group">
+                                                    <button type="submit" class="btn btn-lg btn-secondary btn-block"
+                                                        onclick="sendOtpSubmit()">Enter to your account</button>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <div class="verify-form" id="verifyForm">
+                                            <h5 class="heading-design-h5">OTP Sent to your Mobile</h5>
+                                            <form onsubmit="return false;">
+                                                <fieldset class="form-group">
+                                                    <label>Enter OTP</label>
+                                                    <input type="password" class="form-control" id="otp">
+                                                    <div class="alert alert-danger verify-error"
+                                                        style="font-size: 14px; padding:3px 15px">
+
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset class="form-group">
+                                                    <button type="submit" onclick="verifyOtpSubmit()"
+                                                        class="btn btn-lg btn-secondary btn-block"
+                                                        onclick="sendOtpSubmit()">Enter to your account</button>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <div class="tab-pane" id="registrationForm" role="tabpanel">
+                                        <h5 class="heading-design-h5">Register Now!</h5>
+                                        <form onsubmit="return false;">
+                                            <fieldset class="form-group">
+                                                <label>Enter Name </label>
+                                                <input type="text" class="form-control" id="name">
+                                                <span class="name-error" style="font-size: 12px; color: red;">Name is required</span>
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <label>Mobile number</label>
+                                                <input type="text" class="form-control" id="phone" disabled>
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <label>Email</label>
+                                                <input type="text" class="form-control" id="email">
+                                                <span class="email-error" style="font-size: 12px; color: red;">Email is required</span>
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <label>Referal Code</label>
+                                                <input type="text" class="form-control">
+                                            </fieldset>
+                                            <!-- <fieldset class="form-group">
+                                     <label>Enter OTP </label>
+                                     <input type="password" class="form-control">
+                                  </fieldset> -->
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                <label class="custom-control-label" for="customCheck2">I Agree with <a
+                                                        href="/pages/terms-and-conditions/" target="_blank" style="color: #029b97;">Terms and Conditions</a></label>
+                                            </div>
+                                            <span class="accept-error" style="color:red;"></span>
+                                            <fieldset class="form-group">
+                                                <button type="submit" class="btn btn-lg btn-secondary btn-block"
+                                                    onclick="registrationOtpSubmit()">Create Your Account</button>
+                                            </fieldset>
+
+                                    </div>
+
+                                    <div class="tab-pane" id="addressForm" role="tabpanel">
+                                        <fieldset class="form-group">
+                                            <label>Enter your community / Apartment Name </label>
+                                            <input type="text" class="form-control " id="popApartmentName">
+                                            <span class="pop-aprt-error" style="font-size: 12px; color: red;">Apartment
+                                                Name is required</span>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control " id="popName">
+                                            <span class="pop-name-error" style="font-size: 12px; color: red;">Name is
+                                                required</span>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Flat/House/Office No</label>
+                                            <input type="text" class="form-control " id="popOfficeNum">
+                                            <span class="pop-flat-error"
+                                                style="font-size: 12px; color: red;">Flat/House/Office No is
+                                                required</span>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Street Name</label>
+                                            <input type="text" class="form-control " id="popStreetName">
+                                            <span class="pop-street-error" style="font-size: 12px; color: red;">Street
+                                                Name is required</span>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Landmark</label>
+                                            <input type="text" class="form-control " id="popLandmark">
+                                            <span class="pop-land-error" style="font-size: 12px; color: red;">Landmark
+                                                is required</span>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Area Details</label>
+                                            <input type="text" class="form-control " id="popAreaDetails">
+                                            <span class="pop-area-error" style="font-size: 12px; color: red;">Area
+                                                Details is required</span>
+                                        </fieldset>
+                                        
+                                       
+                                       
+                                        <fieldset class="mb-2">
+                                            <label>City</label>
+                                            <select id='popCity' style='width: 100%;'>
+                                              
+                                            
+                                            </select>
+                                         </fieldset>
+                                         <fieldset class="form-group mb-2">
+                                            <label>Pincode</label>
+                                            <input type="text" class="form-control " id="popPinCode" onfocusout="getCities(this.value)">
+                                            <span class="pop-pin-error" style="font-size: 12px; color: red;">Pincode is
+                                                required</span>
+                                        </fieldset>
+                                        <!-- <fieldset class="form-group">
+                                            <label>City</label>
+                                            <input type="text" class="form-control " id="popCity" disabled>
+                                            <span class="pop-city-error" style="font-size: 12px; color: red;">City name is required</span>
+                                         </fieldset> -->
+                                        <fieldset class="form-row">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" checked name="popType"
+                                                        value="home">Home
+                                                </label>
+                                            </div>
+                                            &nbsp;&nbsp;
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="popType"
+                                                        value="office">Office
+                                                </label>
+                                            </div> &nbsp;&nbsp;
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="popType"
+                                                        value="others">Others
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                        <br>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" checked disabled
+                                                id='setDefaults'>
+                                            <label class="custom-control-label" for="setDefaults">Set this as my default
+                                                delivery address</label>
+                                        </div>
+                                        <br>
+                                        <fieldset class="form-group">
+                                            <button type="submit" class="btn btn-lg btn-secondary btn-block"
+                                                onclick="addAddress('pop')">Submit</button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!-- <div class="text-center login-footer-tab">
+                               <ul class="nav nav-tabs" role="tablist">
+                                  <li class="nav-item">
+                                     <a class="nav-link active" data-toggle="tab" href="#login" role="tab"><i class="mdi mdi-lock"></i> LOGIN</a>
+                                  </li>
+                                  <li class="nav-item">
+                                     <a class="nav-link" data-toggle="tab" href="#register" role="tab"><i class="mdi mdi-pencil"></i> REGISTER</a>
+                                  </li>
+                               </ul>
+                            </div> -->
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<button class="modal-addCart" data-target="#addcart-modal" data-toggle="modal" style="display:none;"></button>
+<div class="modal fade addcart-modal-main" id="addcart-modal">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="addcart-modal">
+                    <button type="button" class="close close-top-right addCartClose" style="z-index: 9999;;position: absolute;right: 8px;" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                        <span class="sr-only">Close</span></button>
+                    <div class="row m-0">
+
+                        <div class="col-lg-12 pad-left-0 p-0">
+
+                            <div class="add-modal-pop"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar-top pt-2 pb-2" style="display: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+               <span class="nodel" style="color: #fff;">No Delivery to this pincode</span>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="#" data-target="#bd-example-modal" data-toggle="modal"
+                    class="user-out open-login text-white ml-3 mr-3"><i class="mdi mdi-lock"></i> Sign In</a>
+                <a href="javascript:userLogout()" class="user-in text-white ml-3 mr-3"><i class="mdi mdi-lock"></i> Sign
+                    OUT</a>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-light navbar-expand-lg bg-dark bg-faded osahan-menu">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"> <img style="height:41px"
+                src="/img/SHOPSASTA.png"
+                alt="logo"> </a>
+
+        <button class="navbar-toggler navbar-toggler-white" type="button" data-toggle="collapse"
+            data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse justify-content-end" id="navbarNavDropdown ">
+            <div class="top-categories-search">
+                <form action="get" name="searchq" class="search-form" action="/category/">
+
+                    <div class="input-group">
+
+
+                        <input class="form-control search-text" placeholder="Search products..."
+                            aria-label="Search products" type="text" autocomplete="off" style="border: 1px solid #efefef;    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button" onclick="searchClick()" style="    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);"><i
+                                    class="mdi mdi-file-find"></i>
+                                Search</button>
+                        </span>
+
+
+                    </div>
+                    <div class="search-list-text">
+                        <div id="search-result">
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class=" my-2 my-lg-0 d-flex align-items-center">
+                <div class="user-in">
+                    <div class="loc-b  locModalClick d-flex align-items-center mr-4" data-toggle="modal"
+                        data-target="#locationModal" style="margin-left:0">
+                        <div class="loc-b-inner">
+                            <span>
+                                <div class="loc-icon">
+
+                                    <img src="/img/location_map.png" alt="" style="height: 30px;">
+                                </div>
+                            </span>
+                            <span style="display: grid;justify-content: flex-start;text-align: initial;">
+                                <div style="height: 15px;">Deliver to</div>
+                                <div class="loc-txt" style="display: flex;text-transform: capitalize;">
+
+
+                                </div>
+                            </span>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <ul class="list-inline main-nav-right user-in">
+                    <li class="list-inline-item cart-btn">
+                        <a href="/cart" class="btn btn-link border-none"><img src="/img/bag-24.png" alt=""><small
+                                class="cart-value">0</small></a>
+                    </li>
+                </ul>
+                <ul class="list-inline main-nav-right user-out">
+                    <li class="list-inline-item cart-btn">
+                        <a href="javascript:login()" class="btn btn-link border-none"><img src="/img/bag-24.png" alt="">
+                            <small class="cart-value">0</small></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="locationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header center" style="display: none;">
+                <button type="button" class="close loc-modal" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row m-0">
+
+                    <div class="col-md-12 col-xs-12"
+                        style="margin-bottom: 3rem;text-align: center;font-size: 25px;font-weight:600;">
+                        <span>Choose Delivery Location</span>
+                        <button type="button" class="close loc-modal location-modal-close" data-dismiss="modal">×</button>
+                    </div>
+
+                    <div class="col-md-12 col-xs-12">
+                        <div class="loc-list d-flex align-items-center justify-content-center" style="flex-wrap:wrap;">
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<form method="post" action="/order/paytm" name="pincodeCookies">
+    <table border="1">
+        <tbody>
+            <input type="hidden" name="pincode">
+            <input type="hidden" name="amount" class="downpaymentamount">
+        </tbody>
+    </table>
+</form>
+
+<form method="get" name="changePin" action="/api/set-pincode" class="changePins">
+    <table border="1">
+        <tbody>
+            <input type="hidden" name="pincode" id="stockPincode">
+        </tbody>
+    </table>
+</form>
+
+

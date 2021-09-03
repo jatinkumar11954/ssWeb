@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    @{import('home-other.css','details.css','custom2.css','footer.css','homepage-new.css',
+	'default.css','custom.css','bottom.css','top.css')}
+</head>
+<body style="background-color: white;">
+    @{if model.product_type == 'Powerbanks'}
+	@{view('/partials/accessories/powerbank',model)}
+
+
+	@{else if model.product_type == 'Mobiles'}
+	@{view('/partials/accessories/mobiles',model)}
+
+	@{else if model.product_type == 'Tablets'}
+	@{view('/partials/accessories/mobiles',model)}
+
+	@{else if model.product_type == 'storage drivers'}
+	@{view('/partials/accessories/storagedrivers',model)}
+
+
+	@{else if model.product_type == 'Chargers'}
+	@{view('/partials/accessories/chargers',model)}
+
+
+	@{else if model.product_type == 'Headset'}
+	@{view('/partials/accessories/headset',model)}
+
+
+	@{else if model.product_type == 'CarCharger'}
+	@{view('/partials/accessories/carchargers',model)}
+
+
+
+	@{else if model.product_type == 'BluetoothHeadset'}
+	@{view('/partials/accessories/bheadset',model)}
+
+
+	@{else if model.product_type == 'BluetoothSpeaker'}
+	@{view('/partials/accessories/bspeakers',model)}
+
+
+	@{else if model.product_type == 'Tvs'}
+	@{view('/partials/accessories/tv',model)}
+
+
+	@{else if model.product_type == 'Data Cables'}
+	@{view('/partials/accessories/datacabels',model)}
+	
+	@{else if model.product_type == 'Smartwatches'}
+	@{view('/partials/accessories/smartwatches',model)}
+	@{fi}
+</body>
+</html>

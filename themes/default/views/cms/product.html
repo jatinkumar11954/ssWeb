@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Shopsasta">
+	<meta name="author" content="Askbootstrap">
+	<title>shopsasta.com - Community Group Buying</title>
+	<!-- Favicon Icon -->
+	<link rel="icon" type="image/png" href="/img/favicon.png">
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Icons -->
+	<link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+	<!-- Select2 CSS -->
+	<link href="/vendor/select2/css/select2-bootstrap.css" />
+	<link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+	<!-- Custom styles for this template -->
+	<link href="/css/osahan.css" rel="stylesheet">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+	<link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+	<style>
+		.product-body h5 {
+			height: 32px;
+		}
+
+		.short-description {
+			padding: 15px 0;
+		}
+
+		.short-description .prod-info-title {
+			font-weight: 600;
+
+		}
+
+		.price-show-b {
+			font-weight: bold;
+			color: #000;
+			font-size: 14px;
+		}
+
+		.price-show-b span:nth-child(2) {
+			color: #029b97;
+			margin: 0 1rem;
+		}
+
+		.detail-img {
+			width: 500px;
+			height: 500px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="header">
+		@{view('~partials/header-home',model)}
+	</div>
+
+	<section class=" bg-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 breadcum">
+					<a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+						class="mdi mdi-chevron-right"></span> <a href="#">@{model.category}</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="shop-single section-padding pt-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					@{if model.pictures.length}
+					<div class="shop-detail-left">
+						<div class="shop-detail-slider">
+
+
+							<div id="sync1" class="owl-carousel" style="border: 0;">
+								@{foreach m in model.pictures }
+								<div class="item " style="text-align: center;"><img alt=""
+										src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{m}.jpg"
+										class="img-fluid img-center detail-img"></div>
+								@{end}
+							</div>
+							<div id="sync2" class="owl-carousel">
+								@{foreach m in model.pictures }
+								<div class="item " style="text-align: center;"><img alt=""
+										src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{m}.jpg"
+										class="img-fluid img-center"></div>
+								@{end}
+							</div>
+
+						</div>
+					</div>
+					@{else}
+					<div>
+						<div style="text-align: center;"><img alt="" src="/img/no-prod.svg"
+								class="img-fluid img-center"></div>
+
+					</div>
+					@{fi}
+				</div>
+				<div class="col-md-6">
+					<div class="shop-detail-right b-0">
+						<!-- <span class="badge badge-success">50% OFF</span> -->
+						<h2 class="mb-3">@{model.name}</h2>
+
+						<!-- <p class="regular-price"><i class="mdi mdi-tag-outline"></i> MRP : @{model.mrp}</p>
+						<p class="mb-0"><strong> You Save : @{model.mrp - model.payPrice}</strong> </p> -->
+						<!-- <p class="offer-price mb-0">Price : <span
+								class="text-success prod-price">@{model.payPrice}</span></p> -->
+						<div class="variant-block  mb-1">
+							<div class="row">
+								<div class="col">
+									<select class="select2 form-control border-form-control" id="variant-parent">
+										@{foreach item in model.variant }
+										<option value="@{item.id}">@{item.title}</option>
+										@{end}
+									</select>
+								</div>
+								<div class="col">
+									<select class="select2 form-control border-form-control" id="variant-child">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="price-show-b mt-4 mb-3">
+							<span>MRP : @{model.variant[0].mrp}</span>
+							<span>Save : @{model.variant[0].mrp - model.variant[0].base_price}</span>
+							<span>You Pay : @{model.variant[0].base_price}</span>
+
+						</div>
+						<div class="user-in">
+							<div class="d-flex mt-2">
+								<div class="addcart-b mr-4">
+									@{if model.stockStatus}
+									@{if model.stock != 0}
+									<a href="javascript:addToCartPop('@{model.id}')">
+										<button type="button" class="btn btn-secondary btn-lg" style="margin:0">+ Add To
+											Cart</button>
+									</a>
+
+									@{fi}
+									@{else}
+									<section>
+										<div class="container nodel" style="text-align: center;    padding: 1rem 0 ;">
+											<!-- <span class=""
+												style="color: red;text-align: center;font-weight: 600;font-size: 19px;">
+												Availability : &nbsp; No &nbsp;Delivery to this Pincode</span> -->
+												<span class="" style="color: red;text-align: center;font-weight: 600;font-size: 19px;">We are not delivering in your area yet</span>
+
+										</div>
+									</section>
+									@{fi}
+								</div>
+
+								@{if model.stockStatus}
+								<div class="stoack-details">
+									<h2>
+										<p class="" style="text-align:right;">Availability:
+
+											@{if model.stock != 0}
+											<span class="badge badge-success">In Stock</span>
+											@{else}
+											<span class="badge badge-danger">Out of Stock</span>
+											@{fi}
+
+										</p>
+									</h2>
+								</div>
+
+								@{fi}
+							</div>
+						</div>
+						<a href="javascript:login()" class="user-out">
+							<button type="button" class="btn btn-secondary btn-lg">+ Add To Cart</button>
+						</a>
+
+
+
+
+						@{if model.offerdesc}
+						<div class="short-description">
+							<p id="deliveryinfo"> </p>
+							<h5 class="prod-info-title">
+								Offers
+
+
+							</h5>
+
+							<p class="mb-0"> @{model.offerdesc}</p>
+						</div>
+						@{fi}
+						@{if model.simpledesc}
+						<div class="short-description">
+							<h5 class="prod-info-title">
+								About this item
+
+
+							</h5>
+
+							<p class="mb-0"> @{model.simpledesc}</p>
+						</div>
+						@{fi}
+
+						@{if model.brand_desc}
+
+						<div class="short-description">
+							<h5 class="prod-info-title">
+								About this brand
+
+
+							</h5>
+
+							<p class="mb-0">@{model.brand_desc}</p>
+						</div>
+						@{fi}
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="product-items-slider section-padding bg-white border-top">
+		<div class="container">
+			<div class="section-header">
+				<h5 class="heading-design-h5">All Groceries
+				</h5>
+			</div>
+			<div class="plp-list d-flex">
+
+
+
+			</div>
+		</div>
+	</section>
+
+
+	<div class="footer">
+		@{view('~partials/footer')}
+	</div>
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- select2 Js -->
+	<script src="/vendor/select2/js/select2.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="/vendor/owl-carousel/owl.carousel.js"></script>
+	<!-- Custom -->
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+	<script src="/js/custom.js"></script>
+	<script src="/js/main.js?v=v1.5"></script>
+
+	<script>
+		var variantList;
+		let tempPriceList = [];
+		let vendor = "@{model.delivery_type}";
+		$(document).ready(function () {
+			console.log("LINKER");
+			if (window.location.pathname.split('/')[1] == "detail") {
+				$.ajax({
+					url: `/detail/@{model.linker}?json=1`,
+					success: function (result) {
+						console.log(result);
+						variantList = result.variant;
+						tempPriceList = variantList[0].prices;
+						appendList();
+						if (!result.stockStatus) {
+							$('.nodel').show();
+						}
+					}
+				});
+
+				if (vendor == "shop-sasta") {
+					$.ajax({
+						url: `/api/regular-delivery`,
+						success: function (result) {
+							console.log("Vendor", result);
+							var skipDate = skipNumOf(new Date(), parseInt(result.data.days_of_skip) + 1);
+
+							var deliveryinfo = {
+								date: skipDate,
+								msg: monthsArray[skipDate.getMonth()] + " " + skipDate.getDate() + " " + skipDate.getFullYear(),
+							};
+
+							$('#deliveryinfo').append(`Your order expected delivery <b>${deliveryinfo.msg} ( ${result.data.delivery_hours} ) </b> Fulfilled by <b>Shopsasta</b>`);
+
+						}
+					});
+
+				} else {
+					$.ajax({
+						url: `/api/vendor-delivery-dates?vendor=${vendor}`,
+						success: function (result) {
+							console.log("Vendor", result);
+							var skipDate = skipNumOf(new Date(), parseInt(result.data.days_of_skip) + 1);
+							var deliveryinfo = {
+								date: skipDate,
+								msg: monthsArray[skipDate.getMonth()] + " " + skipDate.getDate() + " " + skipDate.getFullYear(),
+								
+							};
+							var shipped_by = "";
+
+							if( result.vendor.shipping_by == "shopsasta" || result.vendor.shipping_by == "shop-sasta" ){
+								shipped_by = "Shopsasta";
+							}else{
+								shipped_by = result.vendor.name
+							}
+							$('#deliveryinfo').append(`Your order expected delivery <b>${deliveryinfo.msg} ( ${result.data.delivery_hours} ) </b> Fulfilled by <b>${shipped_by}</b>`);
+
+						}
+					});
+				}
+
+
+
+			}
+		});
+
+		$("#variant-parent").change(function () {
+
+			for (let i = 0; i < variantList.length; i++) {
+
+				const element = variantList[i];
+				if (element.id == $('#variant-parent').val()) {
+					tempPriceList = element.prices;
+				}
+
+			}
+			appendList();
+
+		});
+
+		function appendList() {
+			$('#variant-child').html('');
+			for (let i = 0; i < tempPriceList.length; i++) {
+				const element = tempPriceList[i];
+				$('#variant-child').append(`<option value="${element.quantity}">${element.quantity} @ ₹${element.price} ea</option>`);
+			}
+			appendPrice();
+
+		}
+		$("#variant-child").change(function () {
+			appendPrice();
+		});
+
+		function appendPrice() {
+			$('.cart-quantity').html(parseInt($('#variant-child option:selected').html().split(' ')[0]));
+			$('.prod-price').html($('#variant-child option:selected').html().split(' ')[2]);
+		}
+		function addItem(pId) {
+			itemAdd(pId, $('#variant-child').val(), $('#variant-parent').val(), 500072);
+		}
+
+		function itemPlus(pId) {
+
+
+
+			itemAdd(pId, parseInt($('.cart-quantity').html()), $('#variant-parent').val(), 500072);
+			$('.cart-quantity').html(parseInt($('.cart-quantity').html()) + 1);
+		}
+
+		function itemMinus(pId) {
+			if (parseInt($('.cart-quantity').html()) <= 1) {
+				return;
+			} else {
+
+				itemAdd(pId, parseInt($('.cart-quantity').html()), $('#variant-parent').val(), 500072);
+				$('.cart-quantity').html(parseInt($('.cart-quantity').html()) - 1);
+			}
+
+		}
+
+
+
+	</script>
+</body>
+
+</html>

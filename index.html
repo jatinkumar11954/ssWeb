@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="robots" content="all,follow" />
+	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@14.css" />
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700" />
+	<link rel="stylesheet" href="/widgets.css?ts=ekyh1" />
+	<script src="//cdn.componentator.com/spa.min@14.js"></script>
+	<title>Node.js Eshop - E-shop</title>
+	<meta name="keywords" content="Node.js, eshop, ecommerce, Total.js" />
+	<meta name="author" content="Peter Širka" />
+	<link type="text/css" rel="stylesheet" href="/default/css/default.css" />
+	<script src="/default/js/default.js"></script>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<script>var LOGGED = +'0';</script>
+</head>
+
+<body data-jc="exec,binder,modificator"><br />
+	<div data-jc="loading" class="ui-loading hidden"></div>
+	<div data-jc="shoppingcart" data-jc-path="shoppingcart" data-jc-config="discount:0"></div>
+	<div data-jc="message" data-jc-config="button:Close"></div>
+	<div data-jc="autocomplete"></div>
+	<div class="container">
+		<div class="relative">
+			<div class="account"><a href="/account/"><i class="fa fa-lock"></i>Sign in</a></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<section class="categories"><a href="/" class="logo"><img src="/img/logo.png" alt="E-shop"
+							border="0" /></a>
+					<div class="categoriescontainer">
+						<div class="categoriesbody bg-yellow fs12 ui-center m">This is a new version of new <b>Total.js
+								Eshop</b>. This version will be available soon for all Total.js members.</div>
+						<div class="categoriesbody npb">
+							<div class="caption">We recommend</div>
+						</div>
+						<nav><a href="/notices/"><i class="fa fa-caret-right"></i>Notices</a><a href="/blog/"><i
+									class="fa fa-caret-right"></i>Blog</a><a href="/new/"><i
+									class="fa fa-caret-right"></i>New goods</a><a href="/top/"><i
+									class="fa fa-caret-right"></i>Top products</a><a href="/popular/"><i
+									class="fa fa-caret-right"></i>Popular products<span>NEW</span></a><a
+								href="/categories/"><i class="fa fa-caret-right"></i>All products</a></nav>
+						<div class="categoriesbody npb">
+							<div class="caption">Categories</div>
+						</div>
+						<nav id="categories" data-url="/categories//"> <a href="/categories/computers/"><i
+									class="fa fa-caret-right"></i>Computers</a> <a href="/categories/gadgets/"><i
+									class="fa fa-caret-right"></i>Gadgets</a> <a href="/categories/smartphones/"><i
+									class="fa fa-caret-right"></i>Smartphones</a> <a href="/categories/speakers/"><i
+									class="fa fa-caret-right"></i>Speakers</a> <a href="/categories/tablets/"><i
+									class="fa fa-caret-right"></i>Tablets</a> <a href="/categories/watches/"><i
+									class="fa fa-caret-right"></i>Watches</a> </nav>
+					</div><button id="mainmenu"><i class="fa fa-chevron-down"></i></button>
+				</section>
+			</div>
+			<div class="col-md-9">
+				<section class="body">
+					<header>
+						<nav><a href="/">Homepage</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav>
+						<div class="shoppingcart" data-m="shoppingcart.sum + shoppingcart"><a href="/checkout/"><b
+									data-b="shoppingcart.sum"
+									data-b-html="'&amp;euro; {0}'.format(value ? value.format(2) : (0).format(2))">...</b><span>Your
+									shopping cart</span></a></div>
+						<form class="search" action="/categories/" method="get"><button><i
+									class="fa fa-search"></i></button>
+							<div><input type="text" placeholder="Search products ..." name="q" value="" id="search"
+									autocomplete="off" /></div>
+						</form>
+					</header>
+					<nav class="breadcrumb"> <i class="fa fa-caret-right"></i><a href="/">Homepage</a> </nav>
+
+
+					<h1>Node.js Eshop</h1>
+					<div>
+						<div>
+							<div class="wm wbanners">
+								<div class="col-sm-6"><a href="/categories/speakers/"><img
+											src="/download/1611262350T17n4p.jpg" alt="We love music"
+											class="img-responsive" data-cms-width="570" data-cms-height="200"
+											border="0"></a></div>
+								<div class="col-sm-6"><a href="/categories/computers/"><img
+											src="/download/1611262355Tkl91a.jpg" alt="Be creative"
+											class="img-responsive" data-cms-width="570" data-cms-height="200"
+											border="0"></a></div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<div>
+							<div class="wm wlinks">
+								<div class="col-sm-4"><a href="/categories/"><b class="black">Next day
+											delivery</b><span>7 days a week</span></a></div>
+								<div class="col-sm-4"><a href="/categories/"><b class="black">10% start
+											discount</b><span>All products with great discount</span></a></div>
+								<div class="col-sm-4"><a href="/categories/"><b class="black">No credit card
+											required</b><span>Buy without registration and credit card</span></a></div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="product" data-new="32" data-old="34" data-currency="&amp;euro; {0}">
+										<div class="flags"><span style="background-color:#8CC152">NEW</span> </div><a
+											href="/detail/virtual-reality-glasses-2/" class="image"><img
+												src="/images/small/1611271010Tsbkwf.jpg" border="0"
+												alt="Virtual Reality Glasses 2" /></a>
+										<div class="sizes"><span>XXL</span></div> <a href="/categories/gadgets/"
+											class="category"><i class="fa fa-folder-o"></i>Gadgets</a><a
+											href="/detail/virtual-reality-glasses-2/" class="name">Virtual Reality
+											Glasses 2</a><a href="/categories/?manufacturer=hover-way"
+											class="manufacturer">Hover-Way</a>
+										<div class="price"><a href="/detail/virtual-reality-glasses-2/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 32.00 <span>&euro; 34.00</span></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="619" data-old="0" data-currency="&amp;euro; {0}">
+										<div class="flags"><span style="background-color:#8CC152">NEW</span> </div><a
+											href="/detail/pixel-c/" class="image"><img
+												src="/images/small/1611271007Twyhfp.jpg" border="0" alt="Pixel C" /></a>
+										<a href="/categories/tablets/" class="category"><i
+												class="fa fa-folder-o"></i>Tablets</a><a href="/detail/pixel-c/"
+											class="name">Pixel C</a><a href="/categories/?manufacturer=google"
+											class="manufacturer">Google</a>
+										<div class="price"><a href="/detail/pixel-c/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 619.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="2199" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/envy/" class="image"><img
+												src="/images/small/1611271002T96ob6.jpg" border="0" alt="ENVY" /></a> <a
+											href="/categories/computers/" class="category"><i
+												class="fa fa-folder-o"></i>Computers</a><a href="/detail/envy/"
+											class="name">ENVY</a><a href="/categories/?manufacturer=hp"
+											class="manufacturer">HP</a>
+										<div class="price"><a href="/detail/envy/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 2 199.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="799" data-old="0" data-currency="&amp;euro; {0}">
+										<div class="flags"><span style="background-color:#8CC152">NEW</span> </div><a
+											href="/detail/spartan-ultra/" class="image"><img
+												src="/images/small/1611270954Tyii51.jpg" border="0"
+												alt="Spartan Ultra" /></a> <a href="/categories/watches/apple/"
+											class="category"><i class="fa fa-folder-o"></i>Watches / Apple</a><a
+											href="/detail/spartan-ultra/" class="name">Spartan Ultra</a><a
+											href="/categories/?manufacturer=suunto" class="manufacturer">Suunto</a>
+										<div class="price"><a href="/detail/spartan-ultra/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 799.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="299" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/watch-black-stainless-steel/" class="image"><img
+												src="/images/small/1611270951T7psal.jpg" border="0"
+												alt="Watch Black Stainless Steel" /></a> <a href="/categories/watches/"
+											class="category"><i class="fa fa-folder-o"></i>Watches</a><a
+											href="/detail/watch-black-stainless-steel/" class="name">Watch Black
+											Stainless Steel</a><a href="/categories/?manufacturer=huawei"
+											class="manufacturer">Huawei</a>
+										<div class="price"><a href="/detail/watch-black-stainless-steel/"
+												class="more"><i class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 299.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="299" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/gear-s3-frontier/" class="image"><img
+												src="/images/small/1611270945Tkp1cf.jpg" border="0"
+												alt="Gear S3 Frontier" /></a> <a href="/categories/watches/"
+											class="category"><i class="fa fa-folder-o"></i>Watches</a><a
+											href="/detail/gear-s3-frontier/" class="name">Gear S3 Frontier</a><a
+											href="/categories/?manufacturer=samsung" class="manufacturer">Samsung</a>
+										<div class="price"><a href="/detail/gear-s3-frontier/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 299.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="449" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/watch-nike/" class="image"><img
+												src="/images/small/1611270939Tnr479.jpg" border="0"
+												alt="Watch Nike+" /></a> <a href="/categories/watches/"
+											class="category"><i class="fa fa-folder-o"></i>Watches</a><a
+											href="/detail/watch-nike/" class="name">Watch Nike+</a><a
+											href="/categories/?manufacturer=apple" class="manufacturer">Apple</a>
+										<div class="price"><a href="/detail/watch-nike/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 449.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="119" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/smart-toothbrush/" class="image"><img
+												src="/images/small/1611270935Tzzei5.jpg" border="0"
+												alt="Smart Toothbrush" /></a> <a href="/categories/gadgets/"
+											class="category"><i class="fa fa-folder-o"></i>Gadgets</a><a
+											href="/detail/smart-toothbrush/" class="name">Smart Toothbrush</a><a
+											href="/categories/?manufacturer=kolibree" class="manufacturer">Kolibree</a>
+										<div class="price"><a href="/detail/smart-toothbrush/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 119.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="1300" data-old="0" data-currency="&amp;euro; {0}">
+										<div class="flags"><span style="background-color:#8CC152">NEW</span> </div><a
+											href="/detail/disco-fpv/" class="image"><img
+												src="/images/small/1611270925T1hqh9.jpg" border="0"
+												alt="Disco FPV" /></a> <a href="/categories/gadgets/"
+											class="category"><i class="fa fa-folder-o"></i>Gadgets</a><a
+											href="/detail/disco-fpv/" class="name">Disco FPV</a><a
+											href="/categories/?manufacturer=parrot" class="manufacturer">Parrot</a>
+										<div class="price"><a href="/detail/disco-fpv/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 1 300.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="149" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/pot-slate/" class="image"><img
+												src="/images/small/1611270920Tdyznx.jpg" border="0"
+												alt="POT Slate" /></a> <a href="/categories/gadgets/"
+											class="category"><i class="fa fa-folder-o"></i>Gadgets</a><a
+											href="/detail/pot-slate/" class="name">POT Slate</a><a
+											href="/categories/?manufacturer=parrot" class="manufacturer">Parrot</a>
+										<div class="price"><a href="/detail/pot-slate/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 149.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="699" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/360-fly-4k-panormatic-360-video-camera/" class="image"><img
+												src="/images/small/1611270915Tq9ceo.jpg" border="0"
+												alt="360 Fly 4K Panormatic 360° Video Camera" /></a> <a
+											href="/categories/gadgets/" class="category"><i
+												class="fa fa-folder-o"></i>Gadgets</a><a
+											href="/detail/360-fly-4k-panormatic-360-video-camera/" class="name">360 Fly
+											4K Panormatic 360° Video Camera</a><a
+											href="/categories/?manufacturer=360-fly" class="manufacturer">360 Fly</a>
+										<div class="price"><a href="/detail/360-fly-4k-panormatic-360-video-camera/"
+												class="more"><i class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 699.00</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="product" data-new="170" data-old="0" data-currency="&amp;euro; {0}"><a
+											href="/detail/bb-8-droid/" class="image"><img
+												src="/images/small/1611270911Tm8m2j.jpg" border="0"
+												alt="BB-8 Droid" /></a> <a href="/categories/gadgets/"
+											class="category"><i class="fa fa-folder-o"></i>Gadgets</a><a
+											href="/detail/bb-8-droid/" class="name">BB-8 Droid</a><a
+											href="/categories/?manufacturer=sphero" class="manufacturer">Sphero</a>
+										<div class="price"><a href="/detail/bb-8-droid/" class="more"><i
+													class="fa fa-plus"></i>Detail</a>
+											<div>&euro; 170.00</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="wm">
+								<div class="row">
+									<div class="wlinkbuttoncontainer col-md-6"><a href="/categories/"
+											class="wlinkbutton"><i class="fa fa-chevron-right"></i><b>Show all
+												products</b></a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div><br /><br />
+	<script src="/widgets.js?ts=ekyh1"></script>
+</body>
+
+</html>

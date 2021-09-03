@@ -1,0 +1,57 @@
+.bottom {
+ margin: 4rem 0;
+}
+.bottom .p-0 {
+    padding: 0;
+}
+.bottom .row .m-0 {
+    margin: 0;
+}
+.bottom .container {
+    padding: 0;
+}
+.feature-b .heading {
+    width: 100%;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.feature-b .heading hr{
+    width: 19%;
+    float: left;
+    border: 0.9px solid red;
+}
+.feature-b .each-b img {
+    height: 130px;
+    width: 100%;
+    border: 1px solid grey;
+    padding: 5px 15px;
+    margin: 0 0 2rem 0;
+}
+.feature-b .each-b .first-b {
+    padding: 0 10px 0 0 !important;
+}
+.feature-b .each-b {
+    padding: 0 8px 8px 0;
+}
+.feature-b .each-b .second-b .p-2:first-child {
+    text-transform: capitalize;
+    font-size: 15px;
+    font-weight: 700;
+}
+.feature-b .each-b .second-b .p-2:last-child {
+    font-size: 15px;
+    font-weight: 600;
+}
+.feature-b .each-b .second-b span {
+    padding-right: 5px;
+    font-size: 15px;
+}
+.feature-b .each-b .second-b .checked {
+    color: #fb9013;
+}
+.feature-b .second-b a {
+    color: #000000;
+    text-decoration: none;
+}

@@ -1,0 +1,629 @@
+<div id="fb-root">
+
+</div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=826575227724107&autoLogAppEvents=1"></script>
+<style>
+    .row {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .mob-menu {
+        display: none;
+    }
+
+    /* .container {
+
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+		padding: 2rem;
+	} */
+
+    .right {
+        float: right;
+    }
+
+    .padding8 {
+        padding: 4px 8px 4px 8px;
+    }
+
+    .form-control {
+        height: calc(2.0em + 1.0rem + 2px);
+        line-height: 1.3rem;
+        font-size: 12px;
+    }
+
+    label {
+        font-size: 15px;
+    }
+
+    .tabs-align ul {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .nav-pills li {
+        float: left;
+        width: 100%;
+    }
+
+    .nav li {
+        position: relative;
+        display: block;
+    }
+
+    .nav-pills li a.active {
+        background-color: #fb9013;
+        color: #fff;
+
+    }
+
+    .nav-pills li a {
+        background-color: #e7e7e7;
+    }
+
+    .nav li a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+        font-size: 17px;
+        color: #000;
+        text-align: center;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .ramcharan {
+        text-align: center;
+    }
+    .ramcharan img{
+        /*background: url(https://s1-shzy-in.oss-ap-south-1.aliyuncs.com/happi/Wa%26Vi-01.png) no-repeat fixed center;*/
+        
+    /*    background: url('/home-img/warrenty.jpg');*/
+    /*background-size: auto;*/
+    /*height: 595px;*/
+    /*width: 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    height: 595px;
+    width: auto;
+    margin: 30px 0 30px;
+
+    }
+
+    /*
+	    height: 595px;
+		width: 100%;
+		margin: 30px 0 0;
+	*/
+
+    .tabs-align {
+
+        background: url('/img/siginbg.jpg');
+    }
+
+    .container {
+        width: 100% !important;
+        margin: 0;
+        max-width: 100% !important;
+    }
+
+    .auth-block {
+        padding: 8rem 0;
+    }
+
+    .other-auth {
+        display: grid;
+        justify-content: end;
+
+    }
+
+    .other-auth a {
+        padding: 1rem 0;
+        font-size: 13px;
+        text-decoration: none;
+        color: #000;
+    }
+    
+    	@media only screen and (max-width: 767px) {
+    	
+    	    .ramcharan img {
+    	        width:100%;
+    	        height: auto;
+    	        margin-bottom: 0
+    	    }
+    	}
+</style>
+
+@{repository.loading = true}
+<div class="container tabs-align">
+    <div class="row m-0">
+        <div class="col-md-6 ramcharan">
+            <img src="/home-img/warrenty.jpg"></img>
+        </div>
+
+        <div class="col-md-6 tab-r">
+
+            @{if model.status != "Form"}
+
+            <div class="auth-block">
+                <div class="nav nav-pills">
+                    <li class="active"><a data-toggle="tab" class="active">Your Order</a></li>
+                </div>
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active show">
+                        <div class="content">
+                            <div class="contentbody">
+                                <div class="row m-0">
+
+                                    @{if model.status == "PAID"}
+                                    <div class="col-12" style="text-align:center">
+                                        <img src="https://img.icons8.com/cotton/100/000000/successfully-completed-task--v1.png" />
+                                    </div>
+                                    @{fi}
+
+                                    <p>
+                                        <b> Order Id  : </b> @{model._id}
+                                        <br><br>
+                                        <b> Name  : </b> @{model.name}
+                                        <br><br>
+                                        <b> Email  : </b> @{model.email}
+                                        <br><br>
+                                        <b> Phone  : </b> @{model.mobile}
+                                        <br><br>
+                                        <b> Order Status  : </b> @{model.status}
+                                        <br><br> @{if model.status == "Pending"}
+                                        
+                                        <a href="/warranty" class="btn btn-primary" style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px; text-align: center;">Retry</a> @{fi} 
+                                        
+                                        @{if model.status == "PAID"}
+                                        <b> Transaction Refrence # : </b> @{model.txnid}
+                                        @{fi}
+
+                                    </p>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @{else}
+
+
+
+            <div class="auth-block">
+                <div class="nav nav-pills">
+                    <li class="active"><a data-toggle="tab" class="active">1-Year Extended Warranty @ Rs.499/-</a></li>
+                </div>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active show">
+                        <div class="content">
+                            <div class="contentbody">
+                                <div class="row m-0">
+                                    <p>
+                                        Please enter your details below
+                                    </p>
+                                </div>
+                                <div class="row m-0">
+                                    <form action="/order/insurance/paytm/" method="post">
+                                        <div class="col-md-12 col-xs-12">
+                                            <div class="row m-0">
+                                                <div class="col-md-6 m">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Name</label>
+                                                        <input type="text" class="form-control" id="sname" name="name" placeholder="Name" style="font-size: 14px;" required>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 m">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email</label>
+                                                        <input type="email" class="form-control" id="semail" name="email" placeholder="Email" style="font-size: 14px;" required>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 m">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Phone number</label>
+                                                        <input type="text"  class="form-control" id="sphone" name="mobile" placeholder="9876543210" maxlength="10" style="font-size: 14px;" required >
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 m">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">IMEI
+                                                        </label>
+                                                        <input type="text" class="form-control" id="simei" name="imei" placeholder="IMEI" style="font-size: 14px;" required>
+
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-12 m">
+                                                    <div class="form-group">
+                                                       <p> (Dial *#06# to know your IMEI number)</p>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="col-md-12 m">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px; text-align: center;">Pay Now</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @{fi}
+        </div>
+    </div>
+
+
+
+    <!-- <div class="row m-0">
+		<div class="col-lg-5 col-md-4">
+			
+		</div>
+		<div class="col-lg-7 col-md-8">
+			
+		</div>
+	</div> -->
+
+</div>
+
+<script>
+    $('#signuperror').hide();
+    $('.sigin-error').hide();
+    $('.forget-b').hide();
+    $('#siginForm').bind("submit", function() {
+        signInFromSubmit()
+    });
+    $('#sigupForm').bind("submit", function() {
+        signUpFromSubmit()
+    });
+
+
+    $(document).ready(function() {
+        // $('#phone').keyup(function () {//use mouseout
+        // 	if ($(this).val().indexOf('9') == 0) {
+        // 		$(this).val($(this).val());
+        // 		console.log('frst');
+
+        // 	} else {
+        // 		$(this).val("91" + $(this).val());
+        // 		console.log('dd', $(this).val());
+
+        // 	}
+        // });
+    });
+
+    function forgotView(params) {
+        if (params == 'forget') {
+            $('.sigin-b').hide();
+            $('.forget-b').show();
+        }
+        else {
+            $('.sigin-b').show();
+            $('.forget-b').hide();
+        }
+
+    }
+
+    function resetPwdSubmit() {
+
+        var resetObj = {
+            email: $('#femail').val()
+        };
+        console.log(resetObj);
+
+        $.ajax('/api/account/password/', {
+            type: 'POST',
+            data: JSON.stringify(resetObj),
+            dataType: 'json', // type of response data
+            contentType: 'application/json',
+            timeout: 500, // timeout milliseconds
+            success: function(response, status, xhr) { // success callback function
+                SETTER('loading', 'hide', 1000);
+                console.log(response);
+                $(".error").remove();
+                for (let i = 0; i < response.length; i++) {
+                    const element = response[i];
+                    $('#femail').after(`<span class="error">${element.error}</span>`);
+
+
+                }
+
+                if (response.success) {
+                    console.log('mEssegs');
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: name + '@(We sent you the email with instructions for resetting password.)',
+                        showConfirmButton: true,
+
+                    }).then((result) => {
+                            if (result.value) {
+                                window.location.href = '/account';
+                            }
+                            else {
+                                window.location.href = '/account';
+                            }
+                        }
+
+                    );
+
+                }
+            },
+            error: function(jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+
+            }
+        });
+    }
+
+    function statusChangeCallback(response) { // Called with the results from FB.getLoginStatus().
+        console.log('statusChangeCallback');
+        console.log(response); // The current login status of the person.
+        if (response.status === 'connected') { // Logged into your webpage and Facebook.
+            testAPI();
+        }
+        else { // Not logged into your webpage or we are unable to tell.
+            document.getElementById('status').innerHTML = 'Please log ' +
+                'into this webpage.';
+        }
+    }
+
+
+    function checkLoginState() { // Called when a person is finished with the Login Button.
+        FB.getLoginStatus(function(response) { // See the onlogin handler
+            statusChangeCallback(response);
+        });
+    }
+
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '{app-id}',
+            cookie: true, // Enable cookies to allow the server to access the session.
+            xfbml: true, // Parse social plugins on this webpage.
+            version: '{api-version}' // Use this Graph API version for this call.
+        });
+
+
+        FB.getLoginStatus(function(response) { // Called after the JS SDK has been initialized.
+            statusChangeCallback(response); // Returns the login status.
+        });
+    };
+
+
+    (function(d, s, id) { // Load the SDK asynchronously
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+    function testAPI() { // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML =
+                'Thanks for logging in, ' + response.name + '!';
+        });
+    }
+
+    function signUpFromSubmit() {
+
+        if ($('#password').val() == $('#cpassword').val()) {
+            $('#signuperror').hide();
+
+            var signUpObj = {
+                firstname: $('#firstname').val(),
+                lastname: $('#lastname').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                isterms: $("#gridCheck").is(':checked'),
+                gender: "M",
+                password: $('#password').val(),
+                passwordreply: $('#password').val(),
+            };
+
+
+
+            $.ajax('/api/account/create/', {
+                type: 'POST',
+                data: JSON.stringify(signUpObj),
+                dataType: 'json', // type of response data
+                contentType: 'application/json',
+                timeout: 500, // timeout milliseconds
+                success: function(response, status, xhr) { // success callback function
+
+
+                    SETTER('loading', 'hide', 1000);
+                    console.log(response);
+                    // location.reload(true);
+                    $(".error").remove();
+                    for (let i = 0; i < response.length; i++) {
+                        const element = response[i];
+                        $('#' + element.name).after(`<span class="error">${element.error}</span>`);
+                        if (response[i].name == "error-users-email") {
+                            console.log('email error');
+
+                            $('#email').after(`<span class="error">${element.error}</span>`);
+                        }
+                    }
+
+                    if (response.success) {
+                        if (localStorage.getItem('userNotloggedIn')) {
+                            console.log('LOOG in');
+
+                            window.location.href = localStorage.getItem('userNotloggedIn');
+                            localStorage.removeItem('userNotloggedIn');
+                            // location.reload(true);
+                        }
+                        else {
+                            window.location.href = '/';
+                        }
+
+                    }
+
+                    else {
+                        RESET('account.sigin.*', true);
+                        SET('account.sigin.response', response);
+                    }
+                },
+                error: function(jqXhr, textStatus, errorMessage) { // error callback 
+                    console.log("errror");
+
+                }
+            });
+        }
+        else {
+            $('#signuperror').show();
+        }
+
+
+
+    }
+
+    function signInFromSubmit() {
+        var signInObj = {
+            email: $('#semail').val(),
+            password: $('#spassword').val(),
+        };
+        console.log(signInObj);
+
+        $.ajax('/api/account/login/', {
+            type: 'POST',
+            data: JSON.stringify(signInObj),
+            dataType: 'json', // type of response data
+            contentType: 'application/json',
+            timeout: 500, // timeout milliseconds
+            success: function(response, status, xhr) { // success callback function
+
+                console.log("Login Data", response);
+                SETTER('loading', 'hide', 1000);
+                $(".error").remove();
+                for (let i = 0; i < response.length; i++) {
+                    const element = response[i];
+                    $('#' + element.name).after(`<span class="error">${element.error}</span>`);
+                }
+                if (response.success) {
+                    console.log('LLLLL', localStorage.getItem('userNotloggedIn'));
+
+
+                    $('.sigin-error').hide();
+                    if (localStorage.getItem('userNotloggedIn')) {
+                        console.log('LOOG in');
+
+                        window.location.href = localStorage.getItem('userNotloggedIn');
+                        localStorage.removeItem('userNotloggedIn');
+                        // location.reload(true);
+                    }
+                    else {
+                        window.location.href = '/';
+                    }
+
+
+                }
+                else {
+                    $('.sigin-error').show();
+                    $('.sigin-error').html(response[0].error);
+                    RESET('account.sigin.*', true);
+                    SET('account.sigin.response', response);
+                }
+            },
+            error: function(jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+
+            }
+        });
+
+    }
+
+    var account = {};
+
+    account.type = 'signin';
+
+    SETTER(true, 'loading', 'hide', 500);
+
+    function signupsubmit() {
+
+        if (BLOCKED('account', 3000))
+            return;
+
+        SETTER('loading', 'show');
+        AJAX('POST /api/account/create/', account.signup, function(response) {
+
+            SETTER('loading', 'hide', 1000);
+
+            if (response.success)
+                location.reload(true);
+            else {
+                RESET('account.signup.*', true);
+                SET('account.signup.response', response);
+            }
+        });
+    }
+
+    function signinsubmit() {
+
+        if (BLOCKED('account', 3000))
+            return;
+
+        SETTER('loading', 'show');
+        AJAX('POST /api/account/login/', account.signin, function(response) {
+
+            SETTER('loading', 'hide', 1000);
+
+            if (response.success) {
+
+                location.reload(true);
+
+            }
+            else {
+                return;
+                RESET('account.sigin.*', true);
+                SET('account.sigin.response', response);
+            }
+            console.log('singin');
+        });
+    }
+
+    function passwordsubmit() {
+
+
+        if (BLOCKED('account', 3000))
+            return;
+
+        SETTER('loading', 'show');
+        AJAX('POST /api/account/password/', account.password, function(response) {
+            SETTER('loading', 'hide', 1000);
+            console.log(response);
+
+            if (response.success)
+                SETTER('message', 'success', '@(We sent you the email with instructions for resetting password.)');
+            else {
+                RESET('account.password.*', true);
+                SET('account.password.response', response);
+            }
+        });
+    }
+
+    function switchpassword() {
+        SET('account.type', account.type === 'password' ? 'signin' : 'password');
+    }
+</script>

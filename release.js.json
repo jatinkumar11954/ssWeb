@@ -1,0 +1,108 @@
+{
+  "pid": 12606,
+  "version": {
+    "node": "v8.10.0",
+    "total": "3.4.1",
+    "app": "1.0.0"
+  },
+  "date": "2020-07-14T08:28:02.483Z",
+  "threads": 5,
+  "memory": 17.39,
+  "stats": [
+    {
+      "id": "0",
+      "version": {
+        "node": "v8.10.0",
+        "total": "3.4.1",
+        "app": "11.0.1"
+      },
+      "pid": 22486,
+      "thread": "",
+      "mode": "release",
+      "date": "2020-07-14T08:27:37.444Z",
+      "memory": 45.69,
+      "rm": 73.66,
+      "fm": 51,
+      "requests": 221,
+      "pending": 1,
+      "errors": 0,
+      "timeouts": 0
+    },
+    {
+      "id": "1",
+      "version": {
+        "node": "v8.10.0",
+        "total": "3.4.1",
+        "app": "11.0.1"
+      },
+      "pid": 20484,
+      "thread": "",
+      "mode": "release",
+      "date": "2020-07-14T08:27:41.183Z",
+      "memory": 40.49,
+      "rm": 75.75,
+      "fm": 48.5,
+      "requests": 303,
+      "pending": 0,
+      "errors": 0,
+      "timeouts": 0
+    },
+    {
+      "id": "2",
+      "version": {
+        "node": "v8.10.0",
+        "total": "3.4.1",
+        "app": "11.0.1"
+      },
+      "pid": 10400,
+      "thread": "",
+      "mode": "release",
+      "date": "2020-07-14T08:27:59.288Z",
+      "memory": 41.73,
+      "rm": 90.55,
+      "fm": 59.77,
+      "requests": 815,
+      "pending": 2,
+      "errors": 0,
+      "timeouts": 0
+    },
+    {
+      "id": "3",
+      "version": {
+        "node": "v8.10.0",
+        "total": "3.4.1",
+        "app": "11.0.1"
+      },
+      "pid": 24175,
+      "thread": "",
+      "mode": "release",
+      "date": "2020-07-14T08:27:26.069Z",
+      "memory": 44.53,
+      "rm": 69.5,
+      "fm": 50.5,
+      "requests": 139,
+      "pending": 0,
+      "errors": 0,
+      "timeouts": 0
+    },
+    {
+      "id": "4",
+      "version": {
+        "node": "v8.10.0",
+        "total": "3.4.1",
+        "app": "11.0.1"
+      },
+      "pid": 20925,
+      "thread": "",
+      "mode": "release",
+      "date": "2020-07-14T08:27:54.977Z",
+      "memory": 42.73,
+      "rm": 69.25,
+      "fm": 47,
+      "requests": 277,
+      "pending": 0,
+      "errors": 0,
+      "timeouts": 0
+    }
+  ]
+}

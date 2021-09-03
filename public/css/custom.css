@@ -1,0 +1,40 @@
+/* $font    : 'Source Sans Pro'; */
+/* $primaryColor    : ''; */
+/* #757575 */
+.btn-secondary {
+  background: #029b97 !important;
+}
+
+.product-body h5 {
+  color: #029b97;
+}
+
+@font-face {
+  font-family: roboto_light;
+  src: url(/font/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+  font-family: roboto_bold;
+  src: url(/font/Roboto/Roboto-Bold.ttf);
+}
+@font-face {
+  font-family: quicksand;
+  src: url(/font/Quicksand/static/Quicksand-Light.ttf);
+}
+
+body {
+  font-family: roboto_light !important;
+}
+.sidebar-category-item h6 {
+  font-family: quicksand !important;
+}
+.category-item h6 {
+  font-family: quicksand !important;
+}
+.heading-design-h5 {
+  font-family: quicksand !important;
+}
+.product-body h5,.offer-price {
+  font-family: roboto_bold !important;
+}

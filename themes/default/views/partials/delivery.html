@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <title>Delivery App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .center-b {
+            position: absolute;
+            width:
+                100%;
+            top: 50%;
+            transform: translate(0%, -50%);
+        }
+
+        .sasta-title {
+            width: 100%;
+            background-color: #efefef;
+            position: absolute;
+            top: 0;
+            text-align: center;
+            padding: .2rem;
+            font-weight: 600;
+            font-size: 21px;
+        }
+    </style>
+</head>
+
+<body>
+    <span class="sasta-title">Shop Sasta</span>
+    <div class="center-b">
+        <div class="container">
+            <div class="otp-form" id="sendOtpForm">
+                <div class="form-group ">
+                    <label for="email">Phone:</label>
+                    <input type="text" class="form-control" id="del-phone">
+                    <div class="alert alert-danger sendotp-error" style="font-size: 14px; padding:3px 15px">saf
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-sm btn-secondary btn-" onclick="login()">Request OTP</button>
+            </div>
+
+            <div class="verify-form" id="verifyForm">
+                <h5 class="heading-design-h5">OTP Sent to your Mobile</h5>
+                <form onsubmit="return false;">
+                    <fieldset class="form-group">
+                        <label>Enter OTP</label>
+                        <input type="password" class="form-control" id="otp">
+                        <div class="alert alert-danger verify-error" style="font-size: 14px; padding:3px 15px">
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <button type="submit" onclick="verifyOtpSubmit()" class="btn btn-lg btn-secondary btn-block"
+                            onclick="sendOtpSubmit()">Enter to your account</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script src="/js/delivery.js?v=v1.1"></script>
+</body>
+
+</html>

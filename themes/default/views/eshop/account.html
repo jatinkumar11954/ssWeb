@@ -1,0 +1,367 @@
+<style>
+	.container {
+		padding: 2rem 0;
+	}
+
+	.caption {
+		padding: 15px;
+		background-color: #fb9013;
+		color: #fff;
+	}
+
+	.table-borderless td,
+	.table-borderless th {
+		border: 0 !important;
+		width: auto;
+		font-size: 14px;
+	}
+
+	#wish-table table {
+		font-size: 15px;
+	}
+
+	.wish-empty,
+	.orders-empty {
+		font-weight: 600;
+		text-align: center;
+		font-size: 15px;
+		;
+	}
+	.orders-block .success{
+		color: green !important; 
+	}
+	.orders-block .canceled{
+		color: red !important; 
+	}
+	.orders-block .warning{
+		color: #fecc09 !important; 
+	}
+
+	#cart-row i{
+		color: black;
+	}
+	.content .contentbody {
+		padding: 5px;
+		max-height: 700px;
+		overflow-y: scroll;
+	}
+@media only screen and (max-width: 767px) {
+	.content .contentbody {
+		padding: 5px;
+	}
+	.content table {
+		border: 0;
+	}
+}
+</style>
+@{repository.loading = true}
+
+<div class="container">
+	<h1>@{title}</h1>
+
+	<div class="row m-0">
+		<div class="col">
+			<div class="keyvalue">
+				<div class="key">@(Account name)</div>
+				<div class="value">@{user.name}</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="keyvalue">
+				<div class="key">@(Email address)</div>
+				<div class="value">@{user.email}</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="keyvalue">
+				<div class="key">@(Phone number)</div>
+				<div class="value">@{if user.phone}@{user.phone}@{else}@(undefined)@{fi}</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="keyvalue">
+				<div class="key">@(Discount)</div>
+				<div class="value">@{user.discount.format(2)}%</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row m-0">
+
+		<div class="col-md-6 m">
+
+			<div class="content">
+				<div class="caption">@(View Wishlist)</div>
+				<div class="contentbody">
+					<div class="wish-empty">
+						<p>@(Wishlist empty)</p>
+					</div>
+					
+					<div class="table-responsive" id='wish-table'>
+						<table class="table table-borderless " style="border: 0;">
+							<thead>
+								<tr>
+									<th>S.no</th>
+									<th>Product</th>
+									<th>Price</th>
+									<th>delete</th>
+									<th>cart</th>
+
+								</tr>
+
+							</thead>
+							<tbody id='cart-row'>
+
+							</tbody>
+						</table>
+						<div class="wish-rows" id='cart-row-new'>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6 m">
+			<div class="content">
+				<div class="caption">@(View Orders)
+				</div>
+				<div class="contentbody">
+					<div class="orders-empty">
+						@(No Orders)
+					</div>
+					<div class="orders-block">
+						<table class="table table-borderless " style="border: 0;">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Date</th>
+									<th>Status</th>
+									<th></th>
+
+								</tr>
+
+							</thead>
+							<tbody id='orders-block'>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- <div data-b="orders" data-b-visible="!value || !value.length" class="hidden">
+					<div class="empty"><i class="fa fa-dropbox"></i>@(You don't have any orders.)</div>
+				</div>
+				<div data-b="orders" data-b-template="true" class="hidden" data-b-visible="value && value.length">
+					<script type="text/html">
+							{{ foreach m in value }}
+								<div class="order">
+									<a href="@{sitemap_url('order', '{{ m.id }}')}" title="@(Preview)"><i class="fa fa-search"></i></a>
+									<div class="line">
+										<div class="price">{{ m.price | format(2) }}</div>
+										<div class="name">{{ m.name }}</div>
+									</div>
+									<div class="line">
+										<div class="date">{{ m.datecreated | format('@(yyyy-MM-dd HH:mm)') }}</div>
+										<div class="status">{{ if m.isfinished }}<b class="green"><i class="fa fa-check-circle"></i>@(Finished)</b>{{ else }}{{ m.status }}{{ fi }}</div>
+									</div>
+								</div>
+							{{ end }}
+						</script>
+				</div> -->
+			</div>
+		</div>
+
+	</div>
+	<div class="row m-0">
+		<div class="col">
+
+			<div style="font-size: 14px;">
+				<a href="@{sitemap_url('settings')}" class="link"><i class="fa fa-caret-right"></i>@(Update account)</a>
+				<a href="@{sitemap_url('category')}" class="link"><i class="fa fa-caret-right"></i>@(Continue Shopping)</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	SETTER(true, 'loading', 'hide', 1000);
+	AJAXCACHE('GET /api/account/orders/', 'orders', '1 minute');
+	var wishListData = [];
+	$('#wish-table').hide();
+	$(document).ready(function () {
+		fetchWish();
+		fetchOrders();
+
+	});
+
+	function delWish(id) {
+		console.log('wish');
+
+		$.ajax('/api/account/wishlist/?id=' + id, {
+			type: 'DELETE',
+
+			dataType: 'json', // type of response data
+			contentType: 'application/json',
+			timeout: 500, // timeout milliseconds
+			success: function (data, status, xhr) { // success callback function
+				$('#wish-table').hide();
+				if (data.success) {
+					Swal.fire({
+						position: 'center',
+						icon: 'success',
+						title: name + ' removed from cart',
+						showConfirmButton: false,
+						timer: 1500
+					});
+					wishListData = [];
+					fetchWish();
+				}
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				console.log("errror");
+			}
+		});
+	}
+
+	function fetchWish() {
+
+
+		$.ajax('/api/account/wishlist/', {
+			type: 'GET',
+
+			dataType: 'json', // type of response data
+			contentType: 'application/json',
+			timeout: 500, // timeout milliseconds
+			success: function (data, status, xhr) { // success callback function
+				console.log(data);
+				if (data.items.length == 0) {
+					$('#wish-table').hide();
+					$('.wish-empty').show();
+				} else {
+					$('.wish-empty').hide();
+					for (let i = 0; i < data.items.length; i++) {
+						const element = data.items[i];
+						if (element.active) {
+							console.log('Each item', element);
+
+							fetchData(element.pid);
+						}
+
+					}
+				}
+
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				console.log("errror");
+
+			}
+		});
+	}
+
+	function fetchData(params) {
+
+		$.ajax('/api/product/' + params, {
+			type: 'GET',
+			dataType: 'json', // type of response data
+			timeout: 500, // timeout milliseconds
+			success: function (data, status, xhr) { // success callback function
+				// console.log(data);
+
+				wishListData.push(data);
+				wishBlock(wishListData);
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				console.log("errror");
+			}
+		});
+	}
+
+	function wishBlock(params) {
+		console.log("PPPPPPPPPPPPP",params);
+
+		$('#cart-row').html('');
+		for (let i = 0; i < params.length; i++) {
+			console.log('kkk');
+			$('.cart-row-new').append('');
+			// $('#cart-row-new').append(`
+			// 		<div class="row">
+			// 			<div class="img-b"	>
+			// 				<img src="">
+			// 				</div>
+			// 		</div>
+			// 	`);
+			$('.cart-row').append('');
+			$('#cart-row').append(`
+					<tr>
+							
+						<td>${i + 1}</td>
+							<td>${params[i].name}</td>
+							<td>&#8377 ${params[i].pricemin}</td>						
+							<td><i class="fa fa-trash"  onclick="delWish('${params[i].id}')" aria-hidden="true"></i></td>
+							<td><a href ="/detail/${params[i].linker}/#addToCart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></td>
+			      	    </tr>
+				`);
+			$('#wish-table').show();
+
+		}
+
+
+	}
+
+	function fetchOrders() {
+
+
+		$.ajax('/api/account/orders/', {
+			type: 'GET',
+
+			dataType: 'json', // type of response data
+			contentType: 'application/json',
+			timeout: 500, // timeout milliseconds
+			success: function (data, status, xhr) { // success callback function
+				console.log('ORDers obj', data);
+				if (data.length == 0) {
+					$('.orders-empty').show();
+					$('.orders-block').hide();
+				} else {
+					$('.orders-empty').hide();
+					$('.orders-block').show();
+
+					for (let i = 0; i < data.length; i++) {
+						const element = data[i];
+						console.log(new Date(element.datecreated).getDate());
+						let month = new Date(element.datecreated).getMonth();
+						month = month + 1;
+						let date = new Date(element.datecreated).getDate() + '-' + month + '-' + new Date(element.datecreated).getFullYear();
+						let statusColor = '';
+						if (element.status == 'Waiting for approval') {
+							statusColor = 'warning';
+						} else if (element.status == "Finished") {
+							statusColor = 'success';
+						} else if (element.status == "Canceled") {
+							statusColor = 'canceled';
+						}
+						$('#orders-block').append(
+							`<tr>
+								<td>${element.id}</td>
+								<td>${date}</td>
+								<td><p  class='${statusColor}' style="margin-bottom:0">${element.status}</p></td>						
+								<td><a href='/checkout/${element.id}' style="color: #fb9013;font-weight: 600;text-decoration:none;">More</a></td>
+								
+							  </tr>
+							`
+						);
+
+					}
+				}
+
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				console.log("errror");
+
+			}
+		});
+	}
+</script>

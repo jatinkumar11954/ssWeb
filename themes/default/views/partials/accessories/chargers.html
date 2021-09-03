@@ -1,0 +1,171 @@
+	
+	<div class="prod-i">
+		<div class="container">
+			<div class="row m-0">
+				<div class="col-md-12">
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>General</p>
+							<!-- @{model.product_type} -->
+						</div>
+
+						<div class="collapse show" id="collapseExample">
+							<div class="spec-body">
+								@{if model.ChModelname}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+										<span> Model Name</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.ChModelname}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Chcolor}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Color</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Chcolor}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.ChOutputInterface}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span> Output Interface</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.ChOutputInterface}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.chsalespackage}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span> Sales Package</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.chsalespackage}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>Power Featues</p>
+						</div>
+
+						<div class="collapse show" id="display-collapse">
+							<div class="spec-body">
+								@{if model.OutputCurrent}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Output Current</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.OutputCurrent}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.PowerInput}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Power Input</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.PowerInput}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.PowerSource}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Power Source</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.PowerSource}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.PowerRequirment}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Power Requirment</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.PowerRequirment}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.OutputWattage}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Output Wattage</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.OutputWattage}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>Warranty</p>
+						</div>
+
+						<div class="collapse show" id="display-collapse">
+							<div class="spec-body">
+								@{if model.Cdomesticwarranty}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Domestic Warrenty</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Cdomesticwarranty}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Ccoveredinwarranty}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Covered in warranty</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Ccoveredinwarranty}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Cnotcoveredinwarranty}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Not covered in warranty</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Cnotcoveredinwarranty}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>

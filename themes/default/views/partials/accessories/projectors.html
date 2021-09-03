@@ -1,0 +1,287 @@
+<div class="prod-i">
+		<div class="container">
+			<div class="row m-0">
+				<div class="col-md-12">
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>Specifications</p>
+							<!-- @{model.product_type} -->
+						</div>
+
+						<div class="collapse show" id="collapseExample">
+							<div class="spec-body">
+								@{if model.picformat}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+										<span>Picture Format</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.picformat}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.audformat}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Audio Format</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.audformat}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.vidformat}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Video Format</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.vidformat}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.chargetime}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Charging Time</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.chargetime}</span>
+									</div>
+								</div>
+								@{fi}
+
+	                            @{if model.mustime}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Music Playtime</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.mustime}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                @{if model.movtime}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Movie Time</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.movtime}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                @{if model.ota}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>OTA</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.ota}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                @{if model.oper1}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Operating System</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.oper1}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                @{if model.workmode}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Working Mode</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.workmode}</span>
+									</div>
+								</div>
+								@{fi}
+                                @{if model.blue}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Bluetooth</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.blue}</span>
+									</div>
+								</div>
+								@{fi}
+                                @{if model.pwifi}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Wi-Fi</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.pwifi}</span>
+									</div>
+								</div>
+								@{fi}
+                                @{if model.prospeaker}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Speaker</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.prospeaker}</span>
+									</div>
+								</div>
+								@{fi}
+                                @{if model.probattery}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Battery</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.probattery}</span>
+									</div>
+								</div>
+								@{fi}
+                                @{if model.promemory}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Memory</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.promemory}</span>
+									</div>
+								</div>
+								@{fi}
+                                @{if model.progpu}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>GPU</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.progpu}</span>
+									</div>
+								</div>
+								@{fi}
+                                @{if model.probuttons}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Physical Buttons</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.probuttons}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.procpu}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>CPU</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.procpu}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.prousb}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>USB</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.prousb}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.prohdmi}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>HDMI</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.prohdmi}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.promode}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Projection Mode</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.promode}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.prothrow}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Throw Distance</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.prothrow}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.proscreen}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Screen Size</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.proscreen}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.prolamp}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Lamp Life</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.prolamp}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.prodis}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Display Technology</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.prodis}</span>
+									</div>
+								</div>
+								@{fi}
+
+                                 @{if model.proweight}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Weight</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.proweight}</span>
+									</div>
+								</div>
+								@{fi}
+                             </div>
+						 </div>
+					</div>
+
+                </div>
+			</div>
+		</div>
+	</div>
+

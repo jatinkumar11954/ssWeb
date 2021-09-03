@@ -1,0 +1,546 @@
+<div class="prod-i">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-md-12">
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>General</p>
+                        <!-- @{model.product_type} -->
+                    </div>
+
+                    <div class="collapse show" id="collapseExample">
+                        <div class="spec-body">
+                            @{if model.miModelname}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+                                    <span>Model Name</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.miModelname}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.midisplay}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span> Display Size</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.midisplay}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.misales}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Sales Package</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.misales}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miscreen}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Screen Type</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.miscreen}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mihd}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>HD Technology & Resolution</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.mihd}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mismart}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Smart TV</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.mismart}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Connectivity Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.HDMI}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>HDMI</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.HDMI}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.USB}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span> USB</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.USB}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.headjack}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span> Headphone Jack</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.headjack}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miPowerfeatures}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Powerfeatures</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miPowerfeatures}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                              @{if model.Powerconsumption}
+
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Power Consumption</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Powerconsumption}</span>
+                                </div>
+                            </div> @{fi}
+                            @{if model.mipowerinput}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Power Input</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mipowerinput}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mipowerrequirment}
+
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>PowerRequirment</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mipowerrequirment}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Dimensions</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.miweight1}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Weight (without stand)</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miweight1}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miweight2}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span> Weight (with stand)</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miweight2}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miwidth}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span> Width</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miwidth}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.widthxheightxdepth}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>WidthxHeightxDepth</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.widthxheightxdepth}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miheight}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Height</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miheight}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.midepth}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Depth </span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.midepth}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Internal Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.miwifi}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Built in Wi-Fi</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miwifi}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miother}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span> Other Internet Features</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miother}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Smart Tv Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.Processor}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Processor</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Processor}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.graph}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Graphic Processor</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.graph}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miramcapacity}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Ram Capacity</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miramcapacity}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mistorage}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Storage Memory</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mistorage}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mios}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Supported Mobile Operating System</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mios}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.micontent}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Content Providers</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.micontent}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.milangunage}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Content Languages</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.milangunage}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.systemlanguages}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>System Languages</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.systemlanguages}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Video Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.miratio}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Contrast Ratio</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miratio}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.ViewAngle}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>View Angle</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.ViewAngle}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mileddisplay}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Display Type</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mileddisplay}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.minoisefiltefr}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Digital Noise Filter</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.minoisefiltefr}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mivideofeatures}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Other Video Features</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mivideofeatures}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Audio Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.mispeakers}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Number of Speakers</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mispeakers}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mispeakertype}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Speaker Type</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mispeakertype}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.misoundtech}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Sound Technology</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.misoundtech}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.misound}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Surround Sound</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.misound}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.mioutputrms}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Speaker Output RMS</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.mioutputrms}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.miaudiofeatures}
+                          
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Other Audio Features</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.miaudiofeatures}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Warranty</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.midomestic}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Domestic Warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.midomestic}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.micoverd}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Covered in Warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.micoverd}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.micoverdnot}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Not Covered in Warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.micoverdnot}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

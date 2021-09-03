@@ -1,0 +1,275 @@
+<style>
+    .nav-outer.modify-container {
+        margin-top: 130px;
+    }
+    .detail-top-b {
+    width: 90%;
+    margin: 2rem auto 2rem;max-width: 1140px;
+}
+.form-group label {
+    font-size: 13px;
+}
+::placeholder {
+ font-size: 13px;
+}
+.device-details.transperent-view {
+    background-color: rgb(255 255 255);
+    opacity: 0.25;
+}
+.device-details.remove-transperent {
+    background-color: transparent;
+    opacity:1;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #fb9013;
+    border-color: #fb9013;
+}
+.list-view .each-i {
+    border: 2px solid #c1c1c1;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;    margin: 2rem 0;
+    align-items: center;
+    cursor: pointer;
+}
+.list-view .each-i .left-i {
+    padding-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+} 
+.list-view .each-i .right-i{
+    color: #fb9013;
+}
+.list-view .each-i .left-i .txt-i {
+    display: grid;
+    padding-left: 1rem;
+}
+.list-view .each-i .left-i .txt-i span:first-child {
+    color: #fb9013;
+}
+.vl {
+  border-left: 2px solid #e6e6e6;
+  height: 300px;
+}
+/* .servify-false {
+    display: none;
+} */
+
+</style>
+
+<div class="continaer p-0 detail-top-b">
+
+    <div class="row m-0 servify-false">
+        <div class="prod-details" style="width: 100%;">
+            <div class="col-md-6">
+                <div class="first-view">
+                    <h4>    Buy with Exchange</h4>
+                    <h6>Tell your IMEI  Number of your current device to determine the exchange value</h6>
+                    <div class="input-b">
+                        <div class="form-group">
+                            <label for="usr">Enter IMEI Number</label>
+                            <div class="d-flex row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="IMEINumber" name="IMEINumber"
+                                    placeholder="Enter 15 digit IMEI Number">
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary"
+                                    onclick="checkIMEI()" style="width: 100%;">Check IMEI</button>
+                                </div>
+                               
+                               
+                            </div>
+                            <h4 class="imei-status"></h4>
+                        </div>
+                    </div>
+                    <div class="info-b">
+                        <span><i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp;
+                             How to find IMEI ?</span>
+                             <p style="margin-bottom: 0;font-size: 11px;">Dial to get the IMEI of your device</p>
+                             <hr>
+                    </div>
+    
+                    <div class="device-details transperent-view">
+                        <h4>Device Details</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="usr">Brand</label>
+                                    <input disabled type="text" class="form-control" id="phoneBrand" name="phoneBrand"
+                                    placeholder="select from list">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="usr">Model</label>
+                                    <input disabled type="text" class="form-control" id="phoneModel" name="phoneModel"
+                                    placeholder="select from list">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="usr">Capacity</label>
+                                    <input disabled type="text" class="form-control" id="phoneCapacity" name="phoneCapacity"
+                                            placeholder="select from list">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="usr">Color</label>
+                                    <input disabled type="text" class="form-control" id="phoneColor" name="phoneColor"
+                                            placeholder="select from list">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary"
+                                onclick="checkIMEI()" style="width: 100%;" disabled>Continue</button>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="second-view">
+                    <h4>Please select how do you want to continue</h4>
+                    <div class="list-view">
+                        <div class="each-i">
+                            <div class="left-i">
+                                <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                <div class="txt-i">
+                                    <span>
+                                        Continue with diagnosis
+                                    </span>
+                                    <span>Follow some simple steps to diagnose your old device and get upto 9000 off</span>
+                                </div>
+                            </div>
+                            <div class="right-i">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+
+                            </div>
+                        </div>
+                        <div class="each-i">
+                            <div class="left-i">
+                                <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                <div class="txt-i">
+                                    <span>
+                                        I will perform diagnosis later
+                                    </span>
+                                    <span>You agree to perform  the diagnosis later befroe we pick up your device. Exchange amount may vary between 5500 - 6500</span>
+                                </div>
+                            </div>
+                            <div class="right-i">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+
+                            </div>
+                        </div>
+                        <div class="each-i">
+                            <div class="left-i">
+                                <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                <div class="txt-i">
+                                    <span>
+                                        Continue without diagnosis
+                                    </span>
+                                    <span>Get upto 6000 off.</span>
+                                </div>
+                            </div>
+                            <div class="right-i">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p>Disclaimer : The exchange value will be credited to your account after pickup & verification of your device.</p>
+                </div>
+                <div class="third-view">
+                    <h4>Continue with diagnosis</h4>
+                    <h6>Follow the steps to initiate diagnosis on your device.</h6>
+                    <div class="list-view-2" style="font-weight: 600;    padding: 2rem 0;">
+                           
+                            <ol style="line-height: 30px;">
+                                <li>Open the servify app on your old device.
+                                    <br>
+                                    <span style="    font-size: 14px;
+                                    font-weight: 400">Dont have the app? <span style="color: #fb9013;"> Get the link on SMS</span></span>
+                                </li>
+                                <li>Tap on Trade-in  This Device  on the Homescreen</li>
+                                <li>Point your phone to this screen to capture  the code and initiate diagnosis</li>
+                            </ol>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                
+            </div>
+        </div>
+    </div>
+    <div class="servify-true">
+        <h4>Exchange Value Generated</h4>
+        <h6>Exchange value has been generated for your device</h6>
+        <br>
+        <div class="row m-0">
+            <div class="col-md-5">
+                <div class="row m-0">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-8">
+                        <p style="margin-bottom: 0;">Device</p>
+<h6>iPhone 7 32 GB Black</h6>
+                        <p style="margin-bottom: 0;">Exchange Value</p>
+                        <h6>9000</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="vl"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-b">
+                    <div class="form-group row m-0">
+                        <div class="col-md-6 p-0">
+                            <label for="usr">Check availablity for exchange</label>
+                       
+                            <input type="text" class="form-control" id="checkAmount" name="checkAmount"
+                           >
+                       
+                        
+                            <h4 class="imei-status"></h4>
+                        </div>
+                        
+                    </div>
+                        <p style="font-size: 13px;">Your old -- phone name -- will be picked up after the delivery of your new --phone name-- . 
+                            The exchange value will be credited to your account after pickup and verification of your old device at
+                             our collection center and may take upto 3-4 business days from time of pickup.
+                        </p>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input accept-btn" type="checkbox" id="accept2" />
+                                <label class="form-check-label" for="accept2">
+                                    &#8196; I agree to
+                                    <a href="/terms-and-conditions/" style="color: #fb9013;text-decoration: none;"> terms and conditions</a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row m-0">
+                            <div class="col-md-6 p-0">
+                                <button type="button" class="btn btn-primary"
+                                onclick="checkAvailability()" style="width: 100%;">Continue</button>
+                            </div>
+                        </div>
+                       
+                    
+                </div>
+            </div>
+        </div>
+       <hr>
+    </div>
+    <div class="row m-0">
+        <p>Trade-In powered by logo</p>
+    </div>
+</div>

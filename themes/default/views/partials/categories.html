@@ -1,0 +1,684 @@
+<!-- <nav id="categories" data-url="@{sitemap_url('category')}@{repository.linker_category}/">
+	@{foreach a in F.global.categories}
+		@{if !a.level && a.count}
+		<a href="@{sitemap_url('category')}@{a.linker}/"><i class="fa fa-caret-right"></i>@{a.text}</a>
+			@{if a.children.length && a.contains(repository.linker_category)}
+			<nav>
+				@{foreach b in a.children}
+				@{if b.count}
+				<a href="@{sitemap_url('category')}@{b.linker}/"><i class="fa fa-caret-right"></i>@{b.text}</a>
+					@{if b.children.length && b.contains(repository.linker_category)}
+						<nav>
+						@{foreach c in b.children}
+							@{if c.count}
+							<a href="@{sitemap_url('category')}@{c.linker}/"><i class="fa fa-caret-right"></i>@{c.text}////</a>
+							@{fi}
+						@{end}
+						</nav>
+					@{fi}
+				@{fi}
+				@{end}
+			</nav>
+			@{fi}
+		@{fi}
+	@{end}
+		</nav>
+
+<div id="main-nav-container" class="desktop-show">
+	<div class="modify-container">
+		<div class="row" style="    width: 100%;margin: 0">
+			<div class="col-md-12 clearfix">
+				<nav id="main-nav" data-url="@{sitemap_url('category')}@{repository.linker_category}/">
+					<ul class="menu clearfix">
+						@{foreach a in F.global.categories}
+						<li class=""><a class="active" href="@{sitemap_url('category')}@{a.linker}/">@{a.text}</a>
+							@{foreach b in a.children}
+							@{if b.count}
+							<ul style="display: none;">
+								<li class=""><a href="@{sitemap_url('category')}@{b.linker}/">@{b.text}</a></li>
+
+							</ul>
+							@{fi}
+							@{end}
+						</li>
+						@{end}
+
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<style>
+	.view-all a {
+		position: absolute;
+		bottom: -17px;
+		width: fit-content;
+
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.nav li a {
+		font-weight: 400 !important;
+		text-transform: capitalize !important;
+	}
+
+	.mobile-hide {
+		display: block;
+	}
+
+
+
+	.carriers {
+		margin-right: 10px;
+	}
+
+	.desktop-menu {
+		border-bottom: 2px solid #fb9013
+	}
+
+	.nav-item img {
+		height: 30px;
+	}
+
+	.tv-nav img {
+		height: 40px;
+		margin: 5px;
+	}
+
+	@media only screen and (max-width: 767px) {
+		.view-all a {
+			position: relative;
+			left: 0;
+			transform: translate(0, 0);
+			bottom: -3px;
+			padding: 5px 10px !important;
+			width: 100%;
+		}
+
+		.carriers {
+			margin-right: 0px;
+		}
+
+		.desktop-menu .dropdown-menu {
+			min-width: fit-content;
+		}
+
+		.each-icons-mob {
+			width: 50%;
+		}
+
+		.mobile-hide {
+			display: none;
+		}
+
+		.mobile-show {
+			display: block;
+		}
+
+		.acc-drpdwn a {
+			padding-top: 5px;
+
+		}
+
+		.acc-drpdwn a img {
+			height: 30px;
+		}
+
+
+		.items-price {
+
+			white-space: nowrap;
+
+
+		}
+
+		a {
+			text-decoration: none !important;
+		}
+
+		/* .p-0{
+			padding: 0!important;
+		}  */
+
+
+
+
+
+	}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light desktop-menu">
+	<a class="navbar-brand" href="#"></a>
+
+
+	<div class="collapse navbar-collapse items-price" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item dropdown mobiles-menu-b">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					<img alt="mobiles" src="/img/mobiles.png">
+					Mobiles
+				</a>
+				<div class="dropdown-menu " aria-labelledby="navbarDropdown">
+					
+						<div class="mob-hide">
+							<div class="row ">
+							<div class="col-md-4 p-0">
+								<a href="/mobiles/apple" class="acc-item" >
+									<img alt="apple" src="/img/apple.png">
+
+								</a>
+								<a href="/mobiles/nokia" class="acc-item" >
+									<img alt="nokia" src="/img/nokia.png">
+
+								</a>
+								<a href="/mobiles/xiaomi" class="acc-item" >
+									<img alt="mi" src="/img/mi.png">
+
+								</a>
+								<a href="/mobiles/honor" class="acc-item">
+									<img alt="honor" src="https://d34e6224thkkna.cloudfront.net/banners/mobiles/honor.png">
+
+								</a>
+
+							</div>
+
+							<div class="col-md-4 p-0">
+								<a href="/mobiles/realme" class="acc-item" >
+									<img alt="reallme" src="/img/realme-1.png">
+
+								</a>
+								<a href="/mobiles/oneplus" class="acc-item" >
+									<img alt="oneplus" src="/img/oneplus.png">
+
+								</a>
+								<a href="/mobiles/samsung" class="acc-item" >
+									<img alt="samsung-2" src="https://d34e6224thkkna.cloudfront.net/happi_media/AAEINZKE-1589694327568.jpg">
+
+								</a>
+								<a href="/mobiles/lg" class="acc-item">
+									<img alt="lg" src="https://d34e6224thkkna.cloudfront.net/banners/mobiles/lg.png">
+
+								</a>
+
+							</div>
+							<div class="col-md-4 p-0">
+								<a href="/mobiles/oppo" class="acc-item" >
+									<img alt="oppo" src="/img/oppo.png">
+
+								</a>
+								<a href="/mobiles/vivo" class="acc-item" >
+									<img alt="vivo" src="/img/vivo.png">
+
+								</a>
+
+								<a href="/mobiles/motorola"class="acc-item">
+									<img alt="motorola" src="https://d34e6224thkkna.cloudfront.net/banners/mobiles/motorola.png">
+
+								</a>
+								<a href="/mobiles/all" class="acc-item">
+									<img alt="all" src="/img/all-border.png">
+
+								</a>
+							</div>
+						</div>
+						
+						</div>
+						<div class="mobile-view">
+							<div class="flex-align row" style="display: flex !important;">
+								<div class="col-4 p-0">
+									<a href="/mobiles/apple" class="acc-item" >
+										<img alt="apple" src="/img/apple.png">
+
+									</a>
+
+								</div>
+								<div class="col-4 p-0">
+									<a href="/mobiles/nokia" class="acc-item" >
+										<img alt="nokia" src="/img/nokia.png">
+
+									</a>
+								</div>
+								<div class="col-4 p-0">
+									<a href="/mobiles/xiaomi" class="acc-item" >
+										<img alt="mi" src="/img/mi.png">
+
+									</a>
+								</div>
+
+								<div class="col-4 p-0">
+									<a href="/mobiles/realme" class="acc-item" >
+										<img alt="realme-1" src="/img/realme-1.png">
+
+									</a>
+								</div>
+
+								<div class="col-4 p-0">
+									<a href="/mobiles/oneplus" class="acc-item" >
+										<img alt="oneplus" src="/img/oneplus.png">
+
+									</a>
+								</div>
+
+								<div class="col-4 p-0">
+									<a href="/mobiles/samsung" class="acc-item" >
+										<img alt="samsung-2" src="https://d34e6224thkkna.cloudfront.net/happi_media/AAEINZKE-1589694327568.jpg">
+
+									</a>
+								</div>
+
+								<div class="col-4 p-0">
+									<a href="/mobiles/oppo" class="acc-item" >
+										<img alt="oppo" src="/img/oppo.png">
+
+									</a>
+								</div>
+								<div class="col-4 p-0">
+
+									<a href="/mobiles/vivo" class="acc-item" >
+										<img alt="vivo" src="/img/vivo.png">
+
+									</a>
+								</div>
+								<div class="col-4 p-0">
+									<a href="/mobiles/motorola" class="acc-item">
+										<img alt="motorola" src="https://d34e6224thkkna.cloudfront.net/banners/mobiles/motorola.png">
+
+									</a>
+								</div>
+								<div class="col-4 p-0">
+									<a href="/mobiles/honor" class="acc-item">
+										<img alt="honor" src="https://d34e6224thkkna.cloudfront.net/banners/mobiles/honor.png">
+
+									</a>
+								</div>
+								<div class="col-4 p-0">
+									<a href="/mobiles/lg" class="acc-item">
+										<img alt="lg" src="https://d34e6224thkkna.cloudfront.net/banners/mobiles/lg.png">
+
+									</a>
+								</div>
+								<div class="col-4 p-0">
+									<a href="/mobiles/all" class="acc-item">
+										<img alt="all" src="/img/all-border.png">
+
+									</a>
+								</div>
+
+
+								<div class="col-4 p-0">
+
+
+									<a href="/categories/mobiles/" class="acc-item" >
+
+									</a>
+
+
+								</div>
+							</div>
+
+
+						</div>
+
+				</div>
+			</li>
+
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					<img alt="accessories" src="/img/accessories.png">
+					Accessories
+				</a>
+				<div class="dropdown-menu acc-drpdwn" aria-labelledby="navbarDropdown">
+					<div class="mobile-hide ">
+						<div class="row ">
+
+							<div class="col">
+								<a href="/accessories/headset/" class="acc-item">
+									<img alt="headset" src="/img/headset.png">
+									<p>Headset</p>
+								</a>
+
+							</div>
+							<div class="col">
+								<a href="/accessories/power-banks/" class="acc-item">
+									<img alt="powerbanks" src="/img/powerbanks.png">
+									<p>Power Banks</p>
+								</a>
+							</div>
+							<div class="col">
+								<a href="/accessories/chargers/" class="acc-item">
+									<img alt="chargers" src="/img/chargers.png">
+									<p>Chargers</p>
+								</a>
+							</div>
+							<div class="col">
+								<a href="/accessories/storage-drivers/" class="acc-item">
+									<img alt="storage-drivers" src="/img/Storage drivers.png">
+									<p>Storage drivers</p>
+								</a>
+							</div>
+							<div class="col">
+								<a href="/accessories/data-cables/" class="acc-item">
+									<img alt="data-cables" src="/img/Data cables.png">
+									<p>Data cables</p>
+								</a>
+							</div>
+							<div class="col">
+								<a href="/accessories/bluetooth/" class="acc-item">
+									<img alt="Bluetooth" src="/img/bluetooth.png">
+									<p>Bluetooth</p>
+								</a>
+							</div>
+
+							<div class="col">
+								<a href="/accessories/projectors/" class="acc-item">
+									<img alt="projectors" src="/img/Projector.png">
+									<p>Projectors</p>
+								</a>
+							</div>
+
+							<div class="col">
+								<a href="/accessories/smart-watches/" class="acc-item">
+									<img alt="smartwatches" src="/img/Smartwatch.png">
+									<p>Smartwatches</p>
+								</a>
+							</div>
+
+
+						</div>
+						<!-- <div class="row view-all">
+									<div class="col-md-12">
+										<a href="/categories/mobiles/" style="padding: 3px 90px" class="dropdown-item mobiles-nav nav-all">View
+											All</a>
+									</div>
+
+
+								</div> -->
+					</div>
+
+					<div class="mobile-show des">
+						<div class="row ">
+
+							<div class="each-icons-mob">
+								<a href="/accessories/headset/" class="acc-item">
+									<img alt="headset" src="/img/headset.png">
+									<p>Headset</p>
+								</a>
+
+							</div>
+							<div class="each-icons-mob">
+								<a href="/accessories/power-banks/" class="acc-item">
+									<img alt="powerbanks" src="/img/powerbanks.png">
+									<p>Power Banks</p>
+								</a>
+							</div>
+							<div class="each-icons-mob">
+								<a href="/accessories/chargers/" class="acc-item">
+									<img alt="chargers" src="/img/chargers.png">
+									<p>Chargers</p>
+								</a>
+							</div>
+
+							<div class="each-icons-mob">
+								<a href="/accessories/storage-drivers/" class="acc-item">
+									<img alt="storage-drivers" src="/img/Storage drivers.png">
+									<p>Storage drivers</p>
+								</a>
+							</div>
+							<div class="each-icons-mob">
+								<a href="/accessories/data-cables/" class="acc-item">
+									<img alt="cables" src="/img/Data cables.png">
+									<p>Data cables</p>
+								</a>
+							</div>
+							<div class="each-icons-mob">
+								<a href="/accessories/bluetooth/" class="acc-item">
+									<img alt="bluetooth" src="/img/bluetooth.png">
+									<p>Bluetooth</p>
+								</a>
+							</div>
+
+							<div class="each-icons-mob">
+								<a href="/accessories/projectors/" class="acc-item">
+									<img alt="projectors" src="/img/Projector.png">
+									<p>Projectors</p>
+								</a>
+							</div>
+
+							<div class="each-icons-mob">
+								<a href="/accessories/smart-watches/" class="acc-item">
+									<img alt="smartwatches" src="/img/Smartwatch.png">
+									<p>Smartwatches</p>
+								</a>
+							</div>
+
+						</div>
+						<!-- <div class="row view-all">
+									<div class="col-md-12">
+										<a href="/categories//" class="dropdown-item mobiles-nav nav-all">View
+											All</a>
+									</div>
+
+								</div> -->
+					</div>
+
+				</div>
+			</li>
+			<li class="nav-item ">
+				<a class="nav-link" href="/tablets/all">
+					<img alt="tablet" src="/img/tablet.png">
+					Tablets
+				</a>
+			</li>
+		
+			<li class="nav-item dropdown">
+				<a class="nav-link  dropdown-toggle" href="/categories/tv-s/" id="navbarDropdown" role="button"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img alt="tv" src="/img/Tv.png">
+					LED TV's
+				</a>
+				<div class="dropdown-menu tv-nav" aria-labelledby="navbarDropdown">
+					<div class="row">
+						<div class="col-md-3 col-3 p-0">
+							<a href="/tvs/mi" class="tv-item" >
+								<img alt="tv" src="/img/mi tv.png">
+
+							</a>
+						</div>
+						<div class="col-md-3 col-3  p-0">
+							<a href="/tvs/lg" class="tv-item" >
+								<img alt="lg" src="/img/lg.png">
+
+							</a>
+						</div>
+						<div class="col-md-3 col-3  p-0">
+							<a href="/tvs/tcl" class="tv-item" >
+								<img alt="tcl" src="/img/tcl.png">
+
+							</a>
+						</div>
+
+						<div class="col-md-3 col-3  p-0">
+							<a href="/tvs/all" class="tv-item">
+								<img alt="all" src="/img/all.png">
+
+							</a>
+						</div>
+
+
+
+					</div>
+					<!-- <div class="col-md-12">
+
+							<a class="dropdown-item" href="/categories/tv-s/lg/">LG</a>
+							<a class="dropdown-item" href="/categories/tv-s/mi/">MI</a>
+							<a class="dropdown-item" href="/categories/tv-s/tcl/">TCL</a>
+
+						</div> -->
+
+				</div>
+
+
+				<!-- </div> -->
+			</li>
+			<li class="nav-item ">
+				<a class="nav-link" href="/laptops/all">
+					<!-- <img alt="tablet" src="/img/tablet.png"> -->
+					Laptops
+				</a>
+			</li>
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link  dropdown-toggle" href="/categories/tv-s/" id="navbarDropdown" role="button"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img alt="tv" src="https://d34e6224thkkna.cloudfront.net/happi_media/DYNIDYWJ-1600249759897.png">
+					Mobiles by price
+				</a>
+				<div class="dropdown-menu tv-nav" aria-labelledby="navbarDropdown">
+					<div class="row" style="display: grid;
+					min-width: 169px;">
+						<div class="each">
+							<a href="/mobiles/all/price-0-10000" class="tv-item" >
+								Below - Rs.10,000
+							</a>
+						</div>
+						<div class="each">
+							<a href="/mobiles/all/price-10001-14999" class="tv-item" >
+								Rs.10,001 - Rs.14,999
+							</a>
+						</div>
+						<div class="each">
+							<a href="/mobiles/all/price-15000-19999" class="tv-item" >
+								Rs.15,000 - Rs.19,999
+							</a>
+						</div>
+						<div class="each">
+							<a href="/mobiles/all/price-20000-24999" class="tv-item" >
+								Rs.20,000 - Rs.24,999
+							</a>
+						</div>
+						<div class="each">
+							<a href="/mobiles/all/price-25000-29999" class="tv-item" >
+								Rs.25,000 - Rs.29,000
+							</a>
+						</div>
+						<div class="each">
+							<a href="/mobiles/all/price-30000-200000" class="tv-item" >
+								Rs.30,000 and above
+							</a>
+						</div>
+
+					</div>
+				
+					
+				
+
+				</div>
+
+
+				<!-- </div> -->
+			</li>
+			<li class="nav-item ">
+				<a class="nav-link" href="/lifecare/all">
+					<img alt="tablet" src="/img/lifecare.png">
+					Life Care
+				</a>
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="/csr/" id="navbarDropdown" role="button"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img alt="helping" src="/img/helping.png">
+					Happi To Help
+				</a>
+
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<div class="row">
+						<div class="col-md-12">
+
+							<a class="dropdown-item" href="/pages/blood-donation">Blood Donation</a>
+							<a class="dropdown-item" href="/pages/akshaya-patra/">Akshaya Patra</a>
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</li>
+			<li class="nav-item ">
+				<a class="nav-link" href="/pages/happi-blog">
+					<img alt="tablet" src="/img/blog.png">
+					Blog
+				</a>
+			</li>
+			<li class="nav-item ">
+				<a class="nav-link" href="/pages/festive-dhamaka">
+					<img alt="tablet" style="height: 17px;margin-right: 5px;" src="https://d34e6224thkkna.cloudfront.net/happi_media/ZPGLHQXR-1605167880599.png">
+					Festival Offer
+				</a>
+			</li>
+			<!-- <li class="nav-item">
+				<a class="nav-link" href="/valentine-day-offers/">
+					<img alt="" src="/img/offers.png">
+					 Valentine Day Offers</a>
+			</li> -->
+
+		</ul>
+		<ul class="nav navbar-nav navbar-right m-20" style="text-align: center;">
+			<li><a href="/pages/career-happi/" class="carriers"><span class="glyphicon glyphicon-user"></span>Careers</a></li>
+
+		</ul>
+
+
+		<ul class="nav navbar-nav navbar-right  m-20" style="text-align: center;">
+			<li><a href="/pages/locations-happi/"><span class="glyphicon glyphicon-user"></span>Our Stores</a></li>
+		</ul>
+
+	</div>
+</nav>
+
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-light bg-light mob-menu"
+	data-url="@{sitemap_url('category')}@{repository.linker_category}/">
+	<a class="navbar-brand" href="#"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			@{foreach a in F.global.categories}
+			<li class="nav-item active">
+				<a class="nav-link" href="@{sitemap_url('category')}@{a.linker}/">@{a.text} </a>
+
+				@{foreach b in a.children}
+
+				@{if b.count}
+
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="@{sitemap_url('category')}@{b.linker}/">@{b.text}</a>
+
+				</div>
+				@{fi}
+				@{end}
+			</li>
+
+			@{end}
+
+
+		</ul>
+
+	</div>
+</nav> -->
+
+<script>
+	
+</script>

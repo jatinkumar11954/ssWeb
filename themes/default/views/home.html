@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Shopsasta">
+   <meta name="author" content="Shopsasta">
+   <title>shopsasta.com - Community Group Buying</title>
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" href="img/favicon.png">
+   <!-- Bootstrap core CSS -->
+   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Material Design Icons -->
+   <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+   <!-- Select2 CSS -->
+   <link href="/vendor/select2/css/select2-bootstrap.css" />
+   <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+   <!-- Custom styles for this template -->
+   <link href="/css/osahan.css" rel="stylesheet">
+   <link href="/css/custom.css" rel="stylesheet">
+   <!-- Owl Carousel -->
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+   <style>
+      .category-list-sidebar-body {
+         height: 401px;
+         overflow-y: scroll;
+      }
+
+      .sidebar-category-item a {
+         padding: 11px 6px;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="header">
+      @{view('~partials/header-home',model)}
+   </div>
+   @{if model.homepageJson.data.bannersDesk && model.homepageJson.data.bannersDesk.length}
+   <section class="osahan-carousel-two  border-top mb-2">
+      <div class="container-fluid p-0">
+         <div class="row m-0">
+            <div class="col-lg-12 p-0">
+
+               <div class="carousel-slider-main text-center">
+                  <div class="owl-carousel owl-carousel-slider rounded overflow-hidden shadow-sm">
+                     @{foreach item in model.homepageJson.data.bannersDesk }
+                     <div class="item">
+                        <a target="@{item.target}" href="@{item.link}"><img class="img-fluid" src="@{item.pictures}"
+                              alt="@{item.title}" style="width: 100%;"></a>
+                     </div>
+                     @{end}
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   @{fi}
+   <section>
+      <div class="container nodel" style="text-align: center;">
+         <span class="" style="color: red;text-align: center;font-weight: 600;font-size: 19px;">We are not delivering in your area yet</span>
+
+      </div>
+   </section>
+
+   @{if model.homepageJson.data.allGroceries.products.length != 0}
+   <section class="product-items-slider section-padding">
+      <div class="container">
+         <div class="section-header">
+            <h5 class="heading-design-h5">@{model.homepageJson.data.allGroceries.name}
+               <a class="float-right text-secondary" href="@{model.homepageJson.data.allGroceries.url}">View all</a>
+            </h5>
+         </div>
+         <div class="owl-carousel owl-carousel-featured">
+            @{foreach item in model.homepageJson.data.allGroceries.products }
+            <div class="item">
+               <div class="product">
+
+                  <div class="product-header">
+                     <a href="/detail/@{item.linker}">
+
+                        @{if item.pictures.length}
+                        <img class="img-fluid"
+                           src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{item.pictures[0]}.jpg"
+                           alt="">
+                        @{else}
+                        <img class="img-fluid" src="/img/no-prod.svg" alt="shopsasta">
+                        
+                        @{fi}
+                        </a>
+                  </div>
+                  <div class="product-body">
+                     <a href="/detail/@{item.linker}">
+                        <h5>@{item.name}</h5>
+                     </a>
+
+                  </div>
+                  <div class="product-footer">
+                     <p class="offer-price mb-0"><span class="price-format">@{item.variant[0].base_price}</span> <i
+                           class="mdi mdi-tag-outline"></i>
+                        <span class="regular-price price-format">@{item.variant[0].mrp}</span>
+                     </p>
+
+                     @{if model.homepageJson.stockStatus}
+
+                     <a href="javascript:login()" class="user-out">
+                        <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                     </a>
+                     <div class="user-in">
+                        @{if item.stock == 0}
+                        <button type="button" class="btn btn-outofstock btn-lg ">Out of stock</button>
+                        @{else}
+                        <a href="javascript:addToCartPop('@{item.id}')">
+                           <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                        </a>
+                        @{fi}
+                     </div>
+
+                     @{fi}
+
+
+                  </div>
+               </div>
+            </div>
+            @{end}
+         </div>
+      </div>
+   </section>
+   @{fi}
+
+   @{if model.homepageJson.data.dealOfTheDay.products.length != 0}
+   <section class="product-items-slider section-padding">
+      <div class="container">
+         <div class="section-header">
+            <h5 class="heading-design-h5">@{model.homepageJson.data.dealOfTheDay.name}
+               <a class="float-right text-secondary" href="@{model.homepageJson.data.dealOfTheDay.url}">View all</a>
+            </h5>
+         </div>
+         <div class="owl-carousel owl-carousel-featured">
+            @{foreach item in model.homepageJson.data.dealOfTheDay.products }
+            <div class="item">
+               <div class="product">
+
+                  <div class="product-header">
+                     <a href="/detail/@{item.linker}">
+
+                        @{if item.pictures.length}
+                        <img class="img-fluid"
+                           src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{item.pictures[0]}.jpg"
+                           alt="">
+                        @{else}
+                        <img class="img-fluid" src="/img/no-prod.svg" alt="shopsasta">
+                        
+                        @{fi}
+                        </a>
+                  </div>
+                  <div class="product-body">
+                     <a href="/detail/@{item.linker}">
+                        <h5>@{item.name}</h5>
+                     </a>
+
+                  </div>
+                  <div class="product-footer">
+                     <p class="offer-price mb-0"><span class="price-format">@{item.variant[0].base_price}</span> <i
+                           class="mdi mdi-tag-outline"></i>
+                        <span class="regular-price price-format">@{item.variant[0].mrp}</span>
+                     </p>
+
+                     @{if model.homepageJson.stockStatus}
+
+                     <a href="javascript:login()" class="user-out">
+                        <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                     </a>
+                     <div class="user-in">
+                        @{if item.stock == 0}
+                        <button type="button" class="btn btn-outofstock btn-lg ">Out of stock</button>
+                        @{else}
+                        <a href="javascript:addToCartPop('@{item.id}')">
+                           <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                        </a>
+                        @{fi}
+                     </div>
+
+                     @{fi}
+
+
+                  </div>
+               </div>
+            </div>
+            @{end}
+         </div>
+      </div>
+   </section>
+   @{fi}
+   @{if model.homepageJson.data.bestSeller.products.length != 0}
+   <section class="product-items-slider section-padding">
+      <div class="container">
+         <div class="section-header">
+            <h5 class="heading-design-h5">@{model.homepageJson.data.bestSeller.name}
+               <a class="float-right text-secondary" href="@{model.homepageJson.data.bestSeller.url}">View all</a>
+            </h5>
+         </div>
+         <div class="owl-carousel owl-carousel-featured">
+            @{foreach item in model.homepageJson.data.bestSeller.products }
+            <div class="item">
+               <div class="product">
+
+                  <div class="product-header">
+                     <a href="/detail/@{item.linker}">
+
+                        @{if item.pictures.length}
+                        <img class="img-fluid"
+                           src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{item.pictures[0]}.jpg"
+                           alt="">
+                        @{else}
+                        <img class="img-fluid" src="/img/no-prod.svg" alt="shopsasta">
+                        
+                        @{fi}
+                     </a>
+                  </div>
+                  <div class="product-body">
+                     <a href="/detail/@{item.linker}">
+                        <h5>@{item.name}</h5>
+                     </a>
+
+                  </div>
+                  <div class="product-footer">
+                     <p class="offer-price mb-0"><span class="price-format">@{item.variant[0].base_price}</span> <i
+                           class="mdi mdi-tag-outline"></i>
+                        <span class="regular-price price-format">@{item.variant[0].mrp}</span>
+                     </p>
+
+                     @{if model.homepageJson.stockStatus}
+                     <a href="javascript:login()" class="user-out">
+                        <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                     </a>
+                     <div class="user-in">
+                        @{if item.stock == 0}
+                        <button type="button" class="btn btn-outofstock btn-lg ">Out of stock</button>
+                        @{else}
+                        <a href="javascript:addToCartPop('@{item.id}')">
+                           <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                        </a>
+                        @{fi}
+                     </div>
+
+
+                     @{fi}
+
+
+                  </div>
+               </div>
+            </div>
+            @{end}
+         </div>
+      </div>
+   </section>
+   @{fi}
+   @{if model.homepageJson.data.houseHolds.products.length != 0}
+   <section class="product-items-slider section-padding">
+      <div class="container">
+         <div class="section-header">
+            <h5 class="heading-design-h5">@{model.homepageJson.data.houseHolds.name}
+               <a class="float-right text-secondary" href="@{model.homepageJson.data.houseHolds.url}">View all</a>
+            </h5>
+         </div>
+         <div class="owl-carousel owl-carousel-featured">
+            @{foreach item in model.homepageJson.data.houseHolds.products }
+            <div class="item">
+               <div class="product">
+
+                  <div class="product-header">
+                     <a href="/detail/@{item.linker}">
+
+                        @{if item.pictures.length}
+                        <img class="img-fluid"
+                           src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{item.pictures[0]}.jpg"
+                           alt="">
+                        @{else}
+                        <img class="img-fluid" src="/img/no-prod.svg" alt="shopsasta">
+                        
+                        @{fi}
+                     </a>
+                  </div>
+                  <div class="product-body">
+                     <a href="/detail/@{item.linker}">
+                        <h5>@{item.name}</h5>
+                     </a>
+
+                  </div>
+                  <div class="product-footer">
+                     <p class="offer-price mb-0"><span class="price-format">@{item.variant[0].base_price}</span> <i
+                           class="mdi mdi-tag-outline"></i>
+                        <span class="regular-price price-format">@{item.variant[0].mrp}</span>
+                     </p>
+
+                     @{if model.homepageJson.stockStatus}
+
+                     <a href="javascript:login()" class="user-out">
+                        <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                     </a>
+                     <div class="user-in">
+                        @{if item.stock == 0}
+                        <button type="button" class="btn btn-outofstock btn-lg ">Out of stock</button>
+                        @{else}
+                        <a href="javascript:addToCartPop('@{item.id}')">
+                           <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                        </a>
+                        @{fi}
+                     </div>
+
+                     @{fi}
+
+
+                  </div>
+               </div>
+            </div>
+            @{end}
+         </div>
+      </div>
+   </section>
+   @{fi}
+   @{if model.homepageJson.data.healthierFood.products.length != 0}
+   <section class="product-items-slider section-padding">
+      <div class="container">
+         <div class="section-header">
+            <h5 class="heading-design-h5">@{model.homepageJson.data.healthierFood.name}
+               <a class="float-right text-secondary" href="@{model.homepageJson.data.healthierFood.url}">View all</a>
+            </h5>
+         </div>
+         <div class="owl-carousel owl-carousel-featured">
+            @{foreach item in model.homepageJson.data.healthierFood.products }
+            <div class="item">
+               <div class="product">
+
+                  <div class="product-header">
+                     <a href="/detail/@{item.linker}">
+
+                        @{if item.pictures.length}
+                        <img class="img-fluid"
+                           src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{item.pictures[0]}.jpg"
+                           alt="">
+                        @{else}
+                        <img class="img-fluid" src="/img/no-prod.svg" alt="shopsasta">
+                        
+                        @{fi}
+                     </a>
+                  </div>
+                  <div class="product-body">
+                     <a href="/detail/@{item.linker}">
+                        <h5>@{item.name}</h5>
+                     </a>
+
+                  </div>
+                  <div class="product-footer">
+                     <p class="offer-price mb-0"><span class="price-format">@{item.variant[0].base_price}</span> <i
+                           class="mdi mdi-tag-outline"></i>
+                        <span class="regular-price price-format">@{item.variant[0].mrp}</span>
+                     </p>
+
+                     @{if model.homepageJson.stockStatus}
+
+                     <a href="javascript:login()" class="user-out">
+                        <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                     </a>
+                     <div class="user-in">
+                        @{if item.stock == 0}
+                        <button type="button" class="btn btn-outofstock btn-lg ">Out of stock</button>
+                        @{else}
+                        <a href="javascript:addToCartPop('@{item.id}')">
+                           <button type="button" class="btn btn-secondary btn-lg">+ Add</button>
+                        </a>
+                        @{fi}
+                     </div>
+
+                     @{fi}
+
+
+                  </div>
+               </div>
+            </div>
+            @{end}
+         </div>
+      </div>
+   </section>
+   @{fi}
+   <div class="footer">
+      @{view('partials/footer')}
+   </div>
+
+
+   <!-- Bootstrap core JavaScript -->
+   <script src="/vendor/jquery/jquery.min.js"></script>
+   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- select2 Js -->
+   <script src="/vendor/select2/js/select2.min.js"></script>
+   <!-- Owl Carousel -->
+   <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+   <!-- Custom -->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+   <script src="/js/custom.js"></script>
+   <script src="/js/main.js?v=v1.5"></script> 
+
+   <script>
+      function openCity(evt, cityName) {
+         var i, tabcontent, tablinks;
+         tabcontent = document.getElementsByClassName("tabcontent");
+         for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+         }
+         tablinks = document.getElementsByClassName("tablinks");
+         for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+         }
+         document.getElementById(cityName).style.display = "block";
+         evt.currentTarget.className += " active";
+      }
+
+      function removeShow(a) {
+         console.log(a);
+         $('.tabcontent').hide();
+      }
+   </script>
+</body>
+
+</html>

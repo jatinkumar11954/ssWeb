@@ -1,0 +1,87 @@
+# This is a sample build configuration for Other.
+# Check our guides at https://confluence.atlassian.com/x/5Q4SMw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: atlassian/default-image:2
+
+pipelines:
+  branches:
+    master:
+    - step:
+        name : Deploying in Dev...
+        deployment : Dev
+        #caches : 
+        #  - node 
+        script:
+          - pipe: atlassian/slack-notify:0.3.6
+            variables: 
+              WEBHOOK_URL: 'https://hooks.slack.com/services/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'
+              MESSAGE: 'Shop-Sasta Dev Deployment started....'
+          - apt-get update
+          - apt-get -qq install zip
+          - pwd && ls -ltr
+          - rm -f config
+          - cp config-qa config
+          #- rm -rf database*
+          - pwd && ls -ltr
+          - zip -r shop.zip ../build
+          - echo "Everything is awesome...........!"
+          - pipe: atlassian/sftp-deploy:0.5.6
+            variables:
+              USER: 'ubuntu'
+              SERVER: '13.233.105.79'
+              LOCAL_PATH : 'shop.zip'
+              REMOTE_PATH: '/home/ubuntu/bit-cicd'
+          - pipe: atlassian/ssh-run:0.2.6
+            variables:
+              SSH_USER: 'ubuntu'
+              SERVER: '13.233.105.79'
+              #SSH_KEY: $MY_SSH_KEY
+              MODE: 'command'
+              COMMAND: 'sh /home/ubuntu/bit-cicd/scripts/dev-run.sh'
+          - pipe: atlassian/slack-notify:0.3.6
+            variables: 
+              WEBHOOK_URL: 'https://hooks.slack.com/services/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'
+              MESSAGE: 'Shop-Sasta Dev Deployed Successfully'
+    - step:
+        name: Approval
+        trigger: manual
+        script:
+          - echo "To Deploy click 'Run'"
+    - step:
+        name : Deploying in Prod...
+        deployment : Prod
+        #caches : 
+        #  - node 
+        script:
+          - pipe: atlassian/slack-notify:0.3.6
+            variables: 
+              WEBHOOK_URL: 'https://hooks.slack.com/services/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'
+              MESSAGE: 'Shop-Sasta Prod Deployment started....'
+          - apt-get update
+          - apt-get -qq install zip
+          - pwd && ls -ltr
+          - rm -f config
+          - cp config-prod config
+          #- rm -rf database*
+          - pwd && ls -ltr
+          - zip -r shop.zip ../build
+          - echo "Everything is awesome..............!"
+          - pipe: atlassian/sftp-deploy:0.5.6
+            variables:
+              USER: 'ubuntu'
+              SERVER: '65.0.89.2'
+              LOCAL_PATH : 'shop.zip'
+              REMOTE_PATH: '/home/ubuntu/bit-cicd/'
+          - pipe: atlassian/ssh-run:0.2.6
+            variables:
+              SSH_USER: 'ubuntu'
+              SERVER: '65.0.89.2'
+              #SSH_KEY: $MY_SSH_KEY
+              MODE: 'command'
+              COMMAND: 'sh /home/ubuntu/bit-cicd/dev-run.sh'
+          - pipe: atlassian/slack-notify:0.3.6
+            variables: 
+              WEBHOOK_URL: 'https://hooks.slack.com/services/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'
+              MESSAGE: 'Shop-Sasta Prod Deployed Successfully'

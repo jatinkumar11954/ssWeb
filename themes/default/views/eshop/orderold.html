@@ -1,0 +1,431 @@
+<style>
+	h1 {
+		margin: 2rem 0;
+	}
+
+	.container {
+		background-color: #e7e7e7;
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+	}
+</style>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<div class="container">
+	<h1>@{title}</h1>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="content">
+
+				@{if query.paid === '0' && query.cod != '1'}
+				<div class="contentwarning">
+					<i class="fa fa-warning"></i>@(We didn't receive a payment. <b>Try to pay again</b>.)
+				</div>
+				@{fi}
+
+				@{if query.paid === '1'}
+				<div class="contentsuccess">
+					<i class="fa fa-check-circle"></i>@(<b>Thank you</b>, order has been paid.)
+				</div>
+				@{fi}
+
+
+				@{if query.cod === '1' || model.iscod }
+				<div class="contentsuccess">
+					<i class="fa fa-check-circle"></i>@(<b>Thank you</b>, order has been placed success.)
+				</div>
+				@{fi}
+
+				@{if model.isfinished}
+				<div class="contentsuccess">
+					<i class="fa fa-check-circle"></i>@(Finished)
+				</div>
+				@{fi}
+
+				<div class="contentbody">
+					<div class="help nmb"><i class="fa fa-clock-o"></i>@(Order status:)</div>
+					<div class="b red">@{model.status}</div>
+				</div>
+
+				@{if model.statushistory && model.statushistory.length > 1}
+				<div class="order-historystatus">
+					@{foreach m in model.statushistory.reverse()}
+					<div><i class="fa fa-clock-o"></i><b>@{m.date.format('@(yyyy-MM-dd HH:mm)')}</b> - @{m.status}</div>
+					@{end}
+				</div>
+				@{fi}
+
+				@{if model.message}
+				<div class="contentbody bg-yellow">
+					<div class="help mb10"><i class="fa fa-warning"></i>@(Message for you:)</div>
+					<div class="b">@{model.message.replace(/\n/g, '<br />')}</div>
+				</div>
+				@{fi}
+
+				<hr class="nmt nmb" />
+
+				<div class="contentbody">
+					<div class="keyvalue">
+						<div class="key">@(Customer)</div>
+						<div class="value">@{model.firstname} @{model.lastname}</div>
+					</div>
+
+					@{if model.iscompany}
+					<div class="keyvalue">
+						<div class="key">@(Company)</div>
+						<div class="value">@{model.company}</div>
+						<div class="value silver fs12" style="margin-top:5px">
+							@{model.companyid}<br />@{model.companyvat}</div>
+					</div>
+					@{fi}
+
+					<div class="keyvalue">
+						<div class="key">@(Email address)</div>
+						<div class="value">@{model.email}</div>
+					</div>
+
+					<div class="keyvalue">
+						<div class="key">@(Phone number)</div>
+						<div class="value">@{model.phone}</div>
+					</div>
+
+					@{if model.note}
+					<div class="keyvalue">
+						<div class="key">@(Note)</div>
+						<div class="value">@{model.note}</div>
+					</div>
+					@{fi}
+
+					@{if !model.isfinished && !model.ispaid && !model.iscod }
+					<br />
+					<div>
+
+						<button onclick="payOrder()" class="btn btn-primary"
+							style="width: 45%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;"> Pay Online
+							</button>
+
+						@{ if model.count == 1 }
+						@{if(!model.pickupCity)}
+						<button onclick="codfunc()" class="btn btn-primary cash-del"
+							style="width: 45%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;">Cash
+							On Delivery</button>
+						@{fi}
+						@{fi}
+						
+						<button onclick="payOrder()" class="btn btn-primary"
+							style="width: 45%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;">Pay
+							in Store</button>
+						
+
+						<button onclick="createOrder()" style="display:none" class="btn btn-primary"
+							style="width: 45%; padding: 6px;font-weight: 900; font-size: 14px; margin-left: 10px;">Pay
+							with Razorpay</button>
+						<!-- <button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay now)</button> -->
+					</div>
+					<div class="help">@(You will be redirect to secured <b>PayTM</b> , <b>Debit Card</b> , <b>Credit
+							Card</b> , <b>EMI</b> , <b>BHIM UPI</b> , <b>Net Banking</b> , payment page.)</div>
+					@{fi}
+
+				</div>
+			</div>
+			<br />
+			<div style="padding:10px">
+				<div class="row">
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Number)</div>
+							<div class="value">@{model.number}</div>
+						</div>
+					</div>
+					@{if model.ispaid}
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Paid)</div>
+							<div class="value green"><i
+									class="fa fa-check-circle"></i>@{model.datepaid.format('yyyy-MM-dd HH:mm')}</div>
+						</div>
+					</div>
+					@{fi}
+					@{if model.iscod}
+					<div class="col-md-6 m ">
+						<div class="keyvalue">
+							<div class="key">@(Cash On Delivery)</div>
+							<div class="value green"><i
+									class="fa fa-check-circle"></i>@{model.datecod.format('yyyy-MM-dd HH:mm')}</div>
+						</div>
+					</div>
+					@{fi}
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Created)</div>
+							<div class="value">@{model.datecreated.format('yyyy-MM-dd HH:mm')}</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Price)</div>
+							<div class="value">@{!model.price.currency()}</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Ordered items)</div>
+							<div class="value">@{model.count}x</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Discount)</div>
+							<div class="value">@{model.discount}%</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(IP address)</div>
+							<div class="value">@{model.ip}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="content">
+				<!-- <div class="contentbody bg-yellow"> -->
+				<!-- <div class="keyvalue m">
+						<div class="key"><i class="fa fa-dropbox"></i>@(Delivery)</div>
+						<div class="value">@{model.delivery}</div>
+					</div> -->
+				<!-- <div class="keyvalue m">
+						<div class="key"><i class="fa fa-dropbox"></i>@(Payment)</div>
+						<div class="value">@{model.payment}@{if model.ispaid}<span class="badge badge-green">@(PAID)</span>@{else}<span class="badge">@(NOT PAID)</span>@{fi}</div>
+					</div>
+					<div class="keyvalue m">
+						<div class="key"><i class="fa fa-at"></i>@(Tracking code)</div>
+						<div class="value">@{if model.trackingcode}@{model.trackingcode}@{else}@(Undefined)@{fi}</div>
+					</div> -->
+				<!-- </div> -->
+				<div class="contentbody">
+					<div class="keyvalue m">
+						<div class="key"><i class="fa fa-address-book"></i>@(Billing address)</div>
+						<div class="value">
+							@{model.billingstreet}<br />@{model.billingzip}<br />@{model.billingcity}<br />@{model.billingcountry}
+						</div>
+					</div>
+					@{if(!model.ispickup)}
+					<div class="keyvalue">
+						<div class="key"><i class="fa fa-truck"></i>@(Delivery address)</div>
+						<div class="value">@{model.deliveryfirstname}
+							<br />@{model.deliverystreet}<br />@{model.deliveryzip}<br />@{model.deliverycity}<br />@{model.deliverycountry}<br />@(Phone:)
+							@{model.deliveryphone}</div>
+					</div>
+					@{fi}
+						@{if(!model.deliveryfirstname)}
+					<div class="keyvalue">
+						<div class="key"><i class="fa fa-truck"></i>@(Pick Up at Store)</div>
+						<div class="value">@{model.ispickup}
+							<br />@{model.pickupLocation}<br />@{model.pickupAddress}<br />@{model.pickupMobile}<br />@{model.pickupState}<br />@(Pincode:)
+							@{model.pickupPincode}</div>
+					</div>
+@{fi}
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<h2>@(Ordered items)</h2>
+	<table class="table table-bordered bg-white">
+		<thead>
+			<tr>
+				<th>@(Product name)</th>
+				<th class="ui-center col-xs-1">@(Count)</th>
+				<th class="ui-right col-sm-3 col-xs-4">@(Price)</th>
+			</tr>
+		</thead>
+		<tbody class="orderedproducts">
+			@{foreach m in model.items}
+			<tr>
+				<td>@{m.name}</td>
+				<td class="ui-center col-xs-1">@{m.count}</td>
+				<td class="ui-right col-sm-3 col-xs-4">@{!(m.count * m.price).currency()}</td>
+			</tr>
+			@{end}
+		</tbody>
+		<tfoot>
+			<tr class="bg-yellow">
+				<td class="b">@(Summarize)</td>
+				<td class="b ui-center">@{model.count}</td>
+				<td class="b ui-right red">@{!model.price.currency()}</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+
+<center>
+	<!-- <h1>Please do not refresh this page...</h1> -->
+</center>
+<form method="post" action="/order/paytm" name="paytm">
+	<table border="1">
+		<tbody>
+			<input type="hidden" name="order_id" value="@{model.id}">
+			<input type="hidden" name="amount" value="@{model.price}">
+			<input type="hidden" name="email" value="@{model.email}">
+			<input type="hidden" name="mobile" value="@{model.phone}">
+		</tbody>
+	</table>
+</form>
+
+
+<form method="post" action="/order/pinelabs" name="pinelab">
+	<table border="1">
+		<tbody>
+			<input type="hidden" name="ppc_UniqueMerchantTxnID" value="@{model.id}">
+			<input type="hidden" name="ppc_Amount" value="@{model.price}00">
+			<input type="hidden" name="ppc_MerchantID" value="4528">
+			<input type="hidden" name="ppc_MerchantAccessCode" value="649c19c0-8d4e-4b01-94f1-652a4431d76a">
+			<input type="hidden" name="ppc_NavigationMode" value="2">
+			<input type="hidden" name="ppc_TransactionType" value="1">
+			<input type="hidden" name="ppc_LPC_SEQ" value="1">
+			<input type="hidden" name="ppc_ProductCode" value="">
+			<input type="hidden" name="ppc_MerchantReturnURL" value="http://localhost:8000/order/pinelabs-return">
+			<input type="hidden" name="ppc_PayModeOnLandingPage" value="1,4">
+			<input type="hidden" name="ppc_DIA_SECRET" value="">
+			<input type="hidden" name="ppc_DIA_SECRET_TYPE" value="">
+		</tbody>
+	</table>
+</form>
+
+<form method="post" action="/order/cod" name="cod">
+	<table border="1">
+		<tbody>
+			<input type="hidden" name="order_id" value="@{model.id}">
+			<input type="hidden" name="amount" value="@{model.price}">
+			<input type="hidden" name="email" value="@{model.email}">
+			<input type="hidden" name="mobile" value="@{model.phone}">
+		</tbody>
+	</table>
+</form>
+
+<script>
+	var deliveryzip = "@{model.deliveryzip}";
+	// setTimeout(() => {
+
+	// }, timeout);
+
+	$(document).ready(function () {
+
+		if (localStorage.getItem('prebooking')) {
+			$('.cash-del').hide();
+		} else {
+			$('.cash-del').show();
+		}
+	});
+
+
+
+
+	function codfunc() {
+		document.cod.submit();
+	}
+
+	function payOrder() {
+
+// 		document.pinelabs.submit();
+		// SETTER('loading', 'show');
+		// location.href = location.pathname + '?payment=' + btn.prop('name');
+		document.paytm.submit();
+		
+	}
+
+
+	function razorpay_payment(form) {
+		$.ajax('/order/razorpay-payment', {
+			type: 'POST',
+			data: JSON.stringify(form),
+			dataType: 'json', // type of response data
+			contentType: 'application/json',
+			timeout: 500, // timeout milliseconds
+			success: function (data, status, xhr) { // success callback function
+				console.log(data);
+
+
+				setTimeout(() => {
+
+					location.reload();
+				}, 500);
+
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				console.log("errror");
+
+			}
+		});
+	}
+
+
+	function createOrder() {
+
+		var form = {
+			order_id: "@{model.id}",
+			amount: "@{model.price}00"
+		};
+
+		$.ajax('/order/razorpay', {
+			type: 'POST',
+			data: JSON.stringify(form),
+			dataType: 'json', // type of response data
+			contentType: 'application/json',
+			timeout: 500, // timeout milliseconds
+			success: function (data, status, xhr) { // success callback function
+				console.log(data);
+				var options = {
+					"key": "rzp_test_SuxMZotOv3uCgV", // Enter the Key ID generated from the Dashboard
+					"amount": "@{model.price}00", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise or INR 500.
+					"currency": "INR",
+					"name": "Happi Mobiles",
+					"description": "Mobile Purchase",
+					"image": "http://13.232.26.24:8000/img/happiLogo.png",
+					"order_id": data.id,//This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
+					"handler": function (response) {
+						// alert(response.razorpay_payment_id);
+						console.log(response);
+						response.order_id = form.order_id;
+						razorpay_payment(response);
+					},
+					"prefill": {
+						"name": "@{model.firstname} @{model.lastname}",
+						"email": "@{model.email}",
+						"contact": "@{model.phone}"
+					},
+					"notes": {
+						"address": "@{model.deliverystreet}, @{model.deliveryzip}, @{model.deliverycity}, @{model.deliverycountry}"
+					},
+					"theme": {
+						"color": "#fb9013"
+					}
+				};
+				var rzp1 = new Razorpay(options);
+
+				setTimeout(() => {
+					rzp1.open();
+					e.preventDefault();
+				}, 500);
+
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				console.log("errror");
+
+			}
+		});
+
+	}
+
+	// Highlight sizes and colors
+	$('.orderedproducts').find('tr').each(function () {
+		var el = $(this).find('td:first-child');
+		var html = el.html();
+		html.substring(0, 1) === '[' && el.html(html.replace(/^\[.*?\]/, n => '<b class="badge badge-blue badge-large">' + n.replace(/\[|\]/g, '') + '</b>'));
+	});
+
+</script>

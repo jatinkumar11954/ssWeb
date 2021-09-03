@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shopsasta">
+    <meta name="author" content="Shopsasta">
+    <title>shopsasta.com - Community Group Buying</title>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- Select2 CSS -->
+    <link href="/vendor/select2/css/select2-bootstrap.css" />
+    <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/osahan.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+    <style>
+      .center {
+          text-align: center;
+      }
+      .code-b button {
+          width: 49%;
+      }
+      .group-each .pin{
+        color: #24a3b5;
+        font-weight: 600;
+      }
+      .group-each {
+          border: 1px solid #efefef;
+          padding: .5rem;
+          margin-bottom:.5rem;
+      }
+      .select2-container--default .select2-selection--single {
+            border: 1px solid #d0d2d2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        @{view('partials/header')}
+    </div>
+
+     <section class=" bg-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 breadcum">
+					<a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+						class="mdi mdi-chevron-right"></span> <a href="#">My Group</a>
+				</div>
+			</div>
+		</div>
+	</section>
+    <section class="account-page section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+                        <div class="widget">
+                            <div class="section-header">
+                                <h5 class="heading-design-h5">
+                                   My Community Group Earnings
+                                </h5>
+                               
+                            </div>
+                            <hr style="margin: 0;background-color: #efefef;border: 1px solid #efefef;">
+                            <div class="section-header center mb-5">
+                               
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p style="font-weight: 600;">
+                                        Your Community Group Buying Score this week
+                                    </p>
+                                    <div class="row align-items-center justify-content-start d-flex m-0">
+                                        <div class="">
+                                            <p style="font-weight: 600; margin-bottom: 0;">
+                                             Check earnings by : 
+                                            </p>
+                                        </div>
+                                        <div class=" d-flex align-items-center ml-3">
+                                            <p class="mb-0 mr-4" style="font-weight: 600;">Pincode</p>
+                                            <select class="select2 form-control border-form-control" style="width: 120px;" id="group-pincode">
+                                             
+                                               </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p style="font-weight: 600;" class="mygroup-percent">
+                                  
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p style="font-weight: 600;">
+                                        The more your community buys. The more cashback you get.
+                                    </p>
+                                    <p style="font-weight: 600;">
+                                        Refer friends & family to 
+                                        ShopSasta. You will get <span class="referal-cb"></span>  cashback every time your referral place the order.
+                                    </p>
+                                    <div class="row">
+                                        <div class="d-flex mb-3 col-md-6 col-md-offset-3 center code-b">
+
+                                            <input type="text" class="refer-code-c" id="refer-Id" style="cursor: not-allowed;
+                                            pointer-events: none;text-align: center;height: 36px;font-weight: 600;">
+                                           &nbsp; <div class="tooltips d-flex" >
+                                                <div id="museleave">
+                                                    <button class="btn btn-lg btn-secondary btn-block d-flex "
+                                                    onclick="referCodeCopy()" style="width: 130px;">
+                                                      
+                                                        <img src="/img/share.png" alt="" class="mr-1" style="height: 20px;">
+                                                        Share & Earn</button>
+                                                    <div class="copied-txt" style="position: absolute;font-weight: 600;padding-left: 15px;
+                                                    font-size: 15px;left: 70%;
+                                                    color: rgb(0, 0, 0);">   </div>
+                                                </div>   
+                                           
+                                                   
+
+                                                    &nbsp; <button type="submit" class="btn btn-lg btn-secondary " onclick="shopView()" style="width: fit-content;height: fit-content;">
+                                                        Shop </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="d-flex mb-3 center code-b justify-content-center">
+                                        <button type="submit" class="btn btn-lg btn-secondary mr-3" style="width: fit-content;">
+                                            <img src="/img/share.png" alt="" class="mr-1" style="height: 18px;">
+                                            Share & Earn</button>
+                                       
+                                    </div> -->
+                                </div>
+                            </div>
+                            <!-- <hr style="margin: 0;background-color: #efefef;border: 1px solid #efefef;"> -->
+                           <br>
+                            <div class="row mb-5 grp-list" style="display: none;" >
+                               
+                               
+                            </div>
+                                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        @{view('partials/footer')}
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- select2 Js -->
+    <script src="/vendor/select2/js/select2.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+    <!-- Custom -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script src="/js/custom.js"></script>
+    <script src="/js/main.js?v=v1.5"></script>
+</body>
+
+</html>

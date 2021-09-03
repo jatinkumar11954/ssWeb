@@ -1,0 +1,348 @@
+<div class="prod-i">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-md-12">
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>General</p>
+                        <!-- @{model.product_type} -->
+                    </div>
+
+                    <div class="collapse show" id="collapseExample">
+                        <div class="spec-body">
+                            @{if model.BsModelname}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+                                    <span> Model Name</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.BsModelname}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Bscolor}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Color</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.Bscolor}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.memorycardslot}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Memory Card Slot Support</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.memorycardslot}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Bspowersource}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span> PowerSource</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.Bspowersource}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Bssalespackage}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Sales Package</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.Bssalespackage}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Bsconnectivity}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Connectivity</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.Bsconnectivity}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsType}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Type</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.BsType}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Bspowersupply}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>PowerSupply</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.Bspowersupply}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Product Details</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.Bsconfiguration}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Configuration</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Bsconfiguration}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsAdditionalfeatures}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span> Additional features</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsAdditionalfeatures}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsMemorycardsupported}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Memory Card Supported</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsMemorycardsupported}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Connectivity Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.Bswireless}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Wireless Type</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Bswireless}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsBluetoothrange}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Bluetooth Range</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsBluetoothrange}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsBlueethoothversion}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Bluetooth Version</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsBlueethoothversion}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsBatterylife}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>BatteryLife</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsBatterylife}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsBattery}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Battery</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsBattery}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Sound Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.BsMinfrequency}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Minimum Frecency Response</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsMinfrequency}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsMaxfrequency}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Max Frequency Response</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsMaxfrequency}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsOthersound}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Othersound Features</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsOthersound}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsSpeakersize}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Speakersize Features</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsSpeakersize}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Dimensions Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.BsWeight}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Weight</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsWeight}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsOtherdimensions}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Other Dimensions</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsOtherdimensions}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Warranty</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.BsDomesticwarranty}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Domestic Warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsDomesticwarranty}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Bswarrantysummary}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Warranty Summary</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Bswarrantysummary}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsCoveredwarranty}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Covered in warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsCoveredwarranty}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BsnotCoveredwarranty}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Not Covered in warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BsnotCoveredwarranty}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

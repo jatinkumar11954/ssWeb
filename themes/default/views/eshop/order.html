@@ -1,0 +1,469 @@
+<style>
+	h1 {
+		margin: 2rem 0;
+	}
+
+	.container {
+		background-color: #e7e7e7;
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+	}
+</style>
+
+
+<div class="container">
+	<h1>@{title}</h1>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="content">
+
+				@{if query.paid === '0' && query.cod != '1'}
+				<div class="contentwarning">
+					<i class="fa fa-warning"></i>@(We didn't receive a payment. <b>Try to pay again</b>.)
+				</div>
+				@{fi}
+
+				@{if query.paid === '1'}
+				<div class="contentsuccess">
+					<i class="fa fa-check-circle"></i>@(<b>Thank you</b>, order has been paid.)
+				</div>
+				@{fi}
+
+
+				@{if query.cod === '1' || model.iscod }
+				<div class="contentsuccess">
+					<i class="fa fa-check-circle"></i>@(<b>Thank you</b>, order has been placed success.)
+				</div>
+				@{fi}
+
+				@{if model.isfinished}
+				<div class="contentsuccess">
+					<i class="fa fa-check-circle"></i>@(Finished)
+				</div>
+				@{fi}
+
+				@{if model.status == 'paid'}
+					<div class="contentbody">
+						<div class="help nmb"><i class="fa fa-clock-o"></i>@(Order status:)</div>
+						<div class="b red">Processing</div>
+					</div>
+					@{else if model.status == 'cod'} 
+					<div class="contentbody">
+						<div class="help nmb"><i class="fa fa-clock-o"></i>@(Order status:)</div>
+						<div class="b red">Processing</div>
+					</div>
+				@{fi}
+
+				@{if model.statushistory && model.statushistory.length > 1}
+				<div class="order-historystatus">
+					@{foreach m in model.statushistory.reverse()}
+					<div><i class="fa fa-clock-o"></i><b>@{m.date.format('@(yyyy-MM-dd HH:mm)')}</b> - @{m.status}</div>
+					@{end}
+				</div>
+				@{fi}
+
+				@{if model.message}
+				<div class="contentbody bg-yellow">
+					<div class="help mb10"><i class="fa fa-warning"></i>@(Message for you:)</div>
+					<div class="b">@{model.message.replace(/\n/g, '<br />')}</div>
+				</div>
+				@{fi}
+
+				<hr class="nmt nmb" />
+
+				<div class="contentbody">
+					<div class="keyvalue">
+						<div class="key">@(Customer)</div>
+						<div class="value">@{model.firstname} @{model.lastname}</div>
+					</div>
+
+					@{if model.iscompany}
+					<div class="keyvalue">
+						<div class="key">@(Company)</div>
+						<div class="value">@{model.company}</div>
+						<div class="value silver fs12" style="margin-top:5px">
+							@{model.companyid}<br />@{model.companyvat}</div>
+					</div>
+					@{fi}
+
+					<div class="keyvalue">
+						<div class="key">@(Email address)</div>
+						<div class="value">@{model.email}</div>
+					</div>
+
+					<div class="keyvalue">
+						<div class="key">@(Phone number)</div>
+						<div class="value">@{model.phone}</div>
+					</div>
+
+					@{if model.note}
+					<div class="keyvalue">
+						<div class="key">@(Note)</div>
+						<div class="value">@{model.note}</div>
+					</div>
+					@{fi}
+
+					@{if !model.isfinished && !model.ispaid && !model.iscod }
+					<br />
+
+					<button onclick="payWithPhonePe()" class="btn btn-primary button phone-app-show" id="phonepesubmit" style="width: 100%;  padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;"> 
+							Pay
+					</button>
+
+					
+
+					<div class="phone-app">
+						@{if (model.product_code == "" ||  model.product_code == "none") }	
+						<button onclick="payWithPaytm()" class="btn btn-primary button" id="paytmsubmit" style="width: 100%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;"> 
+							Pay with PayTM
+						</button>
+						<br>
+						<div class="help" style="font-size: 15px; line-height: 28px;color: black;">@(Pay using your <b>PayTM Wallet/Credit Card/Debit Card/Net Banking</b> and <b>UPI</b> options.)</div>
+						<br>
+						<br>
+						@{fi}
+						
+						
+						
+						<button onclick="payOrder()" class="btn btn-primary button" id="pinesubmit" style="width: 100%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;"> 
+							Pay Online 
+						</button>
+						<br>
+						
+						<div class="help" style="font-size: 15px; line-height: 28px;color: black;">@(Pay with this to <b>Avail instant Cash Backs, EMI offers </b> and <b>Bank Offer</b>)</div>
+						<br>
+						<br>
+						
+
+					@{if (model.referalId == null || model.referalId == "") }	
+						<button onclick="codfunc()" class="btn btn-primary button" id="codsubmit" style="width: 100%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;">
+							Cash On Delivery
+						</button>
+						<div class="help">@(You will be redirect to secured &nbsp;<b>Cash on delivery</b> payment page.)</div>
+					@{fi}
+
+						@{ if model.count == 1 }
+						@{if(!model.ispickup)}
+						
+						@{fi}
+						@{fi}
+							@{if(model.ispickup)}
+						<!-- <button onclick="codfunc()" class="btn btn-primary"
+							style="width: 45%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;">Pay
+							in Store</button> -->
+						@{fi}
+
+						
+						<!-- <button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay now)</button> -->
+					</div>
+					<!-- <div class="help">@(You will be redirect to secured <b>PayTM</b> , <b>Debit Card</b> , <b>Credit
+							Card</b> , <b>EMI</b> , <b>BHIM UPI</b> , <b>Net Banking</b> , payment page.)</div> -->
+					@{fi}
+
+				</div>
+			</div>
+			<br />
+			<!-- <div style="padding:10px">
+				<div class="row">
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Number)</div>
+							<div class="value">@{model.number}</div>
+						</div>
+					</div>
+					@{if model.ispaid}
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Paid)</div>
+							<div class="value green"><i
+									class="fa fa-check-circle"></i>@{model.datepaid.format('yyyy-MM-dd HH:mm')}</div>
+						</div>
+					</div>
+					@{fi}
+					@{if model.iscod}
+					<div class="col-md-6 m ">
+						<div class="keyvalue">
+							<div class="key">@(Cash On Delivery)</div>
+							<div class="value green"><i
+									class="fa fa-check-circle"></i>@{model.datecod.format('yyyy-MM-dd HH:mm')}</div>
+						</div>
+					</div>
+					@{fi}
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Created)</div>
+							<div class="value">@{model.datecreated.format('yyyy-MM-dd HH:mm')}</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Price)</div>
+							<div class="value">@{!model.price.currency()}</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Ordered items)</div>
+							<div class="value">@{model.count}x</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(Discount)</div>
+							<div class="value">@{model.discount}%</div>
+						</div>
+					</div>
+					<div class="col-md-6 m">
+						<div class="keyvalue">
+							<div class="key">@(IP address)</div>
+							<div class="value">@{model.ip}</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="col-md-6">
+			<div class="content">
+				<!-- <div class="contentbody bg-yellow"> -->
+				<!-- <div class="keyvalue m">
+						<div class="key"><i class="fa fa-dropbox"></i>@(Delivery)</div>
+						<div class="value">@{model.delivery}</div>
+					</div> -->
+				<!-- <div class="keyvalue m">
+						<div class="key"><i class="fa fa-dropbox"></i>@(Payment)</div>
+						<div class="value">@{model.payment}@{if model.ispaid}<span class="badge badge-green">@(PAID)</span>@{else}<span class="badge">@(NOT PAID)</span>@{fi}</div>
+					</div>
+					<div class="keyvalue m">
+						<div class="key"><i class="fa fa-at"></i>@(Tracking code)</div>
+						<div class="value">@{if model.trackingcode}@{model.trackingcode}@{else}@(Undefined)@{fi}</div>
+					</div> -->
+				<!-- </div> -->
+				<div class="contentbody">
+					<div class="keyvalue m" style="display:none">
+						<div class="key"><i class="fa fa-address-book"></i>@(Billing address)</div>
+						<div class="value">
+							@{model.billingstreet}<br />@{model.billingzip}<br />@{model.billingcity}<br />@{model.billingcountry}
+						</div>
+					</div>
+					@{if(!model.ispickup)}
+					<div class="keyvalue">
+						<div class="key"><i class="fa fa-truck"></i>@(Delivery address)</div>
+						<div class="value">@{model.deliveryfirstname}
+							<br />@{model.deliverystreet}<br />@{model.deliveryzip}<br />@{model.deliverycity}<br />@{model.deliverycountry}<br />@(Phone:)
+							@{model.deliveryphone}</div>
+					</div>
+					@{fi}
+						@{if(model.ispickup)}
+					<div class="keyvalue">
+						<div class="key"><i class="fa fa-truck"></i>@(Pick Up at Store)</div>
+						<div class="value">
+							<br />@{model.pickupLocation}<br />@{model.pickupAddress}<br />@{model.pickupMobile}<br />@{model.pickupState}<br />@(Pincode:)
+							@{model.pickupPincode}</div>
+					</div>
+@{fi}
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<h2>@(Ordered items)</h2>
+	<table class="table table-bordered bg-white">
+		<thead>
+			<tr>
+				<th>@(Product name)</th>
+				<th class="ui-center col-xs-1">@(Count)</th>
+				<th class="ui-right col-sm-3 col-xs-4">@(Price)</th>
+			</tr>
+		</thead>
+		<tbody class="orderedproducts">
+			@{foreach m in model.items}
+			<tr>
+				<td>@{m.name}</td>
+				<td class="ui-center col-xs-1">@{m.count}</td>
+				<td class="ui-right col-sm-3 col-xs-4">@{!(m.count * m.price).currency()}</td>
+			</tr>
+			@{end}
+		</tbody>
+		<tfoot>
+			<tr class="bg-yellow">
+				<td class="b">@(Summarize)</td>
+				<td class="b ui-center">@{model.count}</td>
+				<td class="b ui-right red">@{!model.price.currency()}</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+
+<center>
+	<!-- <h1>Please do not refresh this page...</h1> -->
+</center>
+<form method="post" action="/order/paytm" name="paytm">
+	<table border="1">
+		<tbody>
+			<input type="hidden" name="order_id" value="@{model.id}">
+			<!-- <input type="hidden" name="amount" value="@{model.price}">
+			<input type="hidden" name="email" value="@{model.email}">
+			<input type="hidden" name="mobile" value="@{model.phone}"> -->
+		</tbody>
+	</table>
+</form>
+
+
+<form method="post" action="/order/pinelabs" name="pinelab">
+	<table border="1">
+		<tbody>
+			<input type="hidden" name="order_id" value="@{model.id}">
+		</tbody>
+	</table>
+</form>
+
+<form method="post" action="/order/cod" name="cod">
+	<table border="1">
+		<tbody>
+			<input type="hidden" name="order_id" value="@{model.id}">
+			<input type="hidden" name="amount" value="@{model.price}">
+			<input type="hidden" name="email" value="@{model.email}">
+			<input type="hidden" name="mobile" value="@{model.phone}">
+		</tbody>
+	</table>
+</form>
+
+<script>
+
+function runFetchPaymentInfo(){
+
+	//  var data = JSON.stringify({ order_id: "@{model.id}" , amount: @{model.price} });
+	// 	var xhr = new XMLHttpRequest();
+	// 	xhr.addEventListener("readystatechange", function () {
+	// 		if (this.readyState === this.DONE) {
+	// 			$('.errors-b').append(` ${this.responseText} ===`);
+	// 			alert("API " + this.responseText);
+	// 			var result = JSON.parse(this.responseText);
+	// 			const a = document.createElement('a');
+	// 			a.style.display = 'none';
+	// 			a.href = result.data.redirectUrl;
+	// 			// the filename you want
+	// 			document.body.appendChild(a);
+	// 			a.click();
+	// 		}
+	// 	});
+	// 	xhr.open("POST", "/api/phonepe-fetch/");
+	// 	xhr.setRequestHeader("Content-Type", "application/json");
+	// 	xhr.send(data);
+
+
+}
+
+
+	$(document).ready(function(){
+		//$("#test-mobileapp").html(navigator.userAgent);
+		var uuid = "";
+		var isContains = navigator.userAgent.indexOf("Happi-Mobile-App");
+
+		if(isContains != -1){
+				$(".mobile-app").hide();
+		}
+
+		var isContains = navigator.userAgent.indexOf("phonepe");
+
+		if(isContains != -1){
+				$(".phone-app").hide();
+				$(".phone-app-show").show();
+				runFetchPaymentInfo();
+		}else{
+				$(".phone-app-show").hide();
+		}
+
+
+	})
+	
+</script>
+
+<script>
+	var deliveryzip = "@{model.deliveryzip}";
+
+
+	// setTimeout(() => {
+
+	// }, timeout);
+
+	 $(document).ready(function () {
+		$('.cash-del').show();
+	// 	if (localStorage.getItem('prebooking')) {
+	// 		$('.cash-del').hide();
+	// 	} else {
+	// 		$('.cash-del').show();
+	// 	}
+	});
+
+	function payWithPhonePe(){
+		$("#phonepesubmit").attr("disabled", "disabled");
+		$("#phonepesubmit").html("Redirecting to PhonePe...");
+		var data = JSON.stringify({ order_id: "@{model.id}" , amount: @{model.price} });
+		var xhr = new XMLHttpRequest();
+
+		xhr.addEventListener("readystatechange", function () {
+			if (this.readyState === this.DONE) {
+				$('.errors-b').append(` ${this.responseText} ===`);
+				//alert("API " + this.responseText);
+				var result = JSON.parse(this.responseText);
+				const a = document.createElement('a');
+				a.style.display = 'none';
+				a.href = result.data.redirectUrl;
+				// the filename you want
+				document.body.appendChild(a);
+				a.click();
+			}
+		});
+
+		xhr.open("POST", "/api/phonepe-payment/");
+		xhr.setRequestHeader("Content-Type", "application/json");
+
+		xhr.send(data);
+		
+	}
+
+	function payWithPaytm(){
+		$("#paytmsubmit").attr("disabled", "disabled");
+		$("#pinesubmit").attr("disabled", "disabled");
+		$("#codsubmit").attr("disabled", "disabled");
+		$("#paytmsubmit").html("Redirecting to PayTM...");
+		setTimeout(function(){
+			document.paytm.submit();
+		}, 2500);
+	}
+
+	function codfunc() {
+		$("#paytmsubmit").attr("disabled", "disabled");
+		$("#pinesubmit").attr("disabled", "disabled");
+		$("#codsubmit").attr("disabled", "disabled");
+		$("#codsubmit").html("Redirecting to COD...");
+		setTimeout(function(){
+			document.cod.submit();
+		}, 2500);
+	}
+
+	function payOrder() {
+		$("#paytmsubmit").attr("disabled", "disabled");
+		$("#pinesubmit").attr("disabled", "disabled");
+		$("#codsubmit").attr("disabled", "disabled");
+		$("#pinesubmit").html("Redirecting to Pinelabs Gateway...");
+
+		setTimeout(function(){
+			document.pinelab.submit();
+		}, 2500);
+		
+		// SETTER('loading', 'show');
+		// location.href = location.pathname + '?payment=' + btn.prop('name');
+		//document.paytm.submit();
+	}
+
+	// Highlight sizes and colors
+	$('.orderedproducts').find('tr').each(function () {
+		var el = $(this).find('td:first-child');
+		var html = el.html();
+		html.substring(0, 1) === '[' && el.html(html.replace(/^\[.*?\]/, n => '<b class="badge badge-blue badge-large">' + n.replace(/\[|\]/g, '') + '</b>'));
+	});
+
+</script>

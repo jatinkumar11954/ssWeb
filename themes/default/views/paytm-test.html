@@ -1,0 +1,27 @@
+
+      <center>
+         <h1>Please do not refresh this page...</h1>
+      </center>
+      <form method="post" action="@{model.submit_url}" name="paytm">
+         <table border="1">
+            <tbody>
+               <input type="hidden" name="MID" value="@{model.MID}">
+               <input type="hidden" name="WEBSITE" value="@{model.WEBSITE}">
+               <input type="hidden" name="ORDER_ID" value="@{model.ORDER_ID}">
+               <input type="hidden" name="CUST_ID" value="@{model.CUST_ID}">
+               <input type="hidden" name="MOBILE_NO" value="@{model.MOBILE_NO}">
+               <input type="hidden" name="EMAIL" value="@{model.EMAIL}">
+               <input type="hidden" name="INDUSTRY_TYPE_ID" value="@{model.INDUSTRY_TYPE_ID}">
+               <input type="hidden" name="CHANNEL_ID" value="@{model.CHANNEL_ID}">
+               <input type="hidden" name="TXN_AMOUNT" value="@{model.TXN_AMOUNT}">
+               <input type="hidden" name="CALLBACK_URL" value="@{model.CALLBACK_URL}">
+               <input type="hidden" name="CHECKSUMHASH" value="@{model.checksum}">
+            </tbody>
+         </table>
+         <script type="text/javascript">
+         
+            document.paytm.submit();
+         
+         </script>
+      </form>
+     

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Shopsasta">
+   <meta name="author" content="Shopsasta">
+   <title>shopsasta.com - Community Group Buying</title>
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" href="img/favicon.png">
+   <!-- Bootstrap core CSS -->
+   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Material Design Icons -->
+   <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+   <!-- Select2 CSS -->
+   <link href="/vendor/select2/css/select2-bootstrap.css" />
+   <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+   <!-- Custom styles for this template -->
+   <link href="/css/osahan.css" rel="stylesheet">
+   <!-- Owl Carousel -->
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+   <style>
+      .cart_description h5 {
+         font-weight: 600;
+         color: #888;
+      }
+
+      .cart_description h5 a {
+         color: #888 !important;
+      }
+
+      .cart_description h6 {
+         font-weight: 600;
+         color: #888;
+      }
+
+      .cart-actions .minus {
+         margin-right: 1rem;
+      }
+
+      .cart-actions .cart-quantity {
+         margin-right: 1rem;
+      }
+
+      .cart_product img {
+         height: 50px;
+         width: auto;
+      }
+
+      .coupon-name-view a {
+         margin: 0 5px !important;
+         padding: 0 3px !important;
+         border-radius: 3px;
+         color: #fff;
+         cursor: pointer;
+      }
+
+      table tr {
+         font-weight: 600;
+      }
+
+      #cart-row {
+         border-bottom: 2px solid #efefef;
+      }
+
+      .cart-payment-type label {
+         font-weight: 600;
+         font-size: 16px;
+         text-transform: uppercase;
+      }
+
+      .input-group.cart-actions {
+         justify-content: center;
+      }
+
+      table {
+         border: 0;
+      }
+
+      .table thead th {
+         text-align: center;
+         border: 0;
+         background-color: #fff;
+         font-weight: bolder;
+      }
+
+      .cart_summary td {
+         color: #888;
+         border: 0;
+         background-color: #fff;
+         text-align: center;
+      }
+
+      .extra-cart table {
+         width: 100%;
+         border: 1px solid;
+      }
+
+      .extra-cart tr td {
+         border-top: 2px solid #efefef;
+         border-left: 2px solid #efefef;
+         border-right: 2px solid #efefef;
+         padding: 5px 10px;
+         font-weight: 600;
+         color: #888;
+         font-size: 12px;
+      }
+
+      .extra-cart  tr:nth-child(1) td:nth-child(1) {
+         border-top: 2px solid #efefef;
+         border-bottom: 0;
+         border-right: 0;
+      }
+
+      .extra-cart tr:nth-child(1) td:nth-child(2) {
+         border-top: 2px solid #efefef;
+         border-bottom: 0;
+         border-right: 0;
+         border-left: 0;
+      }
+
+      .extra-cart tr:nth-child(2) td:nth-child(1) {
+         border-top: 0;
+         border-bottom: 0;
+         border-right: 0;
+
+      }
+
+      .extra-cart tr:nth-child(2) td:nth-child(2) {
+         border-top: 0;
+         border-bottom: 0;
+         border-right: 0;
+         border-left: 0;
+      }
+
+      .extra-cart  tr:last-child td {
+         border-bottom: 2px solid #efefef;
+      }
+
+      .extra-cart  tr:nth-child(4) td,
+      .extra-cart  tr:nth-child(5) td {
+         padding: 4px 20px;
+      }
+
+      @media only screen and (max-width: 767px) {
+         table th {
+            white-space: nowrap;
+         }
+
+         table td {
+            white-space: nowrap;
+         }
+      }
+
+      table {
+         border: 0;
+      }
+
+      .table thead th {
+         text-align: center;
+         border: 0;
+         background-color: #fff;
+      }
+
+      .cart_summary td {
+         border: 0;
+         background-color: #fff;
+         text-align: center;
+      }
+
+      .payment-failed {
+         display: none;
+         background-color: #fff;
+         text-align: center;
+         font-weight: 600;
+         text-transform: uppercase;
+         font-size: 18px;
+         color: red;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="header">
+      @{view('partials/header')}
+   </div>
+
+   <section class=" bg-white">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 breadcum">
+               <a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+                  class="mdi mdi-chevron-right"></span> <a href="#">Cart</a>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section class="cart-page section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div id="cart-view">
+
+
+                  <div class="cart-table ">
+                     <div class="table-responsive" style="overflow: hidden;">
+
+                        <table class="table cart_summary">
+                           <thead>
+                              <tr>
+                                 <td class="sasta-deal-msg" style="text-align: left;
+                                 color: red;
+                                 font-size: 12px;
+                                 padding: 0 0px;"></td>
+                              </tr>
+                              <!-- <tr class="payment-failed">
+                              <td colspan="9"><span>Payment Failed</span></td>
+                           </tr> -->
+                              <tr style="border-bottom: 2px solid #efefef;">
+                                 <td colspan="5" class="cart-del-address" style="text-align: left;padding: 4px 0px;"></td>
+                                 <td colspan="4" style="padding: 4px 0px;">
+                                    <div class="float-right">
+                                       <a href="javascript:void(0)" data-toggle="modal" data-target="#locationModal"
+                                          style="    border: 2px solid #efefef;
+                                 padding: .3rem;color:#000;">Change Address</a>
+                                    </div>
+                                 </td>
+                              </tr>
+                              <tr>
+
+                                 <th colspan="3" style="text-align: center;">Product Details</th>
+                                 <th colspan="1">MRP</th>
+
+                                 <th colspan="1">Qty</th>
+                                 <th colspan="1">You Pay</th>
+                                 <th colspan="1">Savings</th>
+                              </tr>
+                           </thead>
+                           <tbody id="cart-row">
+
+
+                           </tbody>
+                           <tfoot class="extra-cart">
+                              <tr>
+                                 <td colspan="8" style="border: 0;">
+                                    
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td colspan="8" style="border: 0;"></td>
+                              </tr>
+                              <tr>
+                                 <td colspan="4" style="border: 0 !important;"></td>
+                                 <td style="border-bottom:0;border-right: 0;">Subtotal</td>
+                                 <td class="price-format subtotal-mrp" style="border-bottom:0;border-left: 0;"></td>
+                                 <td rowspan="3" style="text-align: center;font-weight: 900;color: #029b97;"><span
+                                       style="font-weight: 900;"> Total Saved : </span>
+                                    <br>
+                                    <span class="price-format total-savings"></span>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td colspan="4" style="border: 0 !important;"></td>
+                                 <td style="border-bottom:0;border-top: 0;border-right: 0;">Delivery Fee</td>
+                                 <td  style="border-bottom:0;border-top: 0;border-left: 0;">--</td>
+                              </tr>
+                              <tr>
+                                 <td colspan="4" style="border: 0 !important;"></td>
+                                 <td>Total</td>
+                                 <td class="price-format subtotal-mrp"></td>
+                              </tr>
+                              <tr>
+                                 <td colspan="4" style="border: 0 !important;"></td>
+                                 <td colspan="3" style="border-bottom: 0;" class="free-delivery"></td>
+
+                              </tr>
+                              <tr>
+                                 <td colspan="4" style="border: 0 !important;"></td>
+                                 <td colspan="3" style="border-bottom: 0;border-top: 0;">** Delivery Fee calculated at checkout time</td>
+                              </tr>
+                              <tr>
+                                 <td colspan="4" style="border: 0 !important;"></td>
+                                 <td colspan="3" style="border-bottom: 2px solid #efefef;border-top: 0;">** Extra delivery fee may be added for the vendor products</td>
+                              </tr>
+                              <tr>
+                                 <td colspan="5" style="border: 0 !important;"></td>
+                                 <td colspan="2" style="border:0; padding-right: 0 !important;">    <a href="javascript:gotToPayment()"><button
+                                    class="btn btn-secondary btn-lg btn-block text-left submit-btn" type="button" style="width: fit-content;
+                                 float: right;border-radius: 8px;
+                                 text-transform: capitalize !important;
+    font-size: 12px;border-radius: 3px !important;padding: 6px 10px;
+                                 margin-top: 1rem;font-weight: 600;"><span class="float-left">
+                                       Proceed to Checkout >>
+                                    </span></button></a></td>
+                              </tr>
+                           </tfoot>
+                        </table>
+                     </div>
+                     <br>
+
+                  </div>
+                
+               </div>
+               <section class="no-cart-view section-padding">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-md-8 mx-auto text-center  pt-4 pb-5">
+                           <h1><img class="img-fluid" src="img/cart-empty.jpg" alt="404"></h1>
+                           <!-- <h1>Your shopping cart is empty, try to visit this page later.</h1> -->
+                           <!-- <p class="land">Unfortunately the page you are looking for has been moved or deleted.</p> -->
+                           <div class="mt-5">
+                              <a href="/" class="btn btn-success btn-lg"><i class="mdi mdi-home"></i> GO TO HOME
+                                 PAGE</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+            </div>
+         </div>
+      </div>
+   </section>
+
+
+   <!-- document.paytm.submit(); -->
+   <div class="footer">
+      @{view('partials/footer')}
+   </div>
+
+
+   <!-- Bootstrap core JavaScript -->
+   <script src="/vendor/jquery/jquery.min.js"></script>
+   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- select2 Js -->
+   <script src="/vendor/select2/js/select2.min.js"></script>
+   <!-- Owl Carousel -->
+   <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+   <!-- Custom -->
+   <script src="/js/custom.js"></script>
+   <script src="/js/main.js?v=v1.5"></script>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+</body>
+
+</html>

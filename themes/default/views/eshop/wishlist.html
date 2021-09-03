@@ -1,0 +1,397 @@
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700" />
+<style>
+    .container {
+        padding: 2rem 0 0;
+    }
+
+    .caption {
+        padding: 15px;
+        background-color: #fb9013;
+        color: #fff;
+    }
+
+    .footer {
+        margin-top: 3rem
+    }
+
+    .table-borderless td,
+    .table-borderless th {
+        border: 0 !important;
+        width: auto;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    #wish-table table {
+        font-size: 15px;
+    }
+
+    .wish-empty,
+    .orders-empty {
+        font-weight: 600;
+        text-align: center;
+        font-size: 15px;
+        ;
+    }
+
+    .orders-block .success {
+        color: green !important;
+    }
+
+    .orders-block .canceled {
+        color: red !important;
+    }
+
+    .orders-block .warning {
+        color: #fecc09 !important;
+    }
+
+    #cart-row i {
+        color: black;
+    }
+
+    .content .contentbody {
+        padding: 5px;
+    }
+
+    #cart-row-new-wish img {
+        height: 90px;
+    }
+
+    .wish-b-each {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+    }
+
+
+
+    .wish-b-each .details-prod-b {
+        padding: .5rem;
+        display: grid;
+        align-items: center;
+
+
+
+    }
+
+    .wish-b-each .details-prod-b .name {
+        margin-bottom: 10px;
+
+    }
+
+    .wish-b-each .details-prod-b .name span {
+        color: #fb9013;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .wish-b-each .details-prod-b .price-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .wish-b-each .details-prod-b .price-btn span:first-child {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .wish-b-each .details-prod-b .price-btn .add-item {
+        margin: 0px 5px 0 0;
+        background-color: #fb9013;
+        border: 0;
+        font-size: 14px;
+        float: right;
+        border-radius: 3px;
+        color: white;
+        height: 27px;
+        font-weight: 600;
+        padding: 3px 11px;
+        outline: 0;
+        text-decoration: none;
+        -webkit-transition: all 0.3s;
+    }
+
+    @media only screen and (max-width: 767px) {
+
+        .wish-b-each {
+            margin-bottom: 10px;
+        }
+
+        .content .contentbody {
+            padding: 5px;
+        }
+
+        .content table {
+            border: 0;
+        }
+    }
+</style>
+
+<div class="loading">Loading&#8230;</div>
+<div class="container no-loading">
+    <div class="row m-0">
+        <div class="col-md-12">
+
+            <h5><a href="/my-account" style="text-decoration: none;
+                color: black;">Back To Account</a></h5>
+        </div>
+        <div class="col-md-12 m">
+
+            <div class="content">
+                <div class="caption">@(View Wishlist)</div>
+                <div class="contentbody">
+                    <div class="wish-empty">
+                        <p>@(Wishlist empty)</p>
+                    </div>
+                    <div class="table-responsive" id='wish-table'>
+                        <!-- <table class="table table-borderless " style="border: 0;">
+                            <thead>
+                                <tr>
+                                    <th style="padding : 5px;">S.no</th>
+                                    <th style="padding : 5px;">Product</th>
+                                    <th style="padding : 5px;">Price</th>
+                                    <th style="padding : 5px;">delete</th>
+                                    <th style="padding : 5px;">cart</th>
+    
+                                </tr>
+    
+                            </thead>
+                            <tbody id='cart-row'>
+    
+                            </tbody>
+                        </table> -->
+                        <div class="wish-rows row" id='cart-row-new-wish' style="margin: 0;">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    var userData = {};
+    var totalItems = 0;
+    // $(document).ready(function () {
+    //     $('.no-loading').hide();
+    //     $('.loading').show();
+    //     if (localStorage.getItem('userData')) {
+    //         refresh_cart();
+    //         fetchUser();
+    //         fetchWish();
+           
+    //     } else {
+    //         location.replace('/');
+    //     }
+    //     $('.orders-empty').hide();
+    //     $('.orders-block').hide();
+    //     $('#wish-table').hide();
+    //     $('.wish-empty').hide();
+
+    // });
+
+    function fetchWish() {
+
+        $.ajax(newBaseUrl + 'api/wishlist', {
+            type: 'GET',
+            headers: {
+                'x-auth': localStorage.getItem('userToken')
+            },
+            dataType: 'json', // type of response data
+            contentType: 'application/json',
+            success: function (data, status, xhr) { // success callback function
+                // console.log("WishPPPPPP", data);
+                if (data.length == 0) {
+                    $('#wish-table').hide();
+                    $('.wish-empty').hide();
+                    $('.no-loading').hide();
+                    $('.loading').show();
+                } else {
+                    $('.no-loading').show();
+                    $('.loading').hide();
+                    $('.wish-empty').hide();
+
+
+                    $('#cart-row-new-wish').html('');
+                    totalItems = data.length;
+                    for (let i = 0; i < data.length; i++) {
+                        const params = data[i];
+                        $('#cart-row-new-wish').append('');
+                        $('#cart-row-new-wish').append(`
+								<div class="col-md-6 wish-b-each">
+                                  
+
+									<div class="col-md-3 col-xs-4 img-b"	>
+										<img src="https://d34e6224thkkna.cloudfront.net/happi/${params.pictures[0]}.jpg">
+										</div>
+										<div class="col-md-9 col-xs-8  details-prod-b"	>
+											<div class="name">
+												<span>${params.name}</span>
+
+												</div>
+                                                <div class="price-btn">
+                                                    <span style="display: grid;text-align: center;">
+                                                    <span class="mrp-stike" style="padding-left:0 !important"> &#8377 ${params.mrp}</span>
+                                                <span class="price-v"style="color: #fb9013;"> &#8377 ${params.payPrice}</span>
+                                                </span>
+                                                <span>
+
+                                                <span style="    margin-right: 1rem;    cursor: pointer;"><i class="fa fa-trash"  onclick="checkToDelItem('${params.id}')" aria-hidden="true" style="cursor:pointer;"></i></span>
+												<span> <a class="add-item" href="javascript:itemAdd('${params.id}')" class="more phonepe">@(Add To Cart)</a></span></span>
+											</div>
+                                        </div>
+                                        
+										
+								</div>
+							`);
+
+
+
+                    }
+                    $('#wish-table').show();
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Please try again',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+
+                    fetchWish();
+                });
+            }
+        });
+    }
+
+    function checkToDelItem(id) {
+        if (totalItems <= 1) {
+
+            Swal.fire({
+            Swaltitle: "Are you sure?",
+            text: "Your cart will be empty",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        }).then((result) => {
+            if (result.value) {
+                delWish(id);
+            }
+        });
+        } else {
+            delWish(id);
+        }
+     
+    }
+    function delWish(id) {
+     
+        var tempobj = {
+            "product_id": id.toString()
+        };
+        $.ajax(newBaseUrl + 'api/wishlist', {
+            type: 'DELETE',
+            headers: {
+                'x-auth': localStorage.getItem('userToken')
+            },
+            data: JSON.stringify(tempobj),
+            dataType: 'json', // type of response data
+            contentType: 'application/json',
+            success: function (data, status, xhr) { // success callback function
+                $('#wish-table').hide();
+                if (data.state) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: ' Removed from Wishlist',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        wishListData = [];
+                        fetchWish();
+                    });
+                }
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Please try again',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+
+                    fetchWish();
+                });
+            }
+        });
+    }
+
+    function addToCart(id) {
+
+        var tempobj = {
+            "productId": id.toString(),
+            "quantity": 1
+        };
+
+        $.ajax(newBaseUrl + 'api/cart', {
+            type: 'POST',
+            headers: {
+                'x-auth': localStorage.getItem('userToken')
+            },
+            data: JSON.stringify(tempobj),
+            dataType: 'json', // type of response data
+            contentType: 'application/json',
+            success: function (data, status, xhr) { // success callback function
+
+                if (data["status"]) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Added Successfully to cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+
+                        refresh_cart();
+                    });
+                }
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Please try again',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+
+                    refresh_cart();
+                });
+            }
+        });
+    }
+
+ 
+       function fetchUser() {
+
+        userData = JSON.parse(localStorage.getItem('userData'));
+
+        $(".name-append").html(`${userData.name}`);
+        $(".email-append").html(`${userData.email}`);
+        $(".phone-append").html(`${userData.phone}`);
+    }
+
+</script>

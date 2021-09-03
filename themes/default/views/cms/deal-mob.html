@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shopsasta">
+    <meta name="author" content="Shopsasta">
+    <title>shopsasta.com - Community Group Buying</title>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- Select2 CSS -->
+    <link href="/vendor/select2/css/select2-bootstrap.css" />
+    <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/osahan.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+    <style>
+        .product-body h5 {
+            height: 32px;
+        }
+
+        .nav-tabs li a:hover {
+            text-decoration: none;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            border: 0px solid !important;
+            color: #000;
+            text-align: center;
+            padding-bottom: 2rem;
+        }
+
+        .tab-content {
+            padding: 0 0 1rem;
+            padding-bottom: 0;
+        }
+
+        .nav-tabs li a.active {
+            border-bottom: 2px solid #4b9c98;
+            color: #fdfdfd;
+            background-color: #029b97 !important;
+        }
+
+        .nav-tabs li a {
+            padding: 5px ! important;
+            text-transform: capitalize !important;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            color: #000;
+            font-weight: 600;
+            border-bottom: 2px solid #000;
+        }
+
+        .count-down1,
+        .count-down2,
+        .count-down3 {
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .count-down1 p,
+        .count-down2 p,
+        .count-down3 p {
+            display: grid;
+            text-align: center;
+            color: #000;
+            margin: 1rem;
+            font-size: 16px;
+        }
+
+        .tab-block {
+            text-align: center;
+            color: #000;
+            font-size: 18px;
+        }
+
+        .deal-prods-mob {
+            margin: 0;
+            display: contents;
+        }
+
+        .deal-prods-mob .product-header {
+            position: relative;
+        }
+
+        .deal-prods-mob .plus-icon {
+            float: right;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            z-index: 99999;
+
+            background-color: #029b97;
+            padding: 0px 7px;
+            border-radius: 50px;
+            color: #fff;
+        }
+
+        .demo {
+            text-align: center;
+            color: #000;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .nav-tabs li a {
+            padding: 8px 0;
+        }
+
+        .demo1,
+        .demo2,
+        .demo3 {
+            font-size: 20px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .auction-title1,
+        .auction-title2,
+        .auction-title3 {
+            font-size: 20px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .loader {
+            border: 2px solid #4b9c98;
+            border-top: 2px solid #ffffff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            margin: 2rem auto;
+        }
+
+        /* .deal-prods-mob .product:last-child {
+            border-right: 0 !important;
+        }
+        .deal-prods-mob .product {
+            border-right: 2px solid #efefef !important;
+        } */
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .mob-deals {
+            display: flex;
+            overflow-x: scroll;
+            overflow: hidden;
+        }
+
+        .deal-prods-mob .each-ii {
+            display: flex;
+            border-top: 2px solid #efefef;
+            padding: .5rem .5rem 0 0;
+        }
+
+        .flutterblock {
+            width: 50% !important;
+        }
+
+        .flutterblock .product-body {
+            width: 100% !important;
+        }
+
+        .flutterblock .product-body h5 {
+            width: 100% !important;
+        }
+
+        .left-deal {
+            width: 33%;
+            margin: 0 .5rem;
+        }
+
+        /* .left-deal img {
+            height: 99px;
+            width: auto !important;
+            max-width: auto !important;
+        } */
+
+        .no-loader {
+            display: none;
+        }
+
+        .select2-container {
+            display: block !important;
+        }
+
+        .price-show-b {
+            font-weight: bold;
+            color: #000;
+            font-size: 14px;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .price-show-b span:nth-child(2) {
+            color: #029b97;
+            margin: 0 1rem;
+        }
+
+        .right-deal .row .cols:first-child {
+            width: 40%;
+            padding: 0 .5rem 0 0;
+        }
+
+        .right-deal .row .cols:last-child {
+            width: 60%;
+        }
+
+        .form-control:disabled,
+        .form-control[readonly] {
+            background-color: #fff !important;
+        }
+       
+        .sasta-mob-name {
+            margin-bottom: .5rem;
+            font-weight: 600;
+            font-size: 13px;
+            color: #000;
+            line-height: 15px !important;
+            font-family: roboto_bold !important;
+        }
+
+        .form-control {
+            height: 23px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: .1rem !important;
+        }
+
+        .tab-content {
+            margin-bottom: 1rem;
+        }
+
+        .section-header h5 {
+            font-weight: 600;
+            font-size: 15px;
+            border-top: 2px solid #efefef;
+            padding: .5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <section class="shop-single section-padding pt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <div class="section-header">
+                        <h5 class="heading-design-h5" style="font-weight: 600;">
+                            These are the deep discounted items available in the posted times
+                        </h5>
+                    </div>
+                   
+                </div>
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="">
+                            <a data-toggle="tab" href="#home " class="active first-t">
+                                @{model.timeZone1[0].timezone_start_time} - @{model.timeZone1[0].timezone_end_time}
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#menu1" id="wygId" class="second-t">
+                                @{model.timeZone2[0].timezone_start_time } - @{ model.timeZone2[0].timezone_end_time}
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#menu2" id='sId' class="third-t">
+                                @{model.timeZone3[0].timezone_start_time } - @{ model.timeZone3[0].timezone_end_time}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content no-loader">
+                        <div id="home" class="tab-pane fade in active show">
+                            <div class="tab-block">
+                                <span class='demo1'></span>
+                                <p class="auction-title1">
+
+                                </p>
+
+                                <div class="count-down1">
+                                    <div class="d-flex">
+                                        <img src="/img/deadline.png" alt="" style="width: 50px;">
+                                    </div>
+                                    <span class='day1'></span>
+                                    <p> <span class='hour1'></span> <span>Hours</span></p> :
+                                    <p> <span class='minute1'></span> <span>Minutes</span></p> :
+                                    <p> <span class='second1'></span> <span>Seconds</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <div class="tab-block">
+                                <span class='demo2'></span>
+                                <p class="auction-title2">
+
+                                </p>
+                                <div class="count-down2">
+                                    <div class="d-flex">
+                                        <img src="/img/deadline.png" alt="" style="width: 50px;">
+                                    </div>
+                                    <span class='day2'></span>
+                                    <p> <span class='hour2'></span> <span>Hours</span></p> :
+                                    <p> <span class='minute2'></span> <span>Minutes</span></p> :
+                                    <p> <span class='second2'></span> <span>Seconds</span></p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <div class="tab-block">
+                                <span class='demo3'></span>
+                                <p class="auction-title3">
+
+                                </p>
+                                <div class="count-down3">
+                                    <div class="d-flex">
+                                        <img src="/img/deadline.png" alt="" style="width: 50px;">
+                                    </div>
+                                    <span class='day3'></span>
+                                    <p> <span class='hour3'></span> <span>Hours</span></p> :
+                                    <p> <span class='minute3'></span> <span>Minutes</span></p> :
+                                    <p> <span class='second3'></span> <span>Seconds</span></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="loader"></div>
+
+                </div>
+
+                <br>
+                <div class="col-md-12 no-loader p-0">
+
+
+                    <div class="row deal-prods-mob">
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+    </script>
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- select2 Js -->
+    <script src="/vendor/select2/js/select2.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+    <!-- Custom -->
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script src="/js/custom.js"></script>
+    <script src="/js/main.js?v=v1.5"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        function addCartDeal(pId, vId, price) {
+            window.flutter_inappwebview.callHandler('ADD_CART', pId, vId, price).then(function (result) {
+                // get result from Flutter side. It will be the number 64.
+                // console.log(result);
+                // Swal.fire({
+                //     position: 'center',
+                //     icon: 'success',
+                //     title: "Added to the cart successfully",
+                //     showConfirmButton: false,
+                //     timer: 3000
+                // });
+            });
+        }
+
+    </script>
+     <script>
+        var boolone = false;
+        var booltwo = false;
+        var boolthree = false;
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "October", "Nov", "Dec"
+        ];
+        var todayDate = new Date();
+        todayDate = `${monthNames[todayDate.getMonth()]} ${todayDate.getDate()}, ${todayDate.getFullYear()}`;
+        $(document).ready(function () {
+            auctinbeginsOne(changethe24hrs('@{model.timeZone1[0].timezone_start_time}'), changethe24hrs('@{model.timeZone1[0].timezone_end_time}'));
+            //auctinbeginsOne("8 AM", "12 PM");
+            // console.log(changethe24hrs('2 PM'));
+
+        });
+
+        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+            var tab = $(e.target);
+            var contentId = tab.attr("href");
+
+            //This check if the tab is active
+            if (tab.parent().hasClass('active')) {
+
+            } else {
+                if (contentId == "#menu1") {
+                    //auctinbeginsTwo("12 PM", "16 PM");
+                     auctinbeginsTwo(changethe24hrs('@{model.timeZone2[0].timezone_start_time}'), changethe24hrs('@{model.timeZone2[0].timezone_end_time}'));
+                } else if (contentId == "#menu2") {
+                    //auctinbeginsThree("16 PM", "20 PM");
+                     auctinbeginsThree(changethe24hrs('@{model.timeZone3[0].timezone_start_time}'), changethe24hrs('@{model.timeZone3[0].timezone_end_time}'));
+                } else {
+                    //auctinbeginsOne("8 AM", "12 PM");
+                    auctinbeginsOne(changethe24hrs('@{model.timeZone1[0].timezone_start_time}'), changethe24hrs('@{model.timeZone1[0].timezone_end_time}'));
+                }
+
+            }
+
+        });
+
+        //first begin
+        function auctinbeginsOne(begin, end) {
+            console.log(begin, end);
+            let dtsplit = begin.split(" ")[0];
+            let dealsStartTime = `${dtsplit}:00:00`;
+            console.log(dealsStartTime, "DDDDDDD");
+            let dealStartDt = `${todayDate} ${dealsStartTime}`;
+            var dealStartTime = new Date(dealStartDt).getTime();
+            let hours1, minutes1, seconds1;
+            var x = setInterval(function () {
+                $('.auction-title1').html('Sasta Deal Starts At.');
+                // document.getElementById("placebid-btn").disabled = true;
+                var now = new Date().getTime();
+                var t = dealStartTime - now;
+                days = Math.floor(t / (1000 * 60 * 60 * 24));
+                hours1 = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes1 = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                seconds1 = Math.floor((t % (1000 * 60)) / 1000);
+
+
+                // (days != 0) && $(".day1").html(` ${days} d`); 
+                (hours1 != 0) ? $(".hour1").html(`${hours1}`) : ($(".hour1").html(0));
+                (minutes1 != 0) && $(".minute1").html(` ${minutes1}`);
+                (seconds1 != 0) && $(".second1").html(` ${seconds1}`);
+                if (t < 0) {
+                    auctionEndsOne(end);
+
+                    clearInterval(x);
+                    // document.getElementById("demo").innerHTML = "Sasta deals has been expired";
+                    $(".day1").html('');
+                    $(".hour1").html('');
+                    $(".minute1").html('');
+                    $(".second1").html('');
+                }
+            }, 1000);
+        }
+
+        function auctionEndsOne(obj) {
+
+            let dtsplit = obj.split(" ")[0];
+            let dealEndTime = `${dtsplit}:00:00`;
+
+            let dealEndDt = `${todayDate} ${dealEndTime}`;
+            var dealDeadline = new Date(dealEndDt).getTime();
+            let hours1, minutes1, seconds1;
+
+            var x = setInterval(function () {
+                // console.log(todaDate);
+                $('.auction-title1').html('Sasta Deals about to end!');
+
+                var now = new Date().getTime();
+                var t = dealDeadline - now;
+                days = Math.floor(t / (1000 * 60 * 60 * 24));
+                hours1 = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes1 = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                seconds1 = Math.floor((t % (1000 * 60)) / 1000);
+
+                // (days != 0) && $(".day1").html(`${days} d`); 
+                (hours1 != 0) ? $(".hour1").html(`${hours1}`) : ($(".hour1").html(0));
+
+                (minutes1 != 0) && $(".minute1").html(`${minutes1}`);
+                (seconds1 != 0) && $(".second1").html(`${seconds1}`);
+                $('.btn-1').show();
+                if (t < 0) {
+                    auctionEndsOne(obj);
+                    // $('#').attr('disabled')
+                    clearInterval(x);
+                    $('.auction-title1').hide();
+                    $('.count-down1').hide();
+                    $(".demo1").html("Sasta deals has been expired");
+                    $('.btn-1').hide();
+                    $(".day1").html('');
+                    $(".hour1").html('');
+                    $(".minute1").html('');
+                    $(".second1").html('');
+                }
+            }, 1000);
+        }
+        //first end
+
+        //second begin
+        function auctinbeginsTwo(begin, end) {
+            console.log(begin, end);
+            let dtsplit = begin.split(" ")[0];
+            let dealsStartTime = `${dtsplit}:00:00`;
+            console.log(dealsStartTime, "DDDDDDD", todayDate);
+            let dealStartDt = `${todayDate} ${dealsStartTime}`;
+            var dealStartTime = new Date(dealStartDt).getTime();
+            var x = setInterval(function () {
+                $('.auction-title2').html('Sasta Deal Starts At.');
+                // document.getElementById("placebid-btn").disabled = true;
+                var now = new Date().getTime();
+                var t = dealStartTime - now;
+                days = Math.floor(t / (1000 * 60 * 60 * 24));
+                hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+
+                // (days != 0) && $(".day2").html(` ${days} d`); 
+                (hours != 0) ? $(".hour2").html(`${hours}`) : ($(".hour2").html(0));
+
+                (minutes != 0) && $(".minute2").html(` ${minutes}`);
+                (seconds != 0) && $(".second2").html(` ${seconds}`);
+                if (t < 0) {
+                    auctionEndsTwo(end);
+                    // document.getElementById("placebid-btn").disabled = false;
+                    // $('#').attr('disabled')
+                    clearInterval(x);
+                    // document.getElementById("demo").innerHTML = "Sasta deals has been expired";
+                    $(".day2").html('');
+                    $(".hour2").html('');
+                    $(".minute2").html('');
+                    $(".second2").html('');
+                }
+            }, 1000);
+        }
+
+        function auctionEndsTwo(obj) {
+            $('.btn-2').hide();
+            let dtsplit = obj.split(" ")[0];
+            let dealEndTime = `${dtsplit}:00:00`;
+
+            let dealEndDt = `${todayDate} ${dealEndTime}`;
+            var dealDeadline = new Date(dealEndDt).getTime();
+            var x = setInterval(function () {
+
+                $('.auction-title2').html('Sasta Deals about to end!');
+
+                var now = new Date().getTime();
+                var t = dealDeadline - now;
+                days = Math.floor(t / (1000 * 60 * 60 * 24));
+                hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+                // (days != 0) && $(".day2").html(`${days} d`); 
+                (hours != 0) ? $(".hour2").html(`${hours}`) : ($(".hour2").html(0));
+
+                (minutes != 0) && $(".minute2").html(`${minutes}`);
+                (seconds != 0) && $(".second2").html(`${seconds}`);
+                $('.btn-2').show();
+                if (t < 0) {
+                    auctionEndsTwo(obj);
+                    // $('#').attr('disabled')
+                    clearInterval(x);
+                    $('.auction-title2').hide();
+                    $('.count-down2').hide();
+                    $(".demo2").html("Sasta deals has been expired");
+                    $('.btn-2').hide();
+                    $(".day2").html('');
+                    $(".hour2").html('');
+                    $(".minute2").html('');
+                    $(".second2").html('');
+                }
+            }, 1000);
+        }
+        //second end
+
+        //third begin
+        function auctinbeginsThree(begin, end) {
+            console.log("BEGIN", begin, "------------ENDDDDDdd", end);
+            let dtsplit = begin.split(" ")[0];
+            let dealsStartTime = `${dtsplit}:00:00`;
+            console.log(dealsStartTime, "DDDDDDD");
+            let dealStartDt = `${todayDate} ${dealsStartTime}`;
+            var dealStartTime = new Date(dealStartDt).getTime();
+            var x = setInterval(function () {
+                $('.auction-title3').html('Sasta Deal Starts At.');
+                // document.getElementById("placebid-btn").disabled = true;
+                var now = new Date().getTime();
+                var t = dealStartTime - now;
+                days = Math.floor(t / (1000 * 60 * 60 * 24));
+                hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+
+                // (days != 0) && $(".day3").html(` ${days} d`); 
+
+                (hours != 0) ? $(".hour3").html(`${hours}`) : ($(".hour3").html(0));
+
+                (minutes != 0) && $(".minute3").html(` ${minutes}`);
+                (seconds != 0) && $(".second3").html(` ${seconds}`);
+                if (t < 0) {
+                    auctionEndsThree(end);
+                    // document.getElementById("placebid-btn").disabled = false;
+                    // $('#').attr('disabled')
+                    clearInterval(x);
+                    // document.getElementById("demo").innerHTML = "Sasta deals has been expired";
+                    $(".day3").html('');
+                    $(".hour3").html('');
+                    $(".minute3").html('');
+                    $(".second3").html('');
+                }
+            }, 1000);
+        }
+
+        function auctionEndsThree(obj) {
+            $('.btn-3').hide();
+            let dtsplit = obj.split(" ")[0];
+            let dealEndTime = `${dtsplit}:00:00`;
+
+            let dealEndDt = `${todayDate} ${dealEndTime}`;
+            var dealDeadline = new Date(dealEndDt).getTime();
+            var x = setInterval(function () {
+
+                $('.auction-title3').html('Sasta Deals about to end!');
+
+                var now = new Date().getTime();
+                var t = dealDeadline - now;
+                days = Math.floor(t / (1000 * 60 * 60 * 24));
+                hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+                // (days != 0) && $(".day3").html(`${days} d`); 
+                (hours != 0) ? $(".hour3").html(`${hours}`) : ($(".hour3").html(0));
+
+                (minutes != 0) && $(".minute3").html(`${minutes}`);
+                (seconds != 0) && $(".second3").html(`${seconds}`);
+                $('.btn-3').show();
+                if (t < 0) {
+                    auctionEndsThree(obj);
+                    // $('#').attr('disabled')
+                    clearInterval(x);
+                    $('.auction-title3').hide();
+                    $('.count-down3').hide();
+                    $(".demo3").html("Sasta deals has been expired");
+                    $('.btn-3').hide();
+                    $(".day3").html('');
+                    $(".hour3").html('');
+                    $(".minute3").html('');
+                    $(".second3").html('');
+                }
+            }, 1000);
+        }
+        //third end
+
+        
+        function changethe24hrs(s){
+            // console.log("SSSSSSSSSSSS",s);
+           s = s.split(' ');
+           if (s[0] == "12") {
+               return s.join(" ");
+            }
+           if(s[1] == 'PM'){
+              s = (parseInt(s[0])+12)+"";
+            //   console.log("EEEEEEEEEE",s);
+           } else {
+               s = s.join(' ');
+           }
+        //    console.log("RRRRRrrr",s);
+           return s;
+        }
+    </script>
+    <script>
+        // var boolone = false;
+        // var booltwo = false;
+        // var boolthree = false;
+        // const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        //     "Jul", "Aug", "Sep", "October", "Nov", "Dec"
+        // ];
+        // var todayDate = new Date();
+        // todayDate = `${monthNames[todayDate.getMonth()]} ${todayDate.getDate()}, ${todayDate.getFullYear()}`;
+        // $(document).ready(function () {
+        //     auctinbeginsOne('@{model.timeZone1[0].timezone_start_time}', '@{model.timeZone1[0].timezone_end_time}');
+        //     // auctinbeginsOne("8 AM", "12 PM");
+        // });
+
+        // $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+        //     var tab = $(e.target);
+        //     var contentId = tab.attr("href");
+
+        //     //This check if the tab is active
+        //     if (tab.parent().hasClass('active')) {
+
+        //     } else {
+        //         if (contentId == "#menu1") {
+        //            // auctinbeginsTwo("12 PM", "16 PM");
+        //              auctinbeginsTwo('@{model.timeZone2[0].timezone_start_time}', '@{model.timeZone2[0].timezone_end_time}');
+        //         } else if (contentId == "#menu2") {
+        //             //auctinbeginsThree("16 PM", "20 PM");
+        //              auctinbeginsThree('@{model.timeZone3[0].timezone_start_time}', '@{model.timeZone3[0].timezone_end_time}');
+        //         } else {
+        //             //auctinbeginsOne("8 AM", "12 PM");
+        //              auctinbeginsOne('@{model.timeZone1[0].timezone_start_time}', '@{model.timeZone1[0].timezone_end_time}');
+        //         }
+
+        //     }
+
+        // });
+
+        // //first begin
+        // function auctinbeginsOne(begin, end) {
+        //     console.log(begin, end);
+        //     let dtsplit = begin.split(" ")[0];
+        //     let dealsStartTime = `${dtsplit}:00:00`;
+        //     console.log(dealsStartTime, "DDDDDDD");
+        //     let dealStartDt = `${todayDate} ${dealsStartTime}`;
+        //     var dealStartTime = new Date(dealStartDt).getTime();
+        //     let hours1, minutes1, seconds1;
+        //     var x = setInterval(function () {
+        //         $('.auction-title1').html('Sasta Deal Starts At.');
+        //         // document.getElementById("placebid-btn").disabled = true;
+        //         var now = new Date().getTime();
+        //         var t = dealStartTime - now;
+        //         days = Math.floor(t / (1000 * 60 * 60 * 24));
+        //         hours1 = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         minutes1 = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        //         seconds1 = Math.floor((t % (1000 * 60)) / 1000);
+
+
+        //         // (days != 0) && $(".day1").html(` ${days} d`); 
+        //         (hours1 != 0) ? $(".hour1").html(`${hours1}`) : ($(".hour1").html(0));
+        //         (minutes1 != 0) && $(".minute1").html(` ${minutes1}`);
+        //         (seconds1 != 0) && $(".second1").html(` ${seconds1}`);
+        //         if (t < 0) {
+        //             auctionEndsOne(end);
+
+        //             clearInterval(x);
+        //             // document.getElementById("demo").innerHTML = "Sasta deals has been expired";
+        //             $(".day1").html('');
+        //             $(".hour1").html('');
+        //             $(".minute1").html('');
+        //             $(".second1").html('');
+        //         }
+        //     }, 1000);
+        // }
+
+        // function auctionEndsOne(obj) {
+
+        //     let dtsplit = obj.split(" ")[0];
+        //     let dealEndTime = `${dtsplit}:00:00`;
+
+        //     let dealEndDt = `${todayDate} ${dealEndTime}`;
+        //     var dealDeadline = new Date(dealEndDt).getTime();
+        //     let hours1, minutes1, seconds1;
+
+        //     var x = setInterval(function () {
+        //         // console.log(todaDate);
+        //         $('.auction-title1').html('Sasta Deals about to end!');
+
+        //         var now = new Date().getTime();
+        //         var t = dealDeadline - now;
+        //         days = Math.floor(t / (1000 * 60 * 60 * 24));
+        //         hours1 = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         minutes1 = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        //         seconds1 = Math.floor((t % (1000 * 60)) / 1000);
+
+        //         // (days != 0) && $(".day1").html(`${days} d`); 
+        //         (hours1 != 0) ? $(".hour1").html(`${hours1}`) : ($(".hour1").html(0));
+
+        //         (minutes1 != 0) && $(".minute1").html(`${minutes1}`);
+        //         (seconds1 != 0) && $(".second1").html(`${seconds1}`);
+        //         $('.btn-1').show();
+        //         if (t < 0) {
+        //             auctionEndsOne(obj);
+        //             // $('#').attr('disabled')
+        //             clearInterval(x);
+        //             $('.auction-title1').hide();
+        //             $('.count-down1').hide();
+        //             $(".demo1").html("Sasta deals has been expired");
+        //             $('.btn-1').hide();
+        //             $(".day1").html('');
+        //             $(".hour1").html('');
+        //             $(".minute1").html('');
+        //             $(".second1").html('');
+        //         }
+        //     }, 1000);
+
+            
+        // }
+        // //first end
+
+        // //second begin
+        // function auctinbeginsTwo(begin, end) {
+        //     console.log(begin, end);
+        //     let dtsplit = begin.split(" ")[0];
+        //     let dealsStartTime = `${dtsplit}:00:00`;
+        //     console.log(dealsStartTime, "DDDDDDD", todayDate);
+        //     let dealStartDt = `${todayDate} ${dealsStartTime}`;
+        //     var dealStartTime = new Date(dealStartDt).getTime();
+        //     var x = setInterval(function () {
+        //         $('.auction-title2').html('Sasta Deal Starts At.');
+        //         // document.getElementById("placebid-btn").disabled = true;
+        //         var now = new Date().getTime();
+        //         var t = dealStartTime - now;
+        //         days = Math.floor(t / (1000 * 60 * 60 * 24));
+        //         hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        //         seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+
+        //         // (days != 0) && $(".day2").html(` ${days} d`); 
+        //         (hours != 0) ? $(".hour2").html(`${hours}`) : ($(".hour2").html(0));
+
+        //         (minutes != 0) && $(".minute2").html(` ${minutes}`);
+        //         (seconds != 0) && $(".second2").html(` ${seconds}`);
+        //         if (t < 0) {
+        //             auctionEndsTwo(end);
+        //             // document.getElementById("placebid-btn").disabled = false;
+        //             // $('#').attr('disabled')
+        //             clearInterval(x);
+        //             // document.getElementById("demo").innerHTML = "Sasta deals has been expired";
+        //             $(".day2").html('');
+        //             $(".hour2").html('');
+        //             $(".minute2").html('');
+        //             $(".second2").html('');
+        //         }
+        //     }, 1000);
+        // }
+
+        // function auctionEndsTwo(obj) {
+        //     $('.btn-2').hide();
+        //     let dtsplit = obj.split(" ")[0];
+        //     let dealEndTime = `${dtsplit}:00:00`;
+
+        //     let dealEndDt = `${todayDate} ${dealEndTime}`;
+        //     var dealDeadline = new Date(dealEndDt).getTime();
+        //     var x = setInterval(function () {
+
+        //         $('.auction-title2').html('Sasta Deals about to end!');
+
+        //         var now = new Date().getTime();
+        //         var t = dealDeadline - now;
+        //         days = Math.floor(t / (1000 * 60 * 60 * 24));
+        //         hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        //         seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+        //         // (days != 0) && $(".day2").html(`${days} d`); 
+        //         (hours != 0) ? $(".hour2").html(`${hours}`) : ($(".hour2").html(0));
+
+        //         (minutes != 0) && $(".minute2").html(`${minutes}`);
+        //         (seconds != 0) && $(".second2").html(`${seconds}`);
+        //         $('.btn-2').show();
+        //         if (t < 0) {
+        //             auctionEndsTwo(obj);
+        //             // $('#').attr('disabled')
+        //             clearInterval(x);
+        //             $('.auction-title2').hide();
+        //             $('.count-down2').hide();
+        //             $(".demo2").html("Sasta deals has been expired");
+        //             $('.btn-2').hide();
+        //             $(".day2").html('');
+        //             $(".hour2").html('');
+        //             $(".minute2").html('');
+        //             $(".second2").html('');
+        //         }
+        //     }, 1000);
+        // }
+        // //second end
+
+        // //third begin
+        // function auctinbeginsThree(begin, end) {
+        //     console.log("BEGIN", begin, "------------ENDDDDDdd", end);
+        //     let dtsplit = begin.split(" ")[0];
+        //     let dealsStartTime = `${dtsplit}:00:00`;
+        //     console.log(dealsStartTime, "DDDDDDD");
+        //     let dealStartDt = `${todayDate} ${dealsStartTime}`;
+        //     var dealStartTime = new Date(dealStartDt).getTime();
+        //     var x = setInterval(function () {
+        //         $('.auction-title3').html('Sasta Deal Starts At.');
+        //         // document.getElementById("placebid-btn").disabled = true;
+        //         var now = new Date().getTime();
+        //         var t = dealStartTime - now;
+        //         days = Math.floor(t / (1000 * 60 * 60 * 24));
+        //         hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        //         seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+
+        //         // (days != 0) && $(".day3").html(` ${days} d`); 
+
+        //         (hours != 0) ? $(".hour3").html(`${hours}`) : ($(".hour3").html(0));
+
+        //         (minutes != 0) && $(".minute3").html(` ${minutes}`);
+        //         (seconds != 0) && $(".second3").html(` ${seconds}`);
+        //         if (t < 0) {
+        //             auctionEndsThree(end);
+        //             // document.getElementById("placebid-btn").disabled = false;
+        //             // $('#').attr('disabled')
+        //             clearInterval(x);
+        //             // document.getElementById("demo").innerHTML = "Sasta deals has been expired";
+        //             $(".day3").html('');
+        //             $(".hour3").html('');
+        //             $(".minute3").html('');
+        //             $(".second3").html('');
+        //         }
+        //     }, 1000);
+        // }
+
+        // function auctionEndsThree(obj) {
+        //     $('.btn-3').hide();
+        //     let dtsplit = obj.split(" ")[0];
+        //     let dealEndTime = `${dtsplit}:00:00`;
+
+        //     let dealEndDt = `${todayDate} ${dealEndTime}`;
+        //     var dealDeadline = new Date(dealEndDt).getTime();
+        //     var x = setInterval(function () {
+
+        //         $('.auction-title3').html('Sasta Deals about to end!');
+
+        //         var now = new Date().getTime();
+        //         var t = dealDeadline - now;
+        //         days = Math.floor(t / (1000 * 60 * 60 * 24));
+        //         hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        //         seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+        //         // (days != 0) && $(".day3").html(`${days} d`); 
+        //         (hours != 0) ? $(".hour3").html(`${hours}`) : ($(".hour3").html(0));
+
+        //         (minutes != 0) && $(".minute3").html(`${minutes}`);
+        //         (seconds != 0) && $(".second3").html(`${seconds}`);
+        //         $('.btn-3').show();
+        //         if (t < 0) {
+        //             auctionEndsThree(obj);
+        //             // $('#').attr('disabled')
+        //             clearInterval(x);
+        //             $('.auction-title3').hide();
+        //             $('.count-down3').hide();
+        //             $(".demo3").html("Sasta deals has been expired");
+        //             $('.btn-3').hide();
+        //             $(".day3").html('');
+        //             $(".hour3").html('');
+        //             $(".minute3").html('');
+        //             $(".second3").html('');
+        //         }
+        //     }, 1000);
+        // }
+        //third end
+
+
+
+    </script>
+
+</body>
+
+</html>

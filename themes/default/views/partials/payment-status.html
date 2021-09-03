@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // In order to call window.flutter_inappwebview.callHandler(handlerName <String>, ...args) 
+        // properly, you need to wait and listen the JavaScript event flutterInAppWebViewPlatformReady. 
+        // This event will be dispatched as soon as the platform (Android or iOS) is ready to handle the callHandler method.
+        var orderIds = [];
+        @{foreach item of model.orderIds}
+            orderIds.push({number: "@{item.number}"}); 
+        @{end}
+
+        
+        
+        window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+        // call flutter handler with name 'mySum' and pass one or more arguments
+            window.flutter_inappwebview.callHandler('PAYMENT_SUCCESS', JSON.stringify(orderIds), "@{model.paytmRefId}", "@{model.shopsastaTxnId}", "@{model.amount}").then(function(result) {
+                // get result from Flutter side. It will be the number 64.
+                console.log(result);
+            });
+        });
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shopsasta">
+    <meta name="author" content="Shopsasta">
+    <title>shopsasta.com - Community Group Buying</title>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- Select2 CSS -->
+    <link href="/vendor/select2/css/select2-bootstrap.css" />
+    <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/osahan.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+    <style>
+        ul {
+            font-weight: 600;
+    color: #000;
+        }
+        .order-info-b .order-info {
+            width: 50%;
+        }
+        .order-detail {
+           text-align: center;
+        }
+        .order-detail span {
+           font-size: 14px;
+           font-weight: 500;
+        }
+        .order-detail span a {
+         color: #4b9c98;
+        }
+        .account-right {
+           height: fit-content !important;
+           min-height: fit-content !important;
+        }
+    </style>
+
+    
+
+</head>
+
+<body>
+
+    <div class="header">
+        @{view('~partials/header')}
+    </div>
+    <section class=" bg-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 breadcum">
+					<a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+						class="mdi mdi-chevron-right"></span> <a href="#">Payment Status</a>
+				</div>
+			</div>
+		</div>
+	</section>
+    <section class="account-page section-padding">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-12">
+                <div class="card card-body account-right">
+                    <div class="widget">
+                       <div class="section-header text-center">
+                          <h5 class="heading-design-h5">
+                          <strong>Thank you for ordering</strong>
+                          </h5>
+                       </div>
+                       <div class="order-detail">
+                           
+                        @{foreach item of model.orderIds}
+                        <div class="each-order-detail mb-2" style="display:grid;">
+                            <span class="heading-design-h5 mb-0">
+                                Order No  :   <a href="/order-detail/@{item.id}"> <strong>@{item.number}</strong>,</strong></a>
+                               
+                             </span>
+                             
+                             <span class="heading-design-h5 mb-0">Amount : <strong class="price-format">@{item.amount}</strong></span>
+                             
+
+                             <span class="heading-design-h5 mb-0">Delivered By : <strong>
+                                 @{if item.deliveredBy == "shop-sasta"} 
+                                    shopsasta
+                                 @{else} 
+                                     @{item.deliveredBy}
+                                 @{fi}
+
+                             </strong></span>
+                            
+                        </div>
+                       
+                         @{end}
+                        
+                         
+                         
+                         <span class="heading-design-h5">Paytm Reference ID : <strong>@{model.paytmRefId}</strong></span>
+
+                         <br>
+                         <span class="heading-design-h5">Shopsast Txn ID : <strong>@{model.shopsastaTxnId}</strong></span>
+                        
+                       </div>
+                      
+                      
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+
+
+    <div class="footer">
+        @{view('~partials/footer')}
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- select2 Js -->
+    <script src="/vendor/select2/js/select2.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+    <!-- Custom -->
+    <script src="/js/custom.js"></script>
+    <script src="/js/main.js?v=v1.5"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+  
+</body>
+
+</html>

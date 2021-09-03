@@ -1,0 +1,288 @@
+<style>
+    .price-result {
+        display: flex;
+        margin-top: 2rem;
+    }
+
+    .price-result h6 {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .each-price h6 {
+        font-size: 15px;
+        font-weight: 400;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+</style>
+<div class="mobile-view mob-view">
+    <p onclick="showFilter()" class="save-text"
+        style="font-size: 14px;font-weight: 600;background-color: #fb9013;padding: 3px;text-align: center;border-radius: 8px;color: #fff;cursor: pointer;">
+        View Filter</p>
+    <p onclick="showFilter()" class="close-text"
+        style="font-size: 14px;font-weight: 600;background-color: #fb9013;padding: 3px;text-align: center;border-radius: 8px;color: #fff;cursor: pointer;">
+        Close Filter</p>
+</div>
+<div class="filter-list">
+
+    <div class="each-filter brand-filter">
+        <p class="filter-heading">Brand</p>
+
+        <div class="checkbox">
+            <a href="/mobiles/oneplus">One Plus</a>
+        </div>
+        <div class="checkbox">
+            <a href="/mobiles/oppo"> Oppo </a>
+        </div>
+        <div class="checkbox">
+            <a href="/mobiles/vivo"> Vivo </a>
+        </div>
+        <div class="checkbox">
+            <a href="/mobiles/apple"> Apple </a>
+        </div>
+        <div class="checkbox">
+            <a href="/mobiles/samsung"> Samsung </a>
+        </div>
+        <div class="checkbox">
+            <a href="/mobiles/realme"> Realme </a>
+        </div>
+        <div class="checkbox">
+            <a href="/mobiles/xiaomi"> Redmi </a>
+        </div>
+        <div class="checkbox">
+            <a href="/mobiles/nokia"> Nokia </a>
+        </div>
+
+    </div>
+    <div class="each-filter price-filter">
+        <p class="filter-heading">Price</p>
+        <div class="each-price">
+            <h6 data-min="0" data-max='1000'>
+                Under ₹ 1,000
+            </h6>
+        </div>
+        <div class="each-price">
+            <h6 data-min="1000" data-max='5000'>
+                ₹ 1,000 - ₹ 5,000
+            </h6>
+        </div>
+        <div class="each-price">
+            <h6 data-min="5000" data-max='10000'>
+                ₹ 5,000 - ₹ 10,000
+            </h6>
+        </div>
+        <div class="each-price">
+            <h6 data-min="10000" data-max='20000'>
+                ₹ 10,000 - ₹ 20,000
+            </h6>
+        </div>
+        <div class="each-price">
+            <h6 data-min="20000" data-max='500000'>
+                Over ₹ 20,000
+            </h6>
+        </div>
+
+        <!-- <div class="price-result">
+            <h6 style="margin-right: 1rem;">Min : ₹<span class="min-v"></span> </h6>
+            <h6>Max : ₹<span class="max-v"></span> </h6>
+        </div> -->
+        <!-- <div class="checkbox">
+                        <label><input type="checkbox" id='b01' class="pfilter" data-minprice="0"  data-maxprice="5000" name="price">Rs 0 - Rs 5K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"  id='b02' class="pfilter"data-minprice="50001"  data-maxprice="10000" name="price">Rs 5K - Rs 10K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"  id='b03' class="pfilter"data-minprice="10001"  data-maxprice="15000" name="price">Rs 10K - Rs 15K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b04' class="pfilter"data-minprice="15001"  data-maxprice="20000" name="price">Rs 15K - Rs 20K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"  id='b09' class="pfilter"
+                               data-minprice="20001"  data-maxprice="25000" name="price">Rs 20K - Rs 25K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b010' class="pfilter"data-minprice="25001"  data-maxprice="30000" name="price">Rs 25K - Rs 30K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b011' class="pfilter"data-minprice="30001"  data-maxprice="35000" name="price">Rs 30K - Rs 35K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b012' class="pfilter"data-minprice="35001"  data-maxprice="40000" name="price">Rs 35K - Rs 40K</label>
+                    </div>
+					<div class="checkbox">
+                        <label><input type="checkbox" id='b012' class="pfilter"data-minprice="40000"  data-maxprice="500000" name="price">RS 40K+</label>
+                    </div> -->
+    </div>
+    <div class="each-filter camera-filter">
+        <p class="filter-heading">Primary Camera Resolution</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="5-7.9" id='pc02' class="filter" name="ftrCam">5 - 7.9
+                MP</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="8-9.9" id='pc02' class="filter" name="ftrCam">8 - 9.9
+                MP</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="10-above" id='pc03' class="filter" name="ftrCam">10 MP &
+                above</label>
+        </div>
+    </div>
+    <div class="each-filter screen-filter">
+        <p class="filter-heading">Screen Size</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="3.9" class="filter" name="ftrScreen">Below 3.9 Inches</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="4-4.4" class="filter" name="ftrScreen">4 - 4.4 Inches</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="4.5-4.9" class="filter" name="ftrScreen">4.5 - 4.9
+                Inches</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="5.0-5.4" class="filter" name="ftrScreen"> 5.0 - 5.4
+                Inches</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="5.5-above" class="filter" name="ftrScreen">5.5 Inches &
+                above</label>
+        </div>
+    </div>
+    <div class="each-filter battery-filter">
+        <p class="filter-heading">Battery Capacity</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="999" class="filter" name="ftrBattery"> Less Than 999
+                mAh</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="1000-1999" class="filter" name="ftrBattery"> 1000 - 1999
+                mAh</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="2000-2999" class="filter" name="ftrBattery"> 2000 - 2999
+                mAh</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="3000-3999" class="filter" name="ftrBattery"> 3000 - 3999
+                mAh</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="4000-more" class="filter" name="ftrBattery">4000 mAh &
+                more</label>
+        </div>
+    </div>
+    <div class="each-filter processor-filter">
+        <p class="filter-heading">Processor Speed</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="0.99" class="filter" name="ftrProcessor"> Less Than 0.99
+                GHz</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="1-1.49" class="filter" name="ftrProcessor"> 1 - 1.49 GHz
+            </label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="1.5-1.99" class="filter" name="ftrProcessor"> 1.5 - 1.99
+                GHz</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="2-2.4" class="filter" name="ftrProcessor"> 2 - 2.4 GHz</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="2.5-above" class="filter" name="ftrProcessor"> 2.5 GHz &
+                above</label>
+        </div>
+    </div>
+    <div class="each-filter memory-filter">
+        <p class="filter-heading">Internal Memory</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="3.9" class="filter" name="ftrMemory">Less Than 3.9 GB</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="4" class="filter" name="ftrMemory">4 GB</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="8" class="filter" name="ftrMemory">8 GB</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="16" class="filter" name="ftrMemory">16 GB</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="32" class="filter" name="ftrMemory">32 GB</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="64" class="filter" name="ftrMemory">64 GB</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="128" class="filter" name="ftrMemory">128 GB</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="256-above" class="filter" name="ftrMemory">256 GB &
+                above</label>
+        </div>
+
+    </div>
+    <div class="each-filter -filter">
+        <p class="filter-heading">Device Features</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="dualsim" class="filter" name="ftrFeatures">Dual Sim</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="hotspot" class="filter" name="ftrFeatures">Hotspot</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="musicplayer" class="filter" name="ftrFeatures">Music
+                Player</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="email" class="filter" name="ftrFeatures">E-Mail</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="gps" class="filter" name="ftrFeatures">GPS</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="touchscreen" class="filter" name="ftrFeatures">Touchscreen</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="primarycamera" class="filter" name="ftrFeatures">Primary
+                Camera</label>
+        </div>
+    </div>
+    <div class="each-filter data-filter">
+        <p class="filter-heading">Data Transfer</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="4g" class="filter" name="ftrTransfer">4G</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="gsm" class="filter" name="ftrTransfer">GSM</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="3g" class="filter" name="ftrTransfer">3G</label>
+        </div>
+
+        <div class="checkbox ">
+            <label><input type="checkbox" value="wifi" class="filter" name="ftrTransfer">WiFi</label>
+        </div>
+        <div class="checkbox ">
+            <label><input type="checkbox" value="edge" class="filter" name="ftrTransfer">Edge</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="gprs" class="filter" name="ftrTransfer">GPRS</label>
+        </div>
+    </div>
+</div>
+<script>
+   
+
+</script>

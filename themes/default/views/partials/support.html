@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shopsasta">
+    <meta name="author" content="Shopsasta">
+    <title>shopsasta.com - Community Group Buying</title>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- Select2 CSS -->
+    <link href="/vendor/select2/css/select2-bootstrap.css" />
+    <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/osahan.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+    <style>
+        .support-whatsapp {
+            background: #fff none repeat scroll 0 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+            overflow: hidden;
+            padding: 12px;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        .support-whatsapp .details {
+            padding-right: 2rem;
+            font-weight: 600;
+        }
+
+        .whatsapp-share {
+            position: absolute;
+            cursor: pointer;
+            right: 1rem;
+            top: 5px;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #d0d2d2;
+        }
+
+        .select2-container {
+            width: 100% !important;
+        }
+
+        .wrapper {
+            position: relative;
+
+            height: 300px;
+            margin: 10px;
+        }
+
+        .swal2-title {
+            font-size: 15px !important;
+        }
+
+        .line {
+            position: absolute;
+            left: 49%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #ccc;
+            z-index: 1;
+        }
+
+        .wordwrapper {
+            text-align: center;
+            height: 12px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            margin-top: -12px;
+            z-index: 2;
+        }
+
+        .word {
+            color: #ccc;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            padding: 3px;
+            font: bold 12px arial, sans-serif;
+            background: #fff;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .wrapper {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        @{view('partials/header')}
+    </div>
+    <section class=" bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 breadcum">
+                    <a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+                        class="mdi mdi-chevron-right"></span> <a href="#">Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="account-page section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+                        <div class="widget">
+
+                            <div class="section-header">
+                                <h5 class="heading-design-h5" style="font-weight: 600;">
+                                    For any queries, please contact our customer support
+                                </h5>
+                            </div>
+                            <hr style="margin: 0;background-color: #efefef;border: 1px solid #efefef;">
+                            <br>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="tab-pane" id="addressForm" role="tabpanel">
+                                        <fieldset class="form-group">
+                                            <label>What do you need help with? </label>
+                                            <select class="select2 form-control border-form-control" id="spTitle">
+
+                                                <option value="Orders"> Orders </option>
+                                                <option value="Delivery"> Delivery </option>
+                                                <option value="Payment"> Payment </option>
+                                                <option value="Sell with Us"> Sell with Us </option>
+                                                <option value="Earnings"> Earnings </option>
+                                                <option value="Feedback"> Feedback </option>
+                                                <option value="Registration"> Registration </option>
+                                                <option value="App issues"> App issues </option>
+                                            </select>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Mobile Number </label>
+                                            <input type="text" class="form-control " id="spNumber">
+                                            <span class="support-phone-error" style="font-size: 12px; color: red;">Phone
+                                                is required</span>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Email </label>
+                                            <input type="email" class="form-control " id="spEmail">
+                                            <span class="support-email-error" style="font-size: 12px; color: red;">Email
+                                                is required</span>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Add Details </label>
+                                            <textarea class="form-control " rows="4" id="spDetails"></textarea>
+                                            <span class="spDetails-error" style="font-size: 12px; color: red;">
+                                                Please enter the details</span>
+                                        </fieldset>
+
+                                        <fieldset class="form-group">
+                                            <button type="submit" class="btn btn-lg btn-secondary btn-block"
+                                                onclick="sendSupportMail()" style="width: fit-content;
+                                                margin: auto;">Send Message</button>
+                                        </fieldset>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="wrapper">
+                                        <div class="line"></div>
+                                        <div class="wordwrapper">
+                                            <div class="word">or</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 d-flex align-items-center">
+                                    <div class="support-whatsapp">
+                                        <div class="d-flex align-items-center">
+                                            <img src="/img/support32.png" alt=""
+                                                style="height: 35px;width:auto;max-width: auto !important;">
+                                            <div class="details ml-3">
+                                                <h6 class="mb-0">+91 9392951057</h6>
+                                                <p class="mb-0">Phone support is available Monday to Saturday 10 AM till
+                                                    7 PM</p>
+                                            </div>
+                                            <div class="whatsapp-share">
+                                                <a href="https://api.whatsapp.com/message/BIHUFMSVMQUXM1"
+                                                    target="_blank"><img src="/img/whatsapp.png" alt=""
+                                                        style="height: 35px;"></a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        @{view('partials/footer')}
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- select2 Js -->
+    <script src="/vendor/select2/js/select2.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+    <!-- Custom -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script src="/js/custom.js"></script>
+    <script src="/js/main.js?v=v1.5"></script>
+</body>
+
+</html>

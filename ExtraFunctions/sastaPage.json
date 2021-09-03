@@ -1,0 +1,55 @@
+[
+    {
+    "timezone":"1",
+    "timezone_start_time":"8 AM",
+    "timezone_end_time":"10 AM",
+    "products":[{
+        "pid":"",
+        "vid":"",
+        "price":30
+    },{
+        "pid":"",
+        "vid":"",
+        "price":30
+    },{
+        "pid":"",
+        "vid":"",
+        "price":30
+    }]
+}, {
+    "timezone":"2",
+    "timezone_start_time":"1 PM",
+    "timezone_end_time":"4 PM",
+    "products":[{
+        "pid":"",
+        "vid":"",
+        "price":30
+    },{
+        "pid":"",
+        "vid":"",
+        "price":30
+    },{
+        "pid":"",
+        "vid":"",
+        "price":30
+    }]
+},
+{
+    "timezone":"3",
+    "timezone_start_time":"5 PM",
+    "timezone_end_time":"7 PM",
+    "products":[{
+        "pid":"",
+        "vid":"",
+        "price":30
+    },{
+        "pid":"",
+        "vid":"",
+        "price":30
+    },{
+        "pid":"",
+        "vid":"",
+        "price":30
+    }]
+}
+]

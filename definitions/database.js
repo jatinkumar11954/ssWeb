@@ -1,0 +1,1 @@
+//require('sqlagent/mongodb').init('mongodb+srv://admin:VsKl9x8yEWIqllxh@cluster0-m73oz.mongodb.net/happi?retryWrites=true&w=majoritys'); // debug is by default: false

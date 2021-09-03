@@ -1,0 +1,54 @@
+<div class="prod-i">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-md-12">
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Specifications</p>
+                        <!-- @{model.product_type} -->
+                    </div>
+
+                    <div class="collapse show" id="collapseExample">
+                        <div class="spec-body">
+                            @{if model.scapacity}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+                                    <span>Capacity</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.scapacity}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.scompatibility}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Ccompatibility</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.scompatibility}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.sdimensions}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Dimensions</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.sdimensions}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

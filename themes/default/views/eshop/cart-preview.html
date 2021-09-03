@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Shopsasta">
+   <meta name="author" content="Shopsasta">
+   <title>shopsasta.com - Community Group Buying</title>
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" href="img/favicon.png">
+   <!-- Bootstrap core CSS -->
+   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Material Design Icons -->
+   <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+   <!-- Select2 CSS -->
+   <link href="/vendor/select2/css/select2-bootstrap.css" />
+   <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+   <!-- Custom styles for this template -->
+   <link href="/css/osahan.css" rel="stylesheet">
+   <!-- Owl Carousel -->
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+   <style>
+      /* payment antoher page begin */
+      .payment-options,
+      .delivery-options {
+         margin: 0 0 2rem 0;
+      }
+
+      .payment-options h6,
+      .delivery-options h6 {
+         font-weight: 600;
+      }
+
+      .payment-options label,
+      .delivery-options label {
+         font-weight: 600;
+      }
+
+      .coupon-b h6 {
+         font-weight: bold;
+      }
+
+      ::-webkit-input-placeholder {
+         /* Edge */
+         font-weight: bold;
+         font-size: 12px;
+      }
+
+      :-ms-input-placeholder {
+         /* Internet Explorer 10-11 */
+         font-weight: bold;
+         font-size: 12px;
+      }
+
+      ::placeholder {
+         font-weight: bold;
+         font-size: 12px;
+      }
+
+      .apply-cashback {
+         margin: 1rem 0;
+      }
+
+      .apply-cashback label {
+         font-weight: bold;
+      }
+
+      .cart-summary h6 {
+         font-weight: 600;
+      }
+
+      .cart-values {
+         border: 2px solid #efefef;
+         font-weight: 600;
+      }
+
+      .cart-values .d-flex {
+         padding: .2rem 1rem;
+      }
+
+      .cart-summary .total-pay-amt {
+         color: #000 !important;
+         font-weight: bolder;
+         border-top: 2px solid #efefef;
+      }
+
+      /* Pyaemnt another end */
+      @media only screen and (max-width: 767px) {
+         table th {
+            white-space: nowrap;
+         }
+
+         table td {
+            white-space: nowrap;
+         }
+      }
+
+      table {
+         border: 0;
+      }
+
+      .table thead th {
+         text-align: center;
+         border: 0;
+         background-color: #fff;
+      }
+
+      .cart_summary td {
+         border: 0;
+         background-color: #fff;
+         text-align: center;
+      }
+
+      .payment-failed {
+         display: none;
+         background-color: #fff;
+         text-align: center;
+         font-weight: 600;
+         text-transform: uppercase;
+         font-size: 18px;
+         color: red;
+      }
+
+      .cart-verify-b h5 {
+         font-size: 15px;
+         font-weight: 600;
+      }
+
+      a.confirm-cart span {
+         background-color: #029b97;
+         padding: 4px 1rem;
+         color: #fff;
+         font-weight: 600;
+         border-radius: 3px;
+      }
+
+      /* Cart by vendor css begin */
+
+      .shipping-info {
+         font-size: 16px;
+         font-weight: 600;
+         color: #000;
+
+      }
+
+      .shipping-items {
+         list-style: outside;
+         padding-left: 15px;
+         margin-top: 1rem;
+      }
+
+      .shipping-items li h6 {
+         font-weight: 600;
+         margin-bottom: 0;
+         font-size: 15px;
+      }
+
+      .shipping-items li p {
+         font-weight: 600;
+         font-size: 15px;
+      }
+      .shipping-prices .p-spliting {
+         font-weight: 600;
+         color: #000;
+      }
+      .shipping-prices .p-spliting span:last-child{
+         color: red;
+      }
+      .shipping-prices .p-quantity {
+         font-size: 13px;
+         font-weight: 600;
+      }
+   </style>
+   <script>
+      if (window.location.href.indexOf("PAYMENT_FAILED") != "-1") {
+         window.addEventListener("flutterInAppWebViewPlatformReady", function (event) {
+            window.flutter_inappwebview.callHandler('PAYMENT_FAILED', "").then(function (result) {
+               console.log(result);
+            });
+         });
+      }
+   </script>
+
+</head>
+
+<body>
+
+   <div class="header">
+      @{view('partials/header')}
+   </div>
+
+   <section class=" bg-white">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 breadcum">
+               <a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+                  class="mdi mdi-chevron-right"></span> <a href="#">Cart Preview</a>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section class="cart-page section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-10 d-flex align-items-end"> <span style="font-weight: 600;font-size: 1.5rem;">
+                        Choose your delivery options</span></div>
+                  <div class="col-md-2">
+                     <div class="comfirm-btn" style=" width: fit-content;">
+                        <button class="btn btn-secondary btn-lg btn-block text-left " onclick="goToCheckout()" type="button" style="width: fit-content;
+                           margin-top: 1rem;font-weight: 600;"><span class="float-right">
+                              Continue
+                           </span></button>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+
+                  <div class="col-md-12">
+                     <hr />
+                     <div class="vendor-shipping" >
+                        
+                        <div class="show-only-sasta col-md-6" style="position: absolute;z-index: 9999;right: 0;">
+                           <h6>Delivery Options</h6>
+
+                           <fieldset class="form-row">
+                              <div class="form-check col-md-12">
+                                 <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" checked name="nextweek-check"
+                                       value="regular">Regular
+                                 </label>
+                              </div>
+                              <br>                              
+                              <div class="form-check col-md-12">
+                                 <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="nextweek-check"
+                                       value="no-rush">No-Rush (you get an extra <strong class="no-rush-del"></strong>% cashback.&nbsp;Applicable for shopsasta products only)
+                                 </label>
+                              </div>
+                           </fieldset>
+                           <!-- <h5 style="font-size: 13px;">Applicable for shopsasta products only</h5> -->
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                           <div class="comfirm-btn" style=" width: fit-content;">
+                              <button class="btn btn-secondary btn-lg btn-block text-left " onclick="goToCheckout()" type="button"
+                                 style="width: fit-content;
+                                 margin-top: 1rem;font-weight: 600;"><span class="float-right">
+                                    Continue
+                                 </span></button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               @{if false}
+               <section class="no-cart-view section-padding">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-md-8 mx-auto text-center  pt-4 pb-5">
+                           <h1><img class="img-fluid" src="img/cart-empty.jpg" alt="404"></h1>
+                           <div class="mt-5">
+                              <a href="/" class="btn btn-success btn-lg"><i class="mdi mdi-home"></i> GO TO HOME
+                                 PAGE</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+               @{fi}
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <button class="modal-verify-cart" data-target="#cart-verify-modal" data-toggle="modal"
+      style="display: none;"></button>
+   <div class="modal fade cart-verify-modal-main" id="cart-verify-modal" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-body">
+               <div class="cart-verify-modal">
+
+                  <div class="row">
+
+                     <div class="col-lg-12 pad-left-0">
+
+                        <div class="cart-verify-b">
+
+                        </div>
+                        <br>
+                        <h5 style="font-size: 15px;">Do you want to review your cart for the price/stock changes or confirm the order with the current price(s)? </h5>
+
+                        <a class="confirm-cart" href="javascript:confirmCart()"><span class="float-left">
+                              Review Your Cart
+                           </span>
+                        </a>
+                        <button type="button" class="close close-top-right" data-dismiss="modal" aria-label="Close">
+                           Cancel
+                        </button>
+                        <!-- <a class="confirm-cart " href="/cart"><span class="float-left ml-3">
+                              Cancel
+                           </span>
+                        </a> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <form method="get" name="paytm">
+      <table border="1">
+         <tbody>
+
+         </tbody>
+      </table>
+   </form>
+
+
+   <!-- document.paytm.submit(); -->
+   <div class="footer">
+      @{view('partials/footer')}
+   </div>
+
+
+   <!-- Bootstrap core JavaScript -->
+   <script src="/vendor/jquery/jquery.min.js"></script>
+   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- select2 Js -->
+   <script src="/vendor/select2/js/select2.min.js"></script>
+   <!-- Owl Carousel -->
+   <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+   <!-- Custom -->
+   <script src="/js/custom.js"></script>
+   <script src="/js/main.js?v=v1.5"></script>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+</body>
+
+</html>

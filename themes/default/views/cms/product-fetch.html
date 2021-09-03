@@ -1,0 +1,93 @@
+<style>
+    #addItemBtn {
+        font-weight: 500;
+        font-size: 16px; 
+    }
+    @media only screen and (max-width: 767px) { 
+        #addItemBtn {
+        font-weight: 500;
+        font-size: 14px; 
+    }
+     }
+
+</style>
+<div class="col p-0">
+    <div class="heading-detail" style="    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;line-height: 37px;
+    color: #000;">
+        @{model.name} 
+    </div>
+    <ul>
+        @{foreach item in model.variant}
+        <li value="@{item.id}" > <b style="font-weight: 600;    display: flex;
+            justify-content: space-between;
+                color: #000;
+                font-size: 21px;"><span>@{item.title}</span> <span style="font-size: 11px;font-weight: normal;">Available stock :  @{item.stock}</span></b></li>
+        <ul style="    border-bottom: 3px solid #efefef;
+        margin-bottom: 1rem;">
+            @{foreach obj in item.prices }
+
+            <li>
+                <div class="form-check">
+
+                    @{if item.stock == 0 || item.stock < obj.quantity}
+                     
+                    <label class="form-check-label w-100" style="position:relative;">
+                        <input type="radio" class="form-check-input" disabled
+                         name="product_amount_value" data-variantId="@{item.id}"
+                          data-quantity="@{obj.quantity}"  data-price="@{obj.price}" data-productId="@{model.id}"
+                         style="font-size: 13px;font-weight: bold;    position: absolute;
+                          top: 10px;" > 
+                          <span style="    position: relative;font-size: 16px; color: #000; font-weight: 600;"> 
+                            Quantity : @{obj.quantity} x
+                        </span>
+                        <span style="font-size: 15px;float: right;" class="offer-price mb-0 ">Our Price: <span class="price-format-modal"> @{obj.price}</span></span>
+                        <br>
+                        <p style="font-size: 15px !important;" class="d-flex justify-content-between">
+                            <span style="font-size: 15px;" class=""> MRP : <span class="price-format-modal">@{item.mrp}</span></span>
+              
+                            <span style="font-size: 15px;">You Save : <span class="price-format-modal">@{(item.mrp*obj.quantity) -
+                                (obj.price*obj.quantity)}</span></span>
+                        </p>
+                    </label>
+                    @{else}
+                    <label class="form-check-label w-100" style="position:relative;">
+                        <input type="radio" class="form-check-input"
+                         name="product_amount_value" data-variantId="@{item.id}"
+                          data-quantity="@{obj.quantity}"  data-price="@{obj.price}" data-productId="@{model.id}"
+                         style="font-size: 13px;font-weight: bold;    position: absolute;
+                          top: 10px;" > 
+                          <span style="    position: relative;font-size: 16px; color: #000; font-weight: 600;"> 
+                            Quantity : @{obj.quantity} x
+                        </span>
+                        <span style="font-size: 15px;float: right;" class="offer-price mb-0 ">Our Price: <span class="price-format-modal"> @{obj.price}</span></span>
+                        <br>
+                        <p style="font-size: 15px !important;" class="d-flex justify-content-between">
+                            <span style="font-size: 15px;" class=""> MRP : <span class="price-format-modal">@{item.mrp}</span></span>
+              
+                            <span style="font-size: 15px;">You Save : <span class="price-format-modal">@{(item.mrp) -
+                                (obj.price)}</span></span>
+                        </p>
+                    </label>
+                    @{fi}
+                </div>
+            </li>
+
+            @{end}
+        </ul>
+
+        @{end}
+    </ul>
+
+    
+
+        <button type="button" onclick="popupAddCart()" id="addItemBtn" disabled class="btn btn-secondary   btn-lg   w-100 d-flex justify-content-between" > 
+            <span class="total-item-price " >
+
+        </span> 
+        <span>Add item</span>
+     </button> 
+
+</div>

@@ -1,0 +1,63 @@
+
+<br>
+<br>
+<br>
+<center>
+         <h1>Please do not refresh this page... </h1>
+</center>
+<script>
+       
+            var affiliation = "";
+            @{ if model.ispaid }
+                var taxId = '@{model.taxid}';
+                if (taxId.indexOf("PAYTM") != -1) {
+                    taxId = "PAYTM";
+                }
+                if (taxId.indexOf("PINE") != -1) {
+                    taxId = "PINE";
+                }
+                affiliation = "ONLINE/" + taxId + "/WEB";
+            @{ fi }
+
+            @{ if model.iscod }
+                affiliation = "COD";
+            @{ fi }
+            var products = [];
+            var product = {};
+
+            @{ foreach m in model.items }
+
+                product = {                            // List of productFieldObjects.
+                    'name': '@{m.name}',     // Name or ID is required.
+                    'id': '@{m.id}',
+                    'price': '@{m.payPrice}',
+                    'quantity': @{ m.quantity }
+                    
+                        };
+                products.push(product);
+
+            @{ end }
+           
+            var googleAn = {
+                'event': 'purchase',
+                'ecommerce': {
+                    'purchase': {
+                        'actionField': {
+                            'id': '@{model.id}',                         // Transaction ID. Required for purchases and refunds.
+                            'affiliation': affiliation,
+                            'revenue': '@{model.price}',     
+                            'coupon': '@{model.coupon}',                  // Total transaction value (incl. tax and shipping)
+                        },
+                        'products': products
+                    }
+                }
+            };
+            
+            console.log(googleAn,"GGGGGGGOOLE");
+            dataLayer.push(googleAn);
+       
+        setTimeout(function() {
+            location.replace('/checkout/@{model.id}');
+        }, 10000);
+        
+</script>

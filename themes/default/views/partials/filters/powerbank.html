@@ -1,0 +1,131 @@
+<div class="mobile-view mob-view">
+    <p onclick="showFilter()" class="save-text"
+    style="font-size: 14px;font-weight: 600;background-color: #fb9013;padding: 3px;text-align: center;border-radius: 8px;color: #fff;cursor: pointer;">
+    View Filter</p>
+    <p onclick="showFilter()" class="close-text"
+    style="font-size: 14px;font-weight: 600;background-color: #fb9013;padding: 3px;text-align: center;border-radius: 8px;color: #fff;cursor: pointer;">
+    Close Filter</p>
+</div>
+
+<div class="filter-list">
+
+    <div class="each-filter brand-filter">
+        <p class="filter-heading">Brand</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="Iball" id='Iball' class="filter" name="pBrand">Iball</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Zeal" id='Zeal' class="filter" name="pBrand">Zeal</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Karbonn" id='Karbonn' class="filter" name="pBrand">Karbonn</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Inbase" id='Inbase' class="filter" name="pBrand">Inbase</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Mi" id='Mi' class="filter" name="pBrand">Mi</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Anker" id='Anker' class="filter" name="pBrand">Anker</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Samsung" id='Samsung' class="filter" name="pBrand">Samsung</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Bmw" id='Bmw' class="filter" name="pBrand">BMW</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Ferrari" id='Ferrari' class="filter" name="pBrand">Ferrari</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="Igat" id='Igat' class="filter" name="pBrand">Igat</label>
+        </div>
+
+    </div>
+    <div class="each-filter price-filter">
+        <p class="filter-heading">Price Range</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" id='b01' class="pfilter" data-minprice="0"  data-maxprice="5000" name="price">Rs 0 - Rs 5K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox"  id='b02' class="pfilter"data-minprice="50001"  data-maxprice="10000" name="price">Rs 5K - Rs 10K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox"  id='b03' class="pfilter"data-minprice="10001"  data-maxprice="15000" name="price">Rs 10K - Rs 15K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id='b04' class="pfilter"data-minprice="15001"  data-maxprice="20000" name="price">Rs 15K - Rs 20K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox"  id='b09' class="pfilter"
+                   data-minprice="20001"  data-maxprice="25000" name="price">Rs 20K - Rs 25K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id='b010' class="pfilter"data-minprice="25001"  data-maxprice="30000" name="price">Rs 25K - Rs 30K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id='b011' class="pfilter"data-minprice="30001"  data-maxprice="35000" name="price">Rs 30K - Rs 35K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id='b012' class="pfilter"data-minprice="35001"  data-maxprice="40000" name="price">Rs 35K - Rs 40K</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id='b012' class="pfilter"data-minprice="40000"  data-maxprice="500000" name="price">RS 40K+</label>
+        </div>
+    </div>
+    <div class="each-filter camera-filter">
+        <p class="filter-heading">Battery Capacity</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="Up to 4999" id='Up to 4999' class="filter" name="pBattery">Up to 4999
+                MAh</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="5000-7999" id='5000-7999' class="filter" name="pBattery">5000-7999
+                MAh</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="8000-9999" id='8000-9999' class="filter" name="pBattery">8000-9999
+                MAh</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="10000-12999" id='10000-12999' class="filter"
+                    name="pBattery">10000-12999 MAh</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="13000-15999" id='13000-15999' class="filter"
+                    name="pBattery">13000-15999 MAh</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="16000-19000" id='16000-19000' class="filter"
+                    name="pBattery">16000-19000 MAh</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="20000-above" id='20000-above' class="filter"
+                    name="pBattery">20000-above MAh</label>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var filterText = true;
+        $('.close-text').hide();
+           
+        function showFilter() {
+            filterText = !filterText;
+            $('.filter-list').toggle();
+            if (!filterText) {
+                $('.save-text').hide();
+                $('.close-text').show();
+            } else {
+                $('.save-text').show();
+                $('.close-text').hide();
+            }
+
+
+        }
+</script>

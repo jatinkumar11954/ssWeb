@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+	<script>
+	if('serviceWorker'in navigator){
+		caches.keys().then(function(cacheNames){
+				cacheNames.forEach(function(cacheName){
+				caches.delete(cacheName)
+			})
+		})
+	}
+
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.getRegistrations().then(function (registrations) {
+			for (let registration of registrations) {
+			//unregister service worker for old domain
+			registration.unregister()
+			}
+		}).catch(function (err) {
+			// fail state, which is fine as we just don't want a service worker.
+			console.log('Fail: ', err);
+		});
+	}
+	</script>
+
+	<link rel="dns-prefetch" href="//cdn.componentator.com">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//browser.sentry-cdn.com">
+	<link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+	<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+	<link rel="dns-prefetch" href="//d34e6224thkkna.cloudfront.net">
+	<link rel="dns-prefetch" href="//www.googleadservices.com">
+	<link rel="dns-prefetch" href="//www.google.com">
+	<link rel="dns-prefetch" href="//googleads.g.doubleclick.net">
+	<link rel="dns-prefetch" href="//script.hotjar.com">
+	<link rel="dns-prefetch" href="//www.googletagmanager.com">
+	<link rel="dns-prefetch" href="//www.google.co.in">
+	<link rel="dns-prefetch" href="//connect.facebook.net">
+	<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <title>Happi Mobiles</title> -->
+
+	<!-- <link rel="stylesheet" href="/css/happi.css" /> -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+ -->
+	 <link rel="stylesheet" href="https//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700" /> 
+
+
+	<link rel="stylesheet" href="/default/css/main-third.css">
+	@{import('main.css')}
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> -->
+	<!-- @{import('home-other.css','details.css','custom2.css','footer.css','homepage-new.css',
+	'default.css','custom.css','bottom.css','top.css')} -->
+
+
+	
+	<meta name="google-site-verification" content="kjxusWUyXp0QsfTkjXDxK_sysLY475YCSOOo4GMaV_w" />
+	<!-- <meta name="google-site-verification" content="aaS7m5WlEBBKCep2YeKMDk2bGtfRxx2YePlg1_pcsN4" /> -->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta name="format-detection" content="telephone=no" />
+
+	
+
+	<!-- PWA Meta Data  -->
+	<meta name="theme-color" content="#fb9013" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+	<meta name="apple-mobile-web-app-title" content="Happi Mobiles">
+	<meta name="msapplication-TileImage"
+		content="https://d34e6224thkkna.cloudfront.net/service-worker/H_logo-144_x_144.png">
+	<meta name="msapplication-TileColor" content="#fb9013">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#fb9013">
+	<meta name="apple-mobile-web-app-title" content="Happi Mobiles">
+	<link rel="apple-touch-icon" href="https://d34e6224thkkna.cloudfront.net/service-worker/H_logo-512_x_512.png">
+	<link rel="manifest" href="/manifest.json">
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+	<link rel="icon" type="image/png" href="/img/favicon.png">
+
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script> -->
+	@{if model &&  model.metaTag !== undefined}
+	<meta property="og:title" content="@{model.metaTag.title}">
+	<meta property="og:description" content="@{model.metaTag.content}">
+	<meta property="og:keywords" content="@{model.metaTag.keywords}">
+	<meta property="title" content="@{model.metaTag.title}">
+	<meta property="description" content="@{model.metaTag.content}">
+	<meta property="keywords" content="@{model.metaTag.keywords}">
+	<title>@{model.metaTag.title}</title>
+	@{fi}
+
+	@{if model && model.page_type == "product"}
+		<title>@{model.name}</title>
+		
+		<meta property="og:title" content="@{model.name}">
+		<meta property="og:description" content="@{model.name}">
+		<meta property="og:url" content="https://www.happimobiles.com/@{model.linker}">
+		<meta property="og:image" content="https://d34e6224thkkna.cloudfront.net/happi-min/@{model.pictures[0]}.jpg">
+		<meta property="product:brand" content="@{model.manufacturer}">
+		<meta property="product:availability" content="in stock">
+		<meta property="product:condition" content="new">
+		<meta property="product:price:amount" content="@{model.payPrice}">
+		<meta property="product:price:currency" content="INR">
+		<meta property="product:retailer_item_id" content="@{model.linker}">
+		<meta property="product:item_group_id" content="@{model.linker}">
+		<meta property="og:google_product_category" content="Mobile Phones">
+		<meta property="product:google_product_category" content="Mobile Phones">
+		<meta property="og:type" content="website" />
+
+
+
+
+
+
+	@{else if model && model.page_type == "home-page"}
+		<!-- <title>Online Shopping for Mobiles, Accessories & More Best Offers | Happi Mobiles</title> -->
+		<title>Happi Mobile - Home Page</title>
+		
+		<meta property="title" content="Happi Mobiles - Electronics Store">
+		<meta property="description" content="Happi mobiles is the first-of-its-kind experience store, offering end-to-end connectivity solutions through smart retail shopping. On exhibit are the Next-gen Technology, latest Gadgets - SmartPhones, Value Phones and Accessories.">
+
+		<meta property="og:title" content="Happi Mobiles - Electronics Store">
+		<meta property="og:description" content="Happi mobiles is the first-of-its-kind experience store, offering end-to-end connectivity solutions through smart retail shopping. On exhibit are the Next-gen Technology, latest Gadgets - SmartPhones, Value Phones and Accessories.">
+	@{else}
+		<title>Happi Mobile - @{title}</title>
+		
+		<meta property="og:title" content="Happi Mobiles - Electronics Store">
+		<meta property="og:description" content="Happi mobiles is the first-of-its-kind experience store, offering end-to-end connectivity solutions through smart retail shopping. On exhibit are the Next-gen Technology, latest Gadgets - SmartPhones, Value Phones and Accessories.">
+		
+	@{fi}
+</head>
+
+<style>
+	.header-inner-right .a-tag i {
+		font-size: 1.5rem;
+		color: #ffffff;
+	}
+
+	.header-inner-right .icons-align .a-tag {
+		padding: 0 6px;
+	}
+
+	.cart-img {
+		height: 27px;
+		position: inherit;
+	}
+
+	.account .fa {
+		margin-right: 5px;
+		font-size: 1.5rem;
+	}
+
+	.btn-primary,
+	.btn-primary:hover,
+	.btn-primary:not(:disabled):not(.disabled):active {
+		background-color: #fb9013;
+		border-color: #fb9013;
+	}
+
+	.btn-primary.focus,
+	.btn-primary:focus,
+	.btn-primary:not(:disabled):not(.disabled):active:focus {
+		box-shadow: 0 0 0 0.2rem rgb(251, 144, 19);
+	}
+
+	.user-in,
+	.user-out {
+		display: flex;
+	}
+
+	.user-out.phonepe-show {
+		display: none;
+	}
+
+	.search input {
+		margin-right: 50px;
+		background-color: white;
+		padding: 10px;
+		border-radius: 8px 0 0 8px;
+	}
+
+	#search-mobile-form input {
+		padding: 6px !important;
+	}
+
+	.search .search-list-text {
+		background-color: white;
+
+
+	}
+
+	.search .search-list-text ul {
+		padding-left: 0;
+		list-style: none;
+		margin-bottom: 0;
+	}
+
+	.search .search-list-text ul li {
+		font-size: 13px;
+		font-weight: 600;
+		padding: 6px;
+		cursor: pointer;
+	}
+
+	.search .search-list-text ul li:hover {
+		background-color: #dedee0;
+	}
+
+
+	.search-list-text {
+		display: none;
+	}
+
+	@media only screen and (max-width: 767px) {
+
+		.search-div-m {
+			padding: 0 !important;
+		}
+
+		.search-div-m input {
+
+			padding: 6px;
+		}
+
+		.search-list-text {
+			display: block;
+			width: 100%;
+			position: fixed;
+			left: 0;
+		}
+
+		.search .search-list-text ul li {
+			font-size: 16px;
+			font-weight: 400;
+			padding: 5px 5px;
+
+		}
+
+
+
+	}
+</style>
+
+<body style="background-color: #ffffff;">
+
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+	<div class="modify-container mobile-view">
+
+		<div class="relative">
+			<div class="modify-container">
+				<div class="account ">
+
+					<div class="user-out " style="display: flex; padding-left: 10px;">
+						<div class="phonepe open-modal" data-backdrop="static" data-keyboard="false" data-toggle="modal"
+							data-target="#myModal">
+							<h6>Login/Register</h6>
+						</div>
+						<a class="phonepe" href="#" data-backdrop="static" data-keyboard="false" data-toggle="modal"
+							data-target="#myModal"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+
+						<a href="#" class="phonepe" data-backdrop="static" data-keyboard="false" data-toggle="modal"
+							data-target="#myModal">
+							<img class="cart-img" alt="cart">
+						</a>
+
+						<div class="phonepe-show" onclick="login()">
+							<h6>Login/Register</h6>
+						</div>
+						<a href="javascript:login()" class="phonepe-show"><i class="fa fa-heart-o"
+								aria-hidden="true"></i></a>
+
+						<a href="javascript:login()" class="phonepe-show">
+							<img class="cart-img" alt="cart">
+						</a>
+
+					</div>
+					
+					<div class="user-in" style=" padding-left: 10px;">
+						<a href="/checkout" class="mobile-view ">
+							<img class="cart-img" alt="cart">
+						</a>
+						<a href="/my-wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+						<a href="/my-account" class="loginPhonepy"><i class="fa fa-user" aria-hidden="true"></i></a>
+					</div>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="header-outer">
+		<div class="modify-container header-align">
+			<div class="row desktop-header" style="    width: 100%;margin: 0;display: flex;">
+				<div class="col-md-3 col-sm-3 col-xs-12 logo-container">
+					<h2 class="logo clearfix"><span>Responsive eCommerce Template</span>
+						<a href="/" title="Venedor eCommerce Template">
+							<img src="https://d34e6224thkkna.cloudfront.net/happi_media/AFQFWMOX-1605174375761.gif" class="loazd" alt="Happi Mobiles">
+						</a>
+					</h2>
+				</div>
+				<div class="col-md-9 col-sm-9 col-xs-12 header-inner-right">
+					<div class="d-flex justify-content-end mob-search " style=" margin-top: 5px;">
+
+						<header>
+
+						</header>
+						<div class="icons-align">
+
+							<form class="search" name="searchq" id="search-form" action="/mobiles/all" method="get">
+								<button name="serach" onclick="searchClick()"><i class="fa fa-search"></i></button>
+								<div class="serach-div">
+									
+									<input type="text" placeholder="@(Search products ...)" name="q" value="@{query.q}"
+										 class="search-text" autocomplete="off"  />
+									<div class="search-list-text">
+										<ul id="search-result">
+
+										</ul>
+
+									</div>
+								</div>
+							</form>
+
+							<div class="user-out" style="display: flex; padding-left: 10px;">
+								<div  class="a-tag" data-backdrop="static" data-keyboard="false"
+									data-toggle="modal" data-target="#myModal"><img class="cart-img" alt="cart"></div>
+								<div  class="a-tag" data-backdrop="static" data-keyboard="false"
+									data-toggle="modal" data-target="#myModal"><i class="fa fa-heart-o"
+										aria-hidden="true"></i></div>
+								<div  class="a-tag" class="loginPhonepy " data-backdrop="static"
+									data-keyboard="false" data-toggle="modal" data-target="#myModal"><i
+										class="fa fa-user" aria-hidden="true"></i></div>
+							</div>
+
+							<div class="user-in" style="display: flex; padding-left: 10px;">
+								<a href="/checkout"><img class="cart-img" alt="cart"></a>
+								<a href="/my-wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+
+								<a href="/my-account" class="loginPhonepy"><i class="fa fa-user"
+										aria-hidden="true"></i></a>
+							</div>
+
+							<div class="helpline">
+								<div class="d-flex justify-content-center align-items-center ">
+									<img class="phone-img" src="https://d34e6224thkkna.cloudfront.net/happi_media/ATTJKAWZ-1605074209709.png" alt="phone">
+									<!-- <i class="fa fa-phone" aria-hidden="true" style="font-size: 3rem;"></i> -->
+									<div class="d-flex flex-column">
+										<p>Helpline</p>
+
+										<p><a href="tel:+9100412345" style="color: #ffffff;">9100412345</a></p>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+
+			</div>
+			<div class="mob-header">
+				<div class="row mob-inner" style="margin: 0">
+					<h2 class="logo clearfix"><span>Responsive eCommerce Template</span> <a href="/"
+							title="Venedor eCommerce Template"><img src="https://d34e6224thkkna.cloudfront.net/happi_media/AFQFWMOX-1605174375761.gif"  alt="Happi Mobiles"></a>
+					</h2>
+
+					<form class="search" id="search-mobile-form" name="searchm" action="/mobiles/all"
+						method="get" style="margin-left: 17px;">
+						<button name="search-mobile" onclick="searchMobileClick()">
+							<i class="fa fa-search"></i>
+						</button>
+						<div class="serach-div-m">
+							<input type="text" placeholder="@(Search products ...)" name="q" value="@{query.q}"
+							 class="searchm" autocomplete="off" />
+							<div class="search-list-text">
+								<ul id="search-result-m">
+
+								</ul>
+
+							</div>
+
+						</div>
+					</form>
+					<button class="navbar-toggler menu-btn" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<div class="fixed-wrapper">
+		@{view('partials/categories')}
+	</div>
+
+	<div class="nav-outer modify-container">
+		<div class="row" style="margin: 0;">
+
+
+
+			<div class="col-md-12 p-0">
+				<section class="body">
+
+					<nav class="breadcrumb">
+						@{foreach m in sitemap()}
+						@{if m.id === 'category'}
+						/ &nbsp;
+						<i class="crums"></i><a href="@{m.url}">@{m.name}</a> &nbsp; /
+						@{else}
+						<i class="bread"></i><a href="@{m.url}">@{m.name}</a>
+						@{fi}
+						@{end}
+					</nav>
+
+
+
+					@{body}
+
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		@{view('partials/footer')}
+	</div>
+
+
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-dialog-centered">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header center" style="display: block;">
+					<button type="button" class="close" data-dismiss="modal" id="dontClose"
+						style="position: absolute;right: 15px;">&times;</button>
+					<img src="https://d34e6224thkkna.cloudfront.net/happi_media/ROVUPAWL-1605109196703.jpg"
+						alt="Happi Mobiles Logo" style="height: 80px;">
+				</div>
+				<div class="modal-body">
+					<div class="row m-0">
+
+						<div class="col-md-12 col-xs-12">
+							<form id="sendOtpForm" class=" sigin-b" onsubmit="return false">
+								<div class="row m-0">
+									<!-- <h2>@(Sign in)</h2> -->
+									<div class="col-md-12 p-0">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Phone Number</label>
+											<input type="text" class="form-control" id="phoneNo"
+												placeholder="Enter Phone Number" style="font-size: 14px;">
+
+										</div>
+									</div>
+
+								</div>
+								<div class="alert alert-danger sendotp-error" style="font-size: 14px; padding:3px 15px">
+
+								</div>
+								<!-- <a href="javascript:void(0)" class="fs12 exec link m" data-exec="switchpassword"><i class="fa fa-chevron-right"></i>@(I forgot my password)</a> -->
+								<button type="submit" onclick="sendOtpSubmit()" class="btn btn-primary"
+									style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px;">Send
+									OTP</button>
+
+
+							</form>
+
+							<form id="verifyForm" class="forget-b" onsubmit="return false">
+								<div class="row m-0">
+									<!-- <h2>@(Sign in)</h2> -->
+									<div class="col-md-12 p-0">
+										<div class="form-group">
+											<label for="femail">OTP Sent to your Mobile</label>
+											<input type="text" class="form-control" id="otp" placeholder="Enter OTP"
+												style="font-size: 14px;">
+
+										</div>
+									</div>
+
+								</div>
+								<div class="alert alert-danger verify-error" style="font-size: 14px; padding:3px 15px">
+
+								</div>
+								<button type="submit" onclick="verifyOtpSubmit()" class="btn btn-primary"
+									style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px;">Verify
+									OTP</button>
+
+
+
+							</form>
+
+							<form id="registrationForm" class="forget-b" onsubmit="return false">
+								<div class="row m-0">
+									<!-- <h2>@(Sign in)</h2> -->
+									<div class="col-md-12 m p-0">
+										<div class="form-group">
+											<h4>Registration</h4>
+											<div class="row">
+
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group">
+														<label for="exampleInputname">Name</label>
+														<input type="text" class="form-control" id="name"
+															placeholder="Name" style="font-size: 14px;">
+														<span class="name-error" style="font-size:12px;color:red;">Name
+															is required</span>
+													</div>
+												</div>
+
+
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group">
+														<label for="exampleInputEmail1">Email</label>
+														<input type="text" class="form-control" id="email"
+															aria-describedby="emailHelp" placeholder="Enter email"
+															style="font-size: 14px;">
+														<span class="email-error"
+															style="font-size:12px;color:red;">Email is required</span>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-12 ">
+													<div class="form-group">
+														<label for="exampleInputPhonenumber">phone number</label>
+														<input type="text" class="form-control" id="phone"
+															disabled="true" data-minlength="10" maxlength="10"
+															placeholder="Phonenumber" style="font-size: 14px;">
+
+													</div>
+												</div>
+												<!-- <div class="col-md-6 col-sm-12 ">
+													<div class="form-group">
+														<label for="exampleInputPhonenumber">Gender</label>
+														<div>
+															<label class="radio-inline"><input type="radio"
+																	name="gender" value="male" checked>Male</label>
+															<label class="radio-inline"><input type="radio"
+																	name="gender" value="female">Female</label>
+														</div>
+
+													</div>
+												</div> -->
+
+												<div class="col-md-6 col-sm-12 ">
+													<div class="form-group">
+														<label for="exampleInputStreet">Street</label>
+														<input type="text" class="form-control" id="street"
+															placeholder="Street" />
+														<span class="street-error"
+															style="font-size:12px;color:red;">Street is required</span>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-12 ">
+													<div class="form-group">
+														<label for="exampleInputCity">Area </label>
+														<input type="text" class="form-control" id="area"
+															placeholder="Area" />
+														<span class="area-error" style="font-size:12px;color:red;">Area
+															is required</span>
+													</div>
+												</div>
+
+												<div class="col-md-6 col-sm-12 ">
+													<div class="form-group">
+														<label for="exampleInputCity">City </label>
+														<input type="text" class="form-control" id="city"
+															placeholder="City" />
+														<span class="city-error" style="font-size:12px;color:red;">City
+															is required</span>
+													</div>
+												</div>
+
+												<div class="col-md-6 col-sm-12 ">
+													<div class="form-group">
+														<label for="exampleInputZip">Pincode</label>
+														<input type="text" class="form-control" id="zip"
+															placeholder="Pincode" />
+														<span class="zip-error"
+															style="font-size:12px;color:red;">Pincode is
+															required</span>
+													</div>
+												</div>
+
+
+
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="alert alert-danger registration-error"
+									style="font-size: 14px; padding:3px 15px">
+
+								</div>
+								<button type="submit" onclick="registrationOtpSubmit()" class="btn btn-primary"
+									style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px;">Signup
+								</button>
+
+
+
+							</form>
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript" src="/default/js/main-third.js"></script>
+	<script type="text/javascript" src="/default/js/main.js?v=1"></script>
+	
+
+<script>
+window.onload = (event) => {
+  // make a stylesheet link
+var myCSS = document.createElement( "link" );
+myCSS.rel = "stylesheet";
+myCSS.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css";
+// insert it at the end of the head in a legacy-friendly manner
+document.head.insertBefore( myCSS, document.head.childNodes[ document.head.childNodes.length - 1 ].nextSibling );
+};
+</script>
+	<!--End of Tawk.to Script-->
+
+	<div class="whatsapp-chat  d-md-block phonepe">
+
+		<a href="https://web.whatsapp.com/send?phone=919121863666&text=Hi" rel="noreferrer" title="Chat on Whatsapp"
+			target="_blank"><img class="whatsup-icon" src="/img/wasup-icon.png" alt="whatsapp"></a>
+
+	</div>
+
+	<div class="whatsapp-chat d-md-none phonepe">
+
+		<a href="https://api.whatsapp.com/send?phone=919121863666" rel="noreferrer" title="Chat on Whatsapp"
+			target="_blank"><img class="whatsup-icon" src="/img/wasup-icon.png" alt="whatsapp"></a>
+
+	</div>
+
+	<script type="text/javascript">
+
+		var Tawk_API = Tawk_API || {},
+
+			Tawk_LoadStart = new Date();
+
+		(function () {
+
+			var s1 = document.createElement("script"),
+
+				s0 = document.getElementsByTagName("script")[0];
+
+			s1.async = true;
+
+			s1.src = 'https://embed.tawk.to/5befe8ea79ed6453cca9dbec/default';
+
+			s1.charset = 'UTF-8';
+
+			s1.setAttribute('crossorigin', '*');
+
+			s0.parentNode.insertBefore(s1, s0);
+
+		})();
+
+	</script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+<script src="/phonepesdk.js"></script> -->
+
+</body>
+
+</html>

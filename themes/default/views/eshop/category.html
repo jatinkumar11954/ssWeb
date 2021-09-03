@@ -1,0 +1,245 @@
+<style>
+	.mobile-f,
+	.tvs-f,
+	.tablets-f,
+	.powerbank-f,
+	.headset-f,
+	.chargers-f,
+	.bluetoothspeakers-f,
+	.bluetoothheadset-f,
+	.sdrivers-f,
+	.datacables-f {
+		display: none;
+	}
+
+	#filter-names {
+		font-size: 15px;
+	}
+</style>
+
+<!-- <h1 style='padding: 15px 0 0 15px; font-size: 15px;' id='getTitle'>@{title}</h1> -->
+
+<!-- @{view('~/partials/filter')} -->
+@{view('~/partials/products', model)}
+@{if model.count}
+
+
+@{else}
+
+
+
+@{fi}
+@{view('~/partials/pagination', model)}
+
+<script>
+	var url = new URL(window.location.href);
+
+
+	$(document).ready(function () {
+
+		function showFilter() {
+			$('.filter-list').toggle();
+		}
+
+		let titleValue = $('#getTitle').html();
+
+		if (titleValue == 'Tv\'s') {
+			$('.tvs-f').show();
+		} else if (titleValue == 'Mobiles') {
+			$('.mobile-f').show();
+		} else if (titleValue == 'Tablets') {
+			$('.tablets-f').show();
+		} else if (titleValue == 'PowerBanks') {
+			$('.powerbank-f').show();
+		} else if (titleValue == 'Headset') {
+			$('.headset-f').show();
+		} else if (titleValue == 'Chargers') {
+			$('.chargers-f').show();
+		} else if (titleValue == 'Storage drivers') {
+			$('.sdrivers-f').show();
+		} else if (titleValue == 'Data Cables') {
+			$('.datacables-f').show();
+		} else if (titleValue == 'Bluetooth') {
+			$('.blutoothheadset-f').show();
+		}
+
+		checkFilter();
+
+		setFilterValues();
+
+		$('.p-c').each(function () {
+			var val = parseInt($(this).attr('data-value'));
+			$(this).html(val.toLocaleString('en-IN', {
+				maximumFractionDigits: 2,
+				style: 'currency',
+				currency: 'INR'
+			}));
+		});
+
+
+
+
+		setChecked();
+
+
+		function setChecked() {
+
+			var object = localStorage.getItem('filter') == null ? [] : JSON.parse(localStorage.getItem('filter'));
+
+			var c = window.location.search.indexOf('?');
+
+			if (c == -1) {
+				localStorage.removeItem('filter')
+			} else {
+				object.forEach(function (ele) {
+					$('.filter').each(function (index, value) {
+						if ($(this).attr('name') == ele.name && $(this).val() == ele.val) {
+							$(this).attr("checked", "checked");
+						}
+					});
+				});
+			}
+		}
+
+		setTimeout(function () {
+			$('.filter').change(function () {
+
+
+				var object = [];
+
+				$('.filter').each(function (index, value) {
+					console.log("Fileter");
+					return;
+					var is = $(this).is(":checked");
+
+					if (is) {
+						var obj = {
+							name: $(this).attr('name'),
+							val: $(this).val(),
+						};
+						object.push(obj);
+					} else {
+						// do nothing
+					}
+				});
+
+				if (object.length == 0) {
+					$('.clear-fiter').hide();
+				} else {
+					$('.clear-fiter').show();
+					setTimeout(function () {
+						localStorage.setItem('filter', JSON.stringify(object));
+						var query = "?";
+
+						object.forEach(function (ele) {
+
+							query = query + ele.name + "=" + ele.val + "&";
+						});
+						let categoryPath = url.pathname.split('/');
+						console.log(url.pathname);
+						window.location.href = url.pathname + '/' + query;
+					}, 500);
+				}
+			});
+		}, 500);
+
+
+
+
+	});
+
+	function setFilterValues() {
+		let filterObj = localStorage.getItem('filter') == null ? [] : JSON.parse(localStorage.getItem('filter'));
+
+		$('#filter-names').html(``);
+		if (filterObj.length == 0) {
+			$('.clear-fiter').hide();
+		} else {
+			for (let i = 0; i < filterObj.length; i++) {
+
+				const element = filterObj[i];
+
+				$('#filter-names').append(`<p>${element.val} <span><i class="fa fa-times" aria-hidden="true" onclick="removeFilter('${element.val}')"></i></span></p>
+	`);
+			}
+
+		}
+	}
+	function checkFilter() {
+
+		var c = url.search.indexOf('?');
+
+		if (c == -1) {
+			$('.clear-fiter').hide();
+			setFilterValues();
+			// window.location.href = '/categories/mobiles/';
+		} else {
+			$('.clear-fiter').show();
+			$('#clear-fiters').click(function () {
+
+				var c = window.location.search.indexOf('?');
+
+				if (c == -1) {
+					console.log('no filter');
+				} else {
+					window.location.href = window.location.href.replace(/\?.+/, '');
+
+				}
+				localStorage.removeItem('filter');
+				setFilterValues();
+			});
+
+		}
+
+
+	}
+
+
+	$('#clear-fiters').click(function () {
+		console.log("DD");
+		var c = window.location.search.indexOf('?');
+
+		if (c == -1) {
+			console.log('no filter');
+		} else {
+			window.location.href = window.location.href.replace(/\?.+/, '');
+
+		}
+		localStorage.removeItem('filter');
+		setFilterValues();
+	});
+	
+	function removeFilter(params) {
+		console.log('removed FILTER', localStorage.getItem('filter'));
+
+
+
+		let filterObj2 = localStorage.getItem('filter') == null ? [] : JSON.parse(localStorage.getItem('filter'));
+		console.log(filterObj2.length);
+		if (filterObj2.length == 0) {
+			$('.clear-fiter').hide();
+		} else {
+			$('.clear-fiter').show();
+			for (var i = filterObj2.length - 1; i >= 0; --i) {
+				if (filterObj2[i].val == params) {
+					filterObj2.splice(i, 1);
+				}
+			}
+			console.log('FILTER', filterObj2);
+
+			localStorage.setItem('filter', JSON.stringify(filterObj2));
+
+			let obj2 = JSON.parse(localStorage.getItem('filter'));
+			var query = "?";
+
+			obj2.forEach(function (ele) {
+				query = query + ele.name + "=" + ele.val + "&";
+			});
+			let categoryPath = url.pathname.split('/');
+
+			window.location.href = '/categories/' + categoryPath[2] + '/' + query;
+		}
+
+
+	}
+</script>

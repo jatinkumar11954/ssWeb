@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shopsasta">
+    <meta name="author" content="Shopsasta">
+    <title>shopsasta.com - Community Group Buying</title>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- Select2 CSS -->
+    <link href="/vendor/select2/css/select2-bootstrap.css" />
+    <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/osahan.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+    <style>
+        ul {
+            font-weight: 600;
+            color: #000;
+            line-height: 33px;
+        }
+
+        .order-info-b .order-info {
+            width: 50%;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+            border: 0;
+            padding: 5px;
+        }
+
+        .btm-body tr {
+            border-bottom: 1px solid #efefef;
+        }
+
+        tfoot tr td {
+            padding: 4px 20px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        @{view('~partials/header')}
+    </div>
+
+    <section class=" bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 breadcum">
+                    <a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+                        class="mdi mdi-chevron-right"></span> <a href="#">Orders Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="account-page section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class=" card-body">
+                        <div class="widget">
+                            <div class="section-header">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5 class="heading-design-h5">
+                                            <strong> Order Details</strong>
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p class="mb-0">
+                                            <strong class="green-txt cart-quant-txt">@{model.items.length} products
+                                                @{model.count} items in cart</strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <hr style="margin: 0;background-color: #efefef;border: 1px solid #efefef;"> -->
+                            <div class="row">
+                                <div class="col-md-5 pb-4 "
+                                    style="border-bottom: 2px solid #efefef;border-top: 2px solid #efefef;">
+                                    <div class="order-info">
+
+                                        <ul>
+
+                                            <li><span>Order Date &nbsp;&nbsp;: &nbsp;&nbsp;
+                                                    <span
+                                                        style="font-weight: 400;">@{model.createdon_maildate}</span></span>
+                                            </li>
+                                            <li><span>Expected Delivery Date &nbsp;&nbsp;: &nbsp;&nbsp;
+                                                    <span style="font-weight: 400;">@{model.expected_delivery_date},
+                                                        @{model.expected_delivery_time}</span></span></li>
+                                            <li><span>Order No &nbsp;&nbsp; : &nbsp;&nbsp; <span
+                                                        style="font-weight: 400;">
+                                                        @{model.number}</span></span></li>
+                                            <li><span>No of items &nbsp;&nbsp;: &nbsp;&nbsp;
+                                                    <span style="font-weight: 400;">@{model.count}</span></span></li>
+                                            <li><span>Order Status &nbsp;&nbsp;: &nbsp;&nbsp;
+                                                    <span style="font-weight: 400;">@{model.status}</span></span></li>
+                                            @{if model.status == 'Refunded'}
+                                            <li><span>Refund Type &nbsp;&nbsp;: &nbsp;&nbsp; <span
+                                                        style="font-weight: 400;">@{model.refund_type}</span></span>
+                                            </li>
+                                            @{if model.refund_type == 'wallet'}
+                                            <li><span>Refunded Amount &nbsp;&nbsp;: &nbsp;&nbsp; <span
+                                                        style="font-weight: 400;">@{model.refund_amount}</span></span>
+                                            </li>
+
+                                            @{else if model.refund_type == 'bank'}
+                                            <li><span>Refunded Amount &nbsp;&nbsp;: &nbsp;&nbsp; <span
+                                                        style="font-weight: 400;">@{model.refund_amount}</span></span>
+                                            </li>
+                                            <li><span>Refunded Id &nbsp;&nbsp;: &nbsp;&nbsp; <span
+                                                        style="font-weight: 400;">@{model.refund_id}</span></span> </li>
+
+                                            @{fi}
+                                            @{fi}
+                                            @{if model.iscod}
+                                            <li><span>Payment Type &nbsp;&nbsp;: &nbsp;&nbsp; <span
+                                                        style="font-weight: 400;">Cash On
+                                                        Delivery</span></span></li>
+                                            @{else if model.ispaid}
+                                            <li><span>Payment Type &nbsp;&nbsp;: &nbsp;&nbsp;
+                                                    <span style="font-weight: 400;">Online</span></span></li>
+                                            <li><span>Deliverd By &nbsp;&nbsp;: &nbsp;&nbsp;
+                                                    <span style="font-weight: 400;">
+                                                        @{if model.delivery_type == "shop-sasta"}
+                                                        shopsasta
+                                                        @{else}
+                                                        @{model.delivery_type}
+                                                        @{fi}
+
+                                                    </span></span>
+                                            </li>
+
+                                            @{fi}
+                                            <li><span>Total Amount &nbsp;&nbsp;: &nbsp;&nbsp; <span class="price-format"
+                                                        style="font-weight: 400;">@{model.price}</span></span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="order-address">
+                                        <p class="heading-design-h5 mt-3 green-txt" style="font-size: 14px;">
+                                            Delivery Address
+                                        </p>
+                                        <p> <span style="font-weight: 600;"> @{model.deliveryAddress_json.name} - Ph :
+                                                @{model.phone}
+                                                <br> @{model.deliveryAddress_json.apartmentName},
+                                                @{model.deliveryAddress_json.officeNum},
+                                                @{model.deliveryAddress_json.streetName},
+                                                @{model.deliveryAddress_json.landmark},
+                                                @{model.deliveryAddress_json.areaDetails},
+                                                @{model.deliveryAddress_json.city},
+                                                @{model.deliveryAddress_json.pinCode}<span></p>
+
+                                    </div>
+                                    @{if model.status == "Order Placed"}
+                                    <button
+                                        class="btn btn-secondary float-left btn-sm coupon-apply-btn cancel-order-btn"
+                                        type="button" onclick="cancelOrder('@{model.id}')"
+                                        style="    padding: 4px 10px; font-size: 15px;text-transform: capitalize;border-radius: 5px !important;background-color: #029b97 !important;height: 28px;color: #ffffff;">Cancel
+                                        Your Order</button>
+                                    @{fi}
+                                </div>
+                                <div class="col-md-7 p-0" style="border: 1px solid #efefef;">
+                                    <table class="datatabel table table-borderless order-list-tabel mb-0" width="100%"
+                                        cellspacing="0">
+
+                                        <tbody class="btm-body">
+                                            @{foreach item in model.items }
+
+                                            <tr>
+                                                <td><img src="https://shop-sasta.s3.ap-south-1.amazonaws.com/shopsasta/@{item.pictures[0]}.jpg"
+                                                        alt="" style="height: 60px;"></td>
+
+
+                                                <td style="font-weight: 600;">@{item.name} (@{item.variant.title})</td>
+                                                <!-- <td>@{item.mrp}</td> -->
+
+                                                <td style="vertical-align: inherit;">Qty : @{item.quantity} x</td>
+                                                <td class="price-format"
+                                                    style="font-weight: 600;vertical-align: inherit;">@{item.price}</td>
+
+                                                <!-- <td>@{item.price * item.quantity}</td> -->
+                                            </tr>
+
+                                            @{end}
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <p class="heading-design-h5 mt-3 green-txt" style="
+                                              
+                                                margin: 0 !important;
+                                                font-size: 13px;">
+                                                        Payment Details
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: 600;" colspan="3">Cart Value </td>
+                                                <td style="width: 100px;"> <strong
+                                                        class="price-format">@{model.SubTotal}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: 600;" colspan="3">Delivery Fee </td>
+                                                <td style="width: 100px;"><strong
+                                                        class="price-format">@{model.totalShippingPrice}</strong></td>
+                                            </tr>
+                                            @{if model.discount}
+                                            <tr>
+                                                <td style="font-weight: 600;" colspan="3">Coupon Discounts </td>
+                                                <td style="width: 100px;color: red;">-<strong
+                                                        class="price-format">@{model.discount}</strong></td>
+                                            </tr>
+                                            @{fi}
+
+                                            @{if model.wallet_amount}
+                                            <tr>
+                                                <td style="font-weight: 600;" colspan="3">Cashback Discount </td>
+                                                <td style="width: 100px;color: red;">-<strong class="price-format">
+                                                        @{model.wallet_amount}</strong></td>
+                                            </tr>
+                                            @{fi}
+                                            <tr style="border-top: 1px solid #efefef;">
+                                                <td style="font-weight: 600;" colspan="3">Total</td>
+                                                <td style="width: 100px;"><strong class="price-format">
+                                                        @{model.price}</strong>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+
+                                </div>
+                                <div class="col-md-7 p-0">
+                                    <div class="order-info">
+
+                                        <table class="datatabel table table-bordered order-list-tabel mb-0" width="100%"
+                                            cellspacing="0">
+
+                                            <tbody>
+
+
+
+
+                                            </tbody>
+
+                                            <tfoot>
+
+
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        @{view('~partials/footer')}
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- select2 Js -->
+    <script src="/vendor/select2/js/select2.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+    <!-- Custom -->
+    <script src="/js/custom.js"></script>
+    <script src="/js/main.js?v=v1.5"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+
+</html>

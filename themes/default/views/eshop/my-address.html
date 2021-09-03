@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Shopsasta">
+   <meta name="author" content="Shopsasta">
+   <title>shopsasta.com - Community Group Buying</title>
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" href="img/favicon.png">
+   <!-- Bootstrap core CSS -->
+   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Material Design Icons -->
+   <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+   <!-- Select2 CSS -->
+   <link href="/vendor/select2/css/select2-bootstrap.css" />
+   <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+   <!-- Custom styles for this template -->
+   <link href="/css/osahan.css" rel="stylesheet">
+   <!-- Owl Carousel -->
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+   <style>
+      .w-90 {
+         flex: 1;
+         margin-right: .5rem;
+      }
+
+      .w-10 {
+
+         display: grid;
+      }
+
+      .actions-address .edit {
+         font-size: 20px;
+         cursor: pointer;
+      }
+
+      .actions-address .delete {
+         font-size: 20px;
+         color: red;
+         cursor: pointer;
+      }
+
+      .each-address-list label {
+         margin-bottom: 1rem;
+      }
+
+      .each-address-list h6 {
+         font-size: 14px;
+         font-weight: 600;
+      }
+
+      .each-address-list h6 span:first-child {
+
+         font-weight: 500;
+      }
+
+      .select2-container .select2-selection--single {
+         height: auto !important;
+      }
+
+      .select2-container--default .select2-selection--single .select2-selection__rendered {
+         line-height: 22px !important;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="header">
+      @{view('partials/header')}
+   </div>
+
+   <section class=" bg-white">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 breadcum">
+               <a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+                  class="mdi mdi-chevron-right"></span> <a href="#">My Address</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="account-page section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="row ">
+
+                  <div class="col-md-12">
+                     <div class="">
+                        <div class="widget">
+                           <div class="each-address-list">
+
+                           </div>
+                           <div class="section-header d-flex align-items-center mb-2">
+                              <h5 class="heading-design-h5 address-title mb-0">
+                                 Add Delivery Address
+                              </h5>
+                              <button class="btn btn-secondary btn-lg btn-block text-left new-address" type="button"
+                                 style="width: fit-content;
+                                 float: right;border-radius: 8px;
+                                 text-transform: capitalize !important; font-size: 12px;border-radius: 3px !important;padding: 6px 10px;
+                                   margin-left: 1rem; font-weight: 600;" onclick="addNewAddBtn()"><span class="float-left">
+                                    Add New Address
+                                 </span></button>
+                           </div>
+                           <div class="tab-pane" id="addressForm" role="tabpanel">
+                              <fieldset class="form-group">
+                                 <label>Enter your community / Apartment Name </label>
+                                 <input type="text" class="form-control " id="pageApartmentName">
+                                 <span class="page-aprt-error" style="font-size: 12px; color: red;">Apartment Name is
+                                    required</span>
+                              </fieldset>
+                              <fieldset class="form-group">
+                                 <label>Name</label>
+                                 <input type="text" class="form-control " id="pageName">
+                                 <span class="page-name-error" style="font-size: 12px; color: red;">Name is
+                                    required</span>
+                              </fieldset>
+                              <fieldset class="form-group">
+                                 <label>Flat/House/Office No</label>
+                                 <input type="text" class="form-control " id="pageOfficeNum">
+                                 <span class="page-flat-error" style="font-size: 12px; color: red;">Flat/House/Office No
+                                    is required</span>
+                              </fieldset>
+                              <fieldset class="form-group">
+                                 <label>Street Name</label>
+                                 <input type="text" class="form-control " id="pageStreetName">
+                                 <span class="page-street-error" style="font-size: 12px; color: red;">Street Name is
+                                    required</span>
+                              </fieldset>
+                              <fieldset class="form-group">
+                                 <label>Landmark</label>
+                                 <input type="text" class="form-control " id="pageLandmark">
+                                 <span class="page-land-error" style="font-size: 12px; color: red;">Landmark is
+                                    required</span>
+                              </fieldset>
+                              <fieldset class="form-group">
+                                 <label>Area Details</label>
+                                 <input type="text" class="form-control " id="pageAreaDetails">
+                                 <span class="page-area-error" style="font-size: 12px; color: red;">Area Details is
+                                    required</span>
+                              </fieldset>
+                              
+                             
+                          
+                              <!-- <fieldset class="mb-2 selectedCity" style="display: grid;" >
+                                 <label>City</label>
+                                 <span style="border: 1px solid #d5dadf;
+                                 padding: .2rem;
+                                 border-radius: 2px;background-color: #e9ecef;"></span>
+                              </fieldset> -->
+                              <fieldset class="mb-2 selectedCityNo">
+                                 <label>City</label>
+                                 <select id='pageCity' style='width: 100%;' name="pageCitynew"></select>
+                              </fieldset>
+                              <fieldset class="form-group mb-2">
+                                 <label>Pincode</label>
+                                 <input type="text" class="form-control getCityPin" id="pagePinCode" onfocusout="getCities(this.value)">
+                                 <span class="page-pin-error" style="font-size: 12px; color: red;">Pincode is
+                                    required</span>
+                              </fieldset>
+                              <!-- <fieldset class="form-group">
+                                 <label>City</label>
+                                 <input type="text" class="form-control " id="pageCity">
+                                 <span class="page-city-error" style="font-size: 12px; color: red;">City name is
+                                    required</span>
+                              </fieldset> -->
+                            
+                              <fieldset class="form-row">
+                                 <div class="form-check">
+                                    <label class="form-check-label">
+                                       <input type="radio" class="form-check-input" checked name="pageType"
+                                          value="home">Home
+                                    </label>
+                                 </div>
+                                 &nbsp;&nbsp;
+                                 <div class="form-check">
+                                    <label class="form-check-label">
+                                       <input type="radio" class="form-check-input" name="pageType"
+                                          value="office">Office
+                                    </label>
+                                 </div> &nbsp;&nbsp;
+                                 <div class="form-check">
+                                    <label class="form-check-label">
+                                       <input type="radio" class="form-check-input" name="pageType"
+                                          value="others">Others
+                                    </label>
+                                 </div>
+                              </fieldset>
+                              <br>
+                              <div class="custom-control custom-checkbox">
+                                 <input type="checkbox" class="custom-control-input" id='setDefault'>
+                                 <label class="custom-control-label" for="setDefault">Set this as my default delivery
+                                    address</label>
+                              </div>
+                              <br>
+                              <fieldset class="form-group">
+                                 <button type="submit" class="btn btn-lg btn-secondary btn-block new-btn"
+                                    onclick="addAddress('page')">Submit</button>
+                                 <button type="submit" class="btn btn-lg btn-secondary btn-block edit-btn"
+                                    onclick="editAddress()">Submit</button>
+                              </fieldset>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+
+   <div class="footer">
+      @{view('partials/footer')}
+   </div>
+
+
+   <!-- Bootstrap core JavaScript -->
+   <script src="/vendor/jquery/jquery.min.js"></script>
+   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- select2 Js -->
+   <script src="/vendor/select2/js/select2.min.js"></script>
+   <!-- Owl Carousel -->
+   <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+   <!-- Custom -->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+   <script src="/js/custom.js"></script>
+   <script src="/js/main.js?v=v1.5"></script>
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+   <script>
+      $(document).ready(function () {
+
+         // Initialize select2
+         // $("#pageCity").select2();
+
+         // // Read selected option
+         // $('#but_read').click(function () {
+         //    var username = $('#pageCity option:selected').text();
+         //    var userid = $('#pageCity').val();
+
+         //    $('#result').html("id : " + userid + ", name : " + username);
+
+         // });
+        
+      });
+
+      
+   </script>
+</body>
+
+</html>

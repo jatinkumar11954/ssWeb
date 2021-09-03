@@ -1,0 +1,137 @@
+<div class="prod-i">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-md-12">
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>General</p>
+                        <!-- @{model.product_type} -->
+                    </div>
+
+                    <div class="collapse show" id="collapseExample">
+                        <div class="spec-body">
+                            @{if model.cabtype}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+                                    <span> Cable Type</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.cabtype}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.cabdevice}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Compatible Devices</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.cabdevice}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.cablength}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Cable Length</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.cablength}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.cabconnect1}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span> Connector 1</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.cabconnect1}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.cabconnect2}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Connector 2</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.cabconnect2}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.cab}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Cable</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.cab}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Features</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.fhigh}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Highlights</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.fhigh}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.fspeed}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Transfer Speed</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.fspeed}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.finout}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Input / Output</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.finout}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.fbody}
+                            <div class="row m-0">
+                                    <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                        <span>Body Material</span>
+                                    </div>
+                                    <div class="col-md-9 right-a col-xs-8">
+                                        <span>@{model.fbody}</span>
+                                    </div>
+                                </div>
+                                @{fi}
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

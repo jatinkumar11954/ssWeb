@@ -1,0 +1,1311 @@
+@{import('home-other.css')}
+
+<style>
+.breadcrumb {
+    display: none;
+}
+.middle-b .middle-img:first-child {
+    padding-bottom:  2px;
+    padding-right:  2px;
+    padding-left:  2px;
+}
+.middle-b .middle-img:last-child {
+    padding-top:  2px;
+    padding-right:  2px;
+    padding-left:  2px;
+}
+.middle-b:first-child .middle-img {
+    padding-left: 10px;
+}
+.middle-b:first-child .middle-img {
+    padding-right: 10px;
+}
+.banner-container img {
+    box-shadow: 0px 2px 4px 0px #ccc;
+    width: 100%;
+}
+.banner-container {
+    margin-bottom: 15px;
+    padding: 0;
+}
+.static-b img{
+    width: 100%;
+}
+.header-m .col-md-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.hover14 figure {
+    position: relative;
+    overflow: hidden;
+}
+.hover14 figure::before {
+	position: absolute;
+	top: 0;
+	left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+.hover14 figure:hover::before {
+	-webkit-animation: shine 1s;
+	animation: shine 1s;
+}
+@-webkit-keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+@keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+
+
+ .hover15 figure {
+    position: relative;
+    overflow: hidden;
+}
+.hover15 figure::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	background: rgba(255,255,255,.2);
+	border-radius: 100%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
+.hover15 figure:hover::before {
+	-webkit-animation: circle .75s;
+	animation: circle .75s;
+}
+@-webkit-keyframes circle {
+	0% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		width: 200%;
+		height: 200%;
+		opacity: 0;
+	}
+}
+@keyframes circle {
+	0% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		width: 200%;
+		height: 200%;
+		opacity: 0;
+	}
+}
+/* .new-b-img ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+.new-b-img img {
+    width
+    : 100%;
+}
+.middle-b ul li:nth-child(1) a {
+    margin: 0 2px 1px 1px;
+}
+.middle-b ul li:nth-child(2) a {
+    margin: 0 0px 1px 1px;
+}
+.middle-b ul {
+    display: flex;
+    flex-wrap: wrap;
+    
+    justify-content: space-between;
+}
+.middle-b ul li{
+    width: 50%;
+}
+.new-b-img ul a {
+    box-shadow: 0 0 5px 1px #cccccc;
+    
+    display: inline-block;
+} */
+</style>
+<link rel="stylesheet"
+    href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
+<link rel="stylesheet"
+    href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- <div class="container p-0">
+    <div class="row m-0 new-b-img">
+        <div class="col-md-4 p-0">
+            <ul>
+                <li><a href="https://www.bajajfinservmarkets.in/stores/sangeetha" target="_blank"><img src="https://storage.sg.content-cdn.io/in-resources/0211f4bd-ce6a-4162-95a2-f801e5ae9176/Images/userimages/Banners/Bajaj-No-Cost.jpg"></a></li>
+                </ul>
+        </div>
+        <div class="col-md-6 middle-b p-0 middle-h">
+            <ul >
+                <li><a href="/price-drop-protection"><img src="https://storage.sg.content-cdn.io/in-resources/0211f4bd-ce6a-4162-95a2-f801e5ae9176/Images/userimages/VAS/VAS-Boxes-16.jpg"></a></li>
+                <li><a href="/Student-Of-The-Year"><img src="https://storage.sg.content-cdn.io/in-resources/0211f4bd-ce6a-4162-95a2-f801e5ae9176/Images/userimages/VAS/VAS-Boxes-27.jpg"></a></li>
+                <li><a href="/Screen-Replacement"><img src="https://storage.sg.content-cdn.io/in-resources/0211f4bd-ce6a-4162-95a2-f801e5ae9176/Images/userimages/VAS/VAS-Boxes-28.jpg"></a></li>
+                <li><a href="/buy-back"><img src="https://storage.sg.content-cdn.io/in-resources/0211f4bd-ce6a-4162-95a2-f801e5ae9176/Images/userimages/VAS/VAS-Boxes-19.jpg"></a></li>
+                </ul >
+        </div>
+       
+        <div class="col-md-2 p-0 l-img">
+            <ul>
+                <li><a href="/2-hours-delivery"><img src="https://storage.sg.content-cdn.io/in-resources/0211f4bd-ce6a-4162-95a2-f801e5ae9176/Images/userimages/VAS/VASBoxes-06.jpg"></a></li>
+                </ul>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container p-0 header-m arrival-b">
+
+    <div class="row">
+        <div class="heading">
+            <h5>New Arrivals</h5>
+            <div style="background-color: #e7e7e7;">
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-xs-12 col-md-2 p-0" >
+            <div class="static-b hover14 ">
+                <figure>                
+                    <a href="/detail/oppo-f15-8gb128gb/"><img src="/img/oppo_f15.jpg" alt="oppo f15"></a>
+                </figure>
+
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-12 m-p-0" >
+            <div class="row m-0" id='new-arrivals'>
+
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<div class="container logos-sec p-0">
+    <div class="row m-0">
+        <div class="col-md-12 d-flex" style="border-radius: 10px">
+            <div class="owl-carousel owl-theme">
+
+
+                <div class="each-icon item">
+                    <a href="/categories/mobiles/?ftrBrand=Apple"><img src="/home-img/apple.png" alt="apple"></a>
+                </div>
+
+                <div class="each-icon item">
+                    <a href="/categories/mobiles/?ftrBrand=Redmi"><img src="/home-img/mi.png" alt="redmi"></a>
+                </div>
+                <div class="each-icon item">
+                    <a href="/categories/mobiles/?ftrBrand=Nokia"><img src="/home-img/nokia.png" alt="nokia"></a>
+                </div>
+                <div class="each-icon item">
+                    <a href="/categories/mobiles/?ftrBrand=Oppo"><img src="/home-img/oppo.png" alt="oppo"></a>
+                </div>
+                <div class="each-icon item">
+                    <a href="/categories/mobiles/?ftrBrand=Vivo"><img src="/home-img/vivo.png" alt="vivo"></a>
+                </div>
+                <div class="each-icon item">
+                    <a href="/categories/mobiles/?ftrBrand=Samsung"><img src="https://openconnectivity.org/wp-content/uploads/2015/09/samsung-logo-4.png" alt="samsung"></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container p-0 header-m tv-b">
+
+    <div class="row">
+        <div class="heading">
+            <h5>TV's</h5>
+            <div style="background-color: #e7e7e7;">
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-xs-12 col-md-10" >
+            <div class="row m-0" id='tv'>
+
+            </div>
+            
+        </div>
+        
+        <div class="col-xs-12 col-md-2 p-0">
+            <div class="static-b hover14">
+                <figure>
+                    <a href="/categories/tv-s/?tvBrand=Mi&tvBrand=Tcl&"><img src="/img/tv.jpg" alt="TVs ads"></a>
+                </figure>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container p-0 home-only">
+    <div class="w3-content hover15">
+        <figure>
+            <img class="mySlides"  src="img\one-plus-slide.jpg" alt="Happi Mobiles" style="width:100%">
+        </figure>
+        
+    </div>
+    </div>  -->
+<div class="container p-0 header-m gadgets-b">
+
+    <div class="row">
+        <div class="heading">
+            <h5>SUPER GADGETS</h5>
+            <div style="background-color: #e7e7e7;">
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-xs-12 col-md-2 p-0" >
+            <div class="static-b hover14 ">
+                <figure>                
+                    <a href="/categories/headset/"><img src="/img/supergadgets.jpg" alt="headset"></a>
+                </figure>
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-10" >
+            <div class="row m-0" id='super-gadgets'>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+     
+
+<div class="container p-0 header-m popular-b">
+
+    <div class="row">
+        <div class="heading">
+            <h5>POPULAR PHONES</h5>
+            <div style="background-color: #e7e7e7;">
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-xs-12 col-md-10" >
+            <div class="row m-0" id='popular-phones'>
+
+            </div>
+            
+        </div>
+        
+        <!-- <div class="col-md-2 p-0">
+            <div class="static-b hover14">
+                <figure>
+                    <a href="/categories/mobiles/?ftrBrand=Vivo"><img src="/img/vivo-red-homepage.jpg"></a>
+                </figure>
+                
+            </div>
+        </div> -->
+    </div>
+
+</div>
+
+<!-- <div class="container banner-container">
+    <div class="row m-0">
+        <div class="col-md-3 p-0">
+            <div class="middle-img f-img">
+                <a href="https://www.bajajfinservmarkets.in/stores/happi_mobiles" target='_blank'><img src="/img/bajaj.png"></a>
+            </div>
+        </div>
+        <div class="col-md-3 middle-b p-0 middle-h">
+            <div class="middle-img">
+                <a href="/price-drop-protection-happi/"><img src="/img/price-drop.jpg"></a>
+            </div>
+            <div class="middle-img">
+                <img src="/img/screen-replace.jpg">
+            </div>
+        </div>
+        <div class="col-md-3 middle-b p-0">
+            <div class="middle-img">
+                <img src="/img/refer.jpg">
+            </div>
+            <div class="middle-img">
+                <a href="/assured-buy-back/"><img src="/img/assured.jpg"></a>
+            </div>
+        </div>
+        <div class="col-md-3 p-0">
+            <div class="middle-img l-img">
+                <a href="/2-hours-delivery/"><img src="/img/delivery.png"></a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container p-0 header-m dual-b">
+    <div class="row">
+        <div class="heading">
+            <h5>DUAL CAMERA PHONES</h5>
+            <div style="background-color: #e7e7e7;">
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-xs-12 col-md-2 p-0">
+            <div class="static-b hover14">
+                <figure>
+                    <a href="/categories/?q=realme+xt"><img src="/img/dual-cam.jpg" alt="dualcam phone"></a>
+                </figure>
+                
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-10" >
+            <div class="row m-0" id='dual-phones'>
+
+            </div>
+            
+        </div>
+        <!-- <div class="col-md-2">
+            <div class="static-b">
+                <img src="/img/vivo-red-homepage.jpg">
+            </div>
+        </div> -->
+    </div>
+
+</div>
+<!-- 
+<div class="container p-0 home-only">
+    <div class="w3-content hover15">
+        <figure>
+            <img class="mySlides"  src="/img/banner2.jpg" alt="Happi Mobiles" style="width:100%">
+        </figure>
+        
+    </div>
+    </div>  -->
+
+
+<div class="container p-0 header-m gaming-b">
+
+    <div class="row">
+        <div class="heading">
+            <h5>BEST GAMING PHONES</h5>
+            <div style="background-color: #e7e7e7;">
+                <hr>
+            </div>
+
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-xs-12 col-md-10" >
+            <div class="row m-0" id='gaming-phones'>
+
+            </div>
+            
+        </div>
+        <div class="col-xs-12 col-md-2 p-0">
+            <div class="static-b hover14">
+            <figure>
+                <a href="/detail/vivo-u20-8gb128gb/"><img src="/img/vivo-red-homepage.jpg" alt="vivo red"></a>
+
+            </figure>
+
+                
+                
+        
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- <div class="flex-container add-padding home-videos">
+   
+
+</div> -->
+
+<div class="container p-0 home-videos" style="padding: 2rem 0 !important;">
+    <!-- <div class="row m-0"> -->
+    <div class="col-md-3 col-sm-12 col-12 p-0">
+        <iframe title="upto 60% off" width="100%" height="250" src="https://www.youtube.com/embed/pjLujHcPEaY?feature=oembed"
+            frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
+    <div class="col-md-3 col-sm-12 col-12">
+        <iframe title="mega festival" width="100%" height="250" src="https://www.youtube.com/embed/RRfb_dFz_4M?feature=oembed"
+            frameborder="0" allowfullscreen>
+        </iframe>
+
+    </div>
+    <div class="col-md-3 col-sm-12 col-12 pl-0">
+        <iframe title="iphone 11 pro" width="100%" height="250" src="https://www.youtube.com/embed/ab80jSBuOmY?feature=oembed"
+            frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
+    <div class="col-md-3 col-sm-12 col-12 p-0">
+        <iframe title="Samsung galaxy " width="100%" height="250" src="https://www.youtube.com/embed/VJPRf8btaRY?feature=oembed"
+            frameborder="0" allowfullscreen>
+        </iframe>
+
+    </div>
+    
+
+</div>
+
+<!-- <div class="container banner-container">
+    <div class="row m-0">
+        <div class="col-md-4 p-0">
+            <div class="middle-img">
+                <a href="https://www.bajajfinservmarkets.in/stores/happi_mobiles"><img src="/img/bajaj.png"></a>
+            </div>
+        </div>
+        <div class="col-md-3 middle-b p-0">
+            <div class="middle-img">
+                <a href="/price-drop-protection-happi/"><img src="/img/price-drop-protection.png"></a>
+            </div>
+            <div class="middle-img">
+                <img src="/img/screen-replacement.png">
+            </div>
+        </div>
+        <div class="col-md-3 middle-b p-0">
+            <div class="middle-img">
+                <img src="/img/refer.png">
+            </div>
+            <div class="middle-img">
+                <a href="/assured-buy-back/"><img src="/img/Assured-buy-back.png"></a>
+            </div>
+        </div>
+        <div class="col-md-2 p-0">
+            <div class="middle-img">
+                <a href="/2-hours-delivery/"><img src="/img/delivery.png"></a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<script src="https://owlcarousel2.github.io/OwlCarousel2/assets/vendors/jquery.min.js"></script>
+<script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
+
+
+<script>
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        loop: true,
+        margin: 10,
+        responsiveClass: true,
+        autoplay: true,
+        autoplayTimeout: 1000,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: true
+            },
+            600: {
+                items: 3,
+                nav: true
+            },
+            1000: {
+                items: 6,
+                nav: true,
+            }
+        }
+    });
+    // var owl2 = $('.owl-carousel2');
+    // owl2.owlCarousel({
+    //     items: 2,
+    //     loop: true,
+    //     margin: 10,
+    //     autoplay: true,
+    //     autoplayTimeout: 1000,
+    //     autoplayHoverPause: true
+    // });
+</script>
+
+<script>
+
+
+    $(document).ready(function () {
+        setTimeout(() => {
+            console.log('HEIGJT',$('.middle-h').height());
+        
+            $('.f-img img').height($('.middle-h').height());
+
+            $('.l-img img').height($('.middle-h').height());
+       
+      
+        }, 1500);
+
+        setTimeout(() => {
+            getNewArrivals();
+            getSuperGadgets();
+        
+        }, 500);
+       
+       setTimeout(() => {
+             getPopularPhones();
+            getDualPhones();
+       
+        
+        },  1500);
+       
+       setTimeout(() => {
+            getGamingPhones();
+            getTvs();
+        
+        }, 2000);
+
+
+        // getBanners();
+        
+    });
+
+
+    function getNewArrivals() {
+        var baseUrl = '/api/';
+        var relatedPId;
+        $.ajax(baseUrl + 'products/?isHomeArrivals=true', {
+            type: 'GET',
+
+            dataType: 'json', // type of response data
+            timeout: 5000, // timeout milliseconds
+            success: function (data, status, xhr) { // success callback function
+                console.log('DATAA', data);
+
+                let objnew = [];
+
+
+                objnew = data.items.slice(0, 4);
+                if (objnew.length == 0) {
+                    $('.arrival-b').hide();
+                } else {
+                    $('.arrival-b').show();
+                    for (let i = 0; i < objnew.length; i++) {
+                        let obj = objnew[i];
+                        var cart = '';
+                        if (obj.stock == 0) {
+                            cart = `<p class='color-red'>@(Out of Stock)</p>`;
+                        }
+
+                        else {
+                            if (obj.purchase_type == 'Online') {
+                                cart = `<a href="${obj.linker}#addToCart" class="more">@(Add To Cart)</a>`;
+                            }
+                            else {
+                                cart = `<p class='color-green'>@(Visit Store)</p>`;
+                            }
+                        }
+
+                        var priceText = '';
+                        let tempPrice = '';
+                        tempPrice = obj.prices[0].price.toLocaleString('en-IN', {
+                            maximumFractionDigits: 2,
+                            style: 'currency',
+                            currency: 'INR'
+                        });
+
+                        if (obj.mrp) {
+
+                            let tempMrp = '';
+                            tempMrp = obj.mrp.toLocaleString('en-IN', {
+                                maximumFractionDigits: 2,
+                                style: 'currency',
+                                currency: 'INR'
+                            });
+                            if (obj.prices[0].price != obj.mrp) {
+                                priceText = `<h5> ${tempPrice}</h5>
+                                            <h5 class="mrp-stike">${tempMrp}</h5>`;
+                            } else {
+                                priceText = `<h5> ${tempPrice}</h5>`;
+                            }
+                        } else {
+                            priceText = `<h5> ${tempPrice}</h5>`;
+                        }
+
+
+                        $('#new-arrivals').append(`
+                        <div class="col-md-3 col-6 col-xs-12 each-b p-l m-p-0">
+                            <div class="d-flex flex-row">
+                                <div class="left flex-grow-1">
+                                        <a href="${obj.linker}">
+                                                    <img src="https://d34e6224thkkna.cloudfront.net/happi/${obj.pictures[0]}.jpg" alt="${obj.name}" class="each-img">
+                                                </a>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <a href="${obj.linker}">${obj.name}</a>
+                                        <div class="price-min">
+                                            ${priceText}
+                                        </div>
+                                        ${cart}
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                    }
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+                getNewArrivals();
+                $('.arrival-b').hide();
+            }
+        });
+    }
+
+     
+
+    function getSuperGadgets() {
+
+        var baseUrl = '/api/';
+        var relatedPId;
+        $.ajax(baseUrl + 'products/?isHomeSuper=true', {
+            type: 'GET',
+
+            dataType: 'json', // type of response data
+            timeout: 5000, // timeout milliseconds
+            success: function (data, status, xhr) { // success callback function
+
+                let objnew = [];
+                objnew = data.items.slice(0, 4);
+                if (objnew.length == 0) {
+                    $('.gadgets-b').hide();
+                } else {
+                    $('.gadgets-b').show();
+                    for (let i = 0; i < objnew.length; i++) {
+                        let obj = objnew[i];
+                        var cart = '';
+                        if (obj.stock == 0) {
+                            cart = `<p class='color-red'>@(Out of Stock)</p>`;
+                        }
+
+                        else {
+                            if (obj.purchase_type == 'Online') {
+                                cart = `<a href="${obj.linker}#addToCart" class="more">@(Add To Cart)</a>`;
+                            }
+                            else {
+                                cart = `<p class='color-green'>@(Visit Store)</p>`;
+                            }
+                        }
+                        var priceText = '';
+                        let tempPrice = '';
+                        tempPrice = obj.prices[0].price.toLocaleString('en-IN', {
+                            maximumFractionDigits: 2,
+                            style: 'currency',
+                            currency: 'INR'
+                        });
+
+                        if (obj.mrp) {
+
+                            let tempMrp = '';
+                            tempMrp = obj.mrp.toLocaleString('en-IN', {
+                                maximumFractionDigits: 2,
+                                style: 'currency',
+                                currency: 'INR'
+                            });
+                            if (obj.prices[0].price != obj.mrp) {
+                                priceText = `<h5> ${tempPrice}</h5>
+                                            <h5 class="mrp-stike">${tempMrp}</h5>`;
+                            } else {
+                                priceText = `<h5> ${tempPrice}</h5>`;
+                            }
+                        } else {
+                            priceText = `<h5> ${tempPrice}</h5>`;
+                        }
+
+
+                        $('#super-gadgets').append(`
+                        <div class="col-md-3 col-6 col-xs-12 each-b p-l m-p-0">
+                            <div class="d-flex flex-row">
+                                <div class="left flex-grow-1">
+                                        <a href="${obj.linker}">
+                                             <img src="https://d34e6224thkkna.cloudfront.net/happi/${obj.pictures[0]}.jpg" alt="${obj.name}" class="each-img">
+                                                </a>
+                                    <div class="d-flex flex-column align-items-center">
+                                            <a href="${obj.linker}">${obj.name}</a>
+                                            <div class="price-min">
+                                                ${priceText}
+                                        </div>
+                                        ${cart}
+                                       
+                                    </div>
+  
+                                </div>
+                                <div class="right">
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                    }
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+               getSuperGadgets();
+                $('.gadgets-b').hide();
+                
+            }
+        });
+
+    }
+
+    function getPopularPhones() {
+
+        var baseUrl = '/api/';
+        var relatedPId;
+        $.ajax(baseUrl + 'products/?isHomePopular=true', {
+            type: 'GET',
+
+            dataType: 'json', // type of response data
+            timeout: 5000, // timeout milliseconds
+            success: function (data, status, xhr) { // success callback function
+
+                let objnew = [];
+
+                objnew = data.items.slice(0, 4);
+                if (objnew.length == 0) {
+                    $('.popular-b').hide();
+                } else {
+                    $('.popular-b').show();
+                    console.log('LLLLLL', objnew.length);
+                    if (objnew.length == 0) {
+                        $('.popular-b').hide();
+                    } else {
+                        $('.popular-b').show();
+                        for (let i = 0; i < objnew.length; i++) {
+                            let obj = objnew[i];
+                            var cart = '';
+                            if (obj.stock == 0) {
+                                cart = `<p class='color-red'>@(Out of Stock)</p>`;
+                            }
+
+                            else {
+                                if (obj.purchase_type == 'Online') {
+                                    cart = `<a href="${obj.linker}#addToCart" class="more">@(Add To Cart)</a>`;
+                                }
+                                else {
+                                    cart = `<p class='color-green'>@(Visit Store)</p>`;
+                                }
+                            }
+                            var priceText = '';
+                            let tempPrice = '';
+                            tempPrice = obj.prices[0].price.toLocaleString('en-IN', {
+                                maximumFractionDigits: 2,
+                                style: 'currency',
+                                currency: 'INR'
+                            });
+
+                            if (obj.mrp) {
+
+                                let tempMrp = '';
+                                tempMrp = obj.mrp.toLocaleString('en-IN', {
+                                    maximumFractionDigits: 2,
+                                    style: 'currency',
+                                    currency: 'INR'
+                                });
+                                if (obj.prices[0].price != obj.mrp) {
+                                    priceText = `<h5> ${tempPrice}</h5>
+                                            <h5 class="mrp-stike">${tempMrp}</h5>`;
+                                } else {
+                                    priceText = `<h5> ${tempPrice}</h5>`;
+                                }
+                            } else {
+                                priceText = `<h5> ${tempPrice}</h5>`;
+                            }
+
+
+                            $('#popular-phones').append(`
+                    <div class="col-md-3 col-6 col-xs-12 each-b p-l m-p-0">
+                            <div class="d-flex flex-row">
+                                <div class="left flex-grow-1">
+                                        <a href="${obj.linker}">
+                                                    <img src="https://d34e6224thkkna.cloudfront.net/happi/${obj.pictures[0]}.jpg" alt="${obj.name}" class="each-img">
+                                                </a>
+                                    <div class="d-flex flex-column align-items-center">
+                                            <a href="${obj.linker}">${obj.name}</a>
+                                            <div class="price-min">
+                                                ${priceText}
+                                     </div>
+                                        ${cart}
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                        }
+
+                    }
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+                getPopularPhones();
+                $('.popular-b').hide();
+            }
+        });
+    }
+
+    function getDualPhones() {
+
+        var baseUrl = '/api/';
+        var relatedPId;
+        $.ajax(baseUrl + 'products/?isHomeDual=true', {
+            type: 'GET',
+
+            dataType: 'json', // type of response data
+            timeout: 5000, // timeout milliseconds
+            success: function (data, status, xhr) { // success callback function
+                let objnew = [];
+                objnew = data.items.slice(0, 4);
+                if (objnew.length == 0) {
+                    $('.dual-b').hide();
+                } else {
+                    $('.dual-b').show();
+                    for (let i = 0; i < objnew.length; i++) {
+                        let obj = objnew[i];
+                        var cart = '';
+                        if (obj.stock == 0) {
+                            cart = `<p class='color-red'>@(Out of Stock)</p>`;
+                        }
+
+                        else {
+                            if (obj.purchase_type == 'Online') {
+                                cart = `<a href="${obj.linker}#addToCart" class="more">@(Add To Cart)</a>`;
+                            }
+                            else {
+                                cart = `<p class='color-green'>@(Visit Store)</p>`;
+                            }
+                        }
+
+                        var priceText = '';
+                        let tempPrice = '';
+                        tempPrice = obj.prices[0].price.toLocaleString('en-IN', {
+                            maximumFractionDigits: 2,
+                            style: 'currency',
+                            currency: 'INR'
+                        });
+
+                        if (obj.mrp) {
+
+                            let tempMrp = '';
+                            tempMrp = obj.mrp.toLocaleString('en-IN', {
+                                maximumFractionDigits: 2,
+                                style: 'currency',
+                                currency: 'INR'
+                            });
+                            if (obj.prices[0].price != obj.mrp) {
+                                priceText = `<h5> ${tempPrice}</h5>
+                                            <h5 class="mrp-stike">${tempMrp}</h5>`;
+                            } else {
+                                priceText = `<h5>${tempPrice}</h5>`;
+                            }
+                        } else {
+                            priceText = `<h5> ${tempPrice}</h5>`;
+                        }
+
+                        $('#dual-phones').append(`
+                    <div class="col-md-3 col-6 col-xs-12 each-b p-l m-p-0">
+                            <div class="d-flex flex-row">
+                                <div class="left flex-grow-1">
+                                        <a href="${obj.linker}">
+                                                    <img src="https://d34e6224thkkna.cloudfront.net/happi/${obj.pictures[0]}.jpg" alt="${obj.name}" class="each-img">
+                                                </a>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <a href="${obj.linker}">${obj.name}</a>
+                                        <div class="price-min">
+                                            ${priceText}
+                                        </div>
+                                      
+                                        ${cart}
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                    }
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+                getDualPhones();
+                $('.dual-b').hide();
+            }
+        });
+    }
+
+    function getGamingPhones() {
+
+        var baseUrl = '/api/';
+        var relatedPId;
+        $.ajax(baseUrl + 'products/?isHomeGaming=true', {
+            type: 'GET',
+
+            dataType: 'json', // type of response data
+            timeout: 5000, // timeout milliseconds
+            success: function (data, status, xhr) { // success callback function
+                let objnew = [];
+                objnew = data.items.slice(0, 4);
+                if (objnew.length == 0) {
+                    $('.gaming-b').hide();
+                } else {
+                    $('.gaming-b').show();
+                    for (let i = 0; i < objnew.length; i++) {
+                        let obj = objnew[i];
+                        var cart = '';
+                        if (obj.stock == 0) {
+                            cart = `<p class='color-red'>@(Out of Stock)</p>`;
+                        }
+
+                        else {
+                            if (obj.purchase_type == 'Online') {
+                                cart = `<a href="${obj.linker}#addToCart" class="more">@(Add To Cart)</a>`;
+                            }
+                            else {
+                                cart = `<p class='color-green'>@(Visit Store)</p>`;
+                            }
+                        }
+                        var priceText = '';
+                        let tempPrice = '';
+                        tempPrice = obj.prices[0].price.toLocaleString('en-IN', {
+                            maximumFractionDigits: 2,
+                            style: 'currency',
+                            currency: 'INR'
+                        });
+
+                        if (obj.mrp) {
+
+                            let tempMrp = '';
+                            tempMrp = obj.mrp.toLocaleString('en-IN', {
+                                maximumFractionDigits: 2,
+                                style: 'currency',
+                                currency: 'INR'
+                            });
+                            if (obj.prices[0].price != obj.mrp) {
+                                priceText = `<h5> ${tempPrice}</h5>
+                                            <h5 class="mrp-stike">${tempMrp}</h5>`;
+                            } else {
+                                priceText = `<h5> ${tempPrice}</h5>`;
+                            }
+                        } else {
+                            priceText = `<h5> ${tempPrice}</h5>`;
+                        }
+
+
+
+                        $('#gaming-phones').append(`
+                    <div class="col-md-3 col-6 col-xs-12 each-b p-l m-p-0">
+                            <div class="d-flex flex-row">
+                                <div class="left flex-grow-1">
+                                        <a href="${obj.linker}">
+                                                    <img src="https://d34e6224thkkna.cloudfront.net/happi/${obj.pictures[0]}.jpg" alt="${obj.name}" class="each-img">
+                                                </a>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <a href="${obj.linker}">${obj.name}</a>
+                                        <div class="price-min">
+                                            ${priceText}
+                                        </div>
+                                        
+                                        ${cart}
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                    }
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+               getGamingPhones();
+                $('.gaming-b').hide();
+            }
+        });
+    }
+
+
+
+    function getTvs() {
+
+        var baseUrl = '/api/';
+        var relatedPId;
+        $.ajax(baseUrl + 'products/?istvs=true', {
+            type: 'GET',
+
+            dataType: 'json', // type of response data
+            timeout: 5000, // timeout milliseconds
+            success: function (data, status, xhr) { // success callback function
+
+                let objnew = [];
+
+                objnew = data.items.slice(0, 4);
+                if (objnew.length == 0) {
+                    $('.tv-b').hide();
+                } else {
+                    $('.tv-b').show();
+                    console.log('LLLLLL', objnew.length);
+                    if (objnew.length == 0) {
+                        $('.tv-b').hide();
+                    } else {
+                        $('.tv-b').show();
+                        for (let i = 0; i < objnew.length; i++) {
+                            let obj = objnew[i];
+                            var cart = '';
+                            if (obj.stock == 0) {
+                                cart = `<p class='color-red'>@(Out of Stock)</p>`;
+                            }
+
+                            else {
+                                if (obj.purchase_type == 'Online') {
+                                    cart = `<a href="${obj.linker}#addToCart" class="more">@(Add To Cart)</a>`;
+                                }
+                                else {
+                                    cart = `<p class='color-green'>@(Visit Store)</p>`;
+                                }
+                            }
+                            var priceText = '';
+                            let tempPrice = '';
+                            tempPrice = obj.prices[0].price.toLocaleString('en-IN', {
+                                maximumFractionDigits: 2,
+                                style: 'currency',
+                                currency: 'INR'
+                            });
+
+                            if (obj.mrp) {
+
+                                let tempMrp = '';
+                                tempMrp = obj.mrp.toLocaleString('en-IN', {
+                                    maximumFractionDigits: 2,
+                                    style: 'currency',
+                                    currency: 'INR'
+                                });
+                                if (obj.prices[0].price != obj.mrp) {
+                                    priceText = `<h5> ${tempPrice}</h5>
+                                            <h5 class="mrp-stike">${tempMrp}</h5>`;
+                                } else {
+                                    priceText = `<h5> ${tempPrice}</h5>`;
+                                }
+                            } else {
+                                priceText = `<h5> ${tempPrice}</h5>`;
+                            }
+
+
+                            $('#tv').append(`
+                    <div class="col-md-3 col-6 col-xs-12 each-b p-l m-p-0">
+                            <div class="d-flex flex-row">
+                                <div class="left flex-grow-1">
+                                        <a href="${obj.linker}">
+                                                    <img src="https://d34e6224thkkna.cloudfront.net/happi/${obj.pictures[0]}.jpg" alt="${obj.name}" class="each-img">
+                                                </a>
+                                    <div class="d-flex flex-column align-items-center">
+                                            <a href="${obj.linker}">${obj.name}</a>
+                                            <div class="price-min">
+                                                ${priceText}
+                                    </div>
+                                        ${cart}
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                        }
+
+                    }
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                console.log("errror");
+               getTvs();
+                $('.tv-b').hide();
+            }
+        });
+    }
+
+
+//     function getBanners() {
+
+// var baseUrl = '/api/';
+// var relatedPId;
+// $.ajax(baseUrl + 'banner', {
+//     type: 'GET',
+
+//     dataType: 'json', // type of response data
+//     timeout: 5000, // timeout milliseconds
+//     success: function (data, status, xhr) { // success callback function
+
+//         console.log('bannnewrssds',data);
+ 
+//   for(var i=0 ; i< data.items.length ; i++) {
+//     $('<a href="'+data.items[i].link+'"><div class="item"><img src="'+ data.items[i].pictures[0]+'"><div class="carousel-caption"></div>   </div></a>').appendTo('.carousel-inner');
+
+//     $('<li data-target="#carousel-example-generic" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
+
+//   }
+//   $('.item').first().addClass('active');
+//   $('.carousel-indicators > li').first().addClass('active');
+// $('.carousel #carousel-example-generic').carousel({});
+
+//         //  $('#desktop-banners').append(`
+//         //             <div class="carousel-item  hover15" >
+	
+// 		// 			<a target="_blank" href="/categories/?q=samsung">
+// 		// 				<figure>
+// 		// 						<img src="/img/ramcharanbanner.png" alt="Happi Mobiles">
+// 		// 				</figure>
+						
+// 		// 			</a>
+// 		// 		</div>
+//         //             `);
+
+//         //   $('#desktop-banners').append(`
+//         //             <div class="carousel-item hover15" >
+	
+// 		// 			<a target="_blank" href="/categories/?q=samsung+galaxy+s20">
+// 		// 				<figure>
+// 		// 					<img src="/img/banners/samsungs20.png" alt="Happi Mobiles">
+// 		// 				</figure>
+						
+// 		// 			</a>
+// 		// 		</div>
+//         //             `);
+
+                    
+          
+//         /* let objnew = [];
+//         objnew = data.items.slice(0, 4);
+//         if (objnew.length == 0) {
+//             $('.gadgets-b').hide();
+//         } else {
+//             $('.gadgets-b').show();
+//             for (let i = 0; i < objnew.length; i++) {
+//                 let obj = objnew[i];
+//                 var cart = '';
+//                 if (obj.stock == 0) {
+//                     cart = `<p class='color-red'>@(Out of Stock)</p>`;
+//                 }
+
+//                 else {
+//                     if (obj.purchase_type == 'Online') {
+//                         cart = `<a href="${obj.linker}#addToCart" class="more">@(Add To Cart)</a>`;
+//                     }
+//                     else {
+//                         cart = `<p class='color-green'>@(Visit Store)</p>`;
+//                     }
+//                 }
+//                 var priceText = '';
+//                 let tempPrice = '';
+//                 tempPrice = obj.prices[0].price.toLocaleString('en-IN', {
+//                     maximumFractionDigits: 2,
+//                     style: 'currency',
+//                     currency: 'INR'
+//                 });
+
+//                 if (obj.mrp) {
+
+//                     let tempMrp = '';
+//                     tempMrp = obj.mrp.toLocaleString('en-IN', {
+//                         maximumFractionDigits: 2,
+//                         style: 'currency',
+//                         currency: 'INR'
+//                     });
+//                     if (obj.prices[0].price != obj.mrp) {
+//                         priceText = `<h5> ${tempPrice}</h5>
+//                                     <h5 class="mrp-stike">${tempMrp}</h5>`;
+//                     } else {
+//                         priceText = `<h5> ${tempPrice}</h5>`;
+//                     }
+//                 } else {
+//                     priceText = `<h5> ${tempPrice}</h5>`;
+//                 }
+
+
+//                 $('#super-gadgets').append(`
+//                 <div class="col-md-3 col-6 col-xs-12 each-b p-l m-p-0">
+//                     <div class="d-flex flex-row">
+//                         <div class="left flex-grow-1">
+//                                 <a href="${obj.linker}">
+//                                      <img src="https://d34e6224thkkna.cloudfront.net/happi/${obj.pictures[0]}.jpg" alt="${obj.name}" class="each-img">
+//                                         </a>
+//                             <div class="d-flex flex-column align-items-center">
+//                                     <a href="${obj.linker}">${obj.name}</a>
+//                                     <div class="price-min">
+//                                         ${priceText}
+//                                 </div>
+//                                 ${cart}
+                               
+//                             </div>
+
+//                         </div>
+//                         <div class="right">
+//                             <div class="vl"></div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             `);
+//             }
+//         }*/
+
+//     },
+//     error: function (jqXhr, textStatus, errorMessage) { // error callback 
+//         console.log("errror");
+//         getBanners();
+//         //$('.gadgets-b').hide();
+        
+//     }
+// });
+
+// }
+
+</script>

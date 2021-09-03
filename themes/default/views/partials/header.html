@@ -1,0 +1,182 @@
+<style>
+   .login-modal-left {
+      background: rgba(0, 0, 0, 0) url(https://previews.123rf.com/images/tpabma/tpabma1209/tpabma120900058/15407513-metal-texture-made-in-the-shape-of-english-letter-s.jpg) repeat scroll center center;
+      float: right;
+      height: 300px;
+      list-style: outside none none;
+      margin: 70px auto auto;
+      width: 322px;
+   }
+
+   .btn-secondary {
+      background: #029b97 !important;
+   }
+
+   .product-body h5 {
+      color: #029b97;
+   }
+
+   @font-face {
+      font-family: roboto_light;
+      src: url(../fonts/Roboto/Roboto.Light.ttf);
+   }
+
+   @font-face {
+      font-family: roboto_bold;
+      src: url(../fonts/Roboto/Roboto-Bold.ttf);
+      font-weight: bold;
+   }
+
+   body {
+      font-family: roboto_light;
+   }
+
+   .offer-price {
+      font-family: roboto_bold;
+   }
+   .desktop-view {
+      display: block;
+   }
+
+   .mobile-view {
+      display: none;
+   }
+
+   @media only screen and (max-width: 767px) {
+      .dropdown-menu {
+         width: 100%;
+      }
+
+      .desktop-view {
+         display: none;
+      }
+
+      .mobile-view {
+         display: block;
+      }
+   }
+</style>
+<div class="headers">
+   @{view('/partials/header-top')}
+</div>
+<nav class="navbar navbar-expand-lg navbar-light osahan-menu-2 pad-none-mobile">
+   <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarText">
+         <ul id="nav">
+            
+         </ul>
+         <div class="desktop-view ml-auto">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 margin-auto">
+          
+               <li class="nav-item">
+                  <a href="/" class="nav-link">Home</a>
+               </li>
+               <li class="nav-item user-in">
+                  <a href="/sasta-deals" class="nav-link">Sasta</a>
+               </li>
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">Sasta</a>
+               </li>
+              
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/my-group">My Group</a>
+               </li>
+
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">My Group</a>
+               </li>
+             
+               <!-- <li class="nav-item">
+                  <a class="nav-link" href="/faq">Faq</a>
+               </li>
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/refer-friend">Refer Friend</a>
+               </li> -->
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">Refer Friend</a>
+               </li>
+               <li class="nav-item  user-out">
+                  <a class="nav-link" href="javascript:login()"> Login</a>
+               </li>
+               <li class="nav-item dropdown user-in">
+                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                     aria-expanded="false">
+                     My Account
+                  </a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="/my-account">
+                        My Profile</a>
+                     <a class="dropdown-item" href="/my-address">
+                        My Address</a>
+                     <a class="dropdown-item" href="/my-orders">
+                        Order List</a>
+   
+                     <a class="dropdown-item" href="/my-earnings">
+                        My Earnings </a>
+                        <a class="dropdown-item" href="/refer-friend">
+                           Refer Friend </a>
+                        <a href="javascript:userLogout()" class="dropdown-item"> Logout</a>
+                  </div>
+               </li>
+            </ul>
+         </div>
+         <div class="mobile-view">
+            <ul class=" ml-auto mt-2 mt-lg-0 margin-auto">
+          
+               <li class="nav-item">
+                  <a href="/" class="nav-link">Home</a>
+               </li>
+   
+   
+              
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/my-group">My Group</a>
+               </li>
+
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">My Group</a>
+               </li>
+   
+               
+   
+             
+               <!-- <li class="nav-item">
+                  <a class="nav-link" href="/faq">Faq</a>
+               </li>
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/refer-friend">Refer Friend</a>
+               </li> -->
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">Refer Friend</a>
+               </li>
+
+               <li class="nav-item  user-out">
+                  <a class="nav-link" href="javascript:login()"> Login</a>
+               </li>
+               <li class="nav-item dropdown user-in">
+                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                     aria-expanded="false">
+                     My Account
+                  </a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="/my-account">
+                        My Profile</a>
+                     <a class="dropdown-item" href="/my-address">
+                        My Address</a>
+                     <a class="dropdown-item" href="/my-orders">
+                        Order List</a>
+   
+                     <a class="dropdown-item" href="/my-earnings">
+                        My Earnings </a>
+                        <a class="dropdown-item" href="/refer-friend">
+                           Refer Friend </a>
+                        <a href="javascript:userLogout()" class="dropdown-item"> Logout</a>
+                  </div>
+               </li>
+            </ul>
+         </div>
+         
+        
+      </div>
+   </div>
+</nav>

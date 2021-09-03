@@ -1,0 +1,85 @@
+{
+    "paypaldebug": true,
+    "paypalsignature": "",
+    "paypalpassword": "",
+    "paypaluser": "",
+    "smtpoptions": "{\"secure\":true,\"port\":465,\"user\":\"noreply@mail.shopsasta.com\",\"password\":\"2652fc199e1f1e1ef7366e5da6952e30-1553bd45-87e037c4\",\"timeout\":10000}",
+    "smtp": "smtp.mailgun.org",
+    "signals": [],
+    "users": [
+        {
+            "id": "yyrhtf8afor41fc",
+            "name": "happiaccounts",
+            "login": "happiaccounts",
+            "password": "123456",
+            "roles": [
+                "Orders",
+                "Users"
+            ]
+        }
+    ],
+    "defaultcategories": "",
+    "defaultorderstatus": "Waiting for approval",
+    "paymenttypes": [
+        "Cash on delivery",
+        "Direct bank transfer"
+    ],
+    "deliverytypes": [
+        "UPS",
+        "Remax"
+    ],
+    "navigations": [
+        {
+            "id": "menu",
+            "name": "Menu"
+        },
+        {
+            "id": "panel",
+            "name": "Panel"
+        }
+    ],
+    "notices": [
+        {
+            "id": "tweets",
+            "name": "Tweets"
+        }
+    ],
+    "posts": [
+        {
+            "id": "post",
+            "name": "Post"
+        }
+    ],
+    "templatesnewsletters": [
+        {
+            "id": "newsletter",
+            "name": "Newsletter"
+        }
+    ],
+    "templatesproducts": [
+        {
+            "id": "product",
+            "name": "Product"
+        }
+    ],
+    "templatesposts": [
+        {
+            "id": "post",
+            "name": "Post"
+        }
+    ],
+    "templates": [
+        {
+            "id": "default",
+            "name": "Default"
+        }
+    ],
+    "url": "https://shopsasta.com",
+    "emailuserform": "noreply@mail.shopsasta.com",
+    "emailsender": "noreply@mail.shopsasta.com",
+    "emailreply": "noreply@mail.shopsasta.com",
+    "emailorderform": "noreply@mail.shopsasta.com",
+    "emailcontactform": "noreply@mail.shopsasta.com",
+    "currency_entity": "&euro;",
+    "currency": "₹"
+}

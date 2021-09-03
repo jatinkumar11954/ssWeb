@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Shopsasta">
+   <meta name="author" content="Shopsasta">
+   <title>shopsasta.com - Community Group Buying</title>
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" href="img/favicon.png">
+   <!-- Bootstrap core CSS -->
+   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Material Design Icons -->
+   <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+   <!-- Select2 CSS -->
+   <link href="/vendor/select2/css/select2-bootstrap.css" />
+   <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+   <!-- Custom styles for this template -->
+   <link href="/css/osahan.css" rel="stylesheet">
+   <!-- Owl Carousel -->
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+   <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+   <style>
+      .list-group-item.active {
+         
+      }
+      .order-select .nav-tabs {
+         border-bottom: 0;
+      }
+      .order-select ul li {
+    text-align: center;
+    font-size: 13px;
+    width: 50%;
+}
+.order-select ul a {
+    text-decoration: none;
+    color: #000;
+}
+.order-select .nav li a {
+    font-weight: 400 !important;
+    text-transform: capitalize !important;
+}
+.order-select ul li h6 {
+    font-size: 15px;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 0;
+}
+.order-select li a.active h6 {
+   color: #fff;
+    background-color: #029b97;
+}
+   </style>
+</head>
+
+<body>
+
+   <div class="header">
+      @{view('partials/header')}
+   </div>
+
+   <section class=" bg-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 breadcum">
+					<a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+						class="mdi mdi-chevron-right"></span> <a href="#">Orders List</a>
+				</div>
+			</div>
+		</div>
+	</section>
+   <section class="account-page section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="row ">
+                 
+                  <div class="col-md-12">
+                     <div class="">
+                        <div class="widget">
+                           <div class="section-header">
+                              <h5 class="heading-design-h5">
+                                 Order History
+                              </h5>
+                           </div>
+                           <div class="order-select">
+
+                              <div class="sasta-active">
+                                 <h5 class="heading-design-h5 text-center">
+                                    Active Orders
+                                 </h5>
+                                 <table class="datatabel table table-striped table-bordered order-list-tabel" width="100%"
+                                    cellspacing="0">
+                                    <thead>
+                                       <tr>
+                                          <th>Order No</th>
+                                          <th>No of items</th>
+                                          <th>Order Date</th>
+                                          <th>Sold By</th>
+                                          <th>Status</th>
+                                          <th>Total</th>
+                                          <th>View</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody id="active-orders">
+                                       
+   
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <div class="sasta-past">
+                                 <h5 class="heading-design-h5 text-center">
+                                    Past Orders 
+                                 </h5>
+                                 <table class="datatabel table table-striped table-bordered order-list-tabel" width="100%"
+                                    cellspacing="0">
+                                    <thead>
+                                       <tr>
+                                          <th>Order No</th>
+                                          <th>No of items</th>
+                                          <th>Order Date</th>
+                                          <th>Delivery Type</th>
+                                          <th>Status</th>
+                                          <th>Total</th>
+                                          <th>Action</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody id="thirdparty-orders">
+                                      
+   
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                          
+                          
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+
+   <div class="footer">
+      @{view('partials/footer')}
+   </div>
+
+
+   <!-- Bootstrap core JavaScript -->
+   <script src="/vendor/jquery/jquery.min.js"></script>
+   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- select2 Js -->
+   <script src="/vendor/select2/js/select2.min.js"></script>
+   <!-- Owl Carousel -->
+   <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+   <!-- Custom -->
+   <script src="/js/custom.js"></script>
+   <script src="/js/main.js?v=v1.5"></script>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+
+</html>

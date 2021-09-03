@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <title>Happi Payment page</title>
+
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script> -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+        .logo {
+            background-color: #fb9013;
+            height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            padding: 20px;
+            height: 135px;
+        }
+
+        #qrcode {
+            height: 512px;
+            width: 512px;
+        }
+
+        .button {
+            background-color: #fb9013;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 6em;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <center>
+            <img src="https://happimobiles.com/img/happiLogo.png">
+        </center>
+    </div>
+
+    <h3 style="font-size: 5em;">
+        Payment on delivery
+    </h3>
+
+    <ul class="list-group" style="font-size: 3em;">
+        <li class="list-group-item"><b>Your No:</b> @{model.customer_phone}</li>
+        <li class="list-group-item"><b>Amount :</b> @{model.amount}</li>
+        <li class="list-group-item"><b>Order Id:</b> @{model.id}</li>
+        <li class="list-group-item"><b>Payment Status :</b>
+            @{if model.ispaid }
+            Success
+            @{else}
+            Pending
+            @{fi}</li>
+        @{if model.ispaid }
+        <li class="list-group-item" style="font-size: .7m;"><b>Payment Id :</b> @{model.tan_no}
+                @{fi}
+        
+      </ul>
+
+      <form method="post" action="https://www.happimobiles.com/order/paytm" name="paytm">
+        <table border="1">
+            <tbody>
+                <input type="hidden" name="order_id" value="@{model.id}">
+                <input type="hidden" name="type" value="link">
+                <!-- <input type="hidden" name="amount" value="@{model.price}">
+                <input type="hidden" name="email" value="@{model.email}">
+                <input type="hidden" name="mobile" value="@{model.phone}"> -->
+            </tbody>
+        </table>
+    </form>  
+
+    @{if !model.ispaid }
+    <button class="button" id="reload">
+        Pay Now
+    </button>
+    @{fi}
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // $('#qrcode').qrcode({ width: 512, height: 512, text: "https://happimobiles.com/order-payment/@{model.id}/" });
+        $('#reload').click(function () {
+            document.paytm.submit();
+        })
+    </script>
+
+
+</body>
+
+</html>

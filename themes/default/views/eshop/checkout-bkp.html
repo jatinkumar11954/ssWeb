@@ -1,0 +1,1981 @@
+<style>
+  h1 {
+    margin: 2rem 0;
+  }
+
+  .table-borderless td,
+  .table-borderless th {
+    border: 0 !important;
+  }
+
+  .content {
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.05);
+    border: 1px solid;
+  }
+
+  content {
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.05);
+    border: 1px solid;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .padding8 {
+    padding: 4px 8px 4px 8px;
+  }
+
+  .form-control {
+    height: calc(2em + 1rem + 2px);
+    line-height: 1.3rem;
+    font-size: 12px;
+  }
+
+  .caption {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  .clearcart {
+    position: relative;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .clearcart p {
+    position: absolute;
+    right: 0;
+    background-color: #fb9013;
+    font-weight: bold;
+    color: #fff;
+    padding: 3px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .noItemsInCart {
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .list-group-item {
+    font-size: 15px;
+  }
+
+  .table-borderless td {
+    font-size: 14px;
+  }
+
+  .table-borderless th {
+    font-size: 18px;
+  }
+
+  .table-responsive {
+    font-size: 16px;
+  }
+
+  .table {
+    font-size: 17px;
+  }
+
+  .compare-block td,
+  th {
+    width: auto;
+  }
+
+  #cart-row i:hover {
+    color: #fb9013;
+  }
+
+  .btn-primary {
+    background-color: #fb9013;
+    border-color: #fb9013;
+    /* box-shadow: 0 0 0 0.2rem rgb(251, 144, 19); */
+  }
+
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:focus,
+  .btn-primary:not(:disabled):not(.disabled):active:focus,
+  .btn-primary.disabled,
+  .btn-primary:disabled {
+    background-color: #fb9013 !important;
+    border-color: #fb9013 !important;
+    box-shadow: 0 0 0 0.2rem rgb(251, 144, 19);
+  }
+
+  .errors-b {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .error-content {
+    border: 1px solid #fb9013;
+    margin-top: 2rem;
+    color: red;
+    font-weight: 600;
+  }
+
+  .errors-b li span {
+    font-size: 15px;
+    text-transform: capitalize;
+  }
+
+  .main-coupon-b button,
+  .main-coupon-preview button {
+    font-size: 14px;
+  }
+
+  .main-coupon-preview button {
+    margin-bottom: 1rem;
+    float: right;
+  }
+
+  .main-coupon-b .error {
+    position: absolute;
+    bottom: -17px;
+    font-size: 13px;
+  }
+
+  .main-coupon-b {
+    padding: 15px 0;
+  }
+
+  .main-coupon-preview {
+    padding: 15px 0;
+    font-size: 15px;
+  }
+
+  .main-coupon-preview ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .main-coupon-preview span {
+    font-weight: 600;
+    float: right;
+  }
+	.desktop {
+		display: block;
+	}
+	.mobile {
+		display: none;
+	}
+  @media only screen and (max-width: 767px) {
+    #cart-row table tr td {
+      white-space: inherit !important;
+    }
+    .desktop {
+		display: none;
+	}
+	.mobile {
+		display: block;
+	}
+  }
+</style>
+<!-- 
+@{repository.loading = true} -->
+
+<!-- @{if user} -->
+<div class="container">
+  <h1><i class="fa fa-shopping-cart"></i>@{title}</h1>
+
+  <div class="" data-b="shoppingcart.items" data-b-visible="!value || !value.length">
+    <br />
+
+    <div class="empty">
+      @(Your shopping cart is empty, try to visit this page later.)
+      <br />
+      <a href="/" style=" font-weight:600;   margin-right: 2rem;
+				text-transform: uppercase;
+				background-color: #fb9013;
+				padding: 4px;
+				border-radius: 5px;font-size: 15px;
+				color: #fff;
+				text-decoration: none; position: absolute;
+  bottom: -48px;
+  left: 50%;
+  transform: translate(-50%, -50%);">Continue shopping</a>
+    </div>
+
+    <br />
+  </div>
+
+  <div class="row main-view" data-b="shoppingcart.items" data-b-visible="value && value.length > 0">
+    <div class="col-md-5 m">
+      <div class="content" id="cart-view">
+        <div class="contentbody">
+          <div class="caption">@(Your shopping cart)</div>
+
+          <div class="order-block">
+            <div class="table-responsive">
+              <table class="table table-borderless " style="border: 0;">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th></th>
+                    <th>Q</th>
+                    <th></th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-row"></tbody>
+              </table>
+            </div>
+            <div>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  Quantity : <span class="right" id="vq"></span>
+                </li>
+                <li class="list-group-item">
+                  <b>Total</b> : <span class="right" id="vt"></span>
+                </li>
+              </ul>
+            </div>
+            <div class="d-flex justify-content-end clearcart">
+              <p onclick="clearCart()">
+                clear cart
+              </p>
+            </div>
+            <div class="padding8 mob-hide">
+              <div class="form-group ">
+                <div class="form-check">
+                  <input class="form-check-input accept-btn" type="checkbox" id="notify" />
+                  <label class="form-check-label" for="notify">
+                    &#8196; I want to be notified about discounts and news
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input accept-btn" type="checkbox" id="accept2" />
+                  <label class="form-check-label" for="accept2">
+                    &#8196; I agree with
+                    <a href="/terms-and-conditions/">terms and conditions</a>
+                  </label>
+                </div>
+              </div>
+
+              <button onclick="submitorder()" class="btn btn-primary submit-btn"
+                style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px;">
+                SUBMIT ORDER
+              </button>
+            </div>
+          </div>
+          <div class="main-coupon-b" style="display:none">
+            <div class="input-group" style="margin:10px 0;display:none">
+              <input type="text" id="couponCode" class="form-control" name="coupon" placeholder="Enter coupon" />
+              <button type="button" class="btn btn-primary valid" onclick="validateCoupon()">
+                Validate
+              </button>
+            </div>
+          </div>
+          <div class="main-referal-b">
+            <div class="input-group" style="margin:10px 0;display:none">
+              <input type="text" id="referalId" class="form-control" name="coupon" placeholder="Enter Referal Code" />
+
+            </div>
+          </div>
+          <div class="main-coupon-preview">
+            <ul>
+              <li>Offer Value: <span id="offer-value"></span></li>
+              <li>Total (After Offer): <span id="offer-total"></span></li>
+            </ul>
+            <button type="button" class="btn btn-primary apply" onclick="couponApply()">
+              Apply
+            </button>
+          </div>
+
+          <div class="noItemsInCart">
+            <p>Your Cart is Empty</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content error-content">
+        <div class="contentbody">
+          <ul class="errors-b"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 m">
+      <div class="content">
+        <div class="contentbody">
+          <div class="row">
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputFirstname">First name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="First name" />
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputLastname">Last name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Last name" />
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="text" class="form-control" id="email" aria-describedby="emailHelp"
+                  placeholder="Enter email" />
+                <!-- <small id="emailHelp" class="form-text text-muted" style="font-size: 12px;">We'll never
+									share your email with
+									anyone
+									else.</small> -->
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputPhonenumber">phone number</label>
+                <div class="input-group phone-error">
+                  <span class="input-group-addon" style="padding: 6px 6px;
+                  font-size: 13px;
+                  font-weight: 400;
+                  color: #555;
+                  text-align: center;
+                  background-color: #eee;
+                  border: 1px solid #ccc;
+                  border-radius: 1px 0 0 4px;">+91</span>
+                  <input type="text" class="form-control" id="phone" minlength="10" maxlength="10"
+                  placeholder="Phone number" />
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+          <hr class="nmt nmb" />
+          <div class="pick1 pickup-block" style="display: none">
+            <span style="font-size: 11px;display: flex;
+						align-items: center;padding: 1rem 0;">
+              <input type="checkbox" id="scales" name="scales" value="city" />
+              &nbsp;Pick Up at Store (place order online & pick from store)
+            </span>
+            <!-- <input type="checkbox" id="scales" name="scales" value="city">
+							<label for="scales" style="margin-top: 10px;">
+							<h5> Pick Up at Store (place order online & pick from store) </h5>
+						    </label> -->
+
+            <div class="pickup" id="store">
+              <div class="row">
+                <div class="col-6">
+                  <label>Select City</label>
+                  <br />
+                  <select id="List" style="padding :6px; margin-bottom: 10px; width:100%">
+                  </select>
+                </div>
+                <div class="col-6 stores-block">
+                  <label>Select Store</label>
+                  <br />
+                  <select id="List2" style="padding :6px; margin-bottom: 10px; width:100%">
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="nmt nmb" />
+          <br>
+          <div class="caption" id="billing">
+
+            <i class="fa fa-address-card"></i>@(Delivery address)
+          </div>
+          <div class="row">
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputStreet">Street</label>
+                <input type="text" class="form-control" id="billingstreet" placeholder="Street" />
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputZip">ZIP</label>
+                <input type="text" class="form-control" id="billingzip" placeholder="Zip" />
+              </div>
+            </div>
+            <div class="col-md-4 m">
+              <div class="form-group">
+                <label for="exampleInputCity">City </label>
+                <input type="text" class="form-control" id="billingcity" placeholder="City" />
+              </div>
+            </div>
+
+            <div class="col-md-4 m">
+              <div class="form-group">
+                <label for="exampleInputCountry">State</label>
+                <input type="text" class="form-control" id="billingstate" placeholder="State" />
+              </div>
+            </div>
+
+            <div class="col-md-4 m">
+              <div class="form-group">
+                <label for="exampleInputCountry">Country</label>
+                <input type="text" class="form-control" id="billingcountry" value="India" disabled />
+
+                <p><strong>Available!</strong> Only in India...</p>
+              </div>
+            </div>
+          </div>
+          <!-- <div data-jc="checkbox" data-jc-path="order.form.iscompany">@(Billing to company)</div> -->
+        </div>
+        <!-- <div data-b="order.form.iscompany" data-b-visible="value === true" class=" contentbody bg-yellow">
+							<div data-jc="textbox" data-jc-path="order.form.company" data-jc-config="maxlength:40;required:true"
+								class="m">@(Company name)</div>
+							<div class="row">
+								<div class="col-md-6 m">
+									<div data-jc="textbox" data-jc-path="order.form.companyid"
+										data-jc-config="maxlength:15;required:true">@(Company ID)</div>
+								</div>
+								<div class="col-md-6 m">
+									<div data-jc="textbox" data-jc-path="order.form.companyvat"
+										data-jc-config="maxlength:30;required:true">@(VAT number)</div>
+								</div>
+							</div>
+						</div> -->
+        <hr class="nmt nmb" />
+        <div class="contentbody" id="deliv" style="display:none">
+          <div class="caption">
+            <i class="fa fa-address-card"></i>@(Delivery address)
+            <span style="float:right;font-size: 11px;display: flex;
+						align-items: center;"><input type="checkbox" id="filladdress" name="filladdress" />&nbsp;Same as above
+            </span>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputFirstname">First name</label>
+                <input type="text" class="form-control" id="deliveryfirstname" placeholder="First Name" />
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputLastname">Last name</label>
+                <input type="text" class="form-control" id="deliverylastname" placeholder="Last Name" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInpuPhonenumber">Phone number</label>
+                <input type="text" class="form-control" id="deliveryphone" minlength="10" maxlength="10"
+                  placeholder="Phone number" />
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputStreet">Street</label>
+                <input type="text" class="form-control" id="deliverystreet" placeholder="Street" />
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputCity">City</label>
+                <input type="text" class="form-control" id="deliverycity" placeholder="City" />
+              </div>
+            </div>
+
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputCity">State</label>
+                <input type="text" class="form-control" id="deliverystate" placeholder="State" />
+              </div>
+            </div>
+
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputCountry">Country</label>
+                <input type="text" class="form-control" id="deliverycountry" value="India" disabled />
+                <p><strong>Available!</strong> Only in India...</p>
+              </div>
+            </div>
+            <div class="col-md-6 m">
+              <div class="form-group">
+                <label for="exampleInputZip">Zip</label>
+                <input type="text" class="form-control" id="deliveryzip" placeholder="Zip" />
+              </div>
+            </div>
+
+            <div class="col-md-12 m">
+              <div class="form-group">
+                <label for="Comments">Comments</label>
+                <textarea class="form-control" id="comments" rows="3"></textarea>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6" style="margin-top:10px">
+									<br class="hidden-xs" />
+									<a href="javascript:void(0)" class="copy exec" data-exec="ordercopypersonal"><i
+											class="fa fa-copy"></i>@(Copy same data as above)</a>
+								</div> -->
+          </div>
+        </div>
+
+        <hr class="nmt nmb" />
+        <div class="pincode-del" style="margin-left: 12px;">
+          <div class="pin-block">
+            <span style="font-size: 11px;display: flex;
+						align-items: center;padding: 1rem 0;">
+              <input type="checkbox" id="chkdeliv" name="chkdeliv" value="city" />
+              &nbsp;2 Hours Delivery (select pin codes)
+            </span>
+            <!-- <input type="checkbox" id="chkdeliv" name="chkdeliv" value="city">
+							    <label for="chkdeliv" style="margin-top: 10px;">
+								    <h3 style="font-size: 14px;">2 Hours Delivery (select pin codes)</h3>
+							    </label> -->
+
+            <div class="row form-group isDeliveryFree" style="display: none;">
+              <div class="col-md-12">
+                <label for="usr">Enter pincode to check availability:</label>
+              </div>
+
+              <div class="col-6 input-b">
+                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode" />
+              </div>
+
+              <div class="col-6 checkin">
+                <button type="button" class="btn btn-primary" onclick="checkPin()">
+                  Check
+                </button>
+              </div>
+              <h4 class="pincode-status" style="margin-left: 12px;"></h4>
+              <br />
+              <p style="font-size: 12px; color: red; padding: 10px;"> <b> Note : </b> Due to COVID-19 rules &
+                regulations, 2 Hr delivery may not happen. However we shall deliver in shortest time possible. Sorry for
+                inconvenience caused.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <hr class="nmt nmb" style="border-color:#DDDC9F" /> -->
+        <div class="padding8 mobile-view">
+          <div class="form-group ">
+            <div class="form-check">
+              <input class="form-check-input accept-btn" type="checkbox" id="notify" />
+              <label class="form-check-label" for="notify">
+                &#8196; I want to be notified about discounts and news
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input accept-btn" type="checkbox" id="accept" />
+              <label class="form-check-label" for="accept">
+                &#8196; I agree with
+                <a href="/terms-and-conditions/">terms and conditions</a>
+              </label>
+            </div>
+          </div>
+          <button onclick="submitorder()" class="btn btn-primary submit-btn"
+            style="width: 100%; padding: 6px;font-weight: 900; font-size: 14px;">
+            SUBMIT ORDER
+          </button>
+        </div>
+      </div>
+ <br>
+      <button id="place-order" class="btn btn-primary desktop" style="    font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;">Place Order</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+
+  var isTwoHrsDel = false;
+  $("#chkdeliv").click(function () {
+
+    isTwoHrsDel = false;
+    if (this.checked) {
+      $(".pick1").show();
+      $(".pickup-block").hide();
+      $(".isDeliveryFree").show();
+    } else {
+      $(".pick1").hide();
+      $(".isDeliveryFree").hide();
+      $(".pickup-block").show();
+      $("#deliveryzip").attr("disabled", false);
+
+    }
+
+  });
+
+  function checkPin() {
+    console.log($('#pincode').val());
+
+    $(".pincode-status").html();
+    regexp = /^\d{6}$/;
+
+    if (regexp.test($('#pincode').val())) {
+
+
+      let pin = {
+        pinCode: $('#pincode').val()
+      };
+      $.ajax('/api/pincodeVerify', {
+        type: 'POST',
+        data: pin,
+        dataType: 'json', // type of response data
+        timeout: 5000, // timeout milliseconds
+        success: function (data, status, xhr) { // success callback function
+          console.log(data);
+
+          if (data.status) {
+            isTwoHrsDel = true;
+            $('#deliveryzip').val($('#pincode').val());
+            $("#deliveryzip").attr("disabled", true);
+            $('.pincode-status').html(`${data.message}`);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: data.message,
+              showConfirmButton: false,
+
+            });
+          } else {
+            isTwoHrsDel = false;
+            $('.pincode-status').html(`${data.message}`);
+
+            Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: data.message,
+              showConfirmButton: false,
+
+
+            });
+          }
+
+        },
+        error: function (jqXhr, textStatus, errorMessage) { // error callback
+          console.log("errror");
+
+        }
+      });
+
+    } else {
+      $('.pincode-status').html(`Invalid Pincode`);
+    }
+
+
+
+  }
+
+  var cart = [];
+  var sum = 0;
+  var count = 0;
+  var coupounObj = {};
+
+  cart = JSON.parse(localStorage.getItem('shoppingcart'));
+  var tempCartlength = cart.length;
+  $('.error-content').hide();
+
+  $('.noItemsInCart').hide();
+
+
+  var districts = [
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Kphb",
+      "Full Postal Address ": "No 8 & 9, 1St Floor, Aphb Commercial Complex, Tabla Building Opp Klm, Opp Sivaparvathi Theatre, Main Road, Kphb, Hyderabad.",
+      "Mobile Number": "9100930666",
+      "State": "TG",
+      "Pincode": "500072"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Uppal",
+      "Full Postal Address ": "Door No: 2-1-90, Opp Mahankali Mandhir, Main Road, Uppal, Hyderabad",
+      "Mobile Number": "9100908666",
+      "State": "TG",
+      "Pincode": "500039"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Ramanthapur",
+      "Full Postal Address ": "Door No: 2-2-56/A, Muthoot Finance Building, Vishal Meega Mart, Ramanthapur , Hyderabad",
+      "Mobile Number": "9100812666",
+      "State": "TG",
+      "Pincode": "500013"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Hydernagar",
+      "Full Postal Address ": "Plot No: 21/Mig, Near Axis Bank, Near Metro Station, Dharmareddy Colony, Hydernagar, Hydernagar, ",
+      "Mobile Number": "9100813666",
+      "State": "TG",
+      "Pincode": "500085"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Himayatnagar",
+      "Full Postal Address ": "3-6-563/1/A, Liberty Road, Near Max Fashion, Mc.Donalds, Upper Ground Floor, Himayatnagar, ",
+      "Mobile Number": "9100814666",
+      "State": "TG",
+      "Pincode": "500029"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Malkajgiri",
+      "Full Postal Address ": "Door No: 2-130, Beside Shah Electronics, Hanuman Temple Opp, Near Central Bank, Vani Nagar, Malkajgiri, ",
+      "Mobile Number": "9100823666",
+      "State": "TG",
+      "Pincode": "500047"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Greenlands",
+      "Full Postal Address ": "No:8, Beside Lal Banglaw, Opp Greenpark Hotel,Oppo Dr.Reddy’S Hospital, Greenlands",
+      "Mobile Number": "9100824666",
+      "State": "TG",
+      "Pincode": "500016"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Chandanagar",
+      "Full Postal Address ": "4-92, Block No-4, Inside Gramakantam, Opp Swagath Grand, Chandanagar.",
+      "Mobile Number": "9100825666",
+      "State": "TG",
+      "Pincode": "500050"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Chaitanyapuri",
+      "Full Postal Address ": "G-1, 13-18-97/5/Nr, Ground Floor, Opp Grean Leaves, Near Busstop, Opp Biba,Rajanigandha Appartments, Kamalanagar Colony, Gaddiannaram Village, Chaitanyapuri",
+      "Mobile Number": "9573823666",
+      "State": "TG",
+      "Pincode": "500060"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Vanastalipuram",
+      "Full Postal Address ": "Shop No-1, H. No-436, Opp Red Water Tank, Govt Hospital, Lig Phase-Ii, Vanastalipuram, ",
+      "Mobile Number": "9573865666",
+      "State": "TG",
+      "Pincode": "500070"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Karkhana",
+      "Full Postal Address ": "Shop No-25, Beside Mahankali Mandhir, Kharkhana Road, Secunderabad",
+      "Mobile Number": "9573887666",
+      "State": "TG",
+      "Pincode": "500009"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Rtc X Road",
+      "Full Postal Address ": "D.No.1-1-115 & 116, Beside Crystal Hotel, Rtc X Roads, ",
+      "Mobile Number": "9573911666",
+      "State": "TG",
+      "Pincode": "500020"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Boduppal",
+      "Full Postal Address ": "Shop No -9-14/3,Beside Reliance Digital, Opp.Oriental Bank Of Commerce, ",
+      "Mobile Number": "9573899666",
+      "State": "TG",
+      "Pincode": "500039"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "A S Rao Nagar",
+      "Full Postal Address ": "Plot No-1, Door No-1-1-272/1/Nr, Beside Axis Bank, A S Rao Nagar, Secunderabad",
+      "Mobile Number": "7702488666",
+      "State": "TG",
+      "Pincode": "500062"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Langarhouse",
+      "Full Postal Address ": "13-6-798/1/21, Beside Bapughat, Langarhouse, Hyderabad",
+      "Mobile Number": "9573867666",
+      "State": "TG",
+      "Pincode": "500008"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Neredmet-2",
+      "Full Postal Address ": "Plot No -7, Opp Sbi Bank, Sbi Defence Colony, Saptagiri Colony Sainikpuri, Neredmet X Road, ",
+      "Mobile Number": "7702511666",
+      "State": "TG",
+      "Pincode": "500056"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Madhapur",
+      "Full Postal Address ": "Door No: 2-38/A, Ground Floor,Kavuri Hills Phase 1 Pillar No.27, South India Ank Building,  Hitech City Road, Madhapur",
+      "Mobile Number": "7702399666",
+      "State": "TG",
+      "Pincode": "500081"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Attapur",
+      "Full Postal Address ": "Pillar No-118, Shop No-4-3-144/6,Ground & 1St Floor,  Beside Asian Threatre,  Attapur, Hyderabad, ",
+      "Mobile Number": "7893587666",
+      "State": "TG",
+      "Pincode": "500048"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Shamshabad",
+      "Full Postal Address ": "Shop No-11-132 & 131, Opp Bus Stop, Beside Appolo Pharmacy, Shamshabad, ",
+      "Mobile Number": "7702455666",
+      "State": "TG",
+      "Pincode": "500038"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Ameerpet",
+      "Full Postal Address ": "D-No.8-3-948-949, Yellareddy Guda, Beside Bata Showroom,  Opp Klm Shopping Mall, Ameerpet",
+      "Mobile Number": "9100780666",
+      "State": "TG",
+      "Pincode": " 500016"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Banjara Hills",
+      "Full Postal Address ": "Ghmc No-8-2-630 To 636/2& 3, Ground Floor And Mezzanine Floor, M/S. R.M.K Plaza, Road No 1 & 12 Junction, Banjara Hills, ",
+      "Mobile Number": "7702388666",
+      "State": "TG",
+      "Pincode": "500034"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Chintal",
+      "Full Postal Address ": "Plot No-1, Survey No -185, Prabhav Akred, Ranga Nagar, Chintal, Kutbullapur",
+      "Mobile Number": "7893722666",
+      "State": "TG",
+      "Pincode": "500055"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Dilsukhnagar",
+      "Full Postal Address ": "Sh No :16-11/740/4/A/B, Gaddianaram, Opp Vijaya Diagnostic Center, ",
+      "Mobile Number": "7993157666",
+      "State": "TG",
+      "Pincode": "500060"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Santoshnagar",
+      "Full Postal Address ": "Sh No: 9-7-218, Maruti Nagar, Beside Dr. Agarwal Eye Hospital, Santoshnagar ",
+      "Mobile Number": "7993139666",
+      "State": "TG",
+      "Pincode": "500060"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Ecil",
+      "Full Postal Address ": "1-7-214/2, Kamala Nagar Road, Ecil X Road, Ecil",
+      "Mobile Number": "9121861666",
+      "State": "TG",
+      "Pincode": "500062"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Kondapur",
+      "Full Postal Address ": "2Nd Floor, 134-135, Sharath Capital City Mall, Kondapur Vilage, Serilingampally Mandal, R.R.District,",
+      "Mobile Number": "9121853666",
+      "State": "TG",
+      "Pincode": "500084"
+    },
+    {
+      "City": " Hyderabad",
+      "Retailer Locality Area": "Saroornagar",
+      "Full Postal Address ": "Bsnl Building, Opp. Pillar No A1586, Beside Fruit Market, Saroornagar",
+      "Mobile Number": "7993913666",
+      "State": "TG",
+      "Pincode": "500060"
+    },
+    {
+      "City": "Adilabad",
+      "Retailer Locality Area": "Adilabad",
+      "Full Postal Address ": "Door No-4-2-198/13/1/13, Vp Complex, Mochigalli, Netaji Chowk, Adilabad, Opp Central District Library, ",
+      "Mobile Number": "7893712666",
+      "State": "TG",
+      "Pincode": "504001"
+    },
+    {
+      "City": "Anantapur",
+      "Retailer Locality Area": "Tadipatri",
+      "Full Postal Address ": "D.No:13/208, Opp Jcnrm Complex, C.B Road, Tadipatri, Ananthapur ",
+      "Mobile Number": "9121864666",
+      "State": "AP",
+      "Pincode": "515591"
+    },
+    {
+      "City": "Anantapur",
+      "Retailer Locality Area": "Kadiri",
+      "Full Postal Address ": "Sh.N-17771, Bypass Road, Opp Girls High School, Upstair Axis Bank, Kadiri,",
+      "Mobile Number": "7993158666",
+      "State": "AP",
+      "Pincode": "515671"
+    },
+    {
+      "City": "Anantapur",
+      "Retailer Locality Area": "Dharmavaram",
+      "Full Postal Address ": "Door No: 13/536,537, Indira Nagar,Opp Icic Bank, R.S Road, Dharmavaram,",
+      "Mobile Number": "7702377666",
+      "State": "AP",
+      "Pincode": "515671"
+    },
+    {
+      "City": "Anantapur",
+      "Retailer Locality Area": "Anantapur",
+      "Full Postal Address ": "Door No: 10/380,18/381, Subash Road, Opp Reliance Trendz, Anantapur",
+      "Mobile Number": "9100797666",
+      "State": "AP",
+      "Pincode": "515001"
+    },
+    {
+      "City": "Bhimavaram",
+      "Retailer Locality Area": "Bhimavaram",
+      "Full Postal Address ": "Door No-16-2-189 To 191, Ward # 7, Sy No.404/10,Prabha Complex, Pp Road, Annapurna Threatre,  Bhimavaram Town, Weast Godhavari,",
+      "Mobile Number": "7893655666",
+      "State": "AP",
+      "Pincode": "534201"
+    },
+    {
+      "City": "Godavarikhani",
+      "Retailer Locality Area": "Godavarikhani",
+      "Full Postal Address ": "Door No: 18-5-193, 1St Floor Lakshmi Nagar, Opp Sbi Bank, Godavarikhani  ",
+      "Mobile Number": "7893622666",
+      "State": "TG",
+      "Pincode": "505209"
+    },
+    {
+      "City": "Guntur",
+      "Retailer Locality Area": "Guntur",
+      "Full Postal Address ": "Door No-5/37/43/1, Roshan Complex Brodipet 4Th Lane 2Nd Cross  Opp Sindhuri Hotel, Guntur ",
+      "Mobile Number": "7993155666",
+      "State": "AP",
+      "Pincode": "522002"
+    },
+    {
+      "City": "Guntur",
+      "Retailer Locality Area": "Naaz Center - Guntur",
+      "Full Postal Address ": "Sh.No: 9-10-1, Station Road, Naaz Building, Naaz Center, Guntur, Andhra Pradesh",
+      "Mobile Number": "7993153666",
+      "State": "AP",
+      "Pincode": "522001"
+    },
+    {
+      "City": "Karimnagar",
+      "Retailer Locality Area": "Karimnagar",
+      "Full Postal Address ": "Door No: 2-10-17, Geetha Bhavan Road, Near Ii Town Police Station",
+      "Mobile Number": "9100798666",
+      "State": "TG",
+      "Pincode": " 505001"
+    },
+    {
+      "City": "Khammam",
+      "Retailer Locality Area": "Khammam",
+      "Full Postal Address ": "Sh No: 8-1-152 & 8-1-153, Opposite Bus Stop, Municipal Office Road",
+      "Mobile Number": "9100783666",
+      "State": "TG",
+      "Pincode": "507001"
+    },
+    {
+      "City": "Kurnool",
+      "Retailer Locality Area": "Kurnool",
+      "Full Postal Address ": "D.No-40/354/1,1A,1B, Pedha Park Road, Opp Malabar Gold, Kurnool",
+      "Mobile Number": "9573933666",
+      "State": "AP",
+      "Pincode": "518001"
+    },
+    {
+      "City": "Kurnool",
+      "Retailer Locality Area": "Nandyal Road - Kurnool",
+      "Full Postal Address ": "D.No: 87/986 – 1I & 87/986 – 2F,Nandyal Road, Viswanath Plaza, Kurnool ",
+      "Mobile Number": "7702745666",
+      "State": "AP",
+      "Pincode": "518001"
+    },
+    {
+      "City": "Mahbubnagar",
+      "Retailer Locality Area": "Mahbubnagar",
+      "Full Postal Address ": "D.No.2-2-1/5, Shah Gouse Plaza,Vineela Coffee Centre, Near New Bus Stop, Opp Collector’S Office",
+      "Mobile Number": "9618898666",
+      "State": "TG",
+      "Pincode": "509001"
+    },
+    {
+      "City": "Nalgonda",
+      "Retailer Locality Area": "Nalgonda",
+      "Full Postal Address ": "No-6-2-654 & 655 (Old H-No-6-2-19/21/1), Ground Floor & 1St Floor, Yelishala Colony",
+      "Mobile Number": "7893567666",
+      "State": "TG",
+      "Pincode": "508001"
+    },
+    {
+      "City": "Nizamabad",
+      "Retailer Locality Area": "Nizamabad",
+      "Full Postal Address ": "Shop No- 47 & 48, New Muncipal Complex , Station Road",
+      "Mobile Number": "7893633666",
+      "State": "TG",
+      "Pincode": "503001"
+    },
+    {
+      "City": "Ongole",
+      "Retailer Locality Area": "Ongole",
+      "Full Postal Address ": "Opp: Rtc Depot, Hotel Y Palace Premises, Kurnool Road, ",
+      "Mobile Number": "7993411666",
+      "State": "AP",
+      "Pincode": "523002"
+    },
+    {
+      "City": "Rajamundary",
+      "Retailer Locality Area": "Rajamundary",
+      "Full Postal Address ": "Door No: 30-1-29, Kumarshetty Kutter, Manipuram Gold, J.P. Road, Rajamundry",
+      "Mobile Number": "7702788666",
+      "State": "AP",
+      "Pincode": "533101"
+    },
+    {
+      "City": "Sangareddy",
+      "Retailer Locality Area": "Sangareddy",
+      "Full Postal Address ": "Door No-5-2-19/5, Opp Raithu Bazar, Near Bus Stand",
+      "Mobile Number": "7893543666",
+      "State": "TG",
+      "Pincode": "502001"
+    },
+    {
+      "City": "Siddipet",
+      "Retailer Locality Area": "Siddipet",
+      "Full Postal Address ": "Sh.No: 11-1-150/A,Medak Road, Beside Andhra Bank, Siddipe",
+      "Mobile Number": "7993140666",
+      "State": "TG",
+      "Pincode": "502103"
+    },
+    {
+      "City": "Srikakulam",
+      "Retailer Locality Area": "Srikakulam",
+      "Full Postal Address ": "Shop Bearing No: 8/67/68, Gt Road, Opp. State Bank Main Branch, Srikakulam, ",
+      "Mobile Number": "7702699666",
+      "State": "AP",
+      "Pincode": "532001"
+    },
+    {
+      "City": "Suryapet",
+      "Retailer Locality Area": "Suryapet",
+      "Full Postal Address ": "Sh.No: 1-2-270/46/4 & 1-2-270/46/5, M.G. Road, Opp: Yes Bank",
+      "Mobile Number": "9100921666",
+      "State": "TG",
+      "Pincode": "508213"
+    },
+    {
+      "City": "Tadepalligudem",
+      "Retailer Locality Area": "Tadepalligudem",
+      "Full Postal Address ": "Sh.No: 3-1-13/2 K.N. Road, Nandhiboma Center, Tadepalligudem -1, West Godavari District, ",
+      "Mobile Number": "7993149666",
+      "State": "AP",
+      "Pincode": "534101"
+    },
+    {
+      "City": "Tenali",
+      "Retailer Locality Area": "Tenali",
+      "Full Postal Address ": "16, Mdr83, Bose Rd, Kothapet, Ramalingeswara Pet, Tenali, Andhra Pradesh ",
+      "Mobile Number": "7702987666",
+      "State": "AP",
+      "Pincode": "522201"
+    },
+    {
+      "City": "Vijayawada",
+      "Retailer Locality Area": "P&T Colony, Mg Road - Vijayawada",
+      "Full Postal Address ": "Plot No: 40-1-51, Israeloet, Opp-P&T Colony, Mgroad, Vijaywada – 520010O Pp To Bsnl / Sbi Bank.",
+      "Mobile Number": "9121867666",
+      "State": "AP",
+      "Pincode": "520010"
+    },
+    {
+      "City": "Vijayawada",
+      "Retailer Locality Area": "Masjid Street - Vijayawada",
+      "Full Postal Address ": "Ward No – 9, Block No – 12, Door No – 22-11-2&3, 28-10-27 & 28-10-10/1 To 6, Masjid Street,Arandal Pet, Vijayawada",
+      "Mobile Number": "7993907666",
+      "State": "AP",
+      "Pincode": "520002"
+    },
+    {
+      "City": "Vijayawada",
+      "Retailer Locality Area": "Eluru Road, Governerpet - Vijayawada",
+      "Full Postal Address ": "Door No – 29-37-149, Ward No – 24, Block No – 9 Eluru Road, Governerpet, Vijayawada",
+      "Mobile Number": "7993908666",
+      "State": "AP",
+      "Pincode": "520002"
+    },
+    {
+      "City": "Vijayawada",
+      "Retailer Locality Area": "Patamata - Vijayawada",
+      "Full Postal Address ": "D.No 73-2-1, Oppo Kotak Mahindra Bank, Patamata, Vijayawada,",
+      "Mobile Number": "7993909666",
+      "State": "AP",
+      "Pincode": "520010"
+    },
+    {
+      "City": "Visakhapatnam",
+      "Retailer Locality Area": "Gajuwaka",
+      "Full Postal Address ": "D.No.9-7-256/4, High School Rd, New Gajuwaka Main Rd, Opp: Mohini Cinema Hall, Gajuwaka, Visakhapatnam",
+      "Mobile Number": "77027 67666",
+      "State": "AP",
+      "Pincode": "530026"
+    },
+    {
+      "City": "Visakhapatnam",
+      "Retailer Locality Area": "Gopalapatnam(Nad Junction)",
+      "Full Postal Address ": "58-1-332, Sh 39, Nad Junction, Buchirajupalem, Dungalavanipalem, Visakhapatnam, Andhra Pradesh",
+      "Mobile Number": "79931 48666",
+      "State": "AP",
+      "Pincode": "530027"
+    },
+    {
+      "City": "Visakhapatnam",
+      "Retailer Locality Area": "Daba Gardens",
+      "Full Postal Address ": "Opp. Sri Vamsi Shopping Mall, Main Rd, Beside Postal Office, Daba Gardens, 104 Area, Visakhapatnam, Andhra Pradesh ",
+      "Mobile Number": "79931 41666",
+      "State": "AP",
+      "Pincode": "530020"
+    },
+    {
+      "City": "Warangal",
+      "Retailer Locality Area": "Warangal",
+      "Full Postal Address ": "1St & 2Nd Floor (Entire Building) Shop No-9-10-13, Opp Sbi Main Branch, Jpn Road",
+      "Mobile Number": "7702943666",
+      "State": "TG",
+      "Pincode": "506002"
+    },
+    {
+      "City": "Warangal",
+      "Retailer Locality Area": "Hanumakonda",
+      "Full Postal Address ": "D-No-5-9-167/1, Sikhwadi, Kishanpura, Nayeem Nagar Road",
+      "Mobile Number": "7702934666",
+      "State": "TG",
+      "Pincode": "506001"
+    },
+    {
+      "City": "Warangal",
+      "Retailer Locality Area": "Hanumakonda – 2",
+      "Full Postal Address ": "Sh.No: 3-3-33/34, Beside Mahendra Showroom, Hanumakonda",
+      "Mobile Number": "7993142666",
+      "State": "TG",
+      "Pincode": "506001"
+    },
+    {
+      "City": "Warangal",
+      "Retailer Locality Area": "Narsampet",
+      "Full Postal Address ": "Ward No:9, H.No:9-74/1-C, Main Road, Narsampet",
+      "Mobile Number": "9100952666",
+      "State": "TG",
+      "Pincode": "506132"
+    }
+  ];
+  var storeAddress = {};
+  var isPickupStore = false;
+  $(document).ready(function () {
+    $('#place-order').click(function () {
+      $('html, body').animate({
+        scrollTop: $("#cart-view").offset().top - 150
+      }, 1000);
+    });
+
+    window.addEventListener("storage", function () {
+      console.log('shopping');
+
+    }, false);
+
+    $('.stores-block').hide();
+    $("#store").hide();
+    $("#scales").click(function () {
+
+      isPickupStore = true;
+      $('#filladdress').prop('checked', true);
+
+      // $('#deliveryfirstname').val($('#firstname').val());
+      // $('#deliverylastname').val($('#lastname').val());
+      // // $('#Email').val($('#Email').val());
+      // $('#deliveryphone').val($('#phone').val());
+      // $('#deliverystreet').val($('#billingstreet').val());
+      // $('#deliveryzip').val($('#billingzip').val());
+      // $('#deliverycity').val($('#billingcity').val());
+      // $('#deliverycountry').val($('#billingcountry').val());
+      // $('#deliverystate').val($('#billingstate').val());
+
+      $("#store").show();
+      if ($(this).is(":checked")) {
+        $("#deliv").hide();
+        isPickupStore = true;
+        $('.pincode-del').hide();
+      } else {
+        isPickupStore = false;
+        $("#deliv").show();
+        $("#store").hide();
+        $('.pincode-del').show();
+      }
+    });
+
+    var distArray = [];
+    $.each(districts, function (index, value) {
+
+      distArray.push(value.City);
+
+    });
+
+    let unique = [...new Set(distArray)];
+    // console.log(unique);
+    $('#List').html('');
+
+    $('#List').append(`<option disabled selected value = "null">select city</option>`);
+
+    for (i = 0; i < unique.length; i++) {
+
+      let element = unique[i];
+
+      $('#List').append(`
+  					<option value = "${element}">${element}</option>
+  				`);
+    }
+
+
+    $('#List').on('change', function () {
+
+
+      $('.stores-block').show();
+      let unique2 = [];
+      let self = this;
+      $.each(districts, function (index, value) {
+        if (value.City.toLowerCase() == self.value.toLowerCase()) {
+          unique2.push(value['Retailer Locality Area']);
+        }
+
+      });
+
+      $('#List2').html('');
+      $('#List2').append(`<option disabled selected value = "null">select Store</option>`);
+      for (i = 0; i < unique2.length; i++) {
+        let element = unique2[i];
+        $('#List2').append(`
+  						<option value = "${element}">${element}</option>
+  					`);
+      }
+
+    });
+
+    $('#List2').on('change', function () {
+      let self = this;
+      console.log('DDD', self.value);
+      $.each(districts, function (index, value) {
+        if (value['Retailer Locality Area'] == self.value) {
+
+          storeAddress.pickupCity = value['City'];
+
+          storeAddress.pickupLocation = value['Retailer Locality Area'];
+
+          storeAddress.pickupAddress = value['Full Postal Address '];
+
+          storeAddress.pickupMobile = value['Mobile Number'];
+
+          storeAddress.pickupState = value['State'];
+
+          storeAddress.pickupPincode = value['Pincode'];
+
+        }
+
+      });
+
+    });
+
+
+
+  });
+
+  function checkGuest() {
+    Swal.fire({
+      position: 'center',
+      title: 'Are you sure?',
+      text: "You want to make guest checkout!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Guest Checkout',
+      cancelButtonText: 'Login',
+    }).then((result) => {
+      console.log(result);
+
+      if (result.value) {
+
+      } else {
+        window.location.href = '/account'
+      }
+    });
+  }
+  $(document).ready(function () {
+    // $('.coupons-block').hide();
+
+    $('.main-coupon-preview').hide();
+    getUserDetails();
+
+
+    $("#filladdress").on("click", function () {
+
+      if (this.checked) {
+        $('#deliveryfirstname').val($('#firstname').val());
+        $('#deliverylastname').val($('#lastname').val());
+        // $('#Email').val($('#Email').val());
+        $('#deliveryphone').val($('#phone').val());
+        $('#deliverystreet').val($('#billingstreet').val());
+        $('#deliveryzip').val($('#billingzip').val());
+        $('#deliverycity').val($('#billingcity').val());
+        $('#deliverycountry').val('India');
+        $('#deliverystate').val($('#billingstate').val());
+
+      }
+      else {
+        $('#deliveryfirstname').val($('').val());
+        $('#deliverylastname').val($('').val());
+        $('#deliveryphone').val($('').val());
+        $('#deliverystreet').val($('').val());
+        $('#deliveryzip').val($('').val());
+        $('#deliverycity').val($('').val());
+        $('#deliverycountry').val($('').val());
+        $('#deliverystate').val($('').val());
+      }
+      if (isTwoHrsDel) {
+
+        $('#deliveryzip').val($('#pincode').val());
+      } else {
+        $('#deliveryzip').val($('#billingzip').val());
+      }
+    });
+
+    $('.submit-btn').attr("disabled", true);
+    $('.accept-btn').on("click", function (params) {
+      console.log('ISCHECKED');
+
+      if ($('#accept').is(":checked") || $('#accept2').is(":checked"))
+        $('.submit-btn').attr("disabled", false);
+      else
+        $('.submit-btn').attr("disabled", true);
+    })
+
+
+  });
+
+  function validateCoupon() {
+
+    let couponData = {
+      'email': $('#email').val(),
+      'code': $('#couponCode').val(),
+      "ordervalue": sum
+    };
+    console.log(couponData);
+    $(".error").remove();
+    $.ajax('/api/voucherVerification/', {
+      type: 'POST',
+      data: JSON.stringify(couponData),
+      dataType: 'json', // type of response data
+      contentType: 'application/json',
+      timeout: 5000, // timeout milliseconds
+      success: function (data, status, xhr) { // success callback function
+        console.log(data);
+        if (data.status) {
+          coupounObj = data;
+          let totalamt = sum - data.amount;
+          document.getElementById('offer-value').innerHTML = data.amount.toLocaleString('en-IN', {
+            maximumFractionDigits: 2,
+            style: 'currency',
+            currency: 'INR'
+          });
+          document.getElementById('offer-total').innerHTML = totalamt.toLocaleString('en-IN', {
+            maximumFractionDigits: 2,
+            style: 'currency',
+            currency: 'INR'
+          });
+
+          $('.main-coupon-b').hide();
+          $('.main-coupon-preview').show();
+        } else {
+          $('#couponCode').after(`<span class="error">${data.message}</span>`);
+          $('.main-coupon-b').show();
+          $('.main-coupon-preview').hide();
+        }
+      },
+      error: function (jqXhr, textStatus, errorMessage) { // error callback
+
+        console.log("errror");
+
+      }
+    });
+  }
+
+  function couponApply() {
+
+    let couponData = {
+      'email': $('#email').val(),
+      'phoneNumber': $('#phone').val(),
+      'voucherId': coupounObj.voucherId,
+      'voucherCode': $('#couponCode').val(),
+      'orderValue': sum,
+      'offerValue': coupounObj.amount
+
+    };
+    console.log(couponData);
+
+    $.ajax('/api/voucherAllocation/', {
+      type: 'POST',
+      data: JSON.stringify(couponData),
+      dataType: 'json', // type of response data
+      contentType: 'application/json',
+      timeout: 5000, // timeout milliseconds
+      success: function (data, status, xhr) { // success callback function
+        console.log(data);
+        let totalamt = data.data.orderValue - data.data.offerValue;
+        if (data.status) {
+          $('.apply').hide();
+          document.getElementById('vt').innerHTML = totalamt.toLocaleString('en-IN', {
+            maximumFractionDigits: 2,
+            style: 'currency',
+            currency: 'INR'
+          });
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: data.message,
+            showConfirmButton: true
+          });
+        } else {
+          Swal.fire({
+            position: 'center',
+            icon: 'Failed',
+            title: data.message,
+            showConfirmButton: true,
+          });
+          $('.apply').show();
+        }
+      },
+      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        console.log("errror");
+
+      }
+    });
+  }
+
+  function delItem(i) {
+    cart.splice(i, 1);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: name + ' Removed from cart',
+      showConfirmButton: false,
+      timer: 1500
+    }).then(() => { refreshCart('reload') });
+
+  }
+
+  function refreshCart(reload) {
+
+    count = 0;
+    sum = 0;
+    $('.table').hide();
+
+
+
+    $('#cart-row').html('');
+
+    for (let i = 0; i < cart.length; i++) {
+      let pricetemp = cart[i].price * cart[i].count;
+      pricetemp = pricetemp.toLocaleString('en-IN', {
+        maximumFractionDigits: 2,
+        style: 'currency',
+        currency: 'INR'
+      });
+
+      var variant = cart[i].variant == '' ? '' : `(${cart[i].variant})`;
+
+      $('#cart-row').append(`
+  					<tr>
+  							<td><i class="fa fa-trash"  onclick="delItem(${i})" aria-hidden="true"></i></td>
+
+  						<td>${i + 1}</td>
+  							<td style='white-space: inherit;'>${cart[i].name} ${variant} </td>
+  							<td><i class="fa fa-minus" onclick="minus(${i})" aria-hidden="true"></i></td>
+  							<td>${cart[i].count}</td>
+  							<td><i class="fa fa-plus" onclick="plus(${i})" aria-hidden="true"></i></td>
+  							<td>${pricetemp}</td>
+
+  			      	    </tr>
+  				`);
+      $('.table').show();
+      sum = sum + cart[i].price * cart[i].count;
+      count = count + cart[i].count;
+
+
+
+    }
+
+    $('#vq').html(count);
+
+    document.getElementById('vt').innerHTML = sum.toLocaleString('en-IN', {
+      maximumFractionDigits: 2,
+      style: 'currency',
+      currency: 'INR'
+    });
+    localStorage.setItem('shoppingcart', JSON.stringify(cart));
+
+    let cartValue = JSON.parse(localStorage.getItem('shoppingcart'));
+    // console.log(cartValue);
+
+    if (cartValue.length !== 0) {
+      $('.noItemsInCart').hide();
+      $('.order-block').show();
+      $('.main-coupon-b').show();
+    } else {
+      $('.noItemsInCart').show();
+      $('.order-block').hide();
+      $('.main-coupon-b').hide();
+    }
+
+    if (reload == 'reload') {
+      location.reload();
+    }
+
+  }
+
+  function minus(i) {
+    //cart.splice(i, 1);
+    if (cart[i].count == 1) {
+      cart.splice(i, 1);
+    } else {
+      cart[i].count -= 1;
+    }
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: name + ' removed from cart',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    console.log(cart.length);
+    if (tempCartlength != cart.length) {
+      refreshCart('reload');
+    }
+    refreshCart('no-reload');
+  }
+
+  function plus(i) {
+    cart[i].count += 1;
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: name + ' added to cart',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    refreshCart('no-reload');
+  }
+
+  function clearCart() {
+
+    localStorage.removeItem("product_code");
+    localStorage.removeItem("shoppingcart");
+    console.log(JSON.parse(localStorage.getItem('shoppingcart')));
+    setTimeout(() => {
+      if (JSON.parse(localStorage.getItem('shoppingcart')) == null) {
+        $('.order-block').hide();
+        $('.noItemsInCart').show();
+        $('.main-coupon-b').hide();
+      }
+    }, 500);
+
+
+  }
+
+  if (JSON.parse(localStorage.getItem('shoppingcart')) == 0 || JSON.parse(localStorage.getItem('shoppingcart')) == null) {
+
+
+    $('.empty').show();
+    $('.main-view').hide();
+  } else {
+    $('.empty').hide();
+    $('.main-view').show();
+  }
+
+  // 	$('notify
+  // accept')
+  function submitorder() {
+    if ($('#phone').val().length != 10) {
+      $('.phone-error').after(`<span class="error">Phone Number Must be 10 Digits only</span>`);
+    }
+    else {
+      $('#deliveryfirstname').val($('#firstname').val());
+    $('#deliverylastname').val($('#lastname').val());
+    // $('#Email').val($('#Email').val());
+    $('#deliveryphone').val($('#phone').val());
+    $('#deliverystreet').val($('#billingstreet').val());
+    $('#deliveryzip').val($('#billingzip').val());
+    $('#deliverycity').val($('#billingcity').val());
+    $('#deliverycountry').val('India');
+    $('#deliverystate').val($('#billingstate').val());
+
+    if (isTwoHrsDel) {
+      $('#deliveryzip').val($('#pincode').val());
+    } else {
+      $('#deliveryzip').val($('#billingzip').val());
+    }
+
+
+    var form = {
+      firstname: $('#firstname').val(),
+      lastname: $('#lastname').val(),
+      email: $('#email').val(),
+      phone: $('#phone').val(),
+      street: $('#street').val() || "N/A",
+      zip: $('#zip').val() || "N/A",
+      city: $('#city').val() || "N/A",
+      country: $('#country').val() || "N/A",
+
+      billingstreet: $('#billingstreet').val(),
+      billingcity: $('#billingcity').val(),
+      billingcountry: 'India',
+      billingzip: $('#billingzip').val(),
+      delivery: "Remax",
+      payment: "Direct bank transfer",
+      company: "",
+      companyid: "",
+      companyvat: "",
+      datecreated: "",
+      iduser: "",
+      iscompany: "",
+      isnewsletter: true,
+      isterms: true,
+      items: cart,
+      referalId: $('#referalId').val()
+
+    };
+
+    if(localStorage.getItem("product_code") !== null){
+        form.product_code = localStorage.getItem("product_code");
+    }else{
+        form.product_code = "none";
+    }
+
+    if ($('#chkdeliv').is(":checked")) {
+      form.istwohrs = true;
+    } else {
+      form.istwohrs = false;
+    }
+
+    if (isPickupStore) {
+
+      form.pickupCity = storeAddress.pickupCity;
+      form.pickupLocation = storeAddress.pickupLocation;
+      form.pickupAddress = storeAddress.pickupAddress;
+      form.pickupMobile = storeAddress.pickupMobile;
+      form.pickupState = storeAddress.pickupState;
+      form.pickupPincode = storeAddress.pickupPincode;
+      form.ispickup = true;
+
+      form.deliverycity = "N/A";
+      form.deliverycountry = 'India';
+      form.deliveryfirstname = "N/A";
+      form.deliverylastname = "N/A";
+      form.deliveryphone = $('#phone').val();
+      form.deliverystreet = "N/A";
+      form.deliveryzip = "N/A";
+
+    } else {
+      form.pickupCity = "N/A";
+      form.pickupLocation = "N/A";
+      form.pickupAddress = "N/A";
+      form.pickupMobile = "N/A";
+      form.pickupState = "N/A";
+      form.pickupPincode = "N/A";
+      form.ispickup = false;
+
+      form.deliverycity = $('#deliverycity').val();
+      form.deliverycountry = 'India';
+      form.deliveryfirstname = $('#deliveryfirstname').val();
+      form.deliverylastname = $('#deliveryfirstname').val();
+      form.deliveryphone = $('#deliveryphone').val();
+      form.deliverystreet = $('#deliverystreet').val();
+      form.deliveryzip = $('#deliveryzip').val();
+    }
+
+    console.log('form', form);
+
+    $.ajax('/api/orders/create/', {
+      type: 'POST',
+      data: JSON.stringify(form),
+      dataType: 'json', // type of response data
+      contentType: 'application/json',
+      timeout: 5000, // timeout milliseconds
+      success: function (data, status, xhr) { // success callback function
+        console.log("DAAA", data);
+        $(".error").remove();
+        if ($('#phone').val() == '' || $('#phone').val() == null || $('#phone').val().length < 10) {
+          $('#phone').after(`<span class="error">Invalid Phone Number</span>`);
+        } else {
+          if (data.success) {
+            $('.error-content').hide();
+
+            $('.error-content').hide();
+
+            setTimeout(function () {
+
+              clearCart();
+
+              location.href = '@{sitemap_url('order', '{ 0 } ')}'.format(data.value);
+            }, 1000);
+          } else {
+            console.log("CP 2", data);
+            // $('.error-content').show();
+            // $('.errors-b').html('');
+            // for (let i = 0; i < data.length; i++) {
+
+            // 	$('.errors-b').append(`
+            // 	<li><span> ${data[i].error}</span></li>`);
+            // }
+
+            for (let i = 0; i < data.length; i++) {
+              const element = data[i];
+              $('#' + element.name).after(`<span class="error">${element.error}</span>`);
+              if (data[i].name == "error-users-email") {
+                $('#email').after(`<span class="error">${element.error}</span>`);
+              }
+              if (data[i].name == "pickupLocation") {
+                $('#List').after(`<span class="error">Invalid Pickup details</span>`);
+              }
+
+            }
+          }
+
+        }
+        return;
+
+
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        console.log("errror");
+
+      }
+    });
+
+    }
+  
+ 
+
+  }
+
+  refreshCart('noreload');
+
+
+  SETTER(true, 'loading', 'hide', 500);
+
+  var order = {};
+
+  ON('@shoppingcart', function (com) {
+    var data = com.get();
+
+    if (!data || !data.items.length)
+      return;
+
+    // Reads types of delivery and payment
+    AJAX('GET /api/orders/dependencies/', 'order.dependencies');
+
+    // Performs autofill if the user is logged
+    MAIN.cookies.get('__user') && AJAX('GET /api/account/autofill/', function (response) {
+      EXTEND('order.form', response);
+
+    });
+
+    // Get current prices according to the database
+    // A check for price hijacking
+    com.sync(function (arr, data) {
+      AJAX('GET /api/products/prices/?id=' + arr.join(','), com.modify);
+    });
+  });
+
+  COMPONENT('checkout', function (self, config) {
+
+    var currency = '';
+    var skip = false;
+    var container, summarize;
+
+    self.readonly();
+    self.blind();
+
+    self.make = function () {
+
+      var el = self.find('script');
+
+      self.template = VIRTUALIZE(el.html(), { name: '.name b', count: 'input', price: '.price span', variant: '.variant', sum: '.sum', stock: '.stock b' });
+      currency = self.attrd('currency') || '{0}';
+
+      self.html('<div class="checkout"></div><div class="checkout-summarize"><b></b></div>');
+      container = self.find('.checkout');
+      summarize = self.find('.checkout-summarize b');
+
+      self.event('click', '.fa-times-circle', function () {
+        var ccontainer = $(this).closest('.checkout-container');
+        skip = true;
+        FIND('shoppingcart').rem(ccontainer.attrd('token'));
+        ccontainer.remove();
+      });
+
+      self.event('input', 'input', function () {
+        setTimeout2(self.id, function (input) {
+          skip = true;
+          var count = input.value.parseInt();
+          var ccontainer = $(input).closest('.checkout-container');
+          var shoppingcart = FIND('shoppingcart');
+          var product = shoppingcart.read(ccontainer.attrd('token'));
+          var item = ccontainer.get(0).$item;
+          count = shoppingcart.upd(product.token, count);
+          item.sum.html(currency.format((count * product.sum).format(2)));
+          input.value = count;
+        }, 500, 10, this);
+      });
+
+      self.on('shoppingcart.sum', function (data) {
+        summarize.html(currency.format(data.sum.format(2)));
+        !skip && self.render();
+      });
+    };
+
+    self.render = function () {
+      FIND('shoppingcart', function (com) {
+        container.empty();
+        com.items().forEach(function (item) {
+          var obj = self.template.clone();
+          obj.attrd('token', item.token);
+          obj.name.html(item.name);
+          item.variant && obj.variant.html(item.variant);
+          obj.count.val(item.count);
+          obj.price.html(currency.format(item.sum.format(2)));
+          obj.sum.html(currency.format((item.count * item.sum).format(2)));
+
+          if (item.stock)
+            obj.stock.html(item.stock).rclass('red');
+          else
+            obj.stock.html('@(out of stock)').aclass('red');
+
+          // a hidden reference to this virtualized instance
+          obj.element.get(0).$item = obj;
+          container.append(obj.element);
+        });
+      });
+    };
+  });
+
+  function ordersubmit() {
+
+    var shoppingcart = FIND('shoppingcart');
+    if (shoppingcart.price === 0) {
+      // error
+      return;
+    }
+
+    // Removes products with zero count
+    shoppingcart.clean();
+    order.form.items = shoppingcart.get().items;
+    SETTER('loading', 'show');
+
+    AJAX('POST /api/orders/create/', order.form, function (response) {
+
+      SETTER('loading', 'hide', 1000);
+
+      if (response.success) {
+        shoppingcart.clear();
+        setTimeout(function () {
+          location.href = '@{sitemap_url('order', '{ 0 } ')}'.format(response.value);
+        }, 1000);
+      } else {
+        RESET('order.form.*');
+        SET('order.form.response', response);
+      }
+
+    });
+  }
+
+  function ordercopyaddress() {
+    SET('order.form.deliverystreet', order.form.billingstreet, true);
+    SET('order.form.deliverycity', order.form.billingcity, true);
+    SET('order.form.deliveryzip', order.form.billingzip, true);
+    SET('order.form.deliverycountry', order.form.billingcountry, true);
+  }
+
+  function ordercopypersonal() {
+    SET('order.form.deliveryfirstname', order.form.firstname, true);
+    SET('order.form.deliverylastname', order.form.lastname, true);
+    SET('order.form.deliveryphone', order.form.phone, true);
+  }
+
+
+  function getUserDetails() {
+    var baseUrl = '/api/';
+    $.ajax('/api/account/settings/', {
+      type: 'GET',
+      dataType: 'json', // type of response data
+      timeout: 5000, // timeout milliseconds
+      success: function (data, status, xhr) { // success callback function
+        console.log(data);
+
+        $('#firstname').val(data.firstname);
+        $('#lastname').val(data.lastname);
+        $('#email').val(data.email);
+        $('#phone').val(data.phone);
+
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        console.log("errror");
+        // get check will be enabled after /api/account/settings/ is error
+        // checkGuest();
+      }
+    });
+
+    $.ajax(baseUrl + 'account/autofill', {
+      type: 'GET',
+      dataType: 'json', // type of response data
+      timeout: 5000, // timeout milliseconds
+      success: function (data, status, xhr) { // success callback function
+        console.log(data);
+
+
+        $('#billingstreet').val(data.billingstreet);
+        $('#billingzip').val(data.billingzip);
+        $('#billingcity').val(data.billingcity);
+        $('#billingcountry').val(data.billingcountry);
+
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        console.log("errror");
+
+        // window.location.href = '/account';
+      }
+    });
+  }
+</script>

@@ -1,0 +1,98 @@
+	
+	<div class="prod-i">
+		<div class="container">
+			<div class="row m-0">
+				<div class="col-md-12">
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>General</p>
+							<!-- @{model.product_type} -->
+						</div>
+
+						<div class="collapse show" id="collapseExample">
+							<div class="spec-body">
+								@{if model.CModelname}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+										<span> Model Name</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.CModelname}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Ccolor}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Color</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Ccolor}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Ctype}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Type</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Ctype}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>Product Details</p>
+						</div>
+
+						<div class="collapse show" id="display-collapse">
+							<div class="spec-body">
+								@{if model.AdditionalFeatures}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Additional Features</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.AdditionalFeatures}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Usbports}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Usb Ports</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Usbports}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.configuration}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Configuration</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.configuration}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>

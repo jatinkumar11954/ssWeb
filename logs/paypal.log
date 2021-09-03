@@ -1,0 +1,16 @@
+2019-12-06 10:20:42 | 444184001xa1a Error: ACK Failure: You do not have permissions to make this API call
+    at /home/ubuntu/happieshop/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/ubuntu/happieshop/node_modules/paypal-express-checkout/index.js:176:4)
+    at emitNone (events.js:111:20)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:218:9)
+2019-12-06 10:24:26 | 444184001xa1a Error: ACK Failure: You do not have permissions to make this API call
+    at /home/ubuntu/happieshop/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/ubuntu/happieshop/node_modules/paypal-express-checkout/index.js:176:4)
+    at emitNone (events.js:111:20)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:218:9)

@@ -1,0 +1,83 @@
+<div class="mobile-view mob-view">
+    <p onclick="showFilter()"
+    style="font-size: 14px;font-weight: 600;background-color: #fb9013;padding: 3px;text-align: center;border-radius: 8px;color: #fff;cursor: pointer;">
+    Toggle Filter</p>
+    </div>
+    <div  class="filter-list">
+
+        <div class="each-filter brand-filter">
+            <p class="filter-heading">Brand</p>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="Inbase" id='Inbase' class="filter" name="cabBrand">Inbase
+                    </label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="Mi" id='Mi' class="filter" name="cabBrand">Mi</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="Anker" id='Anker' class="filter" name="cabBrand">Anker</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="Samsung" id='Samsung' class="filter" name="cabBrand">Samsung</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="Ambrane" id='Ambrane' class="filter"
+                        name="cabBrand">Ambrane</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="Oraimo" id='Oraimo' class="filter" name="cabBrand">Oraimo</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="Portronics" id='Portronics' class="filter" name="cabBrand">Portronics</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="Toreto" id='Toreto' class="filter" name="cabBrand">Toreto</label>
+            </div>
+            <div class="checkbox">
+                    <label><input type="checkbox" value="Conekt" id='Conekt' class="filter" name="cabBrand">Conekt</label>
+                </div>
+                <div class="checkbox">
+                        <label><input type="checkbox" value="Syska" id='Syska' class="filter" name="cabBrand">Syska</label>
+                    </div>
+
+        </div>
+        <div class="each-filter price-filter">
+            <p class="filter-heading">Price Range</p>
+
+            <div class="checkbox">
+                <label><input type="checkbox" id='b01' class="pfilter" data-minprice="0"  data-maxprice="5000" name="price">Rs 0 - Rs 5K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox"  id='b02' class="pfilter"data-minprice="50001"  data-maxprice="10000" name="price">Rs 5K - Rs 10K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox"  id='b03' class="pfilter"data-minprice="10001"  data-maxprice="15000" name="price">Rs 10K - Rs 15K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id='b04' class="pfilter"data-minprice="15001"  data-maxprice="20000" name="price">Rs 15K - Rs 20K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox"  id='b09' class="pfilter"
+                       data-minprice="20001"  data-maxprice="25000" name="price">Rs 20K - Rs 25K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id='b010' class="pfilter"data-minprice="25001"  data-maxprice="30000" name="price">Rs 25K - Rs 30K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id='b011' class="pfilter"data-minprice="30001"  data-maxprice="35000" name="price">Rs 30K - Rs 35K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id='b012' class="pfilter"data-minprice="35001"  data-maxprice="40000" name="price">Rs 35K - Rs 40K</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id='b012' class="pfilter"data-minprice="40000"  data-maxprice="500000" name="price">RS 40K+</label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showFilter() {
+            $('.filter-list').toggle();
+        }
+    </script>

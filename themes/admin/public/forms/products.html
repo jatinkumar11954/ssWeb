@@ -1,0 +1,4667 @@
+<style>
+	/*auto*/
+	.ui-productsprices {
+		display: table;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	.ui-productsprices-item {
+		display: table-row;
+	} 
+
+	.ui-productsprices-item>div {
+		display: table-cell;
+		padding: 2px 5px;
+	}
+
+	.ui-productsprices-item>div:first-child {
+		padding-left: 0;
+	}
+
+	.ui-productsprices-item>div:last-child {
+		padding-right: 0;
+	}
+
+	.ui-productsprices-item input {
+		width: 100%;
+		background-color: transparent;
+		border: 0;
+		border-bottom: 1px dotted black;
+		font-weight: normal;
+		outline: 0;
+		text-align: right;
+		padding: 1px 5px;
+		margin: 0;
+		font-size: 14px;
+	}
+
+	.ui-productsprices-reference {
+		width: 100px;
+	}
+
+	.ui-productsprices-reference input {
+		text-align: left;
+	}
+
+	.ui-productsprices-name input {
+		text-align: left;
+	}
+
+	.ui-productsprices-stock {
+		width: 110px;
+	}
+
+	.ui-productsprices-stock div {
+		margin-right: 20px;
+	}
+
+	.ui-productsprices-stock .fa {
+		float: right;
+		color: red;
+		width: 18px;
+		cursor: pointer;
+		margin: 5px 0 0;
+		text-align: right;
+	}
+
+	.ui-productsprices-price {
+		width: 120px;
+		background-color: #F0F0F0;
+		padding-right: 10px !important;
+	}
+
+	.ui-productsprices-sum {
+		width: 120px;
+		text-align: right;
+		background-color: #FFFFF5;
+		font-size: 14px;
+	}
+
+	.ui-productsprices-sum>div {
+		padding: 1px 5px;
+		border-bottom: 1px solid black;
+	}
+
+	.ui-productsprices-header {
+		margin-bottom: 10px;
+	}
+
+	.ui-productsprices-header .ui-productsprices-price {
+		background-color: transparent;
+	}
+
+	.ui-productsprices-header>div {
+		padding: 5px 5px;
+		font-weight: bold;
+		text-align: right;
+	}
+
+	.ui-productsprices-header .ui-productsprices-name {
+		text-align: left;
+	}
+
+	.ui-productsprices-header .ui-productsprices-stock {
+		padding-right: 20px !important;
+	}
+
+	.ui-productsprices-header .fa {
+		margin: 0 5px 0 0;
+		cursor: default;
+		color: black;
+	}
+
+	.ui-markdown-editor-label {
+		margin-bottom: 5px;
+		font-size: 12px;
+		text-align: left;
+	}
+
+	.ui-markdown-editor-label .fa {
+		margin-right: 5px;
+	}
+
+	.ui-markdown-editor-label-required {
+		font-weight: bold;
+	}
+
+	.ui-markdown-editor-label-required:before {
+		color: red;
+		content: '***';
+		margin-right: 5px;
+	}
+
+	.ui-markdown-editor-invalid {
+		border-color: #E7B8B8 !important;
+		background-color: #FFF3F3 !important;
+	}
+
+
+
+
+	@media(max-width: 768px) {
+		.ui-productsprices-item>div {
+			display: block;
+			height: 30px;
+		}
+
+		.ui-productsprices-item {
+			display: block;
+			height: 80px;
+		}
+
+		.ui-productsprices {
+			display: block;
+		}
+
+		.ui-productsprices-reference {
+			width: 33%;
+			float: left;
+		}
+
+		.ui-productsprices-name {
+			margin-left: 33%;
+		}
+
+		.ui-productsprices-price {
+			width: 33%;
+			float: left;
+		}
+
+		.ui-productsprices-stock {
+			width: 33%;
+			float: left;
+		}
+
+		.ui-productsprices-sum {
+			width: 33%;
+			float: right;
+		}
+	}
+
+	/*
+		Autocomplete Start 
+		*/
+
+	.ui-autocomplete-container {
+		position: absolute;
+		z-index: 60;
+	}
+
+	.ui-autocomplete {
+		background-color: white;
+		width: 100%;
+		margin: -5px 0 0 0;
+		padding: 2px 0;
+		border-radius: 0 0 4px 4px;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+		border: 1px solid #E0E0E0;
+		line-height: 14px;
+		overflow: hidden;
+	}
+
+	.ui-autocomplete ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.ui-autocomplete li {
+		margin: 0;
+		padding: 5px 12px 0;
+		border-bottom: 1px solid #F0F0F0;
+		cursor: pointer;
+		font-size: 12px;
+		color: #505050;
+		height: 24px;
+	}
+
+	.ui-autocomplete li:last-child {
+		border-bottom: 0;
+	}
+
+	.ui-autocomplete .selected {
+		background-color: #F0F0F0;
+	}
+
+	.ui-autocomplete li span {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	.ui-autocomplete li span:first-child {
+		float: left;
+		width: 65%;
+	}
+
+	.ui-autocomplete li span:last-child {
+		float: right;
+		width: 30%;
+		font-size: 11px;
+		color: #A0A0A0;
+	}
+
+	.ui-dark .ui-autocomplete {
+		background-color: #303030;
+		border-color: #404040;
+	}
+
+	.ui-dark .ui-autocomplete li {
+		color: gray;
+		border-bottom-color: #404040;
+	}
+
+	.ui-dark .ui-autocomplete .selected {
+		background-color: #454545;
+		color: white;
+	}
+
+	/*
+		Autocomplete End 
+		*/
+</style>
+
+
+
+<script>
+	// 	$(document).ready(function() {
+	//   $('#summernote').summernote();
+	// });
+	COMPONENT('autocomplete', 'height:200', function (self, config) {
+
+		var cls = 'ui-autocomplete';
+		var cls2 = '.' + cls;
+		var clssel = 'selected';
+
+		var container, old, searchtimeout, searchvalue, blurtimeout, datasource, offsetter, scroller;
+		var margin = {};
+		var skipmouse = false;
+		var is = false;
+		var prev;
+
+		self.template = Tangular.compile('<li{{ if index === 0 }} class="' + clssel + '"{{ fi }} data-index="{{ index }}"><span>{{ name }}</span><span>{{ type }}</span></li>');
+		self.readonly();
+		self.singleton();
+		self.nocompile && self.nocompile();
+
+		self.make = function () {
+
+			self.aclass(cls + '-container hidden');
+			self.html('<div class="' + cls + '"><div class="noscrollbar"><ul></ul></div></div>');
+
+			scroller = self.find('.noscrollbar');
+			container = self.find('ul');
+
+			self.event('click', 'li', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				if (self.opt.callback) {
+					var val = datasource[+$(this).attrd('index')];
+					self.opt.scope && M.scope(self.opt.scope);
+					if (self.opt.path)
+						SET(self.opt.path, val.value === undefined ? val.name : val.value);
+					else
+						self.opt.callback(val, old);
+				}
+				self.visible(false);
+			});
+
+			self.event('mouseenter mouseleave', 'li', function (e) {
+				if (!skipmouse) {
+					prev && prev.rclass(clssel);
+					prev = $(this).tclass(clssel, e.type === 'mouseenter');
+				}
+			});
+
+			$(document).on('click', function () {
+				is && self.visible(false);
+			});
+
+			$(window).on('resize', function () {
+				self.resize();
+			});
+
+			self.on('scroll', function () {
+				is && self.visible(false);
+			});
+		};
+
+		self.prerender = function (value) {
+			self.render(value);
+		};
+
+		self.configure = function (name, value) {
+			switch (name) {
+				case 'height':
+					value && scroller.css('height', value);
+					break;
+			}
+		};
+
+		function keydown(e) {
+			var c = e.which;
+			var input = this;
+			if (c !== 38 && c !== 40 && c !== 13) {
+				if (c !== 8 && c < 32)
+					return;
+				clearTimeout(searchtimeout);
+				searchtimeout = setTimeout(function () {
+					var val = input.value || input.innerHTML;
+					if (!val)
+						return self.render(EMPTYARRAY);
+					if (searchvalue === val)
+						return;
+					searchvalue = val;
+					self.resize();
+					self.opt.search(val, self.prerender);
+				}, 200);
+				return;
+			}
+
+			if (!datasource || !datasource.length || !is)
+				return;
+
+			var current = container.find('.' + clssel);
+			if (c === 13) {
+				if (prev) {
+					prev = null;
+					self.visible(false);
+					if (current.length) {
+						var val = datasource[+current.attrd('index')];
+						self.opt.scope && M.scope(self.opt.scope);
+						if (self.opt.callback)
+							self.opt.callback(val, old);
+						else if (self.opt.path)
+							SET(self.opt.path, val.value === undefined ? val.name : val.value);
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				}
+				return;
+			}
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			if (current.length) {
+				current.rclass(clssel);
+				current = c === 40 ? current.next() : current.prev();
+			}
+
+			skipmouse = true;
+			!current.length && (current = self.find('li:{0}-child'.format(c === 40 ? 'first' : 'last')));
+			prev && prev.rclass(clssel);
+			prev = current.aclass(clssel);
+			var index = +current.attrd('index');
+			var h = current.innerHeight();
+			var offset = ((index + 1) * h) + (h * 2);
+			scroller[0].scrollTop = offset > config.height ? offset - config.height : 0;
+			setTimeout2(self.ID + 'skipmouse', function () {
+				skipmouse = false;
+			}, 100);
+		}
+
+		function blur() {
+			clearTimeout(blurtimeout);
+			blurtimeout = setTimeout(function () {
+				self.visible(false);
+			}, 300);
+		}
+
+		self.visible = function (visible) {
+			clearTimeout(blurtimeout);
+			self.tclass('hidden', !visible);
+			is = visible;
+		};
+
+		self.resize = function () {
+
+			if (!offsetter || !old)
+				return;
+
+			var offset = offsetter.offset();
+			offset.top += offsetter.height();
+			offset.width = offsetter.width();
+
+			if (margin.left)
+				offset.left += margin.left;
+			if (margin.top)
+				offset.top += margin.top;
+			if (margin.width)
+				offset.width += margin.width;
+
+			self.css(offset);
+		};
+
+		self.show = function (opt) {
+
+			clearTimeout(searchtimeout);
+			var selector = 'input,[contenteditable]';
+
+			if (opt.input == null)
+				opt.input = opt.element;
+
+			if (opt.input.setter)
+				opt.input = opt.input.find(selector);
+			else
+				opt.input = $(opt.input);
+
+			if (opt.input[0].tagName !== 'INPUT' && !opt.input.attr('contenteditable'))
+				opt.input = opt.input.find(selector);
+
+			if (opt.element.setter) {
+				if (!opt.callback)
+					opt.callback = opt.element.path;
+				opt.element = opt.element.element;
+			}
+
+			if (old) {
+				old.removeAttr('autocomplete');
+				old.off('blur', blur);
+				old.off('keydown', keydown);
+			}
+
+			opt.input.on('keydown', keydown);
+			opt.input.on('blur', blur);
+			opt.input.attr('autocomplete', 'off');
+
+			old = opt.input;
+			margin.left = opt.offsetX;
+			margin.top = opt.offsetY;
+			margin.width = opt.offsetWidth;
+			opt.scope = M.scope ? M.scope() : '';
+
+			offsetter = $(opt.element);
+			self.opt = opt;
+			self.resize();
+			self.refresh();
+			searchvalue = '';
+			self.visible(false);
+		};
+
+		self.attach = function (input, search, callback, left, top, width) {
+			self.attachelement(input, input, search, callback, left, top, width);
+		};
+
+		self.attachelement = function (element, input, search, callback, left, top, width) {
+
+			if (typeof (callback) === 'number') {
+				width = left;
+				left = top;
+				top = callback;
+				callback = null;
+			}
+
+			var opt = {};
+			opt.offsetX = left;
+			opt.offsetY = top;
+			opt.offsetWidth = width;
+
+			if (typeof (callback) === 'string')
+				opt.path = callback;
+			else
+				opt.callback = callback;
+
+			opt.search = search;
+			opt.element = input;
+			opt.input = input;
+			self.show(opt);
+		};
+
+		self.render = function (arr) {
+
+			datasource = arr;
+
+			if (!arr || !arr.length) {
+				self.visible(false);
+				return;
+			}
+
+			var builder = [];
+			for (var i = 0, length = arr.length; i < length; i++) {
+				var obj = arr[i];
+				obj.index = i;
+				if (!obj.name)
+					obj.name = obj.text;
+				builder.push(self.template(obj));
+			}
+
+			container.empty().append(builder.join(''));
+			skipmouse = true;
+
+			setTimeout(function () {
+				scroller[0].scrollTop = 0;
+				skipmouse = false;
+			}, 100);
+
+			prev = container.find('.' + clssel);
+			self.visible(true);
+			setTimeout(function () {
+				scroller.noscrollbar(true);
+			}, 100);
+		};
+	});
+</script>
+
+
+<div data-jc="form" data-jc-path="common.form" class="hidden"
+	data-jc-config="icon:dropbox;if:products-form;width:1300;reload:Products/formShow;submit:Products/formSubmit;autofocus:true"
+	data-jc-controller="Products">
+	<div class="padding" style="padding-bottom:10px">
+		<div class="row">
+			<div class="col-md-12 m">
+				<div data-jc="textbox" data-jc-path="products.form.name"
+					data-jc-config="maxlength:250;placeholder:@(Homepage);required:true">@(Name)</div>
+
+			</div>
+			<div class="col-md-3 m">
+				<div data-jc="dropdown" data-jc-path="products.form.template"
+					data-jc-config="datasource:common.dependencies.templatesproducts;empty:">@(Template)</div>
+			</div>
+			<div class="col-md-3 m">
+				<div data-jc="dropdowncheckbox" data-jc-path="products.form.signals"
+					data-jc-config="datasource:signals;empty:@(Doesn't contain any signals.);icon:dot-circle-o">
+					@(Signals)</div>
+			</div>
+			<div class="col-md-12 m">
+				<div data-jc="checkbox" data-jc-path="products.form.ispublished" class="inline mr10">@(Is published)
+				</div>
+				<div data-jc="checkbox" data-jc-path="products.form.istop" class="inline mr10">@(Mark as <b>TOP
+						product</b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isnew" class="inline">@(New in the store)</div>
+
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeFeatured" class="inline mr10">@(Mark as
+					<b>Featured Product</b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeGaming" class="inline mr10">@(Mark as <b>Best
+						Gaming </b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeOnSale" class="inline mr10">@(Mark as <b>On
+						Sale</b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeLatest" class="inline mr10">@(Mark as
+					<b>Latest Product</b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeEnable" class="inline mr10">@(Mark as <b>is
+						Home Enable</b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeArrivals" class="inline mr10">@(Mark as <b>New
+						Arrivals</b>)</div>
+
+						<div data-jc="checkbox" data-jc-path="products.form.istvs" class="inline mr10">@(Mark as <b>TV's</b>)</div>
+
+				<div data-jc="checkbox" data-jc-path="products.form.isHomePopular" class="inline mr10">@(Mark as
+					<b>Popular Phones</b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeSuper" class="inline mr10">@(Mark as <b>Super
+						Gadgets</b>)</div>
+				<div data-jc="checkbox" data-jc-path="products.form.isHomeDual" class="inline mr10">@(Mark as <b>Dual
+						Camera Phones</b>)</div>
+			</div>
+		</div>
+	</div>
+	<hr data-b="products.form.template" data-b-visible="!value" class="nmt nmb" />
+	<div class="cmseditor" data-jc="cmseditor" data-jc-path="products.form.body"
+		data-jc-import="[url]components/cmseditor.html" data-b="products.form.template" data-b-visible="value"></div>
+	<div class="backups hidden" data-b="products.form.id" data-b-visible="!!value"><a href="javascript:void(0)"
+			class="exec" data-exec="Products/backups"><i class="fa fa-clock-o mr5"></i>@(Restore a backup)</a></div>
+
+	<div class="col-md-6 bg-yellow np">
+		<div class="padding">
+			<div data-jc="dropdown" data-jc-path="products.form.category"
+				data-jc-config="datasource:products.dependencies.categories;empty:;value:name;icon:folder-o" class="m">
+				@(Choose existing category)</div>
+			<div data-jc="textbox" data-jc-path="products.form.category"
+				data-jc-config="required:true;maxlength:500;placeholder:@(Main category / Sub-category 1 / Sub-category 2)">
+				@(Category)</div>
+			<div class="help">@(Subcategories are created automatically by splitting / backslash char.)</div>
+		</div>
+	</div>
+	<div class="col-md-6 bg-smoke np">
+		<div class="padding">
+			<div data-jc="dropdown" data-jc-path="products.form.manufacturer"
+				data-jc-config="datasource:products.dependencies.manufacturers;empty:;value:name;icon:industry"
+				class="m">@(Choose existing manufacturer)</div>
+			<div data-jc="textbox" data-jc-path="products.form.manufacturer"
+				data-jc-config="required:true;maxlength:50">@(Manufacturer)</div>
+			<div class="help">&nbsp;</div>
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+	<hr class="nmt" />
+	<div class="padding">
+		<div class="row">
+			<div class="col-md-6 m">
+				<div data-jc="markdowneditor__markdown" data-jc-path="products.form.simpledesc"
+					data-jc-config="required:true;maxlength:500;autofocus:true">@(Simple description)
+				</div>
+			</div>
+			<div class="col-md-6 m">
+				<div data-jc="markdowneditor__markdown" data-jc-path="products.form.offerdesc"
+					data-jc-config="required:false;autofocus:true">@(Offer description)
+				</div>
+			</div>
+			
+			<!-- <div class="col-md-3 m">
+					<div data-jc="textboxtags" data-jc-path="products.form.size" data-jc-config="height:92;uppercase:true">
+						@(Sizes)</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textboxtags" data-jc-path="products.form.color" data-jc-config="height:92;lowercase:true">
+						@(Colors)</div>
+				</div> -->
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-md-2 m">
+				<div data-jc="textbox" data-jc-path="products.form.mrp"
+					data-jc-config="datasource:mrpdata;required:true;empty:;value:name;currency;align:center">@(MRP)
+				</div>
+			</div>
+
+
+
+			<div class="col-md-3">
+				<div data-jc="dropdown" data-jc-path="products.form.purchase_type"
+					data-jc-config="datasource:purchasedata;required:true;empty:;value:name;icon:industry">
+					@(Purchase Type)</div>
+			</div>
+
+			<!-- <div id="summernote">Hello Summernote</div> -->
+
+		</div>
+		<!-- <div class="row">
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.priceold"
+						data-jc-config="maxlength:12;type:currency;align:center">@(Old price)</div>
+				</div>
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.mrp"
+						data-jc-config="maxlength:12;type:currency;align:center">@(MRP)</div>
+				</div> -->
+		<!-- <div class="col-md-2 m">
+							<div data-jc="textbox" data-jc-path="products.form.save"
+								data-jc-config="maxlength:12;type:currency;align:center">@(Old price)</div>
+						</div> -->
+		<!-- <div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.reference"
+						data-jc-config="maxlength:50;align:center;icon:braille">@(Custom reference)</div>
+				</div> -->
+		<!--div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.availability"
+						data-jc-config="maxlength:50;align:center;placeholder:@(In stock)">@(Availability)</div>
+				</div-->
+
+		<!-- <div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.batteries"
+						data-jc-config="maxlength:50;align:center;placeholder:@(batteries)">@(Batteries)</div>
+				</div> -->
+		<!--div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.itemmodelno"
+						data-jc-config="maxlength:50;align:center;placeholder:@(itemmodelno)">@(Item Model No)</div>
+				</div-->
+		<!-- <div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.wirelesstech"
+						data-jc-config="maxlength:50;align:center;placeholder:@(wirelesstech)">@(Wireless Tech)</div>
+				</div>
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.connectivitytech"
+						data-jc-config="maxlength:50;align:center;placeholder:@(connectivitytech)">@(ConnectivityTech)</div>
+				</div>
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.formfactor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(formfactor)">@(Form Factor)</div>
+				</div>
+	
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.colour"
+						data-jc-config="maxlength:50;align:center;placeholder:@(colour)">@(Colour)</div>
+				</div>
+				<div class="col-md-2">
+					<div data-jc="dropdown" data-jc-path="products.form.powerrating"
+						data-jc-config="datasource:rating;empty:;value:name;icon:industry">
+						@(Power rating)</div>
+				</div>
+	
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.phtalktime"
+						data-jc-config="maxlength:50;align:center;placeholder:@(phtalktime)">@(Phone Talk Time)</div>
+				</div>
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.whatinbox"
+						data-jc-config="maxlength:50;align:center;placeholder:@(whatinbox)">@(What in box)</div>
+				</div> -->
+		<!--div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.processor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Processor)">@(Processor)</div>
+				</div-->
+		<!--div class="col-md-2 m">
+				 <div data-jc="textbox" data-jc-path="products.form.inbuilt"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Inbuilt)">@(Inbuilt)</div>
+				</div-->
+		<!-- <div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.asin"
+						data-jc-config="maxlength:50;align:center;placeholder:@(asin)">@(Asin)</div>
+				</div>
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.csreviews"
+						data-jc-config="maxlength:50;align:center;placeholder:@(csreviews)">@(Cs reviews)</div>
+				</div>
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.sellersrank"
+						data-jc-config="maxlength:50;align:center;placeholder:@(sellersrank)">@(Sellers rank)</div>
+				</div>
+				<div class="col-md-2 m">
+					<div data-jc="textbox" data-jc-path="products.form.dateavail"
+						data-jc-config="maxlength:50;align:center;placeholder:@(dateavail)">@(Date avail)</div>
+				</div>
+	
+			</div> -->
+		<!-- </div> -->
+		<div class="row padding">
+			<h3 style="padding-left: 15px;">Product Type</h3>
+			<div class="col-md-3">
+				<div data-jc="dropdown" id='mob' data-jc-path="products.form.product_type"
+					data-jc-config="datasource:productdata;required:true;empty:;value:name;icon:industry">
+					@(Product Type)</div>
+			</div>
+
+		</div>
+
+
+		<div class="row padding">
+			<h3 style="padding-left: 15px;">Booking Type</h3>
+			<div class="col-md-3">
+				<div data-jc="dropdown" id='mob' data-jc-path="products.form.booking_type"
+					data-jc-config="datasource:bookingdata;required:false;empty:;value:name;icon:industry">
+					@(Booking Type)</div>
+			</div>
+
+		</div>
+		
+		<div class="row padding">
+				<h3 style="padding-left: 15px;">SEO Details</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.seodesc"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Description)">
+						@(SEO Description)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.seotitle"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Title)">
+						@(Title)
+					</div>
+				</div>
+		</div>
+
+		<div class="row padding">
+				<h3 style="padding-left: 15px;">Third Party Integration</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.integrate"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Itemcode)">
+						@(Apxgateway ItemCode)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.integratepine"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Code)">
+						@(Pinelabs Product Code )
+					</div>
+				</div>
+		</div>
+		
+		<div class="row padding">
+			<h3 style="padding-left: 15px;">Offers</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.integrate"
+						data-jc-config="maxlength:50;align:center;placeholder:@(emioffer)">
+						@(Emi Offers)
+					</div>
+				</div>
+
+		</div>
+		<div class="mobiles-show">
+
+
+
+					<!-- <div class="row padding">
+					<h3 style="padding-left: 15px;">Purchase Type</h3>
+					<div class="col-md-3">
+						<div data-jc="dropdown" data-jc-path="products.form.purchase_type"
+							data-jc-config="datasource:purchasedata;required:true;empty:;value:name;icon:industry">
+							@(Type)</div>
+					</div>
+				</div> -->
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdowncheckbox" data-jc-path="products.form.ftrFeatures"
+						data-jc-config="datasource:featuresdata;required:true;empty:;value:name;icon:industry">
+						@(Device Features)</div>
+				</div>
+
+				<div class="col-md-3">
+					<div data-jc="dropdowncheckbox" data-jc-path="products.form.ftrTransfer"
+						data-jc-config="datasource:transferdata;required:true;empty:;value:name;icon:industry">
+						@(Data Transfer)</div>
+				</div>
+
+				
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.ftrBrand"
+						data-jc-config="datasource:branddata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.ftrCam"
+						data-jc-config="datasource:camdata;required:true;empty:;value:name;icon:industry">
+						@(Primary Camera Resolution)</div>
+				</div>
+
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.ftrScreen"
+						data-jc-config="datasource:screendata;required:true;empty:;value:name;icon:industry">
+						@(Screen Size)</div>
+				</div>
+
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.ftrBattery"
+						data-jc-config="datasource:batterydata;required:true;empty:;value:name;icon:industry">
+						@(Battery Capacity)</div>
+				</div>
+
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.ftrProcessor"
+						data-jc-config="datasource:processdata;required:true;empty:;value:name;icon:industry">
+						@(Processor Speed)</div>
+				</div>
+
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.ftrMemory"
+						data-jc-config="datasource:memorydata;required:true;empty:;value:name;icon:industry">
+						@(Internal Memory)</div>
+				</div>
+
+			</div>
+
+
+
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">General</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.network"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Network)">
+						@(Network)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.sim"
+						data-jc-config="maxlength:50;align:center;placeholder:@(sim)">
+						@(sim)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Body</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.dimensions"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Dimensions)">
+						@(dimensions)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.weight"
+						data-jc-config="maxlength:50;align:center;placeholder:@(weight)">
+						@(weight)
+					</div>
+				</div>
+			</div>
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Display</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.displaytype"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Type)">
+						@(Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.displaysize"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Size)">
+						@(Size)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.multitouch"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Multitouch)">
+						@(Multitouch)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.protection"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Protection)">
+						@(Protection)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">memory</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.internal"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Internal)">
+						@(Internal)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.cardslot"
+						data-jc-config="maxlength:50;align:center;placeholder:@(card slot)">
+						@(Card Slot)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Sound</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.alerttypes"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Alter types)">
+						@(Alter types)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.loudspeaker"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Loudspeaker)">
+						@(Loudspeaker )
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.jack"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Jack)">
+						@(Jack )
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Data</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.gprs"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Gprs)">
+						@(Gprs)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.edge"
+						data-jc-config="maxlength:50;align:center;placeholder:@(EDGE)">
+						@(EDGE)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.speed"
+						data-jc-config="maxlength:50;align:center;placeholder:@(speed)">
+						@(Speed)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.wlan"
+						data-jc-config="maxlength:150;align:center;placeholder:@(WLAN)">
+						@(WLAN)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.bluetooth"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bluetooth)">
+						@(Bluetooth)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.usb"
+						data-jc-config="maxlength:50;align:center;placeholder:@(USB)">
+						@(USB)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.nfc"
+						data-jc-config="maxlength:50;align:center;placeholder:@(NFC)">
+						@(NFC)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.warrantydetails"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Warrantydetails)">
+						@(Warrantydetails)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Camera</h3>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.primary"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Primary)">
+						@(Primary)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.video"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Video)">
+						@(Video)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.secondary"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Secondary)">
+						@(Secondary)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.features"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Features)">
+						@(Features)
+					</div>
+				</div>
+
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Features</h3>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.os"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Os)">
+						@(Os)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.chipset"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Chipset)">
+						@(Chipset)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.cpu"
+						data-jc-config="maxlength:150;align:center;placeholder:@(CPU)">
+						@(CPU)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.gpu"
+						data-jc-config="maxlength:150;align:center;placeholder:@(gpu)">
+						@(GPU)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.sensors"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Sensors)">
+						@(Sensors)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.messaging"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Message)">
+						@(Message)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.browser"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Browser)">
+						@(Browser)
+					</div>
+				</div>
+
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.radio"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Radio)">
+						@(Radio)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.gps"
+						data-jc-config="maxlength:50;align:center;placeholder:@(GPS)">
+						@(GPS)
+					</div>
+				</div>
+
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.others"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Others)">
+						@(Others)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.games"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Games)">
+						@(Games)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Battery</h3>
+				<div class="col-md-6 m ">
+					<div data-jc="textbox" data-jc-path="products.form.type"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Type)">
+						@(Type)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.talktime"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Talk-time)">
+						@(Talk-time)
+					</div>
+				</div>
+				<div class="col-md-3 m ">
+					<div data-jc="textbox" data-jc-path="products.form.standby"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Standby)">
+						@(Standby)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Related Products</h3>
+				<div class="col-md-3 ">
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+					data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+					@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:features(1)">select related product 1</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="cat-disable-1" data-jc-path="products.form.related_product_1"
+						data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PROCUCT)">@(RELATED PROCUCT)
+					</div>
+
+					<div id="cat-disable-1-view"></div>
+				</div>
+
+				<div class="col-md-3 ">
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+					data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+					@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:features(2)">select related product 2</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="cat-disable-2" data-jc-path="products.form.related_product_2"
+						data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PROCUCT)">@(RELATED PROCUCT)
+					</div>
+
+					<div id="cat-disable-2-view"></div>
+				</div>
+				<div class="col-md-3 ">
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+					data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+					@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:features(3)">select related product 3</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="cat-disable-3" data-jc-path="products.form.related_product_3"
+						data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PRODUCT)">@(RELATED PRODUCT)
+					</div>
+					<div id="cat-disable-3-view"></div>
+
+				</div>
+				<div class="col-md-3 ">
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+					data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+					@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:features(4)">select related product 4</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="cat-disable-4" data-jc-path="products.form.related_product_4"
+						data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PRODUCT)">@(RELATED PRODUCT)
+					</div>
+					<div id="cat-disable-4-view"></div>
+
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Compare Products</h3>
+				<div class="col-md-3 ">
+
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+						data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+						@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:features(5)">select compare product 1</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="cat-disable-5" data-jc-path="products.form.compared_product_1"
+						data-jc-config="maxlength:50;align:center;placeholder:@(COMPARE PRODUCT)">@(COMPARE PRODUCT )
+					</div>
+					<div id="cat-disable-5-view"></div>
+
+
+				</div>
+				<div class="col-md-3 ">
+
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+					data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+					@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:features(6)">select compare product 2</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="cat-disable-6" data-jc-path="products.form.compared_product_2"
+						data-jc-config="maxlength:50;align:center;placeholder:@(COMPARE PRODUCT)">@(COMPARE PRODUCT)
+					</div>
+					<div id="cat-disable-6-view"></div>
+
+
+				</div>
+				<div class="col-md-3 ">
+
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+				data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+				@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:features(7)">select compare product 3</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="cat-disable-7" data-jc-path="products.form.compared _product_3"
+						data-jc-config="maxlength:50;align:center;placeholder:@(COMPARE PRODUCT)">@(COMPARE PRODUCT)
+					</div>
+					<div id="cat-disable-7-view"></div>
+				<!-- </div> -->
+			</div>
+			<!--<div class="row padding ">-->
+			<!--	<h3 style="padding-left: 15px;">Products Color</h3>-->
+			<!--	<div class="col-md-3 ">-->
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+						data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+						@(product I)</div> -->
+				<!--	<div data---="features__null__placeholder:Search ..."></div>-->
+
+				<!--	<div class="container">-->
+				<!--		<a href="javascript:features(8)">select product Color 1</a>-->
+				<!--	</div>-->
+				<!--	<br>-->
+
+				<!--	<div data-jc="textbox" id="cat-disable-8" data-jc-path="products.form.product_color_1"-->
+				<!--		data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR )-->
+				<!--	</div>-->
+				<!--	<div id="cat-disable-8-view"></div>-->
+				<!--</div>-->
+				<!--<div class="col-md-3 ">-->
+				<!--	<div data---="features__null__placeholder:Search ..."></div>-->
+
+				<!--	<div class="container">-->
+				<!--		<a href="javascript:features(9)">select product color 2</a>-->
+				<!--	</div>-->
+
+				<!--	<br>-->
+
+				<!--	<div data-jc="textbox" id="cat-disable-9" data-jc-path="products.form.product_color_2"-->
+				<!--		data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR)-->
+				<!--	</div>-->
+				<!--	<div id="cat-disable-9-view"></div>-->
+				<!--</div>-->
+				<!--<div class="col-md-3 ">-->
+				<!--	<div data---="features__null__placeholder:Search ..."></div>-->
+
+				<!--	<div class="container">-->
+				<!--		<a href="javascript:features(10)">select product color 3</a>-->
+				<!--	</div>-->
+
+				<!--	<br>-->
+
+				<!--	<div data-jc="textbox" id="cat-disable-10" data-jc-path="products.form.product_color_3"-->
+				<!--		data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR)-->
+				<!--	</div>-->
+				<!--	<div id="cat-disable-10-view"></div>-->
+				<!--</div>-->
+				<!--<div class="col-md-3 ">-->
+				<!--	<div data---="features__null__placeholder:Search ..."></div>-->
+
+				<!--	<div class="container">-->
+				<!--		<a href="javascript:features(11)">select product color 4</a>-->
+				<!--	</div>-->
+
+				<!--	<br>-->
+
+				<!--	<div data-jc="textbox" id="cat-disable-11" data-jc-path="products.form.product_color_4"-->
+				<!--		data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR)-->
+				<!--	</div>-->
+				<!--	<div id="cat-disable-11-view"></div>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;">Manufacture Id</h3>
+				<div class="col-md-3 ">
+
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+				data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+				@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:maufacture(12)">select Manufacture Id</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="manufacture-disable" data-jc-path="products.form.manufacture_id"
+						data-jc-config="maxlength:50;align:center;placeholder:@(MANUFACTURE ID)">@(MANUFACTURE ID)
+					</div>
+					<div id="anufacture-disable-view"></div>
+				<!-- </div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="Tablets-show">
+
+
+
+				<!-- <div class="row padding">
+						<h3 style="padding-left: 15px;">Purchase Type</h3>
+						<div class="col-md-3">
+							<div data-jc="dropdown" data-jc-path="products.form.purchase_type"
+								data-jc-config="datasource:purchasedata;required:true;empty:;value:name;icon:industry">
+								@(Type)</div>
+						</div>
+					</div> -->
+	
+				<div class="row padding">
+					<h3 style="padding-left: 15px;">Filters</h3>
+					<div class="col-md-3">
+						<div data-jc="dropdowncheckbox" data-jc-path="products.form.ftrFeatures1"
+							data-jc-config="datasource:featuretdata;required:true;empty:;value:name;icon:industry">
+							@(Device Features)</div>
+					</div>
+	
+					<div class="col-md-3">
+						<div data-jc="dropdowncheckbox" data-jc-path="products.form.ftrTransfer1"
+							data-jc-config="datasource:transfertdata;required:true;empty:;value:name;icon:industry">
+							@(Data Transfer)</div>
+					</div>
+	
+					
+					<div class="col-md-3">
+						<div data-jc="dropdown" data-jc-path="products.form.ftrBrand1"
+							data-jc-config="datasource:brandtdata;required:true;empty:;value:name;icon:industry">
+							@(Brand)</div>
+					</div>
+
+					<div class="col-md-3">
+						<div data-jc="dropdown" data-jc-path="products.form.ftrCam1"
+							data-jc-config="datasource:camtdata;required:true;empty:;value:name;icon:industry">
+							@(Primary Camera Resolution)</div>
+					</div>
+	
+					<div class="col-md-3">
+						<div data-jc="dropdown" data-jc-path="products.form.ftrScreen1"
+							data-jc-config="datasource:screentdata;required:true;empty:;value:name;icon:industry">
+							@(Screen Size)</div>
+					</div>
+	
+					<div class="col-md-3">
+						<div data-jc="dropdown" data-jc-path="products.form.ftrBattery1"
+							data-jc-config="datasource:batterytdata;required:true;empty:;value:name;icon:industry">
+							@(Battery Capacity)</div>
+					</div>
+	
+					<div class="col-md-3">
+						<div data-jc="dropdown" data-jc-path="products.form.ftrProcessor1"
+							data-jc-config="datasource:processtdata;required:true;empty:;value:name;icon:industry">
+							@(Processor Speed)</div>
+					</div>
+	
+					<div class="col-md-3">
+						<div data-jc="dropdown" data-jc-path="products.form.ftrMemory1"
+							data-jc-config="datasource:memorytdata;required:true;empty:;value:name;icon:industry">
+							@(Internal Memory)</div>
+					</div>
+	
+				</div>
+	
+				<div class="row padding">
+					<h3 style="padding-left: 15px;">General</h3>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.network1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Network)">
+							@(Network)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.sim1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(sim)">
+							@(sim)
+						</div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Body</h3>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.dimensions1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Dimensions)">
+							@(dimensions)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.weight1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(weight)">
+							@(weight)
+						</div>
+					</div>
+				</div>
+				<div class="row padding">
+					<h3 style="padding-left: 15px;">Display</h3>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.displaytype1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Type)">
+							@(Type)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.displaysize1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Size)">
+							@(Size)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.multitouch1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Multitouch)">
+							@(Multitouch)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.protection1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Protection)">
+							@(Protection)
+						</div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">memory</h3>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.internal1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Internal)">
+							@(Internal)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.cardslot1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(card slot)">
+							@(Card Slot)
+						</div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Sound</h3>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.alerttypes1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Alter types)">
+							@(Alter types)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.loudspeaker1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Loudspeaker)">
+							@(Loudspeaker )
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.jack1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Jack)">
+							@(Jack )
+						</div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Data</h3>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.gprs1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Gprs)">
+							@(Gprs)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.edge1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(EDGE)">
+							@(EDGE)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.speed1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(speed)">
+							@(Speed)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.wlan1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(WLAN)">
+							@(WLAN)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.bluetooth1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Bluetooth)">
+							@(Bluetooth)
+						</div>
+					</div>
+					<div class="col-md-3 m">
+						<div data-jc="textbox" data-jc-path="products.form.usb1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(USB)">
+							@(USB)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.nfc1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(NFC)">
+							@(NFC)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.warrantydetails1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(Warrantydetails)">
+							@(Warrantydetails)
+						</div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Camera</h3>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.primary1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(Primary)">
+							@(Primary)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.video1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(Video)">
+							@(Video)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.secondary1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(Secondary)">
+							@(Secondary)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.features1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(Features)">
+							@(Features)
+						</div>
+					</div>
+	
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Features</h3>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.os1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Os)">
+							@(Os)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.chipset1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Chipset)">
+							@(Chipset)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.cpu1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(CPU)">
+							@(CPU)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.gpu1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(gpu)">
+							@(GPU)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.sensors1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(Sensors)">
+							@(Sensors)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.messaging1"
+							data-jc-config="maxlength:150;align:center;placeholder:@(Message)">
+							@(Message)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.browser1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Browser)">
+							@(Browser)
+						</div>
+					</div>
+	
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.radio1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Radio)">
+							@(Radio)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.gps1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(GPS)">
+							@(GPS)
+						</div>
+					</div>
+	
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.others1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Others)">
+							@(Others)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.games1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Games)">
+							@(Games)
+						</div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Battery</h3>
+					<div class="col-md-6 m ">
+						<div data-jc="textbox" data-jc-path="products.form.type1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Type)">
+							@(Type)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.talktime1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Talk-time)">
+							@(Talk-time)
+						</div>
+					</div>
+					<div class="col-md-3 m ">
+						<div data-jc="textbox" data-jc-path="products.form.standby1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(Standby)">
+							@(Standby)
+						</div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Related Products</h3>
+					<div class="col-md-3 ">
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+						data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+						@(product I)</div> -->
+	
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(1)">select related product 1</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-1" data-jc-path="products.form.relate_product_1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PROCUCT)">@(RELATED PROCUCT)
+						</div>
+	
+						<div id="cat-disable-1-view"></div>
+					</div>
+	
+					<div class="col-md-3 ">
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+						data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+						@(product I)</div> -->
+	
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(2)">select related product 2</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-2" data-jc-path="products.form.relate_product_2"
+							data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PROCUCT)">@(RELATED PROCUCT)
+						</div>
+	
+						<div id="cat-disable-2-view"></div>
+					</div>
+					<div class="col-md-3 ">
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+						data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+						@(product I)</div> -->
+	
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(3)">select related product 3</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-3" data-jc-path="products.form.relate_product_3"
+							data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PRODUCT)">@(RELATED PRODUCT)
+						</div>
+						<div id="cat-disable-3-view"></div>
+	
+					</div>
+					<div class="col-md-3 ">
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+						data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+						@(product I)</div> -->
+	
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(4)">select related product 4</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-4" data-jc-path="products.form.relate_product_4"
+							data-jc-config="maxlength:50;align:center;placeholder:@(RELATED PRODUCT)">@(RELATED PRODUCT)
+						</div>
+						<div id="cat-disable-4-view"></div>
+	
+					</div>
+				</div>
+	
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Compare Products</h3>
+					<div class="col-md-3 ">
+	
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+							data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+							@(product I)</div> -->
+	
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(5)">select compare product 1</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-5" data-jc-path="products.form.compare_product_1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(COMPARE PRODUCT)">@(COMPARE PRODUCT )
+						</div>
+						<div id="cat-disable-5-view"></div>
+	
+	
+					</div>
+					<div class="col-md-3 ">
+	
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+						data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+						@(product I)</div> -->
+	
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(6)">select compare product 2</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-6" data-jc-path="products.form.compare_product_2"
+							data-jc-config="maxlength:50;align:center;placeholder:@(COMPARE PRODUCT)">@(COMPARE PRODUCT)
+						</div>
+						<div id="cat-disable-6-view"></div>
+	
+	
+					</div>
+					<div class="col-md-3 ">
+	
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+					data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+					@(product I)</div> -->
+	
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(7)">select compare product 3</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-7" data-jc-path="products.form.compare_product_3"
+							data-jc-config="maxlength:50;align:center;placeholder:@(COMPARE PRODUCT)">@(COMPARE PRODUCT)
+						</div>
+						<div id="cat-disable-7-view"></div>
+					</div>
+				</div>
+				<div class="row padding ">
+					<h3 style="padding-left: 15px;">Products Color</h3>
+					<div class="col-md-3 ">
+						<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+							data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+							@(product I)</div> -->
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(8)">select product Color 1</a>
+						</div>
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-8" data-jc-path="products.form.products_color_1"
+							data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR )
+						</div>
+						<div id="cat-disable-8-view"></div>
+					</div>
+					<div class="col-md-3 ">
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(9)">select product color 2</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-9" data-jc-path="products.form.products_color_2"
+							data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR)
+						</div>
+						<div id="cat-disable-9-view"></div>
+					</div>
+					<div class="col-md-3 ">
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(10)">select product color 3</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-10" data-jc-path="products.form.products_color_3"
+							data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR)
+						</div>
+						<div id="cat-disable-10-view"></div>
+					</div>
+					<div class="col-md-3 ">
+						<div data---="features__null__placeholder:Search ..."></div>
+	
+						<div class="container">
+							<a href="javascript:features(11)">select product color 4</a>
+						</div>
+	
+						<br>
+	
+						<div data-jc="textbox" id="cat-disable-11" data-jc-path="products.form.products_color_4"
+							data-jc-config="maxlength:50;align:center;placeholder:@(PRODUCT COLOR)">@(PRODUCT COLOR)
+						</div>
+						<div id="cat-disable-11-view"></div>
+					</div>
+				</div>
+				
+				<div class="row padding ">
+				<h3 style="padding-left: 15px;">Manufacture Id</h3>
+				<div class="col-md-3 ">
+
+					<!-- <div data-jc="dropdown" data-jc-path="products.form.related_product_1"
+				data-jc-config="datasource:stockdeatils;empty:;value:name;icon:industry">
+				@(product I)</div> -->
+
+					<div data---="features__null__placeholder:Search ..."></div>
+
+					<div class="container">
+						<a href="javascript:maufacture(12)">select Manufacture Id</a>
+					</div>
+
+					<br>
+
+					<div data-jc="textbox" id="manufacture-disable" data-jc-path="products.form.manufacture_id"
+						data-jc-config="maxlength:50;align:center;placeholder:@(MANUFACTURE ID)">@(MANUFACTURE ID)
+					</div>
+					<div id="anufacture-disable-view"></div>
+				<!-- </div> -->
+				</div>
+			</div>
+		</div>
+		
+
+
+		<div class="powerbank pow-show">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.pBrand"
+						data-jc-config="datasource:brandpdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.pBattery"
+						data-jc-config="datasource:batterypdata;required:true;empty:;value:name;icon:industry">
+						@(Battery Capacity)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">General</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.modelname"
+						data-jc-config="maxlength:50;align:center;placeholder:@(modelname)">
+						@(Model Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.pcolor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(pcolor)">
+						@(Pcolor)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.supply"
+						data-jc-config="maxlength:50;align:center;placeholder:@(supply)">
+						@(Power Supply)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Key Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BatteryCapacity"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BatteryCapacity)">
+						@(Battery Capacity)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BatteryType"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BatteryType)">
+						@(Battery Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Output"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Output)">
+						@(Output)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Input"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Input)">
+						@(Input)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Batterylifecycle"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Batterylifecycle)">
+						@(Battery Life Cycle)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Batterychargingtime"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Batterychargingtime)">
+						@(Battery Charging Time)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bodymaterial"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bodymaterial)">
+						@(Body Material)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Operatingtemperature"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Operatingtemperature)">
+						@(Operating Temperature)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Warranty</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Domesticwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Domesticwarranty)">
+						@(Domestic Warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Covered"
+						data-jc-config="maxlength:50;align:center;placeholder:@(covered)">
+						@(Covered in Warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.notcovered"
+						data-jc-config="maxlength:50;align:center;placeholder:@(notcovered)">
+						@(Not Covered in Warranty)
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="storage drivers str-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.sBrand"
+						data-jc-config="datasource:brandsdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.sDrivecapacity"
+						data-jc-config="datasource:drivesdata;required:true;empty:;value:name;icon:industry">
+						@(Drive Capacity)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Specifications</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.scapacity"
+						data-jc-config="maxlength:50;align:center;placeholder:@(scapacity)">
+						@(Scapacity)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.scompatibility"
+						data-jc-config="maxlength:50;align:center;placeholder:@(scompatibility)">
+						@(Scompatibility)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.sdimensions"
+						data-jc-config="maxlength:50;align:center;placeholder:@(sdimensions)">
+						@(Sdimensions)
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="CarCharger car-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.ccBrand"
+						data-jc-config="datasource:brandccdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">CGeneral</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.CModelname"
+						data-jc-config="maxlength:150;align:center;placeholder:@(CModelname)">
+						@(CModel Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Ccolor"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Ccolor)">
+						@(Ccolor)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Ctype"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Ctype)">
+						@(Ctype)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Product Details</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.AdditionalFeatures"
+						data-jc-config="maxlength:150;align:center;placeholder:@(AdditionalFeatures)">
+						@(Additional Features)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Usbports"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Usbports)">
+						@(Usbports)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.configuration"
+						data-jc-config="maxlength:150;align:center;placeholder:@(configuration)">
+						@(Configuration)
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="Data Cables cab-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.cabBrand"
+						data-jc-config="datasource:brandcabdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Cab General</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.cabtype"
+						data-jc-config="maxlength:150;align:center;placeholder:@(cabtype)">
+						@(Cable Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.cabdevice"
+						data-jc-config="maxlength:50;align:center;placeholder:@(cabdevice)">
+						@(Compatible Devices)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.cablength"
+						data-jc-config="maxlength:50;align:center;placeholder:@(cablength)">
+						@(Cable Length)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.cabconnect1"
+						data-jc-config="maxlength:50;align:center;placeholder:@(cabconnect1)">
+						@(Connector 1)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.cabconnect2"
+						data-jc-config="maxlength:50;align:center;placeholder:@(cabconnect2)">
+						@(Connector 2)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.cab"
+						data-jc-config="maxlength:50;align:center;placeholder:@(cab)">
+						@(Cable)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.fhigh"
+						data-jc-config="maxlength:50;align:center;placeholder:@(fhigh)">
+						@(Highlights)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.fspeed"
+						data-jc-config="maxlength:50;align:center;placeholder:@(fspeed)">
+						@(Transfer Speed)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.finout"
+						data-jc-config="maxlength:50;align:center;placeholder:@(finout)">
+						@(Input / Output)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.fbody"
+						data-jc-config="maxlength:50;align:center;placeholder:@(fbody)">
+						@(Body Material)
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="Chargers ch-show ">
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.cBrand"
+						data-jc-config="datasource:brandcdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">ChGeneral</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.ChModelname"
+						data-jc-config="maxlength:50;align:center;placeholder:@(ChModelname)">
+						@(Ch Model Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Chcolor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Chcolor)">
+						@(Ch Color)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.ChOutputInterface"
+						data-jc-config="maxlength:50;align:center;placeholder:@(ChOutputInterface)">
+						@(Ch Output Interface)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.chsalespackage"
+						data-jc-config="maxlength:50;align:center;placeholder:@(chsalespackage)">
+						@(ChSales Package)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Power Featues</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.OutputCurrent"
+						data-jc-config="maxlength:50;align:center;placeholder:@(OutputCurrent)">
+						@(Output Current)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.PowerInput"
+						data-jc-config="maxlength:50;align:center;placeholder:@(PowerInput)">
+						@(Power Input)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.PowerSource"
+						data-jc-config="maxlength:50;align:center;placeholder:@(PowerSource)">
+						@(Power Source)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.PowerRequirment"
+						data-jc-config="maxlength:50;align:center;placeholder:@(PowerRequirment)">
+						@(Power Requirment)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.OutputWattage"
+						data-jc-config="maxlength:50;align:center;placeholder:@(OutputWattage)">
+						@(Output Wattage)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Cwarrenty</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Cdomesticwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Cdomesticwarrenty)">
+						@(Cdomestic Warrenty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Ccoveredinwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Ccoveredinwarranty)">
+						@(Ccovered in warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Cnotcoveredinwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Cnotcoveredinwarranty)">
+						@(Cnot covered in warranty)
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="Headset H-show ">
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.hBrand"
+						data-jc-config="datasource:brandhdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.hmicrophone"
+						data-jc-config="datasource:microhdata;required:true;empty:;value:name;icon:industry">
+						@(Micro Phones)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.Hconnectivityfeatures"
+						data-jc-config="datasource:connecthdata;required:true;empty:;value:name;icon:industry">
+						@(Connectivity Technology)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.hfeature"
+						data-jc-config="datasource:featurehdata;required:true;empty:;value:name;icon:industry">
+						@(Features)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.hinterface"
+						data-jc-config="datasource:interfacehdata;required:true;empty:;value:name;icon:industry">
+						@(Headset Interface)</div>
+				</div>
+			</div>
+
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">H General</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.HModelname"
+						data-jc-config="maxlength:50;align:center;placeholder:@(HModelname)">
+						@(H Model Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hcolor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hcolor)">
+						@(H Color)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hheadphonetype"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hheadphonetype)">
+						@(H headphone Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hinlineremote"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hinlineremote)">
+						@(H Inline Remote)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hsalespackage"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hsalespackage)">
+						@(H Sales Package)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hconnectivity"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hconnectivity)">
+						@(H Connectivity)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">H Product Details</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hmicrophone"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hmicrophone)">
+						@(H with Microphone)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hdriver"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hdriver)">
+						@(H Driver Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Headphonejack"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Headphonejack)">
+						@(Headphone Jack)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.HOtherFeatures"
+						data-jc-config="maxlength:50;align:center;placeholder:@(HOtherFeatures)">
+						@(H OtherFeatures)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Hwarrenty</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hwarrantysummary"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hwarrantysummary)">
+						@(Hwarranty Summary)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Hnotcoveredinwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Hnotcoveredinwarranty)">
+						@(Hnot covered in warranty)
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="BluetoothHeadset Bh-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bhBrand"
+						data-jc-config="datasource:brandbhdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bhmicro"
+						data-jc-config="datasource:microdata;required:true;empty:;value:name;icon:industry">
+						@(Microphome)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bhconnect"
+						data-jc-config="datasource:connectdata;required:true;empty:;value:name;icon:industry">
+						@(Connectivity Technology)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bhfeature"
+						data-jc-config="datasource:featuredata;required:true;empty:;value:name;icon:industry">
+						@(Features)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bhhead"
+						data-jc-config="datasource:headdata;required:true;empty:;value:name;icon:industry">
+						@(Headset Interface)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bh General</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhModelname"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhModelname)">
+						@(Bh Model Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bhcolor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bhcolor)">
+						@(Bh Color)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bhheadphonetype"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bhheadphonetype)">
+						@(Bh headphone Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bhinlineremote"
+						data-jc-config="maxlengtBh:50;align:center;placeholder:@(Bhinlineremote)">
+						@(Bh Inline Remote)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bhsalespackage"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bhsalespackage)">
+						@(Bh Sales Package)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bhconnectivity"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bhconnectivity)">
+						@(Bh Connectivity)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bh Product Details</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhDesignedfor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhDesignedfor)">
+						@(Bh Designed for)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhAdditionalfeatures"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhAdditionalfeatures)">
+						@(Bh Additionalfeatures)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhOtherfeatures"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhOtherfeatures)">
+						@(Bh Otherfeatures)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bh Sound Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhMinfrequency"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhMinfrequency)">
+						@(Bh Minimum Frecency Response)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhMaxfrequency"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhMaxfrequency)">
+						@(Bh Max Frequency Response)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BHOthersound"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhOthersound)">
+						@(Bh Othersound Features)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bh Dimensions Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhWeight"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhWeight)">
+						@(Bh Weight)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhOtherdimensions"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhOtherdimensions)">
+						@(Bh Other Dimensions)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bh Connectivity Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bhwireless"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bhwireless)">
+						@(Bh Wireless Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhBluetoothrange"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhBluetoothrange)">
+						@(Bh Bluetooth Range)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhBlueethoothversion"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhBlueethoothversion)">
+						@(Bh Bluetooth Version)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhChargetime"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhChargetime)">
+						@(Bh Chargetime)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhBatteryCapacity"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhBatteryCapacity)">
+						@(Bh Battery Capacity)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bh Warranty</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhDomesticwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhDomesticwarranty)">
+						@(Bh Domestic Warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bhwarrantysummary"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bhwarrantysummary)">
+						@(Bh Warranty Summary)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhCoveredwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhCoveredwarranty)">
+						@(Bh Covered in warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BhnotCoveredwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BhnotCoveredwarranty)">
+						@(Bh not Covered in warranty)
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="BluetoothSpeaker Bs-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bsBrand"
+						data-jc-config="datasource:brandbsdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bsmicro"
+						data-jc-config="datasource:microbspdata;required:true;empty:;value:name;icon:industry">
+						@(Microphome)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bsconnect"
+						data-jc-config="datasource:connectbsdata;required:true;empty:;value:name;icon:industry">
+						@(Connectivity Technology)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bsfeature"
+						data-jc-config="datasource:featurebsdata;required:true;empty:;value:name;icon:industry">
+						@(Features)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.bshead"
+						data-jc-config="datasource:headbsdata;required:true;empty:;value:name;icon:industry">
+						@(Headset Interface)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bs General</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsModelname"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsModelname)">
+						@(Bs Model Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bscolor"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bscolor)">
+						@(Bh Color)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.memorycardslot"
+						data-jc-config="maxlength:50;align:center;placeholder:@(memorycardslot)">
+						@(Memory Card Slot Support)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bssalespackage"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bssalespackage)">
+						@(Bs Sales Package)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bsconnectivity"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bsconnectivity)">
+						@(Bs Connectivity)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bspowersource"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bspowersource)">
+						@(Bs PowerSource)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsType"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsType)">
+						@(Bs Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bspowersupply"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bspowersupply)">
+						@(Bs PowerSupply)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bs Product Details</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bsconfiguration"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bsconfiguration)">
+						@(Bs Configuration)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsAdditionalfeatures"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsAdditionalfeatures)">
+						@(Bs Additionalfeatures)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsMemorycardsupported"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsMemorycardsupported)">
+						@(Bs Memory Card Supported)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bs Connectivity Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bswireless"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bswireless)">
+						@(Bs Wireless Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsBluetoothrange"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsBluetoothrange)">
+						@(Bs Bluetooth Range)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsBlueethoothversion"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsBlueethoothversion)">
+						@(Bs Bluetooth Version)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsBatterylife"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsBatterylife)">
+						@(BsBatteryLife)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsBattery"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsBattery)">
+						@(Bs Battery)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bs Sound Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsMinfrequency"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsMinfrequency)">
+						@(Bs Minimum Frecency Response)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsMaxfrequency"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsMaxfrequency)">
+						@(Bs Max Frequency Response)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsOthersound"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsOthersound)">
+						@(Bs Othersound Features)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsSpeakersize"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsSpeakersize)">
+						@(Bs Speakersize Features)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bs Dimensions Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsWeight"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsWeight)">
+						@(Bs Weight)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsOtherdimensions"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsOtherdimensions)">
+						@(Bs Other Dimensions)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Bs Warranty</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsDomesticwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsDomesticwarranty)">
+						@(Bs Domestic Warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Bswarrantysummary"
+						data-jc-config="maxlength:50;align:center;placeholder:@(Bswarrantysummary)">
+						@(Bs Warranty Summary)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsCoveredwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsCoveredwarranty)">
+						@(Bs Covered in warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.BsnotCoveredwarranty"
+						data-jc-config="maxlength:50;align:center;placeholder:@(BsnotCoveredwarranty)">
+						@(Bs not Covered in warranty)
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="Projectors pro-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.proBrand"
+						data-jc-config="datasource:brandprodata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Specifications</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.picformat"
+						data-jc-config="maxlength:150;align:center;placeholder:@(picformat)">
+						@(Picture Format)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.audformat"
+						data-jc-config="maxlength:150;align:center;placeholder:@(audformat)">
+						@(Audio Format)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.vidformat"
+						data-jc-config="maxlength:150;align:center;placeholder:@(vidformat)">
+						@(Video Format)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.chargetime"
+						data-jc-config="maxlength:150;align:center;placeholder:@(chargetime)">
+						@(Charging Time)
+					</div>
+				</div>
+			
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mustime"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mustime)">
+						@(Music Playtime)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.movtime"
+						data-jc-config="maxlength:150;align:center;placeholder:@(movtime)">
+						@(Movie Time)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.ota"
+						data-jc-config="maxlength:150;align:center;placeholder:@(ota)">
+						@(OTA)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.oper1"
+						data-jc-config="maxlength:150;align:center;placeholder:@(oper1)">
+						@(Operating System)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.workmode"
+						data-jc-config="maxlength:150;align:center;placeholder:@(workmode)">
+						@(Working Mode)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.blue"
+						data-jc-config="maxlength:150;align:center;placeholder:@(blue)">
+						@(Bluetooth)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.pwifi"
+						data-jc-config="maxlength:150;align:center;placeholder:@(pwifi)">
+						@(Wi-Fi)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.prospeaker"
+						data-jc-config="maxlength:150;align:center;placeholder:@(prospeaker)">
+						@(Speaker)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.probattery"
+						data-jc-config="maxlength:150;align:center;placeholder:@(probattery)">
+						@(Battery)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.promemory"
+						data-jc-config="maxlength:150;align:center;placeholder:@(promemory)">
+						@(Memory)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.progpu"
+						data-jc-config="maxlength:150;align:center;placeholder:@(progpu)">
+						@(GPU)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.procpu"
+						data-jc-config="maxlength:150;align:center;placeholder:@(procpu)">
+						@(CPU)
+					</div>
+				</div>
+				
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.probuttons"
+						data-jc-config="maxlength:150;align:center;placeholder:@(probuttons)">
+						@(Physical Buttons)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.prousb"
+						data-jc-config="maxlength:150;align:center;placeholder:@(prousb)">
+						@(USB)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.prohdmi"
+						data-jc-config="maxlength:150;align:center;placeholder:@(prohdmi)">
+						@(HDMI)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.promode"
+						data-jc-config="maxlength:150;align:center;placeholder:@(promode)">
+						@(Projection Mode)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.prothrow"
+						data-jc-config="maxlength:150;align:center;placeholder:@(prothrow)">
+						@(Throw Distance)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.proscreen"
+						data-jc-config="maxlength:150;align:center;placeholder:@(proscreen)">
+						@(Screen Size)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.prolamp"
+						data-jc-config="maxlength:150;align:center;placeholder:@(prolamp)">
+						@(Lamp Life)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.prodis"
+						data-jc-config="maxlength:150;align:center;placeholder:@(prodis)">
+						@(Display Technology)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.proweight"
+						data-jc-config="maxlength:150;align:center;placeholder:@(proweight)">
+						@(Weight)
+					</div>
+				</div>
+			</div>			
+		</div>
+
+
+		<div class="Tv's tv-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown"  data-jc-path="products.form.tvBrand"
+						data-jc-config="datasource:brandtvdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown"  data-jc-path="products.form.tvsize"
+						data-jc-config="datasource:sizetvdata;required:true;empty:;value:name;icon:industry">
+						@(Screen Size)</div>
+				</div>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.tvdisplay"
+						data-jc-config="datasource:displaytvdata;required:true;empty:;value:name;icon:industry">
+						@(Display Technology)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">mi General</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miModelname"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miModelname)">
+						@(mi Model Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.midisplay"
+						data-jc-config="maxlength:150;align:center;placeholder:@(midisplay)">
+						@(Mi display size)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.misales"
+						data-jc-config="maxlength:150;align:center;placeholder:@(misales)">
+						@(Sales Package)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miscreen"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miscreen)">
+						@(Mi Screen Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mihd"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mihd)">
+						@(HD Technology & Resolution)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mismart"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mismart)">
+						@(Mi Smart Tv)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Mi Connectivity Featues</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.HDMI"
+						data-jc-config="maxlength:150;align:center;placeholder:@(HDMI)">
+						@(HDMI)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.USB"
+						data-jc-config="maxlength:150;align:center;placeholder:@(USB)">
+						@(USB)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.headjack"
+						data-jc-config="maxlength:150;align:center;placeholder:@(headjack)">
+						@(Headphone Jack)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miPowerfeatures"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miPowerfeatures)">
+						@(Powerfeatures)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Powerconsumption"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Powerconsumption)">
+						@(Power Consumption)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mipowerinput"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mipowerinput)">
+						@(Power Input)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mipowerrequirment"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mipowerrequirment)">
+						@(PowerRequirment)
+					</div>
+				</div>
+			</div>
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Dimensions</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miweight1"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miweight1)">
+						@(Weight (without stand))
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miweight2"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miweight2)">
+						@( Weight (with stand))
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miwidth"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miwidth)">
+						@(Width)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.widthxheightxdepth"
+						data-jc-config="maxlength:150;align:center;placeholder:@(widthxheightxdepth)">
+						@(WidthxHeightxDepth)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miheight"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miheight)">
+						@(Height)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.midepth"
+						data-jc-config="maxlength:150;align:center;placeholder:@(midepth)">
+						@(Depth)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Internal Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miwifi"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miwifi)">
+						@(Built in Wi-Fi)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miother"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miother)">
+						@(Other Internet Features)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Smart Tv Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.Processor"
+						data-jc-config="maxlength:150;align:center;placeholder:@(Processor)">
+						@(Processor)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.graph"
+						data-jc-config="maxlength:150;align:center;placeholder:@(graph)">
+						@(Graphic Processor)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miramcapacity"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miramcapacity)">
+						@(Ram Capacity)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mistorage"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mistorage)">
+						@(Storage Memory)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mios"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mios)">
+						@(Supported Mobile Operating System)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.micontent"
+						data-jc-config="maxlength:150;align:center;placeholder:@(micontent)">
+						@(Content Providers)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.milangunage"
+						data-jc-config="maxlength:150;align:center;placeholder:@(milangunage)">
+						@(Content Languages)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.systemlanguages"
+						data-jc-config="maxlength:150;align:center;placeholder:@(systemlanguages)">
+						@(System Languages)
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Video Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miratio"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miratio)">
+						@(Contrast Ratio)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.ViewAngle"
+						data-jc-config="maxlength:150;align:center;placeholder:@(ViewAngle)">
+						@(View Angle)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mileddisplay"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mileddisplay)">
+						@(Display Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.minoisefiltefr"
+						data-jc-config="maxlength:150;align:center;placeholder:@(minoisefiltefr)">
+						@(Digital Noise Filter)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mivideofeatures"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mivideofeatures)">
+						@(Other Video Features)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Audio Features</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mispeakers"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mispeakers)">
+						@(Number of Speakers)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mispeakertype"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mispeakertype)">
+						@(Speaker Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.misound"
+						data-jc-config="maxlength:150;align:center;placeholder:@(misound)">
+						@(Sound Technology)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.minoisefilter"
+						data-jc-config="maxlength:150;align:center;placeholder:@(minoisefilter)">
+						@(Surround Sound)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.mioutputrms"
+						data-jc-config="maxlength:150;align:center;placeholder:@(mioutputrms)">
+						@(Speaker Output RMS)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.miaudiofeatures"
+						data-jc-config="maxlength:150;align:center;placeholder:@(miaudiofeatures)">
+						@(Other Audio Features)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Warranty</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.midomestic"
+						data-jc-config="maxlength:150;align:center;placeholder:@(midomestic)">
+						@(Domestic Warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.micoverd"
+						data-jc-config="maxlength:150;align:center;placeholder:@(micoverd)">
+						@(Covered in Warranty)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.micoverdnot"
+						data-jc-config="maxlength:150;align:center;placeholder:@(micoverdnot)">
+						@(Not Covered in Warranty)
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="Smartwatches smart-show ">
+
+			<div class="row padding">
+				<h3 style="padding-left: 15px;">Filters</h3>
+				<div class="col-md-3">
+					<div data-jc="dropdown" data-jc-path="products.form.smartBrand"
+						data-jc-config="datasource:brandsmartdata;required:true;empty:;value:name;icon:industry">
+						@(Brand)</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">SmartGeneral</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartModelname"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartModelname)">
+						@(Model Name)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartcolor"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartcolor)">
+						@(Color)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartos"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartos)">
+						@(Operating System)
+					</div>
+				</div>
+
+				<!--div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartos"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartos)">
+						@(Operating System)
+					</div>
+				</div-->
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartpack"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartpack)">
+						@(Sales Package)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartconnect"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartconnect)">
+						@(Connectivity)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartwired"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartwired)">
+						@(Wired)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartwirless"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartwirless)">
+						@(Wireless)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartmaterial"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartmaterial)">
+						@(Material)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartideal"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartideal)">
+						@(Ideal For)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartdail"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartdail)">
+						@(Dial Shape)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartdevice"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartdevice)">
+						@(Compatible Devices)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smarttouch"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smarttouch)">
+						@(Touch Enabled)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartsuit"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartsuit)">
+						@(Suitable For)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartindicate"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartindicate)">
+						@(Indicator Type)
+					</div>
+				</div>
+
+				<!--div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartindicate"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartindicate)">
+						@(Indicator Type)
+					</div>
+				</div-->
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartread"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartread)">
+						@(Reading Type)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smarttype"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smarttype)">
+						@(Type)
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;">Product Details</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartwi"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartwi)">
+						@(Wi-Fi Connectivity)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartadd"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartadd)">
+						@(Additional Features)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartother"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartother)">
+						@(Other Features)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartwater"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartwater)">
+						@(Water Resistant)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartsweat"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartsweat)">
+						@(Sweat Proof)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartcomp"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartcomp)">
+						@(Compatible Devices)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartblue"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartblue)">
+						@(Bluetooth Connectivity)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;"> PERFORMANCE FEATURES</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smarttracker"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smarttracker)">
+						@(Activity Tracker Present)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartfunc"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartfunc)">
+						@(Activity Tracking Function)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartsensor"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartsensor)">
+						@(Sensor Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartrate"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartrate)">
+						@(Heart Rate Monitor Present)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartshock"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartshock)">
+						@(Shock Resistant)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartresist"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartresist)">
+						@(Water-Resistant Depth)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;"> DISPLAY</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartty"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartty)">
+						@(Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartmulti"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartmulti)">
+						@(Multitouch)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;"> CONNECTIVITY FEATURES</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartwire"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartwire)">
+						@(Wireless Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartbluetooth"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartbluetooth)">
+						@(Bluetooth Version)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartbat"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartbat)">
+						@(Battery)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartbatlife"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartbatlife)">
+						@(Battery Life)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartbluerange"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartbluerange)">
+						@(Bluetooth Range)
+					</div>
+				</div>
+			</div>
+			
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;"> DIMENSIONS</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartweight"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartweight)">
+						@(Weight)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartwidth"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartwidth)">
+						@(Width)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartheight"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartheight)">
+						@(Height)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartdepth"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartdepth)">
+						@(Depth)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartdimension"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartdimension)">
+						@(Other Dimensions)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;"> FEATURES</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smarthigh"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smarthigh)">
+						@(Highlights)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartmessage"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartmessage)">
+						@(Messaging)
+					</div>
+				</div>
+
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartother"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartother)">
+						@(Others)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;"> BATTERY</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smarttyp"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smarttyp)">
+						@(Type)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartstand"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartstand)">
+						@(Stand-by)
+					</div>
+				</div>
+			</div>
+
+			<div class="row padding ">
+				<h3 style="padding-left: 15px;"></h3>
+				<h3 style="padding-left: 15px;"> WARRANTY</h3>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartwarranty"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartwarranty)">
+						@(Warranty Summary)
+					</div>
+				</div>
+				<div class="col-md-3 m">
+					<div data-jc="textbox" data-jc-path="products.form.smartnowarranty"
+						data-jc-config="maxlength:150;align:center;placeholder:@(smartnowarranty)">
+						@(Not Covered in Warranty)
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="bg-yellow padding">
+			<div data-jc="productsprices" data-jc-path="products.form.prices">
+				<div class="ui-productsprices-item ui-productsprices-header">
+					<div class="ui-productsprices-name"><i class="fa fa-dropbox"></i>@(Variant name)</div>
+					
+					<div class="ui-productsprices-colorcode">@(Color Code)</div>
+					<div class="ui-productsprices-price">@(Price)</div>
+					<div class="ui-productsprices-stock">@(Stock)</div>
+				</div>
+				<script type="text/html">
+						<div class="ui-productsprices-item ui-productsprices-row">
+							<div class="ui-productsprices-name"><input type="text" maxlength="100" name="name" placeholder="@(Enter e.g. size and color)" /></div>
+							<div class="ui-productsprices-colorcode"><input type="text" maxlength="8" name="colorcode" placeholder="@(Color Code)" /></div>
+							<div class="ui-productsprices-price"><input type="text" maxlength="10" name="price" placeholder="@(Price)" /></div>
+							<div class="ui-productsprices-stock"><i class="fa fa-times"></i><div><input type="text" maxlength="5" name="stock" placeholder="@(Stock)" /></div></div>
+						</div>
+					</script>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 fs12"><a href="javascript:void(0)" class="exec" data-exec="Products/formAddItem"><i
+							class="fa fa-plus-circle mr5"></i>@(Add a new item)</a></div>
+			</div>
+		</div>
+
+		<hr class="nmt" />
+		<div class="padding">
+			<b>please upload the 600px X 800px and .JPG</b>
+			
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4 m mt10">
+					<button class="button button-small b" data-jc="fileupload" data-jc-path="products.form.pictures"
+						data-jc-config="url:[url]api/upload/?type=product;multiple:true;accept:image/*;property:id;array:true"><i
+							class="fa fa-camera"></i>@(Upload photos)</button>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div data-jc="pictures" data-jc-path="products.form.pictures"></div>
+			</div>
+		</div>
+
+		<div class="padding">
+			<b>please upload the 1900px X 500px and .JPG</b>
+			
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4 m mt10">
+					<button class="button button-small b" data-jc="fileupload" data-jc-path="products.form.banners"
+						data-jc-config="url:[url]api/upload/?type=banners;multiple:true;accept:image/*;property:id;array:true"><i
+							class="fa fa-camera"></i>@(Upload banners)</button>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div data-jc="pictures" data-jc-path="products.form.banners"></div>
+			</div>
+		</div>
+		<div class="padding">
+			
+			<b>please upload the 1900px X 500px and .JPG</b>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4 m mt10">
+					<button class="button button-small b" data-jc="fileupload" data-jc-path="products.form.sliders"
+						data-jc-config="url:[url]api/upload/?type=sliders;multiple:true;accept:image/*;property:id;array:true"><i
+							class="fa fa-camera"></i>@(Upload sliders)</button>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div data-jc="pictures" data-jc-path="products.form.sliders"></div>
+			</div>
+		</div>
+
+		<div data-b="products.form.id" data-b-visible="value && value.length" class="hidden">
+			<hr class="nmt" />
+			<div class="padding">
+				<div class="row">
+					<div class="col-lg-2 col-md-3 m">
+						<div class="keyvalue">
+							<div class="key">@(# Id)</div>
+							<div class="value" data-b="products.form.id" data-b-html="n => n"></div>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 m">
+						<div class="keyvalue">
+							<div class="key"><i class="fa fa-calendar"></i>@(Created)</div>
+							<div class="value" data-b="products.form.datecreated"
+								data-b-html="n => Tangular.helpers.time(n)"></div>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 m">
+						<div class="keyvalue">
+							<div class="key"><i class="fa fa-calendar"></i>@(Updated)</div>
+							<div class="value" data-b="products.form.dateupdated"
+								data-b-html="n => n ? Tangular.helpers.time(n) : '@(unchanged)'"></div>
+						</div>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-md-6 m">
+						<div data-jc="nosqlcounter" data-jc-path="products.form.stats.views" data-jc-config="height:52">
+						</div>
+						<div class="help"><i class="fa fa-bar-chart"></i>@(Stats of all views for the last period)</div>
+					</div>
+					<div class="col-md-6 m">
+						<div data-jc="nosqlcounter" data-jc-path="products.form.stats.orders"
+							data-jc-config="height:52"></div>
+						<div class="help"><i class="fa fa-bar-chart"></i>@(Stats of all orders for the last period)
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-jc="error" data-jc-path="products.form.response"></div>
+		<div class="ui-form-buttons" data-jc="validation" data-jc-path="products.form">
+			<button name="cancel">@(Cancel)</button>
+			<button name="submit">@(SAVE)</button>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	var opt = {};
+	opt.element = $('#searchtext');
+	opt.offsetY = 17;
+	opt.offsetWidth = 21;
+	opt.callback = function (value, input) {
+		alert('autocomplete selected --> ' + JSON.stringify(value));
+		input.val('');
+	};
+
+	opt.search = function (q, render) {
+		console.log('---> autocomplete search query:', q);
+		// e.g. we have to call e.g. AJAX or another datasource
+		render([{ name: 'Item 1', type: 'pages' }, { name: 'Item 2', type: 'widgets' }, { name: 'Item 3' }, { name: 'Item 4' }, { name: 'Item 5' }, { name: 'Item 6' }, { name: 'Item 7' }, { name: 'Item 8' }, { name: 'Item 9' }, { name: 'Item 10' }]);
+	};
+
+	SETTER(true, 'autocomplete', 'show', opt);
+</script>
+
+<script>
+
+	var stockdeatils = [{ name: 'Online', id: 's01' }, { name: 'Store', id: 's02' }];
+	var branddata = [{ name: 'ONEPLUS', id: 'b01' }, { name: 'Oppo', id: 'b02' }, { name: 'Vivo', id: 'b03' }, { name: 'Apple', id: 'b04' }, { name: 'Samsung', id: 'b09' }, { name: 'Realme', id: 'b010' }, { name: 'Redmi', id: 'b011' }, { name: 'Nokia', id: 'b012' },];
+	var camdata = [{ name: 'Below-5', id: 'pc00' },{ name: '5-7.9', id: 'pc01' }, { name: '8-9.9', id: 'pc02' }, { name: '10-above', id: 'pc03' }, { name: 'No-Cam', id: 'pc04' }];
+
+	var screendata = [{ name: '3.9', id: 'ss01' }, { name: '4-4.4', id: 'ss02' }, { name: '4.5-4.9', id: 'ss03' }, { name: '5.0-5.4', id: 'ss04' }, { name: '5.5-above', id: 'ss05' }];
+	var batterydata = [{ name: '999', id: 'bc01' }, { name: '1000-1999', id: 'bc02' }, { name: '2000-2999', id: 'bc03' }, { name: '3000-3999', id: 'bc04' }, { name: '4000-more', id: 'bc05' }];
+	var processdata = [{ name: '0.99', id: 'ps01' }, { name: '1-1.49', id: 'ps02' }, { name: '1.5-1.99', id: 'ps03' }, { name: '2-2.4', id: 'ps04' }, { name: '2.5-above', id: 'ps05' }];
+	var memorydata = [{ name: '3.9', id: 'm01' }, { name: '4', id: 'm02' }, { name: '6', id: 'm08' }, { name: '8', id: 'm03' }, { name: '12', id: 'm09' }, { name: '16', id: 'm04' }, { name: '32', id: 'm05' }, { name: '64', id: 'm06' }, { name: '128', id: 'm07' }, { name: '256', id: 'm10' }, { name: '512', id: 'm11' }];
+	var powerrating = [{ name: '5.0', id: 'p01' }, { name: '4.5', id: 'p02' }, { name: '4.0', id: 'p03' }, { name: '3.5', id: 'p04' }, { name: '3.0', id: 'p05' }, { name: '2.0', id: 'p06' }, { name: '1.0', id: 'p07' },];
+	var frameworks = [{ id: 0, name: 'Nothing', template: '<b>{{ name }}</b>' }, { id: 1, name: 'jComponent' }, { id: 2, name: 'Angular.js' }, { id: 3, name: 'React' }];
+	// var markdown = "** No offers **";
+	var transferdata = [{ name: '4g', id: '4g' }, { name: 'gsm', id: 'gsm' }, { name: '3g', id: '3g' }, { name: 'wifi', id: 'wifi' }, { name: 'edge', id: 'edge' }, { name: 'gprs', id: 'gprs' }];
+	var featuresdata = [{ name: 'dualsim', id: 'dualsim' }, { name: 'hotspot', id: 'hotspot' }, { name: 'musicplayer', id: 'musicplayer' }, { name: 'email', id: 'email' }, { name: 'gps', id: 'gps' }, { name: 'touchscreen', id: 'touchscreen' }, { name: 'primarycamera', id: 'primarycamera' }];
+	var purchasedata = [{ name: 'Store', id: 'Store' }, { name: 'Online', id: 'Online' }];
+	// products.form.offerdesc = "**No offers**";
+	var productdata = [{ name: 'Mobiles', id: 'Mobiles' }, { name: 'storage drivers', id: 'storagedrivers' }, { name: 'Powerbanks', id: 'Powerbanks' }, { name: 'Headset', id: 'Headset' }, { name: 'BluetoothHeadset', id: 'Bluetooth' }, { name: 'CarCharger', id: 'carCharger' }, { name: 'Chargers', id: 'chargers' }, { name: 'BluetoothSpeaker', id: 'bluetoothSpeaker' }, { name: 'Data Cables', id: 'Data Cables' }, { name: 'Tvs', id: 'Tvs' },  { name: 'Smartwatches', id: 'Smartwatches' }, { name: 'Tablets', id: 'Tablets' }, { name: 'Projectors', id: 'Projectors' }, { name: 'PhonesbyPrice', id: 'PhonesbyPrice' }];
+	var brandpdata = [{ name: 'Iball', id: 'Iball' }, { name: 'Zeal', id: 'Zeal' }, { name: 'Karbonn', id: 'Karbon' }, { name: 'Inbase', id: 'Inbase' }, { name: 'Mi', id: 'Mi' }, { name: 'Anker', id: 'Anker' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Bmw', id: 'Bmw' }, { name: 'Ferrari', id: 'Ferrari' }, { name: 'Igat', id: 'Igat' }];
+	var batterypdata = [{ name: 'Up to 4999', id: 'Up to 4999' }, { name: '5000-7999', id: '5000-7999' }, { name: '8000-9999', id: '8000-9999' }, { name: '10000-12999', id: '10000-12999' }, { name: '13000-15999', id: '13000-15999' }, { name: '16000-19000', id: '16000-19000' }, { name: '20000-above', id: '20000-above' }];
+	var brandsdata = [{ name: 'Sandisk', id: 'Sandisk' }, { name: 'Kingston', id: 'Kingston' }, { name: 'Sony', id: 'Sony' }];
+	var drivesdata = [{ name: 'Up to 2', id: 'Up to 2' }, { name: '4', id: '4' }, { name: '8', id: '8' }, { name: '16', id: '16' }, { name: '32', id: '32' }, { name: '64', id: '64' }, { name: '128-above', id: '128-above' }];
+	var brandcdata = [{ name: 'Inbase', id: 'Inbase' }, { name: 'Mi', id: 'Mi' }, { name: 'Anker', id: 'Anker' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Ambrane', id: 'Ambrane' }, { name: 'Oraimo', id: 'Oraimo' }, { name: 'Portronics', id: 'Portronics' }, { name: 'Toreto', id: 'Toreto' }, { name: 'Conekt', id: 'Conekt' }, { name: 'Syska', id: 'Syska' }];
+	var brandhdata = [{ name: 'Syska', id: 'Syska' }, { name: 'Zebronics', id: 'Zebronics' }, { name: 'Boat', id: 'Boat' }, { name: 'Inbase', id: 'Inbase' }, { name: 'Mi', id: 'Mi' }, { name: 'Anker', id: 'Anker' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Sony', id: 'Sony' }, { name: 'Jbl', id: 'Jbl' }, { name: 'Skullcandy', id: 'Skullcandy' }, { name: 'Sennheiser', id: 'Sennheiser' }, { name: 'Apple', id: 'Apple' }, { name: 'IBall', id: 'IBall' }, { name: 'Arrow', id: 'Arrow' }, { name: 'Gizmore', id: 'Gizmore' }, { name: 'Fingers', id: 'Fingers' }, { name: 'Conekt', id: 'Conekt' }, { name: 'Ambrane', id: 'Ambrane' }, { name: 'Oraimo', id: 'Oraimo' }, { name: 'U-flex', id: 'U-flex' }, { name: 'Oppo', id: 'Oppo' }];
+	var microhdata = [{ name: 'With Microphone', id: 'WithMicrophone' }, { name: 'With out Microphone', id: 'WithoutMicrophone' }];
+	var connecthdata = [{ name: 'BluetoothWireless', id: 'BluetoothWireless' }, { name: 'Wired-3.5 single pin', id: 'singlepin' }, { name: 'Wiredusb', id: 'Wiredusb' }];
+	var featurehdata = [{ name: 'On-ear', id: 'On-ear' }, { name: 'In-ear', id: 'In-ear' }, { name: 'Over-ear', id: 'Over-ear' }];
+	var interfacehdata = [{ name: 'Doublejack', id: 'Doublejack' }, { name: 'Bluetooth', id: 'Bluetopoth' }, { name: 'Over-ear', id: 'Over-ear' }];
+	var brandtvdata = [{ name: 'LG', id: 'LG' }, { name: 'Mi', id: 'Mi' }, { name: 'Tcl', id: 'Tcl' }];
+	var sizetvdata = [{ name: 'Below40', id: 'Below40' }, { name: '40-47', id: '40-47' }, { name: '48-54', id: '48-54' }, { name: '55-above', id: '55-above' }];
+	var displaytvdata = [{ name: 'Led', id: 'Led' }, { name: 'Oled', id: 'Oled' }, { name: 'Qled', id: 'Qled' }];
+	var brandccdata = [{ name: 'Inbase', id: 'Inbase' }, { name: 'Mi', id: 'Mi' }, { name: 'Anker', id: 'Anker' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Ambrane', id: 'Ambrane' }, { name: 'Oraimo', id: 'Oraimo' }, { name: 'Portronics', id: 'Portronics' }, { name: 'Toreto', id: 'Toreto' }, { name: 'Conekt', id: 'Conekt' }, { name: 'Syska', id: 'Syska' }];
+	var brandbhdata = [{ name: 'Syska', id: 'Syska' }, { name: 'Zebronics', id: 'Zebronics' }, { name: 'Boat', id: 'Boat' }, { name: 'Inbase', id: 'Inbase' }, { name: 'Mi', id: 'Mi' }, { name: 'Anker', id: 'Anker' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Sony', id: 'Sony' }, { name: 'Jbl', id: 'Jbl' }, { name: 'Skullcandy', id: 'Skullcandy' }, { name: 'Sennheiser', id: 'Sennheiser' }, { name: 'Apple', id: 'Apple' }, { name: 'IBall', id: 'IBall' }, { name: 'Arrow', id: 'Arrow' }, { name: 'Gizmore', id: 'Gizmore' }, { name: 'Fingers', id: 'Fingers' }, { name: 'Conekt', id: 'Conekt' }, { name: 'Ambrane', id: 'Ambrane' }, { name: 'Oraimo', id: 'Oraimo' }, { name: 'U-flex', id: 'U-flex' }, { name: 'Oppo', id: 'Oppo' }];
+	var microdata = [{ name: 'With Microphone', id: 'WithMicrophone' }, { name: 'With out Microphone', id: 'WithoutMicrophone' }];
+	var connectdata = [{ name: 'BluetoothWireless', id: 'BluetoothWireless' }, { name: 'Wired-3.5 single pin', id: 'singlepin' }, { name: 'Wiredusb', id: 'Wiredusb' }];
+	var featuredata = [{ name: 'On-ear', id: 'On-ear' }, { name: 'In-ear', id: 'In-ear' }, { name: 'Over-ear', id: 'Over-ear' }];
+	var headdata = [{ name: 'Doublejack', id: 'Doublejack' }, { name: 'Bluetooth', id: 'Bluetopoth' }, { name: 'Over-ear', id: 'Over-ear' }];
+	var brandbsdata = [{ name: 'Inbase', id: 'Inbase' }, { name: 'Mi', id: 'Mi' }, { name: 'Anker', id: 'Anker' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Ambrane', id: 'Ambrane' }, { name: 'Oraimo', id: 'Oraimo' }, { name: 'Portronics', id: 'Portronics' }, { name: 'Toreto', id: 'Toreto' }, { name: 'Conekt', id: 'Conekt' }, { name: 'Syska', id: 'Syska' }];
+	var microbspdata = [{ name: 'With Microphone', id: 'WithMicrophone' }, { name: 'With out Microphone', id: 'WithoutMicrophone' }];
+	var connectbsdata = [{ name: 'BluetoothWireless', id: 'BluetoothWireless' }, { name: 'Wired-3.5 single pin', id: 'singlepin' }, { name: 'Wiredusb', id: 'Wiredusb' }];
+	var featurebsdata = [{ name: 'On-ear', id: 'On-ear' }, { name: 'In-ear', id: 'In-ear' }, { name: 'Over-ear', id: 'Over-ear' }];
+	var headbsdata = [{ name: 'Doublejack', id: 'Doublejack' }, { name: 'Bluetooth', id: 'Bluetopoth' }, { name: 'Over-ear', id: 'Over-ear' }];
+	var brandcabdata = [{ name: 'Inbase', id: 'Inbase' }, { name: 'Mi', id: 'Mi' }, { name: 'Anker', id: 'Anker' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Ambrane', id: 'Ambrane' }, { name: 'Oraimo', id: 'Oraimo' }, { name: 'Portronics', id: 'Portronics' }, { name: 'Toreto', id: 'Toreto' }, { name: 'Conekt', id: 'Conekt' }, { name: 'Syska', id: 'Syska' }];
+	var brandtdata = [{ name: 'ONEPLUS', id: 'b01' }, { name: 'Oppo', id: 'b02' }, { name: 'Vivo', id: 'b03' }, { name: 'Apple', id: 'b04' }, { name: 'Samsung', id: 'b09' }, { name: 'Realme', id: 'b010' }, { name: 'Redmi', id: 'b011' }, { name: 'Nokia', id: 'b012' },];
+	var camtdata = [{ name: '5-7.9', id: 'pc01' }, { name: '8-9.9', id: 'pc02' }, { name: '10-above', id: 'pc03' }];
+	var screentdata = [{ name: '3.9', id: 'ss01' }, { name: '4-4.4', id: 'ss02' }, { name: '4.5-4.9', id: 'ss03' }, { name: '5.0-5.4', id: 'ss04' }, { name: '5.5-above', id: 'ss05' }];
+	var batterytdata = [{ name: '999', id: 'bc01' }, { name: '1000-1999', id: 'bc02' }, { name: '2000-2999', id: 'bc03' }, { name: '3000-3999', id: 'bc04' }, { name: '4000-more', id: 'bc05' }];
+	var processtdata = [{ name: '0.99', id: 'ps01' }, { name: '1-1.49', id: 'ps02' }, { name: '1.5-1.99', id: 'ps03' }, { name: '2-2.4', id: 'ps04' }, { name: '2.5-above', id: 'ps05' }];
+	var memorytdata = [{ name: '3.9', id: 'm01' }, { name: '4', id: 'm02' }, { name: '6', id: 'm08' }, { name: '8', id: 'm03' }, { name: '12', id: 'm09' }, { name: '16', id: 'm04' }, { name: '32', id: 'm05' }, { name: '64', id: 'm06' }, { name: '128', id: 'm07' }, { name: '256', id: 'm10' }, { name: '512', id: 'm11' }];
+	var featuretdata = [{ name: 'dualsim', id: 'dualsim' }, { name: 'hotspot', id: 'hotspot' }, { name: 'musicplayer', id: 'musicplayer' }, { name: 'email', id: 'email' }, { name: 'gps', id: 'gps' }, { name: 'touchscreen', id: 'touchscreen' }, { name: 'primarycamera', id: 'primarycamera' }];
+	var transfertdata = [{ name: '4g', id: '4g' }, { name: 'gsm', id: 'gsm' }, { name: '3g', id: '3g' }, { name: 'wifi', id: 'wifi' }, { name: 'edge', id: 'edge' }, { name: 'gprs', id: 'gprs' }];
+	var bookingdata = [{ name: 'pre-register', id: 'pr01' }, { name: 'pre-booking', id: 'pr02' }, { name: 'Emi-options', id: 'pr03' }];
+	var brandprodata = [{ name: 'Sony', id: 'Sony' }, { name: 'Anker', id: 'Anker' }];
+	var brandsmartdata = [{ name: 'Mi', id: 'Mi' }, { name: 'Samsung', id: 'Samsung' }, { name: 'Apple', id: 'Apple' }, { name: 'Fitbit', id: 'Fitbit' }, { name: 'Boat', id: 'Boat' }, { name: 'Oraimo', id: 'Oraimo' }];
+	$(document).ready(function () {
+
+
+	
+		
+
+		$("#mob").change(function () {
+
+
+			let ptype = $("#mob option:selected").val();
+			console.log(ptype);
+
+			if (ptype == 'Mobiles') {
+				$('.mobiles-show').show();
+				$('.pow-show').hide();
+				$('.str-show').hide();
+				$('.car-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Powerbanks') {
+				$('.pow-show').show();
+				$('.mobiles-show').hide();
+				$('.str-show').hide();
+				$('.car-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'storage drivers') {
+				$('.str-show').show();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.car-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'CarCharger') {
+				$('.car-show').show();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Chargers') {
+				$('.ch-show').show();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Headset') {
+				$('.H-show').show();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'BluetoothHeadset') {
+				$('.Bh-show').show();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'BluetoothSpeaker') {
+				$('.Bs-show').show();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Tvs') {
+				$('.tv-show').show();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.cab-show').hide()
+				;$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} 
+			else if (ptype == 'Data Cables') {
+				$('.cab-show').show();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			}
+			else if (ptype == 'Tablets') {
+				$('.cab-show').hide();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').show();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} 
+			else if (ptype == 'Projectors') {
+				$('.pro-show').show();
+				$('.cab-show').hide();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').hide();
+				$('.smart-show').hide();
+
+			}
+			else if (ptype == 'Smartwatches') {
+				$('.pro-show').hide();
+				$('.cab-show').hide();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').hide();
+				$('.smart-show').show();
+
+			}
+		});
+
+
+	});
+	
+	function loadProductChange() {
+			setTimeout(() => {
+			$('.mobiles-show').show();
+			$('.pow-show').hide();
+			$('.str-show').hide();
+			$('.car-show').hide();
+			$('.ch-show').hide();
+			$('.H-show').hide();
+			$('.Bh-show').hide();
+			$('.Bs-show').hide();
+			$('.tv-show').hide();
+			$('.cab-show').hide();
+			$('.Tablets-show').hide();
+			$('.pro-show').hide();
+			$('.smart-show').hide();
+			let ptype = $('#mob option:selected').val();
+			if (ptype == 'Mobiles') {
+				$('.mobiles-show').show();
+				$('.pow-show').hide();
+				$('.str-show').hide();
+				$('.car-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Powerbanks') {
+				$('.pow-show').show();
+				$('.mobiles-show').hide();
+				$('.str-show').hide();
+				$('.car-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'storage drivers') {
+				$('.str-show').show();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.car-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'CarCharger') {
+				$('.car-show').show();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.ch-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Chargers') {
+				$('.ch-show').show();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.H-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Headset') {
+				$('.H-show').show();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.Bh-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'BluetoothHeadset') {
+				$('.Bh-show').show();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.Bs-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'BluetoothSpeaker') {
+				$('.Bs-show').show();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Tvs') {
+				$('.tv-show').show();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.cab-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			} else if (ptype == 'Data Cables') {
+				$('.cab-show').show();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').hide();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			}
+			else if (ptype == 'Tablets') {
+				$('.cab-show').hide();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').show();
+				$('.pro-show').hide();
+				$('.smart-show').hide();
+			}
+			else if (ptype == 'Projectors') {
+				$('.pro-show').show();
+				$('.cab-show').hide();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').hide();
+				$('.smart-show').hide();
+
+			}
+			else if (ptype == 'Smartwatches') {
+				$('.pro-show').hide();
+				$('.cab-show').hide();
+				$('.Bs-show').hide();
+				$('.Bh-show').hide();
+				$('.H-show').hide();
+				$('.ch-show').hide();
+				$('.car-show').hide();
+				$('.str-show').hide();
+				$('.pow-show').hide();
+				$('.mobiles-show').hide();
+				$('.tv-show').hide();
+				$('.Tablets-show').hide();
+				$('.smart-show').show();
+
+			}
+		}, 2000);
+
+		}
+
+
+	function features(i) {
+
+		SETTER('loading', 'show');
+		AJAX('GET [url]api/products/?limit=500', ispublised = true, function (response) {
+			// console.log(response);
+
+			SETTER('loading', 'hide', 1000);
+			SETTER('features', 'show', response.items, function (value) {
+				//console.log('CLICK', value);
+				//products.form.related_product_1 = value.id;
+
+				$('#cat-disable-' + i + ' :input').val(value.id);
+				$('#cat-disable-' + i + '-view').html(value.name);
+				$('.ui-form-buttons button').removeAttr("disabled");
+			});
+		});
+
+	}
+
+function maufacture() {
+
+		SETTER('loading', 'show');
+		AJAX('GET [url]api/posts/?limit=500', ispublised = true, function (response) {
+			console.log(response);
+
+			SETTER('loading', 'hide', 1000);
+			SETTER('features', 'show', response.items, function (value) {
+				console.log('CLICK', value);
+				//products.form.related_product_1 = value.id;
+
+				$('#manufacture-disable :input').val(value.id);
+				$('#manufacture-disable-view').html(value.name);
+				$('.ui-form-buttons button').removeAttr("disabled");
+			});
+		});
+
+	}
+
+	SCOPE('Products', function (ctrl) {
+
+
+
+		ctrl.refreshDependencies = function () {
+			AJAX('GET [url]api/{0}/dependencies/'.format(ctrl.scope), ctrl.scope + '.dependencies');
+		};
+
+		ctrl.formShow = function (com) {
+
+			var model = products.form;
+			com.reconfigure({ title: model.id ? '@(Edit product)' : '@(New product)' });
+
+			WAIT('cmseditor.instance', function () {
+				cmseditor.instance.setWidgetOptions(model.widgets);
+			});
+
+			SETTER('loading', 'hide', 500);
+			loadProductChange();
+			model.id && AJAX('GET [url]api/{0}/{1}/stats/'.format(ctrl.scope, model.id), ctrl.scope + '.form.stats');
+		};
+
+		ctrl.formSubmit = function (com) {
+
+			SETTER('loading', 'show');
+
+			var model = CLONE(products.form);
+			var editor = cmseditor.instance;
+
+			model.pictures2 = editor.getPictures();
+			// model.summary = editor.getSummary();
+			model.body = editor.getContent().replace(/\n[\s\t]+\n/g, '\n');
+			// model.search = editor.getKeywords();
+
+
+			var w = editor.getWidgets();
+			model.widgets = w.settings;
+			model.bodywidgets = w.widgets;
+			model.stats = undefined;
+
+			model.related_product_1 = $('#cat-disable-1 :input').val();
+			model.related_product_2 = $('#cat-disable-2 :input').val();
+			model.related_product_3 = $('#cat-disable-3 :input').val();
+			model.related_product_4 = $('#cat-disable-4 :input').val();
+
+
+			model.compared_product_1 = $('#cat-disable-5 :input').val();
+			model.compared_product_2 = $('#cat-disable-6 :input').val();
+			model.compared_product_3 = $('#cat-disable-7 :input').val();
+			//model.product_color_1 = $('#cat-disable-8 :input').val();
+			//model.product_color_2 = $('#cat-disable-9 :input').val();
+			//model.product_color_3 = $('#cat-disable-10 :input').val();
+			//model.product_color_4 = $('#cat-disable-11 :input').val();
+			model.relate_product_1 = $('#cat-disable-12 :input').val();
+			model.relate_product_2 = $('#cat-disable-13 :input').val();
+			model.relate_product_3 = $('#cat-disable-14 :input').val();
+			model.relate_product_4 = $('#cat-disable-15 :input').val();
+			//model.products_color_1 = $('#cat-disable-16 :input').val();	
+			model.compare_product_1 = $('#cat-disable-17 :input').val();
+			model.compare_product_2 = $('#cat-disable-18 :input').val();
+			model.compare_product_3 = $('#cat-disable-19:input').val();
+			
+			//model.relate_product_4 = $('#cat-disable-21 :input').val();
+			//model.relate_product_4 = $('#cat-disable-22 :input').val();
+			model.manufacture_id = $('#manufacture-disable :input').val();
+			//console.log("FORM SUBMIT", model);
+
+			AJAX('POST [url]api/{0}/'.format(ctrl.scope), model, function (response) {
+				SETTER('loading', 'hide', 1000);
+				if (response.success) {
+					SETTER('snackbar', 'success', '@(Product has been saved successfully.)');
+					com.hide();
+					ctrl.refresh();
+					setTimeout(5000);
+					location.reload();
+				}
+			});
+		};
+
+		ctrl.backups = function (el) {
+
+			SETTER('loading', 'show');
+			AJAX('GET [url]api/{0}/{1}/backups/'.format(ctrl.scope, ctrl.get('form.id')), function (response) {
+
+				SETTER('loading', 'hide', 1000);
+
+				for (var i = 0, length = response.length; i < length; i++) {
+					var item = response[i];
+					item.name = '{0} <b class="badge badge-blue"><i class="fa fa-user mr5"></i>{1}</b>'.format(item.date.format('@(yyyy-MM-dd HH:mm)'), item.user);
+				}
+
+				response.quicksort('date', false);
+
+				SETTER('suggestion', 'show', 'left', el, response, function (value) {
+					SETTER('loading', 'show');
+					setTimeout(function () {
+						cmseditor.instance.replace(value.data.body);
+						SETTER('loading', 'hide', 1000);
+					}, 100);
+				});
+			});
+		};
+
+		ctrl.watch('form.template', function (path, value, type) {
+			if (type === 2) {
+				cmseditor.instance.reconfigure('template:' + value);
+				cmseditor.instance.set('');
+			}
+		}, true);
+
+		ctrl.formAddItem = function () {
+			PUSH('products.form.prices', { price: 1, stock: 1, name: '' });
+		};
+
+		ctrl.refreshDependencies();
+	});
+
+	COMPONENT('productsprices', function (self, config) {
+
+		var template, items, skip = false;;
+
+		self.validate = function (value) {
+			return value ? value.length > 0 : false;
+		};
+
+		self.make = function () {
+			self.aclass('ui-productsprices');
+			var el = self.find('script');
+
+			// Creates a template
+			template = VIRTUALIZE(el.html(), { 
+				name: 'input[name="name"]', 
+				stock: 'input[name="stock"]', 
+				price: 'input[name="price"]',
+				colorcode: 'input[name="colorcode"]'
+			});
+
+			self.event('change', 'input', function () {
+				self.rebind();
+			});
+
+			self.event('click', '.fa', function () {
+				var index = $(this).closest('.ui-productsprices-item').attrd('index');
+				self.get().splice(index, 1);
+				self.update(true);
+				self.change(true);
+			});
+
+			el.remove();
+		};
+
+		self.rebind = function () {
+
+			var arr = self.get();
+			var tmp = {};
+
+			console.log(arr);
+
+
+			for (var i = 0, length = items.length; i < length; i++) {
+				var item = items[i];
+				var value = arr[i];
+
+				//console.log(item, value, tmp);
+
+				tmp.price = item.price.val().replace(/\s/g, '').parseFloat();
+				tmp.stock = item.stock.val().replace(/\s/g, '').parseInt();
+
+				if (tmp.stock < 0)
+					tmp.stock = 0;
+
+				value.name = item.name.val().trim();
+				value.colorcode = item.colorcode.val().trim() || '';
+
+				if (tmp.price !== value.price || tmp.stock || value.stock) {
+					value.stock = tmp.stock;
+					value.price = tmp.price;
+					item.price.val(value.price.format(2));
+					item.stock.val(value.stock + 'x');
+					
+				}
+			}
+
+			skip = true;
+			self.update(true);
+		};
+
+		self.setter = function (value) {
+
+			if (skip) {
+				skip = false;
+				return;
+			}
+
+			if (!value)
+				value = EMPTYARRAY;
+
+			self.find('.ui-productsprices-row').remove();
+			items = [];
+
+			for (var i = 0, length = value.length; i < length; i++) {
+				var item = value[i];
+				var el = template.clone();
+				//console.log("EL", el);
+
+				el.name.val(item.name || '');
+				el.price.val((item.price || 0).format(2));
+				el.stock.val((item.stock || 0) + 'x');
+				el.colorcode.val(item.colorcode || '' );
+
+				el.attrd('index', i);
+				items.push(el);
+				self.append(el.element);
+			}
+
+		};
+	});
+
+
+
+	$(document).ready(function () {
+		setTimeout(function () {
+			$('#cat-disable :input').attr('disabled', 'disabled');
+			$('#cat-disable-1 :input').attr('disabled', 'disabled');
+			$('#cat-disable-2 :input').attr('disabled', 'disabled');
+			$('#cat-disable-3 :input').attr('disabled', 'disabled');
+			$('#cat-disable-4 :input').attr('disabled', 'disabled');
+			$('#cat-disable-5 :input').attr('disabled', 'disabled');
+			$('#cat-disable-6 :input').attr('disabled', 'disabled');
+			$('#cat-disable-7 :input').attr('disabled', 'disabled');
+			$('#manufacture-disable :input').attr('disabled', 'disabled');
+
+			var opt = {};
+			opt.element = $('#searchtext');
+			opt.offsetY = 17;
+			opt.offsetWidth = 21;
+			opt.callback = function (value, input) {
+				alert('autocomplete selected --> ' + JSON.stringify(value));
+				input.val('');
+			};
+
+			opt.search = function (q, render) {
+				console.log('---> autocomplete search query:', q);
+				// e.g. we have to call e.g. AJAX or another datasource
+				render([{ name: 'Item 1', type: 'pages' }, { name: 'Item 2', type: 'widgets' }, { name: 'Item 3' }, { name: 'Item 4' }, { name: 'Item 5' }, { name: 'Item 6' }, { name: 'Item 7' }, { name: 'Item 8' }, { name: 'Item 9' }, { name: 'Item 10' }]);
+			};
+
+			SETTER('autocomplete1', 'show', opt);
+		}, 1200)
+	})
+
+
+</script>

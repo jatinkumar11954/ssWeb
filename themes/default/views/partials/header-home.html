@@ -1,0 +1,345 @@
+<style>
+   .login-modal-left {
+      background: rgba(0, 0, 0, 0) url(/img/SHOPSASTA.png) repeat scroll center center;
+      float: right;
+      height: 300px;
+      list-style: outside none none;
+      margin: 70px auto auto;
+      width: 322px;
+   }
+
+   @font-face {
+      font-family: roboto_light;
+      src: url(/font/Roboto/Roboto-Light.ttf);
+   }
+
+   @font-face {
+      font-family: roboto_bold;
+      src: url(/fonts/Roboto/Roboto-Bold.ttf);
+      font-weight: bold;
+   }
+
+   body {
+      color: #757575 !important;
+      font-family: roboto_light;
+   }
+
+   .offer-price {
+      font-family: roboto_bold;
+   }
+
+   #nav {
+      list-style: none inside;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+   }
+
+   #nav li {
+      display: block;
+      position: relative;
+      float: left;
+      /* background: #029b97; */
+      /* menu background color */
+   }
+
+   #nav li a {
+      display: block;
+      padding: 10px !important;
+      text-decoration: none;
+      width: 200px;
+      /* this is the width of the menu items */
+      line-height: 15px;
+      /* this is the hieght of the menu items */
+      /* color: #ffffff !important; */
+      /* list item font color */
+   }
+
+   #nav .inner-ul li {
+      background-color: #ffffff;
+   }
+
+   #nav ul li a {
+      display: flex;
+      padding: 7px 5px;
+      color: #000 !important;
+   }
+
+   #nav li li a {
+      font-size: 80%;
+   }
+
+   /* smaller font size for sub menu items */
+
+   #nav li:hover {
+      /* background: #029b97; */
+   }
+
+   /* highlights current hovered list item and the parent list items when hovering over sub menues */
+
+   #nav ul {
+      position: absolute;
+      padding: 0;
+      left: 0;
+      display: none;
+      /* hides sublists */
+   }
+
+   #nav li:hover ul ul {
+      display: none;
+
+   }
+
+   /* hides sub-sublists */
+
+   #nav li:hover ul {
+      display: block;
+      z-index: 999;
+   }
+
+   /* shows sublist on hover */
+
+   #nav li li:hover ul {
+      display: block;
+      /* shows sub-sublist on hover */
+      margin-left: 200px;
+      /* this should be the same width as the parent list item */
+      margin-top: -35px;
+      /* aligns top of sub menu with top of list item */
+   }
+
+   #nav .nav-link:hover {
+      /* background-color: #029b97 !important; */
+      color: #000;
+   }
+
+   .sidebar-category-item h6 {
+      font-weight: 600;
+   }
+
+   .desktop-view {
+      display: block;
+   }
+
+   .mobile-view {
+      display: none;
+   }
+
+   @media only screen and (max-width: 767px) {
+      .dropdown-menu {
+         width: 100%;
+      }
+
+      .desktop-view {
+         display: none;
+      }
+
+      .mobile-view {
+         display: block;
+      }
+   }
+</style>
+<div class="headers">
+   @{view('/partials/header-top')}
+</div>
+<nav class="navbar navbar-expand-lg navbar-light osahan-menu-2 pad-none-mobile">
+   <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarText">
+         @{if model.headerJson.length != 0}
+         <ul id="nav" class="desktop-view">
+            <li>
+               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">All Categories</a>
+               <ul class="inner-ul">
+                  @{foreach item in model.headerJson }
+
+                  @{if item.menuType != 'tab'}
+                  <li>
+                     <div class="item tablinks">
+                        <div class="sidebar-category-item">
+                           <a href="@{item.hrefUrl}">
+                              <h6>@{item.menuName}</h6>
+
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  @{else}
+                  <li>
+                     <div class="item tablinks">
+                        <div class="sidebar-category-item">
+                           <a href="@{item.hrefUrl}">
+                              <h6>@{item.menuName}</h6>
+
+                           </a>
+                        </div>
+                     </div>
+
+                     <ul>
+                        @{foreach obj in item.subMenu1 }
+                        <li>
+                           <div class="item tablinks">
+                              <div class="sidebar-category-item">
+                                 <a href="@{obj.hrefUrl}">
+                                    <h6>@{obj.subMenu1Name}</h6>
+
+                                 </a>
+                              </div>
+                           </div>
+                           @{end}
+
+                     </ul>
+                  </li>
+                  @{fi}
+                  @{end}
+
+               </ul>
+            </li>
+         </ul>
+         <ul class="mobile-view">
+            @{foreach item in model.headerJson }
+
+            @{if item.menuType != 'tab'}
+
+            <li class="nav-item">
+               <a href="@{item.hrefUrl}" class="nav-link">@{item.menuName}</a>
+            </li>
+            @{else}
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  @{item.menuName}
+               </a>
+
+
+               <div class="dropdown-menu">
+                  @{foreach obj in item.subMenu1 }
+                  <a class="dropdown-item" href="@{obj.hrefUrl}">
+                     @{obj.subMenu1Name}</a>
+
+                  @{end}
+
+               </div>
+            </li>
+
+
+            @{fi}
+            @{end}
+
+         </ul>
+         @{fi}
+         <div class="desktop-view ml-auto">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+               <li class="nav-item">
+                  <a href="/" class="nav-link">Home</a>
+               </li>
+
+           
+               <li class="nav-item user-in">
+                  <a href="/sasta-deals" class="nav-link">Sasta</a>
+               </li>
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">Sasta</a>
+               </li>
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/my-group">My Group</a>
+               </li>
+
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">My Group</a>
+               </li>
+   
+               <!-- <li class="nav-item">
+                  <a class="nav-link" href="/faq">Faq</a>
+               </li>
+
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/refer-friend">Refer Friend</a>
+               </li> -->
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">Refer Friend</a>
+               </li>
+               <li class="nav-item  user-out">
+                  <a class="nav-link" href="javascript:login()"> Login</a>
+               </li>
+               <li class="nav-item dropdown  user-in">
+
+                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                     aria-expanded="false">
+                     My Account
+                  </a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="/my-account">
+                        My Profile</a>
+                     <a class="dropdown-item" href="/my-address">
+                        My Address</a>
+                     <a class="dropdown-item" href="/my-orders">
+                        Order List</a>
+
+                     <a class="dropdown-item" href="/my-earnings">
+                        My Earnings </a>
+                        <a class="dropdown-item" href="/refer-friend">
+                           Refer Friend </a>
+                        <a href="javascript:userLogout()" class="dropdown-item"> Logout</a>
+                  </div>
+               </li>
+            </ul>
+         </div>
+         <div class="mobile-view">
+            <ul class=" ml-auto mt-2 mt-lg-0">
+
+               <li class="nav-item">
+                  <a href="/" class="nav-link">Home</a>
+               </li>
+
+
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/my-group">My Group</a>
+               </li>
+
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">My Group</a>
+               </li>
+   
+               
+   
+             
+               <!-- <li class="nav-item">
+                  <a class="nav-link" href="/faq">Faq</a>
+               </li>
+               <li class="nav-item user-in">
+                  <a class="nav-link" href="/refer-friend">Refer Friend</a>
+               </li>
+               <li class="nav-item user-out">
+                  <a class="nav-link" href="javascript:login()">Refer Friend</a>
+               </li> -->
+               <li class="nav-item  user-out">
+                  <a class="nav-link" href="javascript:login()"> Login</a>
+               </li>
+               <li class="nav-item dropdown user-in">
+                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                     aria-expanded="false">
+                     My Account
+                  </a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="/my-account">
+                        My Profile</a>
+                     <a class="dropdown-item" href="/my-address">
+                        My Address</a>
+                     <a class="dropdown-item" href="/my-orders">
+                        Order List</a>
+
+                     <a class="dropdown-item" href="/my-earnings">
+                        My Earnings </a>
+                        <a class="dropdown-item" href="/refer-friend">
+                           Refer Friend </a>
+                        <a href="javascript:userLogout()" class="dropdown-item"> Logout</a>
+                  </div>
+               </li>
+            </ul>
+         </div>
+
+      </div>
+   </div>
+</nav>

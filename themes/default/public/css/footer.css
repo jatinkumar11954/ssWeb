@@ -1,0 +1,122 @@
+.foo-block .subscribe-outer {
+    width: 100%;
+    /* background-color: #fb9013; */
+    padding: 4rem 0;color: #ffffff;
+}
+.foo-block .subscribe {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+.foo-block .subscribe b {
+    text-transform: uppercase;
+    color: #fb9013;
+    font-size: 20px;
+}
+.foo-block .subscribe input {
+    margin: 0;
+   
+}
+.input-group-prepend button {
+    background-color: #fb9013 !important;
+    border-color: #fb9013 !important;
+    padding: 0 14px;
+    height: 39px;
+    font-size: 15px;
+    color: #000;
+    font-weight: 600;
+}
+.input-group-prepend .cart-btn button:active, .input-group-prepend .cart-btn button:focus, .input-group-prepend .cart-btn button:not(:disabled):not(.disabled):active:focus {
+    background-color: #fecc09 !important;
+    border-color: #fecc09 !important;
+}
+.foo-block .desc {
+    padding: 2rem 0;
+}
+.foo-block .foo-icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+}
+
+.foo-block .foo-icons .each-icon:nth-child(1) {
+    background-color: #fb9013;
+    width: 100%;
+    text-align: center;
+    /* padding: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid white;
+}
+
+.foo-block .foo-icons .each-icon:nth-child(2) {
+    background-color: #fb9013;
+    width: 100%;
+    text-align: center;
+    /* padding: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid white;
+}
+
+.foo-block .foo-icons .each-icon:nth-child(3) {
+    background-color: #fb9013;
+    ;width: 100%;
+    text-align: center;
+    /* padding: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid white;
+}
+
+.foo-block .foo-icons .each-icon:nth-child(4) {
+    background-color: #fb9013;
+    ;width: 100%;
+    text-align: center;
+    /* padding: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid white;
+}
+
+.foo-block .foo-icons .each-icon:nth-child(5) {
+    background-color: #fb9013;
+    ;width: 100%;
+    text-align: center;
+    /* padding: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.foo-icons .each-icon img {
+    height: 30px;
+}
+/* .about h3{
+   
+    font-size: 1.8rem;
+    line-height: 20px;
+    margin-bottom: 10px!important;
+    padding-bottom: 10px;
+    position: relative;
+    font-weight: 600;
+   
+} */
+ 
+.address h3{
+    font-size: 1.8rem;
+    line-height: 20px;
+    margin-bottom: 10px!important;
+    padding-bottom: 10px;
+    position: relative;
+    font-weight: 600;
+}
+.address .menu a {
+    color: #000 !important;
+}

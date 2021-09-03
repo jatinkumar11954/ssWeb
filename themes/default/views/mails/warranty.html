@@ -1,0 +1,51 @@
+@{layout('~mails/layout')}
+
+<div style="font-size:20px;color:#A0A0A0">@(Dear) <b>@{model.name}</b></div>
+<div style="margin-top:15px">@(many thanks for the order. Your order has been created successfully. This email is a confirmation of your order.)</div>
+<br />
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(Order number)</div>
+	<div>@{model._id}</div>
+</div>
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(Status)</div>
+	<div>@{model.status}</div>
+</div>
+
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(Customer)</div>
+	<div>@{model.name}</div>
+</div>
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(Email address)</div>
+	<div>@{model.email}</div>
+</div>
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(IMEI)</div>
+	<div>@{model.imei}</div>
+</div>
+
+@{if model.txnid}
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(Payemnt Ref #)</div>
+	<div>@{model.txnid}</div>
+</div>
+@{fi}
+
+@{if model.mobile}
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(Phone number)</div>
+	<div>@{model.mobile}</div>
+</div>
+@{fi}
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">@(Total price)</div>
+	<div>Rs. 499</div>
+</div>
+<br />
+<div style="padding:15px 10px">
+	<div style="font-size:11px;color:#A0A0A0;text-transform:uppercase">@(Summarize)</div>
+	<div style="font-weight:bold">1-Year Extended Warranty @ Rs.499/-</div>
+</div>
+<br />
+<div style="border-top:1px solid #F0F0F0;padding:30px 0 10px"><a href="https://happimobiles.com/warranty/@{model._id}" style="padding:20px 0;border-radius:4px;text-align:center;text-decoration:none;margin:0 auto;max-width:300px;width:100%;border:2px solid #4CABF8;display:block;background-color:#4CABF8;color:white;font-size:18px;font-weight:bold;letter-spacing:-1px">@(VIEW ORDER)</a></div>

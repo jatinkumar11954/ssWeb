@@ -1,0 +1,265 @@
+<!-- <div class="clear-fiter">
+			<p id="clear-fiters"
+				style="font-size: 18px;font-weight: 600;text-transform: uppercase;	background-color: #fb9013;padding: 3px;text-align: center;	border-radius: 8px;color: #fff;cursor: pointer;">
+				Clear Filter</p>
+		</div> -->
+		<div class="mobile-view mob-view">
+            <p onclick="showFilter()" class="save-text"
+            style="font-size: 14px;font-weight: 600;background-color: #fb9013;padding: 3px;text-align: center;border-radius: 8px;color: #fff;cursor: pointer;">
+            View Filter</p>
+            <p onclick="showFilter()" class="close-text"
+            style="font-size: 14px;font-weight: 600;background-color: #fb9013;padding: 3px;text-align: center;border-radius: 8px;color: #fff;cursor: pointer;">
+            Close Filter</p>
+            </div>
+            <div  class="filter-list">
+    
+                <div class="each-filter brand-filter">
+                    <p class="filter-heading">Brand</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="ONEPLUS" id='b01' class="filter1" name="ftrBrand1">One
+                            Plus</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="Oppo" id='b02' class="filter" name="ftrBrand1">Oppo</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="Vivo" id='b03' class="filter" name="ftrBrand1">Vivo</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="Apple" id='b04' class="filter" name="ftrBrand1">Apple</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="Samsung" id='b09' class="filter"
+                                name="ftrBrand1">Samsung</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="Realme" id='b010' class="filter" name="ftrBrand1">Realme</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="Redmi" id='b011' class="filter" name="ftrBrand1">Redmi</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="Nokia" id='b012' class="filter" name="ftrBrand1">Nokia</label>
+                    </div>
+    
+                </div>
+
+                <div class="each-filter price-filter">
+                    <p class="filter-heading">Price Range</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b01' class="pfilter" data-minprice="0"  data-maxprice="5000" name="price">Rs 0 - Rs 5K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"  id='b02' class="pfilter"data-minprice="50001"  data-maxprice="10000" name="price">Rs 5K - Rs 10K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"  id='b03' class="pfilter"data-minprice="10001"  data-maxprice="15000" name="price">Rs 10K - Rs 15K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b04' class="pfilter"data-minprice="15001"  data-maxprice="20000" name="price">Rs 15K - Rs 20K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"  id='b09' class="pfilter"
+                               data-minprice="20001"  data-maxprice="25000" name="price">Rs 20K - Rs 25K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b010' class="pfilter"data-minprice="25001"  data-maxprice="30000" name="price">Rs 25K - Rs 30K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b011' class="pfilter"data-minprice="30001"  data-maxprice="35000" name="price">Rs 30K - Rs 35K</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id='b012' class="pfilter"data-minprice="35001"  data-maxprice="40000" name="price">Rs 35K - Rs 40K</label>
+                    </div>
+					<div class="checkbox">
+                        <label><input type="checkbox" id='b012' class="pfilter"data-minprice="40000"  data-maxprice="500000" name="price">RS 40K+</label>
+                    </div>
+                </div>
+                <div class="each-filter camera-filter">
+                    <p class="filter-heading">Primary Camera Resolution</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="5-7.9" id='pc02' class="filter" name="ftrCam1">5 - 7.9
+                            MP</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="8-9.9" id='pc02' class="filter" name="ftrCam1">8 - 9.9
+                            MP</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="10-above" id='pc03' class="filter" name="ftrCam1">10 MP &
+                            above</label>
+                    </div>
+                </div>
+                <div class="each-filter screen-filter">
+                    <p class="filter-heading">Screen Size</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="3.9" class="filter" name="ftrScreen1">Below 3.9 Inches</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="4-4.4" class="filter" name="ftrScreen1">4 - 4.4 Inches</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="4.5-4.9" class="filter" name="ftrScreen1">4.5 - 4.9
+                            Inches</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="5.0-5.4" class="filter" name="ftrScreen1"> 5.0 - 5.4
+                            Inches</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="5.5-above" class="filter" name="ftrScreen1">5.5 Inches &
+                            above</label>
+                    </div>
+                </div>
+                <div class="each-filter battery-filter">
+                    <p class="filter-heading">Battery Capacity</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="999" class="filter" name="ftrBattery1"> Less Than 999
+                            mAh</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="1000-1999" class="filter" name="ftrBattery1"> 1000 - 1999
+                            mAh</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="2000-2999" class="filter" name="ftrBattery1"> 2000 - 2999
+                            mAh</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="3000-3999" class="filter" name="ftrBattery1"> 3000 - 3999
+                            mAh</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="4000-more" class="filter" name="ftrBattery1">4000 mAh &
+                            more</label>
+                    </div>
+                </div>
+                <div class="each-filter processor-filter">
+                    <p class="filter-heading">Processor Speed</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="0.99" class="filter" name="ftrProcessor1"> Less Than 0.99
+                            GHz</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="1-1.49" class="filter" name="ftrProcessor1"> 1 - 1.49 GHz
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="1.5-1.99" class="filter" name="ftrProcessor1"> 1.5 - 1.99
+                            GHz</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="2-2.4" class="filter" name="ftrProcessor1"> 2 - 2.4 GHz</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="2.5-above" class="filter" name="ftrProcessor1"> 2.5 GHz &
+                            above</label>
+                    </div>
+                </div>
+                <div class="each-filter memory-filter">
+                    <p class="filter-heading">Internal Memory</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="3.9" class="filter" name="ftrMemory1">Less Than 3.9 GB</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="4" class="filter" name="ftrMemory1">4 GB</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="8" class="filter" name="ftrMemory1">8 GB</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="16" class="filter" name="ftrMemory1">16 GB</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="32" class="filter" name="ftrMemory1">32 GB</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="64" class="filter" name="ftrMemory1">64 GB</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="128" class="filter" name="ftrMemory1">128 GB</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="256-above" class="filter" name="ftrMemory1">256 GB &
+                            above</label>
+                    </div>
+    
+                </div>
+                <div class="each-filter -filter">
+                    <p class="filter-heading">Device Features</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="dualsim" class="filter" name="ftrFeatures1">Dual Sim</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="hotspot" class="filter" name="ftrFeatures1">Hotspot</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="musicplayer" class="filter" name="ftrFeatures1">Music
+                            Player</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="email" class="filter" name="ftrFeatures1">E-Mail</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="gps" class="filter" name="ftrFeatures1">GPS</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="touchscreen" class="filter"
+                                name="ftrFeatures1">Touchscreen</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="primarycamera" class="filter" name="ftrFeatures1">Primary
+                            Camera</label>
+                    </div>
+                </div>
+                <div class="each-filter data-filter">
+                    <p class="filter-heading">Data Transfer</p>
+    
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="4g" class="filter" name="ftrTransfer1">4G</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="gsm" class="filter" name="ftrTransfer1">GSM</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="3g" class="filter" name="ftrTransfer1">3G</label>
+                    </div>
+    
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="wifi" class="filter" name="ftrTransfer1">WiFi</label>
+                    </div>
+                    <div class="checkbox ">
+                        <label><input type="checkbox" value="edge" class="filter" name="ftrTransfer1">Edge</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="gprs" class="filter" name="ftrTransfer1">GPRS</label>
+                    </div>
+                </div>
+            </div>
+            
+    <script>
+       var filterText = true;
+        $('.close-text').hide();
+           
+        function showFilter() {
+            filterText = !filterText;
+            $('.filter-list').toggle();
+            if (!filterText) {
+                $('.save-text').hide();
+                $('.close-text').show();
+            } else {
+                $('.save-text').show();
+                $('.close-text').hide();
+            }
+
+
+        }
+    </script>

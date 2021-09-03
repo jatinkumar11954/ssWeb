@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shopsasta">
+    <meta name="author" content="Shopsasta">
+    <title>shopsasta.com - Community Group Buying</title>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- Select2 CSS -->
+    <link href="/vendor/select2/css/select2-bootstrap.css" />
+    <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/osahan.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+    <style>
+        .center {
+            text-align: center;
+        }
+
+        .code-b button {
+            width: 100%;
+        }
+
+        .code-copy {
+            cursor: pointer;
+            margin-right: 1rem;
+            border: 1px solid #efefef;
+            padding: .5rem;
+            width: 48%;
+        }
+
+
+        .tooltips .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltips .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltips:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltips {
+            position: relative;
+            display: inline-block;
+            width: 48%;
+            margin-left: 3%;
+        }
+        .refer-right {
+            margin-left: 3rem;
+        }
+        .refer-b-align {
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        @{view('partials/header')}
+    </div>
+
+    <section class=" bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 breadcum">
+                    <a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+                        class="mdi mdi-chevron-right"></span> <a href="#">Refer Friend</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="account-page section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+                        <div class="widget">
+                            <div class="section-header">
+                                <h5 class="heading-design-h5">
+                                    Refer your friends & family
+                                </h5>
+
+                            </div>
+                            <hr style="margin: 0;background-color: #efefef;border: 1px solid #efefef;">
+
+                            <br>
+                            <div class="section-header center mb-5">
+                                <h6>
+                                    Buy Together, Save Together - Group Buying, More Savings
+                                </h6>
+
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-center refer-b-align">
+                                <div class="center">
+                                    <img src="/img/referral256.png" alt=""  class="mb-2">
+                                </div>
+                                <div class="refer-right">
+                                    <p class="mb-2" style="font-weight: 600;">Refer friends & family to
+                                        ShopSasta. You will get <span class="refer-percent"></span>% cashback every time your referral place their order.
+                                    </p>
+                                    <br>
+                                    <div class="row">
+                                        <div class="d-flex mb-3 col-md-6 col-md-offset-3 center code-b">
+
+                                            <input type="text" class="refer-code-c" id="refer-Id" style="cursor: not-allowed;
+                                            pointer-events: none;text-align: center;height: 36px;font-weight: 600;">
+                                            <div class="tooltips">
+                                                <div id="museleave">
+                                                    <button class="btn btn-lg btn-secondary btn-block d-flex "
+                                                    onclick="referCodeCopy()" style="width: 130px;">
+                                                      
+                                                        <img src="/img/share.png" alt="" class="mr-1" style="height: 20px;">
+                                                        Share & Earn</button>
+                                                    <div class="copied-txt" style="position: absolute;font-weight: 600;padding-left: 15px;
+                                                    font-size: 15px;left: 50%;
+                                                    color: rgb(0, 0, 0);">   </div>
+                                                </div>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <p class="mb-0 center" style="font-weight: 600;">**You can use your referral earnings anytime when you place the order
+                            </p>
+                            <br>
+                            <hr style="margin: 0;background-color: #efefef;border: 1px solid #efefef;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        @{view('partials/footer')}
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- select2 Js -->
+    <script src="/vendor/select2/js/select2.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+    <!-- Custom -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script src="/js/custom.js"></script>
+    <script src="/js/main.js?v=v1.5"></script>
+</body>
+
+</html>

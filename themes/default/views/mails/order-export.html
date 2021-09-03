@@ -1,0 +1,15 @@
+@{layout('~mails/layout')}
+
+<div style="font-size:20px;color:#A0A0A0">@(Dear) <b>Happi Team</b></div>
+<br />
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">FROM Date</div>
+	<div>@{model.fromDate}</div>
+</div>
+<div style="margin-bottom:10px;line-height:18px;border-bottom:1px solid #F0F0F0;padding-bottom:5px">
+	<div style="font-weight:bold;text-transform:uppercase;color:black">TO DATE</div>
+	<div>@{model.toDate}</div>
+</div>
+<div style="padding:30px 0 10px">
+    <a href="@{model.url}" style="padding:20px 0;border-radius:4px;text-align:center;text-decoration:none;margin:0 auto;max-width:300px;width:100%;border:2px solid #4CABF8;display:block;background-color:#4CABF8;color:white;font-size:18px;font-weight:bold;letter-spacing:-1px">@(DOWNLOAD CSV)</a>
+</div>

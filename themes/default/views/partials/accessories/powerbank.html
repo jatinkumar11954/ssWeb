@@ -1,0 +1,191 @@
+<div class="prod-i">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-md-12">
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>GENERAL</p>
+
+                        <!-- @{model.product_type} -->
+                    </div>
+
+                    <div class="collapse show" id="collapseExample">
+                        <div class="spec-body">
+                            @{if model.modelname}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+                                    <span>Model Name</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.modelname}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.pcolor}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Color</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.pcolor}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.supply}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-l-0 left-a">
+                                    <span>Power Supply</span>
+                                </div>
+                                <div class="col-md-9 col-xs-8 right-a">
+                                    <span>@{model.supply}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#body-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Key Features</p>
+                    </div>
+
+                    <div class="collapse show" id="body-collapse">
+                        <div class="spec-body">
+                            @{if model.BatteryCapacity}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Battery Capacity</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BatteryCapacity}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.BatteryType}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Battery Type</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.BatteryType}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Output}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Output</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Output}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Input}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Input</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Input}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Batterylifecycle}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Battery Life Cycle</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Batterylifecycle}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Batterychargingtime}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Battery Charging Time</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Batterychargingtime}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Bodymaterial}
+
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Body Material</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Bodymaterial}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Operatingtemperature}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Operating Temperature</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Operatingtemperature}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-spec ">
+                    <div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+                        href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        <p>Warranty</p>
+                    </div>
+
+                    <div class="collapse show" id="display-collapse">
+                        <div class="spec-body">
+                            @{if model.Domesticwarranty}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Domestic Warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Domesticwarranty}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.Covered}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Covered in Warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.Covered}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.notcovered}
+                            <div class="row m-0">
+                                <div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+                                    <span>Not Covered in Warranty</span>
+                                </div>
+                                <div class="col-md-9 right-a col-xs-8">
+                                    <span>@{model.notcovered}</span>
+                                </div>
+                            </div>
+                            @{fi}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

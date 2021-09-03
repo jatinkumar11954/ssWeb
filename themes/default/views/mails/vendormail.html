@@ -1,0 +1,76 @@
+<style>
+    .settledTable {
+        width: 100%;
+    }
+
+    .settledTable tr {
+        border: 1px solid black;
+    }
+
+    .settledTable tr td {
+        padding: 5px;
+        color: #000;
+        border: 1px solid black;
+    }
+    .settledTable tr th {
+        padding: 5px;
+        color: #000;
+        border: 1px solid black;
+    }
+
+    .settledTable tr:first-child td {
+        border-top: 2px solid black;
+    }
+
+    .settledTable tr:last-child td {
+        border-bottom: 2px solid black;
+    }
+</style>
+
+
+
+<table class="settledTable" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>Vendor</td>
+        <td>@{model.summary.vendor}</td>
+    </tr>
+    <tr>
+        <td>Orders Count</td>
+        <td>@{model.summary.ordersCount}</td>
+    </tr>
+    <tr>
+        <td>Total Amount</td>
+        <td>@{model.summary.totalAmount}</td>
+    </tr>
+    <tr>
+        <td>Settled Amount</td>
+        <td>@{model.summary.vendor}</td>
+    </tr>
+    <tr>
+        <td>Due Amount</td>
+        <td>@{model.summary.settledAmount}</td>
+    </tr>
+</table>
+<br>
+
+<table class="settledTable" cellspacing="0" cellpadding="0">
+    <tr>
+    <th>Order Id</th>
+    <th>Sourcing Price</th>
+    <th>Order Amount</th>
+    <th>Delivery Fee</th>
+    <th>Payment Status</th>
+    <th>Settled</th>
+    <th>Settle Amount</th>
+    <th>Narration</th>
+    </tr>
+    @{foreach item in model.orders}
+
+    <tr>
+        @{foreach property in item}
+        <td>@{property.value}</td>
+        @{end}
+    </tr>
+    @{end}
+
+</table>

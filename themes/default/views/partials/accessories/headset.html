@@ -1,0 +1,171 @@
+
+	<div class="prod-i">
+		<div class="container">
+			<div class="row m-0">
+				<div class="col-md-12">
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>General</p>
+							<!-- @{model.product_type} -->
+						</div>
+
+						<div class="collapse show" id="collapseExample">
+							<div class="spec-body">
+								@{if model.HModelname}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 p-r-0 left-a">
+										<span> Model Name</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.HModelname}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Hcolor}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Color</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Hcolor}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Hheadphonetype}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Headphone Type</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Hheadphonetype}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Hinlineremote}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Inline Remote</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Hinlineremote}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Hconnectivity}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Connectivity</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Hconnectivity}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Hsalespackage}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-l-0 left-a">
+										<span>Sales Package</span>
+									</div>
+									<div class="col-md-9 col-xs-8 right-a">
+										<span>@{model.Hsalespackage}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>Product Details</p>
+						</div>
+
+						<div class="collapse show" id="display-collapse">
+							<div class="spec-body">
+								@{if model.Hmicrophone}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>With Microphone</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Hmicrophone}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Hdriver}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Driver Type</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Hdriver}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Headphonejack}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Headphone Jack</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Headphonejack}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.HOtherFeatures}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>OtherFeatures</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.HOtherFeatures}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+					<div class="each-spec ">
+						<div class="spec-heading d-flex justify-content-start" data-toggle="collapse"
+							href="#display-collapse" role="button" aria-expanded="true" aria-controls="collapseExample">
+							<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+							<p>Warranty</p>
+						</div>
+
+						<div class="collapse show" id="display-collapse">
+							<div class="spec-body">
+								@{if model.Hwarrantysummary}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Warranty Summary</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Hwarrantysummary}</span>
+									</div>
+								</div>
+								@{fi}
+								@{if model.Hnotcoveredinwarranty}
+								<div class="row m-0">
+									<div class="col-md-3 col-xs-4 p-r-0 p-l-0 left-a">
+										<span>Not covered in warranty</span>
+									</div>
+									<div class="col-md-9 right-a col-xs-8">
+										<span>@{model.Hnotcoveredinwarranty}</span>
+									</div>
+								</div>
+								@{fi}
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>

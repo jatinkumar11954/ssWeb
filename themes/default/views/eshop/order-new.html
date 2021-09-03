@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700" />
+    @{import('default.css')}
+    
+    <style>
+        h1 {
+            margin: 2rem 0;
+        }
+    
+        .container {
+            background-color: #e7e7e7;
+            
+        }
+    </style>
+</head>
+<body style="background-color: #e7e7e7;">
+ 
+    
+    
+    <div class="container" >
+        <br>
+        <span style="display: flex;
+        justify-content: space-between;">
+            <h2>@(Order Details)</h2>
+                                    @{if !model.isfinished && !model.ispaid && !model.iscod }
+
+            <button class="btn btn-primary paybtn"  style="padding: 6px 15px;
+            font-weight: 900;
+            font-size: 14px;
+            margin-bottom: 1rem;"> 
+                Pay Now
+            </button>
+            @{fi}
+        </span>
+       
+
+        @{if model.version == 'V2'}
+        <table class="table table-bordered bg-white">
+            <thead>
+                <tr>
+                    <th>@(Product name)</th>
+                    <!-- <th class="ui-center col-xs-1">@(Count)</th> -->
+                    <!-- <th class="ui-right col-sm-3 col-xs-4">@(Price)</th> -->
+                </tr>
+            </thead>
+            <tbody class="orderedproducts">
+                @{foreach m in model.items}
+                <tr>
+                    <td>
+                        <span  style="width: 100%;display: flex; justify-content: space-between;align-items: center;">
+                            <img src="https://d34e6224thkkna.cloudfront.net/happi/@{m.pictures[0]}.jpg" style="height: 80px;    display: grid;
+                            justify-content: center;" alt="">
+                            <b style="text-align: right;">@{!(m.quantity * m.payPrice).currency()}</b>
+                        </span>
+                        
+                        @{m.name} 
+                        <br>
+                        <span style="width: 100%;display: flex;
+                        justify-content: space-between;font-size: 12px;">
+                           
+                            @{if m.shippingPrice == 0}
+                                Free Shipping
+                            @{else}
+                              Shipping : @{m.shippingPrice}
+                            @{fi}
+                            <b style="text-align: right;">
+                               Q : @{m.quantity}</b>
+                        </span>
+                       
+
+                    </td>
+                    
+                </tr>
+                @{end}
+            </tbody>
+            <tfoot>
+                <tr class="bg-yellow">
+                    <td><span style="width: 100%;display: flex;
+                        justify-content: space-between;font-size: 12px;">
+                           
+                            Subtotal 
+                            <b style="text-align: right;">
+                               @{model.SubTotal.currency()}</b>
+                        </span>
+                    </td>
+                    
+                </tr>
+                <tr class="bg-yellow">
+                    <td><span style="width: 100%;display: flex;
+                        justify-content: space-between;font-size: 12px;">
+                           
+                            Shipping Price 
+                            <b style="text-align: right;">
+                               @{model.totalShippingPrice.currency()}</b>
+                        </span>
+                    </td>
+                   
+                </tr>
+
+                <tr class="bg-yellow">
+                    <td><span style="width: 100%;display: flex;
+                        justify-content: space-between;font-size: 12px;">
+                           
+                            Total Quantity 
+                            <b style="text-align: right;">
+                               @{model.count}</b>
+                        </span>
+                    </td>
+                   
+                </tr>
+
+                <tr class="bg-yellow">
+                    <td><span style="width: 100%;display: flex;
+                        justify-content: space-between;font-size: 12px;">
+                           
+                          <b> Total Price </b>
+                            <b style="text-align: right;font-size: 15px;">
+                               @{model.price.currency()}</b>
+                        </span>
+                    </td>
+                   
+                </tr>
+            </tfoot>
+        </table>
+        @{fi}
+      
+        <h1>@{title}</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content">
+    
+                    @{if query.paid === '0' && query.cod != '1'}
+                    <div class="contentwarning">
+                        <i class="fa fa-warning"></i>@(We didn't receive a payment. <b>Try to pay again</b>.)
+                    </div>
+                    @{fi}
+    
+                    @{if query.paid === '1' || model.ispaid }
+                    <div class="contentsuccess">
+                        <i class="fa fa-check-circle"></i>@(<b>Thank you</b>, order has been paid.)
+                    </div>
+                    @{fi}
+    
+    
+                    @{if query.cod === '1' || model.iscod }
+                    <div class="contentsuccess">
+                        <i class="fa fa-check-circle"></i>@(<b>Thank you</b>, order has been placed success.)
+                    </div>
+                    @{fi}
+    
+                    @{if model.isfinished}
+                    <div class="contentsuccess">
+                        <i class="fa fa-check-circle"></i>@(Finished)
+                    </div>
+                    @{fi}
+    
+                    @{if model.status == 'paid'}
+                        <div class="contentbody">
+                            <div class="help nmb"><i class="fa fa-clock-o"></i>@(Order status:)</div>
+                            <div class="b red">Processing</div>
+                        </div>
+                        @{else if model.status == 'cod'} 
+                        <div class="contentbody">
+                            <div class="help nmb"><i class="fa fa-clock-o"></i>@(Order status:)</div>
+                            <div class="b red">Processing</div>
+                        </div>
+                    @{fi}
+    
+                    @{if model.statushistory && model.statushistory.length > 1}
+                    <div class="order-historystatus">
+                        @{foreach m in model.statushistory.reverse()}
+                        <div><i class="fa fa-clock-o"></i><b>@{m.date.format('@(yyyy-MM-dd HH:mm)')}</b> - @{m.status}</div>
+                        @{end}
+                    </div>
+                    @{fi}
+    
+                    @{if model.message}
+                    <div class="contentbody bg-yellow">
+                        <div class="help mb10"><i class="fa fa-warning"></i>@(Message for you:)</div>
+                        <div class="b">@{model.message.replace(/\n/g, '<br />')}</div>
+                    </div>
+                    @{fi}
+    
+                    <hr class="nmt nmb" />
+    
+                    <div class="contentbody">
+                        <div class="keyvalue">
+                            <div class="key">@(Customer)</div>
+                            <div class="value">@{model.firstname} @{model.lastname}</div>
+                        </div>
+    
+                        @{if model.iscompany}
+                        <div class="keyvalue">
+                            <div class="key">@(Company)</div>
+                            <div class="value">@{model.company}</div>
+                            <div class="value silver fs12" style="margin-top:5px">
+                                @{model.companyid}<br />@{model.companyvat}</div>
+                        </div>
+                        @{fi}
+    
+                        <div class="keyvalue">
+                            <div class="key">@(Email address)</div>
+                            <div class="value">@{model.email}</div>
+                        </div>
+    
+                        <div class="keyvalue">
+                            <div class="key">@(Phone number)</div>
+                            <div class="value">@{model.phone}</div>
+                        </div>
+    
+                        @{if model.note}
+                        <div class="keyvalue">
+                            <div class="key">@(Note)</div>
+                            <div class="value">@{model.note}</div>
+                        </div>
+                        @{fi}
+    
+                        @{if !model.isfinished && !model.ispaid && !model.iscod }
+                        <br />
+                        <div>
+                            @{if (model.product_code != "" || model.product_code != "none" )}	
+                            <button onclick="payWithPaytm()" class="btn btn-primary button" id="paytmsubmit" style="width: 100%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px; background-color: #fb9013"> 
+                                Pay With PayTM
+                            </button>
+                            <br>
+                            <div class="help" style="font-size: 15px; line-height: 28px;color: black;">@(Pay using your <b>PayTM Wallet/Credit Card/Debit Card/Net Banking</b> and <b>UPI</b> options.)</div>
+                            <br>
+                            <br>
+                            @{fi}
+                            
+                            
+                            
+    
+                            <button onclick="payOrder()" class="btn btn-primary button" id="pinesubmit" style="width: 100%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;background-color: #fb9013"> 
+                                Pay Online
+                            </button>
+                            <br>
+                            
+                            <div class="help" style="font-size: 15px; line-height: 28px;color: black;">@(Pay with this to <b>Avail instant Cash Backs, EMI offers </b> and <b>Bank Offer</b>)</div>
+                            <br>
+                            <br>
+                            
+                            @{if (model.referalId == null || model.referalId == "") }	
+    
+    
+                            <button onclick="codfunc()" class="btn btn-primary button codbtn" id="codsubmit" style="width: 100%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;background-color: #fb9013">
+                                Cash On Delivery
+                            </button>
+
+                            @{fi}
+    
+                            @{ if model.count == 1 }
+                            @{if(!model.ispickup)}
+                            
+                            @{fi}
+                            @{fi}
+                                @{if(model.ispickup)}
+                            <!-- <button onclick="codfunc()" class="btn btn-primary"
+                                style="width: 45%; padding: 6px;font-weight: 900; margin-right: 10px; font-size: 14px;">Pay
+                                in Store</button> -->
+                            @{fi}
+    
+                            
+                            <!-- <button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay now)</button> -->
+                        </div>
+                        <!-- <div class="help">@(You will be redirect to secured <b>PayTM</b> , <b>Debit Card</b> , <b>Credit
+                                Card</b> , <b>EMI</b> , <b>BHIM UPI</b> , <b>Net Banking</b> , payment page.)</div> -->
+                        @{fi}
+    
+                    </div>
+                </div>
+                <br />
+                
+            </div>
+            <div class="col-md-6">
+                <div class="content">
+                    <!-- <div class="contentbody bg-yellow"> -->
+                    <!-- <div class="keyvalue m">
+                            <div class="key"><i class="fa fa-dropbox"></i>@(Delivery)</div>
+                            <div class="value">@{model.delivery}</div>
+                        </div> -->
+                    <!-- <div class="keyvalue m">
+                            <div class="key"><i class="fa fa-dropbox"></i>@(Payment)</div>
+                            <div class="value">@{model.payment}@{if model.ispaid}<span class="badge badge-green">@(PAID)</span>@{else}<span class="badge">@(NOT PAID)</span>@{fi}</div>
+                        </div>
+                        <div class="keyvalue m">
+                            <div class="key"><i class="fa fa-at"></i>@(Tracking code)</div>
+                            <div class="value">@{if model.trackingcode}@{model.trackingcode}@{else}@(Undefined)@{fi}</div>
+                        </div> -->
+                    <!-- </div> -->
+                    <div class="contentbody">
+                        <div class="keyvalue m">
+                            <div class="key"><i class="fa fa-address-book"></i>@(Billing address)</div>
+                            <div class="value">
+                                @{model.billingstreet}<br />@{model.billingzip}<br />@{model.billingcity}<br />@{model.billingcountry}
+                            </div>
+                        </div>
+                        @{if(!model.ispickup)}
+                        <div class="keyvalue">
+                            <div class="key"><i class="fa fa-truck"></i>@(Delivery address)</div>
+                            <div class="value">@{model.deliveryfirstname}
+                                <br />@{model.deliverystreet}<br />@{model.deliveryzip}<br />@{model.deliverycity}<br />@{model.deliverycountry}<br />@(Phone:)
+                                @{model.deliveryphone}</div>
+                        </div>
+                        @{fi}
+                        
+                        @{if(model.ispickup)}
+                        <div class="keyvalue">
+                            <div class="key"><i class="fa fa-truck"></i>@(Pick Up at Store)</div>
+                            <div class="value">
+                                <br />@{model.pickupLocation}<br />@{model.pickupAddress}<br />@{model.pickupMobile}<br />@{model.pickupState}<br />@(Pincode:)
+                                @{model.pickupPincode}</div>
+                        </div>
+                        @{fi}
+                    </div>
+                    <div style="padding:10px">
+                        <div class="row">
+                            <div class="col-md-6 m">
+                                <div class="keyvalue">
+                                    <div class="key">@(Number)</div>
+                                    <div class="value">@{model.number}</div>
+                                </div>
+                            </div>
+                            @{if model.ispaid}
+                            <div class="col-md-6 m">
+                                <div class="keyvalue">
+                                    <div class="key">@(Paid)</div>
+                                    <div class="value green"><i
+                                            class="fa fa-check-circle"></i>@{model.datepaid.format('yyyy-MM-dd HH:mm')}</div>
+                                </div>
+                            </div>
+                            @{fi}
+                            @{if model.iscod}
+                            <div class="col-md-6 m ">
+                                <div class="keyvalue">
+                                    <div class="key">@(Cash On Delivery)</div>
+                                    <div class="value green"><i
+                                            class="fa fa-check-circle"></i>@{model.datecod.format('yyyy-MM-dd HH:mm')}</div>
+                                </div>
+                            </div>
+                            @{fi}
+                            <div class="col-md-6 m">
+                                <div class="keyvalue">
+                                    <div class="key">@(Created)</div>
+                                    <div class="value">@{model.datecreated.format('yyyy-MM-dd HH:mm')}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 m">
+                                <div class="keyvalue">
+                                    <div class="key">@(Price)</div>
+                                    <div class="value">@{!model.price.currency()}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 m">
+                                <div class="keyvalue">
+                                    <div class="key">@(Ordered items)</div>
+                                    <div class="value">@{model.count}x</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 m">
+                                <div class="keyvalue">
+                                    <div class="key">@(Discount)</div>
+                                    <div class="value">@{model.discount}%</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 m">
+                                <div class="keyvalue">
+                                    <div class="key">@(IP address)</div>
+                                    <div class="value">@{model.ip}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        
+    </div>
+    
+    
+    <center>
+        <!-- <h1>Please do not refresh this page...</h1> -->
+    </center>
+    <form method="post" action="/order/paytm" name="paytm">
+        <table border="1">
+            <tbody>
+                <input type="hidden" name="order_id" value="@{model.id}">
+                <!-- <input type="hidden" name="amount" value="@{model.price}">
+                <input type="hidden" name="email" value="@{model.email}">
+                <input type="hidden" name="mobile" value="@{model.phone}"> -->
+            </tbody>
+        </table>
+    </form>
+    
+    
+    <form method="post" action="https://happimobiles.com/order/pinelabs" name="pinelab">
+        <table border="1">
+            <tbody>
+                <input type="hidden" name="order_id" value="@{model.id}">
+            </tbody>
+        </table>
+    </form>
+    
+    <form method="post" action="/order/cod" name="cod">
+        <table border="1">
+            <tbody>
+                <input type="hidden" name="order_id" value="@{model.id}">
+                <input type="hidden" name="amount" value="@{model.price}">
+                <input type="hidden" name="email" value="@{model.email}">
+                <input type="hidden" name="mobile" value="@{model.phone}">
+            </tbody>
+        </table>
+    </form>
+    
+    <script>
+        $(document).ready(function(){
+            //$("#test-mobileapp").html(navigator.userAgent);
+    
+            var isContains = navigator.userAgent.indexOf("Happi-Mobile-App");
+    
+            if(isContains != -1){
+                    $(".mobile-app").hide();
+            }
+
+            $( ".paybtn" ).click(function() {
+                $('html,body').animate({
+                    scrollTop: $("#paytmsubmit").offset().top - 100},
+                    'slow');
+            });
+        });
+
+       
+        
+    </script>
+    
+    <script>
+        var deliveryzip = "@{model.deliveryzip}";
+    
+    
+        // setTimeout(() => {
+    
+        // }, timeout);
+    
+         $(document).ready(function () {
+            $('.cash-del').show();
+            checkpincode()
+        });
+
+        function checkpincode(){
+            let pin = {
+				pinCode: deliveryzip
+			};
+			$.ajax('/api/pincodeVerify', {
+				type: 'POST',
+				data: pin,
+				dataType: 'json', // type of response data
+				success: function (data, status, xhr) { // success callback function
+					console.log(data);
+
+					if (data.status) {
+						$('.codbtn').show();
+					} else {
+                        $('.codbtn').hide();
+					}
+
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback 
+					console.log("errror");
+
+				}
+			});
+        }
+    
+    
+        function payWithPaytm(){
+            $("#paytmsubmit").attr("disabled", "disabled");
+            $("#pinesubmit").attr("disabled", "disabled");
+            $("#codsubmit").attr("disabled", "disabled");
+            $("#paytmsubmit").html("Redirecting to PayTM...");
+            setTimeout(function(){
+                document.paytm.submit();
+            }, 2500);
+        }
+    
+        function codfunc() {
+            $("#paytmsubmit").attr("disabled", "disabled");
+            $("#pinesubmit").attr("disabled", "disabled");
+            $("#codsubmit").attr("disabled", "disabled");
+            $("#codsubmit").html("Redirecting to COD...");
+            setTimeout(function(){
+                document.cod.submit();
+            }, 2500);
+        }
+    
+        function payOrder() {
+            $("#paytmsubmit").attr("disabled", "disabled");
+            $("#pinesubmit").attr("disabled", "disabled");
+            $("#codsubmit").attr("disabled", "disabled");
+            $("#pinesubmit").html("Redirecting to Pinelabs Gateway...");
+    
+            setTimeout(function(){
+                document.pinelab.submit();
+            }, 2500);
+            
+            // SETTER('loading', 'show');
+            // location.href = location.pathname + '?payment=' + btn.prop('name');
+            //document.paytm.submit();
+        }
+    
+        // Highlight sizes and colors
+        $('.orderedproducts').find('tr').each(function () {
+            var el = $(this).find('td:first-child');
+            var html = el.html();
+            html.substring(0, 1) === '[' && el.html(html.replace(/^\[.*?\]/, n => '<b class="badge badge-blue badge-large">' + n.replace(/\[|\]/g, '') + '</b>'));
+        });
+    
+    </script>
+
+
+<script>
+ 
+$(document).ready(function () {
+    console.log("DDDDDDDDDDDDDDd");
+});
+
+</script>
+</body>
+</html>

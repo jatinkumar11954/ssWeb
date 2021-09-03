@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Shopsasta">
+      <meta name="author" content="Shopsasta">
+      <title>shopsasta.com - Community Group Buying</title>
+      <!-- Favicon Icon -->
+      <link rel="icon" type="image/png" href="img/favicon.png">
+      <!-- Bootstrap core CSS -->
+      <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Material Design Icons -->
+      <link href="/vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+      <!-- Select2 CSS -->
+      <link href="/vendor/select2/css/select2-bootstrap.css" />
+      <link href="/vendor/select2/css/select2.min.css" rel="stylesheet" />
+      <!-- Custom styles for this template -->
+      <link href="/css/osahan.css" rel="stylesheet">
+      <!-- Owl Carousel -->
+      <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
+      <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+   </head>
+   <body>
+     
+      <div class="header">
+		@{view('partials/header')}
+	</div>
+	<section class=" bg-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 breadcum">
+					<a href="/"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span
+						class="mdi mdi-chevron-right"></span> <a href="#">My Account</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="account-page section-padding">
+		<div class="container">
+		   <div class="row">
+			  <div class="col-lg-12">
+				 <div class="row ">
+				
+					<div class="col-md-12">
+					   <div class="">
+						  <div class="widget">
+							 <div class="section-header">
+								<h5 class="heading-design-h5">
+								   My Profile
+								</h5>
+							 </div>
+							 <form>
+								<div class="row">
+								   <div class="col-sm-6">
+									  <div class="form-group">
+										 <label class="control-label">First Name <span class="required">*</span></label>
+										 <input class="form-control border-form-control"  type="text" id="account-name">
+										 <span class="account-name-error" style="font-size: 12px; color: red;">Name is required</span>
+									  </div>
+								   </div>
+								   <div class="col-sm-6">
+									<div class="form-group">
+									   <label class="control-label">Phone <span class="required">*</span></label>
+									   <input class="form-control border-form-control"  type="number" disabled='true' id="account-number">
+									</div>
+								 </div>
+								</div>
+								<div class="row">
+								   
+								   <div class="col-sm-6">
+									  <div class="form-group">
+										 <label class="control-label">Email Address <span class="required">*</span></label>
+										 <input class="form-control border-form-control "   type="email" id="account-email">
+										 <span class="account-email-error" style="font-size: 12px; color: red;">Email is required</span>
+									  </div>
+								   </div>
+								</div>
+								
+								<div class="row">
+								   <div class="col-sm-12 text-right">
+									  <button type="button" class="btn btn-secondary btn-lg" onclick="saveMyAccount()"> Save Changes </button>
+								   </div>
+								</div>
+							 </form>
+						  </div>
+					   </div>
+					</div>
+				 </div>
+			  </div>
+		   </div>
+		</div>
+	 </section>
+      
+      <div class="footer">
+		@{view('partials/footer')}
+	</div>
+      
+  
+      <!-- Bootstrap core JavaScript -->
+      <script src="/vendor/jquery/jquery.min.js"></script>
+      <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- select2 Js -->
+      <script src="/vendor/select2/js/select2.min.js"></script>
+      <!-- Owl Carousel -->
+      <script src="/vendor/owl-carousel/owl.carousel.js"></script>
+      <!-- Custom -->
+	  <script src="/js/custom.js"></script>
+	  <script src="/js/main.js?v=v1.5"></script>
+	  <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+   </body>
+</html>
+

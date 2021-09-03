@@ -1,0 +1,287 @@
+<!-- @{repository.loading = true} -->
+<style>
+	.pwd-block {
+		padding: 1rem 0;
+	}
+
+	label {
+		font-size: 15px;
+	}
+
+	.btn-primary {
+
+		background-color: #fb9013;
+		border-color: #fb9013;
+	}
+
+	.btn-primary:hover,
+	.btn-primary:active {
+
+		background-color: #fb9013;
+		border-color: #fb9013;
+	}
+</style>
+<br />
+<div class="row m-0">
+	<div class="col-md-4">
+		<h2>@{title}</h2>
+		<p class="help">@(In this place you can modify your account information.)</p>
+		<hr class="darker" />
+
+		<div class="keyvalue">
+			<div class="key">@(Registered)</div>
+			<div class="value" data-b="settings.datecreated"
+				data-b-html="value ? value.format('@(yyyy-MM-dd HH:mm)') : '...'"></div>
+		</div>
+
+		<div class="keyvalue">
+			<div class="key">@(Discount)</div>
+			<div class="value" data-b="settings.discount" data-b-html="(value ? value.format(2) : '0') + '%'"></div>
+		</div>
+
+	</div>
+	<div class="col-md-8">
+		<form id="sigupForm" onsubmit="return false">
+			<div class="row content">
+
+				<div class="col-md-12 col-xs-12">
+
+					<div class="row">
+
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputFirstname">First name</label>
+								<input type="text" class="form-control" id="firstname" placeholder="Firstname"
+									style="font-size: 14px;">
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputLastname">Last name</label>
+								<input type="text" class="form-control" id="lastname" placeholder="Lastname"
+									style="font-size: 14px;">
+							</div>
+						</div>
+
+						<!-- <div class="col-md-6 m  p-0">
+																			<div data-jc="textbox" data-jc-path="account.signup.firstname" data-jc-config="required:true;maxlength:40">@(First name)</div>
+																		</div>
+																		<div class="col-md-6 m  p-0">
+																			<div data-jc="textbox" data-jc-path="account.signup.lastname" data-jc-config="required:true;maxlength:40">@(Last name)</div>
+																		</div> -->
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label>
+								<input type="text" class="form-control" id="email" aria-describedby="emailHelp"
+									placeholder="Enter email" style="font-size: 14px;">
+
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 ">
+							<div class="form-group">
+								<label for="exampleInputPhonenumber">phone number</label>
+								<input type="text" class="form-control" id="phone" placeholder="Phonenumber"
+									style="font-size: 14px;">
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<span style="font-size: 11px;display: flex;
+						align-items: center;"><input type="checkbox" id="changePwd" name="changePwd" />&nbsp;I want to change my
+								password
+							</span>
+						</div>
+					</div>
+
+					<div class=" pwd-block">
+						<div class="row">
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Password</label>
+									<input type="password" class="form-control" id="password"
+										placeholder="Enter Password" style="font-size: 14px;">
+
+								</div>
+								<!-- <div data-jc="textbox" data-jc-path="account.signup.password" data-jc-config="required:true;maxlength:30;type:password">@(Password)</div> -->
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Confirm Password</label>
+									<input type="password" class="form-control" id="cpassword"
+										placeholder="Enter Password" style="font-size: 14px;">
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="alert alert-danger" id='signuperror' style="font-size: 14px;">
+						<strong>Password!</strong> Not Matched
+					</div>
+					<div class="contentbody" style="padding: 1rem 0;">
+
+						<button onclick="settingsFromSubmit()" class="btn btn-primary"
+							style=" padding: 6px;font-weight: 900; font-size: 14px;">Submit</button>
+					</div>
+				</div>
+
+			</div>
+		</form>
+
+		
+	</div>
+</div>
+
+<script>
+	SETTER(true, 'loading', 'hide', 1000);
+	AJAX('GET /api/account/settings/', 'settings');
+
+	function settingssubmit() {
+
+		if (BLOCKED('settings', 3000))
+			return;
+
+		AJAX('POST /api/account/settings/', settings, function (response) {
+			RESET('settings.*', true);
+
+			if (response.success)
+				SETTER('message', 'success', '@(Your account has been changed successfully.)');
+			else
+				SET('settings.response', response);
+
+		});
+	}
+
+	$(document).ready(function () {
+		$('.pwd-block').hide();
+		$('#signuperror').hide();
+		getUserDetails();
+		$("#changePwd").on("click", function () {
+			if (this.checked) {
+				$('.pwd-block').show();
+
+			}
+			else {
+				$('.pwd-block').hide();
+
+			}
+		});
+	});
+
+
+	function settingsFromSubmit() {
+		var updateProfile = {};
+
+		if ($('#changePwd').prop("checked")) {
+			updateProfile = {
+				name: $('#firstname').val() + ' ' + $('#lastname').val(),
+				firstname: $('#firstname').val(),
+				lastname: $('#lastname').val(),
+				email: $('#email').val(),
+				phone: $('#phone').val(),
+				ispassword: "1",
+				password: $('#password').val(),
+				passwordreply: $('#cpassword').val(),
+
+			};
+
+		} else {
+			updateProfile = {
+				name: $('#firstname').val() + ' ' + $('#lastname').val(),
+				firstname: $('#firstname').val(),
+				lastname: $('#lastname').val(),
+				email: $('#email').val(),
+				phone: $('#phone').val(),
+				ispassword: "0",
+
+			};
+		}
+		console.log(updateProfile);
+
+		if ($('#password').val() == $('#cpassword').val()) {
+			$('#signuperror').hide();
+
+
+
+			$.ajax('/api/account/settings/', {
+				type: 'POST',
+				data: JSON.stringify(updateProfile),
+				dataType: 'json', // type of response data
+				contentType: 'application/json',
+				timeout: 500, // timeout milliseconds
+				success: function (response, status, xhr) { // success callback function
+
+					console.log("Updated", response);
+					if (response.success) {
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: name + 'Updated Successfully',
+							showConfirmButton: false,
+							timer: 1500
+						});
+						setTimeout(() => {
+							window.location.href = '/account';
+						}, 2000);
+						
+
+					} else {
+						$(".error").remove();
+						for (let i = 0; i < response.length; i++) {
+						const element = response[i];
+						$('#' + element.name).after(`<span class="error">${element.error}</span>`);
+						if (response[i].name == "error-users-email") {
+							console.log('email error');
+
+							$('#email').after(`<span class="error">${element.error}</span>`);
+						}
+					}
+					}
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback 
+					console.log("errror");
+
+				}
+			});
+		} else {
+			$('#signuperror').show();
+		}
+
+
+
+	}
+
+	function getUserDetails() {
+		console.log('GET DETAILS');
+		var baseUrl = '/api/';
+
+		$.ajax('/api/account/settings/', {
+			type: 'GET',
+			dataType: 'json', // type of response data
+			timeout: 500, // timeout milliseconds
+			success: function (data, status, xhr) { // success callback function
+				console.log(data);
+
+				$('#firstname').val(data.firstname);
+				$('#lastname').val(data.lastname);
+				$('#email').val(data.email);
+				$('#phone').val(data.phone);
+				$('#password').val('');
+
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				console.log("errror");
+
+			}
+		});
+	}
+
+
+
+</script>

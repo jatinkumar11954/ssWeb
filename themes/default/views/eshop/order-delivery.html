@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>Happi Payment page</title>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <style>
+        .logo {
+            background-color: #fb9013;
+            height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            padding: 20px;
+            height: 135px;
+        }
+
+        #qrcode {
+            height: 512px;
+            width: 512px;
+        }
+
+        .button {
+            background-color: #fb9013;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 6em;
+            width: 100%;
+            position: fixed;
+            bottom:0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <center>
+            <img src="https://happimobiles.com/img/happiLogo.png">
+        </center>
+    </div>
+
+    <center>
+        <div id="qrcode"></div>
+    </center>
+    <br>
+    <br>
+    <ul style="font-size: 4em;">
+        <li>Customer No: @{model.customer_phone}</li>
+        <li>Your No: @{model.delivery_phone}</li>
+        <li>Order Id: @{model.id}</li>
+        <li>Amount : @{model.amount}</li>
+        <li>Payment Status : 
+            @{if model.ispaid }
+                Success
+            @{else}
+                Pending 
+            @{fi}
+        </li>
+        @{if model.ispaid }
+        <li style="font-size: .5em;">Payment Id : @{model.tan_no}
+        @{fi}
+    </ul>
+
+   
+   
+    <button class="button" id="reload">
+        RELOAD
+    </button>
+
+    <script type="text/javascript">
+        $('#qrcode').qrcode({ width: 512, height: 512, text: "https://happimobiles.com/order-payment/@{model.id}/" });
+        $('#reload').click(function(){
+           location.reload();
+        })
+    </script>
+
+
+</body>
+
+</html>
